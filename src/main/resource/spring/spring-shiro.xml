@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+                http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                 ">
+    <!-- 配置安全管理器 securityManager
+                        射凯尔ti  -->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="realmDemo"></property>
+    </bean>
+
+    <!-- 查询数据库 realm  shiro 笑儿哦
+                    若儿目 -->
+    <bean id="realmDemo" class="com.hy.crmsystem.shirorealm.RealmDemo">
+        <property name="credentialsMatcher">
+            <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+                <property name="hashAlgorithmName" value="MD5"></property>
+                <property name="hashIterations" value="1000"></property>
+            </bean>
+        </property>
+    </bean>
+
+    <!-- shiro web 过滤器
+            1、securityManager 引入安全管理器的beanID
+            2、loginUrl 设置如果未认证跳转至登录页面
+            3、filterChainDefinitions 过滤器设置 -->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager"></property>
+        <property name="loginUrl" value="/Login.jsp"></property>
+        <property name="filterChainDefinitions">
+            <value>
+                /user/login.do=anon
+                <!--/user/testLogin.do=roles[zhuguan,yuangong]
+                /user/testLogin1.do=roles[zhuguan]
+                /user/testLogin.do=perms[user:testLogin.do]
+                /user/testLogin1.do=perms[user:testLogin1.do]-->
+                /**=authc
+            </value>
+        </property>
+    </bean>
+</beans>

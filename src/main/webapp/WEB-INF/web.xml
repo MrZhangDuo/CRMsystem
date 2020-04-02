@@ -1,0 +1,72 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+
+  <context-param>
+    <param-name>log4jConfigLocation</param-name>
+    <param-value>classpath:log4j.properties</param-value><!-- spring-shiro.xml地址 -->
+  </context-param>
+
+  <context-param><!-- 加载spring.xml文件 -->
+    <param-name>contextConfigLocation</param-name><!-- 名称固定 -->
+    <param-value>classpath:spring/spring.xml</param-value><!-- spring 主配置文件地址 -->
+  </context-param>
+
+  <filter>
+    <filter-name>characterEncodingFilter</filter-name><!-- spring 设置字符编码方式 -->
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>utf-8</param-value>
+    </init-param>
+
+    <init-param>
+      <param-name>forceEncoding</param-name><!-- forceEncoding表示是否同时设置response的编码 -->
+      <param-value>true</param-value>
+    </init-param>
+  </filter>
+
+ <!-- <filter>&lt;!&ndash; 配置spring集成shiro 框架的过滤器 必须保证要和spring-shiro.xml内部过滤器ID名称一致 &ndash;&gt;
+    <filter-name>shiroFilter</filter-name>
+    <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+  </filter>-->
+
+  <filter-mapping>
+    <filter-name>characterEncodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+<!--  <filter-mapping>
+    <filter-name>shiroFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>-->
+
+
+
+  <listener><!-- 配置log4j 监听器 -->
+    <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+  </listener>
+
+  <listener><!-- 配置spring 监听器 contloadlistener的作用是 当启动web容器时自动装配application.xml的信息 因为他实现了servletcontextlistener这个接口 -->
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+
+  <servlet><!-- 配置springMVC前端控制器 dispatcherServlet 负责调度工作 -->
+    <servlet-name>dispatcherServlet</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>classpath:spring/springmvc.xml</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>dispatcherServlet</servlet-name>
+    <url-pattern>*.do</url-pattern><!-- 表示拦截所有的请求为 *.do 结束的 controller url地址 -->
+  </servlet-mapping>
+  
+</web-app>
