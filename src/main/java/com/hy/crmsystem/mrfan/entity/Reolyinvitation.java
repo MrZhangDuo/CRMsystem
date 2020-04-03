@@ -2,9 +2,11 @@ package com.hy.crmsystem.mrfan.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * <p>
@@ -28,7 +30,8 @@ public class Reolyinvitation implements Serializable {
     //回复内容
     private String ReolyContent;
     //回复时间
-    private LocalDateTime ReolyTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date ReolyTime;
     //楼主
     private String LZ;
 
@@ -61,11 +64,12 @@ public class Reolyinvitation implements Serializable {
         this.ReolyContent = ReolyContent;
     }
 
-    public LocalDateTime getReolyTime() {
+    public Date getReolyTime() {
         return ReolyTime;
     }
-    public void setReolyTime(LocalDateTime ReolyTime) {
-        this.ReolyTime = ReolyTime;
+
+    public void setReolyTime(Date reolyTime) {
+        ReolyTime = reolyTime;
     }
 
     public String getLZ() {

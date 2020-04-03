@@ -54,6 +54,7 @@ public class Billaskfor implements Serializable {
     //金额大写
     private String MoneyBigwriter;
     //开票日期
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date billTime;
     //发票号码
     private String billNum;
