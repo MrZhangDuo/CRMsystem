@@ -1,7 +1,6 @@
 package com.hy.crmsystem.shirorealm;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.hy.crmsystem.entity.User;
 import org.apache.log4j.Logger;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;

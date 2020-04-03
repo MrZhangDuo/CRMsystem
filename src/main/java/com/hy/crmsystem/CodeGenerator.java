@@ -2,11 +2,8 @@ package com.hy.crmsystem;
 
 
 import com.baomidou.mybatisplus.core.exceptions.MybatisPlusException;
+import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
-import com.baomidou.mybatisplus.generator.AutoGenerator;
-import com.baomidou.mybatisplus.generator.InjectionConfig;
-import com.baomidou.mybatisplus.generator.config.*;
-import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,12 +15,12 @@ import java.util.Scanner;
  * @Description:
  */
 public class CodeGenerator {
-
-    /**
+    /*
+   *//* *
      * <p>
      * 读取控制台内容
-     * </p>
-     */
+     * </p>*//*
+
     public static String scanner(String tip) {
         Scanner scanner = new Scanner(System.in);
         StringBuilder help = new StringBuilder();
@@ -80,14 +77,14 @@ public class CodeGenerator {
         // 自定义输出配置
         List<FileOutConfig> focList = new ArrayList<>();
         // 自定义配置会被优先输出
-        /*focList.add(new FileOutConfig(templatePath) {
+        *//*focList.add(new FileOutConfig(templatePath) {
             @Override
             public String outputFile(TableInfo tableInfo) {
                 // 自定义输出文件名
                 return projectPath + "/src/main/resources/mapper/" + pc.getModuleName()
                         + "/" + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_XML;
             }
-        });*/
+        });*//*
 
         cfg.setFileOutConfigList(focList);
         mpg.setCfg(cfg);
@@ -118,6 +115,6 @@ public class CodeGenerator {
         mpg.setStrategy(strategy);
         mpg.setTemplateEngine(new FreemarkerTemplateEngine());
         mpg.execute();
-    }
+    }*/
 
 }
