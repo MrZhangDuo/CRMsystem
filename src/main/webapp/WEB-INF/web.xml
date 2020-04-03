@@ -68,5 +68,4 @@
     <servlet-name>dispatcherServlet</servlet-name>
     <url-pattern>*.do</url-pattern><!-- 表示拦截所有的请求为 *.do 结束的 controller url地址 -->
   </servlet-mapping>
-  
 </web-app>
