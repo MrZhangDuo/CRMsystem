@@ -2,8 +2,12 @@ package com.hy.crmsystem.mrli.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDateTime;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * <p>
@@ -13,6 +17,7 @@ import java.io.Serializable;
  * @author zhangduo
  * @since 2020-04-03
  */
+@TableName(value = "documentary")
 public class Documentary implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -22,7 +27,8 @@ public class Documentary implements Serializable {
 
     private Integer baseId;
 
-    private LocalDateTime DocTime;
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    private Date DocTime;
 
     private String DocPeople;
 
@@ -44,13 +50,16 @@ public class Documentary implements Serializable {
     public void setBaseId(Integer baseId) {
         this.baseId = baseId;
     }
-    public LocalDateTime getDocTime() {
+
+
+    public Date getDocTime() {
         return DocTime;
     }
 
-    public void setDocTime(LocalDateTime DocTime) {
-        this.DocTime = DocTime;
+    public void setDocTime(Date docTime) {
+        DocTime = docTime;
     }
+
     public String getDocPeople() {
         return DocPeople;
     }

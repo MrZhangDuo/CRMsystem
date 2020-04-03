@@ -1,5 +1,7 @@
 package com.hy.crmsystem.mrli.entity;
 
+import com.baomidou.mybatisplus.annotation.TableName;
+
 import java.io.Serializable;
 
 /**
@@ -10,6 +12,7 @@ import java.io.Serializable;
  * @author zhangduo
  * @since 2020-04-03
  */
+@TableName("user")
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
