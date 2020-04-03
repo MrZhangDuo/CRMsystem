@@ -20,44 +20,44 @@ import java.util.Date;
 public class Billaskfor implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
+    //开票主键
     @TableId(value = "billId", type = IdType.AUTO)
     private Integer billId;
-
+    //结束时间
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date Endtime;
-
+    //详细地址
     private String Address;
-
+    //申请人姓名
     private String AskForName;
-
+    //所属部门
     private String BillDept;
-
+    //申请日期
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date AskFortime;
-
+    //主要技术条款
     private String BillTechnical;
-
+    //对方单位全称
     private String unitName;
-
+    //关联合同图片
     private String relevancyContract;
-
+    //开票种类
     private String billSort;
-
+    //纳税人识别号
     private String taxpayernum;
-
+    //开户银行及账号
     private String account;
-
+    //地址电话
     private String AdderssPhone;
-
+    //开票金额
     private String billMoney;
-
+    //金额大写
     private String MoneyBigwriter;
-
-    private String billTime;
-
+    //开票日期
+    private Date billTime;
+    //发票号码
     private String billNum;
-
+    //相关附件
     private String file;
 
     public Date getEndtime() {
@@ -164,16 +164,18 @@ public class Billaskfor implements Serializable {
         return MoneyBigwriter;
     }
 
-    public void setMoneyBigwriter(String MoneyBigwriter) {
-        this.MoneyBigwriter = MoneyBigwriter;
+    public void setMoneyBigwriter(String moneyBigwriter) {
+        MoneyBigwriter = moneyBigwriter;
     }
-    public String getBillTime() {
+
+    public Date getBillTime() {
         return billTime;
     }
 
-    public void setBillTime(String billTime) {
+    public void setBillTime(Date billTime) {
         this.billTime = billTime;
     }
+
     public String getBillNum() {
         return billNum;
     }
@@ -181,35 +183,36 @@ public class Billaskfor implements Serializable {
     public void setBillNum(String billNum) {
         this.billNum = billNum;
     }
+
     public String getFile() {
         return file;
     }
-
     public void setFile(String file) {
         this.file = file;
     }
 
+
     @Override
     public String toString() {
         return "Billaskfor{" +
-        "billId=" + billId +
-        ", Endtime=" + Endtime +
-        ", Address=" + Address +
-        ", AskForName=" + AskForName +
-        ", BillDept=" + BillDept +
-        ", AskFortime=" + AskFortime +
-        ", BillTechnical=" + BillTechnical +
-        ", unitName=" + unitName +
-        ", relevancyContract=" + relevancyContract +
-        ", billSort=" + billSort +
-        ", taxpayernum=" + taxpayernum +
-        ", account=" + account +
-        ", AdderssPhone=" + AdderssPhone +
-        ", billMoney=" + billMoney +
-        ", MoneyBigwriter=" + MoneyBigwriter +
-        ", billTime=" + billTime +
-        ", billNum=" + billNum +
-        ", file=" + file +
-        "}";
+                "billId=" + billId +
+                ", Endtime=" + Endtime +
+                ", Address='" + Address + '\'' +
+                ", AskForName='" + AskForName + '\'' +
+                ", BillDept='" + BillDept + '\'' +
+                ", AskFortime=" + AskFortime +
+                ", BillTechnical='" + BillTechnical + '\'' +
+                ", unitName='" + unitName + '\'' +
+                ", relevancyContract='" + relevancyContract + '\'' +
+                ", billSort='" + billSort + '\'' +
+                ", taxpayernum='" + taxpayernum + '\'' +
+                ", account='" + account + '\'' +
+                ", AdderssPhone='" + AdderssPhone + '\'' +
+                ", billMoney='" + billMoney + '\'' +
+                ", MoneyBigwriter='" + MoneyBigwriter + '\'' +
+                ", billTime=" + billTime +
+                ", billNum='" + billNum + '\'' +
+                ", file='" + file + '\'' +
+                '}';
     }
 }

@@ -59,6 +59,7 @@ public class Contract implements Serializable {
     //关联人员
     private String RelevancyPeople;
 
+
     public Integer getContractId() {
         return ContractId;
     }
@@ -196,6 +197,7 @@ public class Contract implements Serializable {
     public void setRelevancyPeople(String RelevancyPeople) {
         this.RelevancyPeople = RelevancyPeople;
     }
+
 
     @Override
     public String toString() {

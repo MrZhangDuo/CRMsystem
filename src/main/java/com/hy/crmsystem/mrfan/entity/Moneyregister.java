@@ -1,5 +1,7 @@
 package com.hy.crmsystem.mrfan.entity;
 
+import com.baomidou.mybatisplus.annotation.TableName;
+
 import java.time.LocalDate;
 import java.io.Serializable;
 
@@ -11,33 +13,35 @@ import java.io.Serializable;
  * @author zhangduo
  * @since 2020-04-03
  */
+@TableName(value = "moneyregister")
 public class Moneyregister implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
+    //收入登记主键
     private Integer incomeId;
-
+    //收入日期
     private LocalDate incomeTime;
-
+    //收入分类
     private Integer incomesort;
-
+    //收入金额
     private String incomesMoney;
-
+    //大写
     private String MoneyBigWrite;
-
+    //收款方式
     private Integer incomeWay;
-
+    //登记人
     private String RegisterPeople;
-
+    //关联人员
     private String relevancyPeople;
-
+    //关联部门
     private Integer relevancyDept;
-
+    //对方单位
     private String unit;
-
+    //关联合同
     private String relevancyContract;
-
+    //收入说明
     private String incomeldExplain;
+
 
     public Integer getIncomeId() {
         return incomeId;
@@ -46,6 +50,7 @@ public class Moneyregister implements Serializable {
     public void setIncomeId(Integer incomeId) {
         this.incomeId = incomeId;
     }
+
     public LocalDate getIncomeTime() {
         return incomeTime;
     }
@@ -124,21 +129,22 @@ public class Moneyregister implements Serializable {
         this.incomeldExplain = incomeldExplain;
     }
 
+
     @Override
     public String toString() {
         return "Moneyregister{" +
-        "incomeId=" + incomeId +
-        ", incomeTime=" + incomeTime +
-        ", incomesort=" + incomesort +
-        ", incomesMoney=" + incomesMoney +
-        ", MoneyBigWrite=" + MoneyBigWrite +
-        ", incomeWay=" + incomeWay +
-        ", RegisterPeople=" + RegisterPeople +
-        ", relevancyPeople=" + relevancyPeople +
-        ", relevancyDept=" + relevancyDept +
-        ", unit=" + unit +
-        ", relevancyContract=" + relevancyContract +
-        ", incomeldExplain=" + incomeldExplain +
-        "}";
+                "incomeId=" + incomeId +
+                ", incomeTime=" + incomeTime +
+                ", incomesort=" + incomesort +
+                ", incomesMoney='" + incomesMoney + '\'' +
+                ", MoneyBigWrite='" + MoneyBigWrite + '\'' +
+                ", incomeWay=" + incomeWay +
+                ", RegisterPeople='" + RegisterPeople + '\'' +
+                ", relevancyPeople='" + relevancyPeople + '\'' +
+                ", relevancyDept=" + relevancyDept +
+                ", unit='" + unit + '\'' +
+                ", relevancyContract='" + relevancyContract + '\'' +
+                ", incomeldExplain='" + incomeldExplain + '\'' +
+                '}';
     }
 }

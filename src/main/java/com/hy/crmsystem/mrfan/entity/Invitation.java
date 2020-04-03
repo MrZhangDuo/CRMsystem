@@ -18,6 +18,7 @@ import java.util.Date;
  */
 @TableName("invitation")
 public class Invitation implements Serializable {
+
     private static final long serialVersionUID = 1L;
     //帖子主键
     @TableId(value = "InvitationId")
@@ -39,6 +40,7 @@ public class Invitation implements Serializable {
     // 帖子回复日期
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm")
     private Date InvitationTime;
+
 
     public Integer getInvitationId() {
         return InvitationId;
@@ -104,6 +106,7 @@ public class Invitation implements Serializable {
     public void setInvitationTime(Date invitationTime) {
         InvitationTime = invitationTime;
     }
+
 
     @Override
     public String toString() {
