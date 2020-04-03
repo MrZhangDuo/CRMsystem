@@ -1,9 +1,12 @@
 package com.hy.crmsystem.mrpan.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import java.time.LocalDate;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * <p>
@@ -12,11 +15,14 @@ import java.io.Serializable;
  *
  * @author zhangduo
  * @since 2020-04-03
+ * 商机表
  */
+@TableName(value = "business")
 public class Business implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+   //商机id
     @TableId(value = "BusId", type = IdType.AUTO)
     private Integer BusId;
 
@@ -30,23 +36,16 @@ public class Business implements Serializable {
 
     private Integer BusSource;
 
-    /**
-     * Ԥ
-     */
+
     private String BusBeforeMoney;
 
-    /**
-     * Ԥ
-     */
-    private LocalDate BusBeforedate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date BusBeforedate;
 
     private String BusBlinkMan;
 
     private String BusDept;
 
-    /**
-     * ְ
-     */
     private String BusJob;
 
     private String BusFixnum;
@@ -113,18 +112,12 @@ public class Business implements Serializable {
         return BusBeforeMoney;
     }
 
-    public void setBusBeforeMoney(String BusBeforeMoney) {
-        this.BusBeforeMoney = BusBeforeMoney;
-    }
-    public LocalDate getBusBeforedate() {
+    public Date getBusBeforedate() {
         return BusBeforedate;
     }
 
-    public void setBusBeforedate(LocalDate BusBeforedate) {
-        this.BusBeforedate = BusBeforedate;
-    }
-    public String getBusBlinkMan() {
-        return BusBlinkMan;
+    public void setBusBeforedate(Date busBeforedate) {
+        BusBeforedate = busBeforedate;
     }
 
     public void setBusBlinkMan(String BusBlinkMan) {
