@@ -1,9 +1,12 @@
 package com.hy.crmsystem.mrfan.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import java.time.LocalDate;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * <p>
@@ -13,6 +16,7 @@ import java.io.Serializable;
  * @author zhangduo
  * @since 2020-04-03
  */
+@TableName("billaskfor")
 public class Billaskfor implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -20,7 +24,8 @@ public class Billaskfor implements Serializable {
     @TableId(value = "billId", type = IdType.AUTO)
     private Integer billId;
 
-    private LocalDate Endtime;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date Endtime;
 
     private String Address;
 
@@ -28,7 +33,8 @@ public class Billaskfor implements Serializable {
 
     private String BillDept;
 
-    private LocalDate AskFortime;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date AskFortime;
 
     private String BillTechnical;
 
@@ -54,19 +60,28 @@ public class Billaskfor implements Serializable {
 
     private String file;
 
+    public Date getEndtime() {
+        return Endtime;
+    }
+
+    public void setEndtime(Date endtime) {
+        Endtime = endtime;
+    }
+
+    public Date getAskFortime() {
+        return AskFortime;
+    }
+
+    public void setAskFortime(Date askFortime) {
+        AskFortime = askFortime;
+    }
+
     public Integer getBillId() {
         return billId;
     }
 
     public void setBillId(Integer billId) {
         this.billId = billId;
-    }
-    public LocalDate getEndtime() {
-        return Endtime;
-    }
-
-    public void setEndtime(LocalDate Endtime) {
-        this.Endtime = Endtime;
     }
     public String getAddress() {
         return Address;
@@ -88,13 +103,6 @@ public class Billaskfor implements Serializable {
 
     public void setBillDept(String BillDept) {
         this.BillDept = BillDept;
-    }
-    public LocalDate getAskFortime() {
-        return AskFortime;
-    }
-
-    public void setAskFortime(LocalDate AskFortime) {
-        this.AskFortime = AskFortime;
     }
     public String getBillTechnical() {
         return BillTechnical;
