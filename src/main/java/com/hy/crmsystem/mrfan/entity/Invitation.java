@@ -1,7 +1,12 @@
 package com.hy.crmsystem.mrfan.entity;
 
-import java.time.LocalDateTime;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import org.springframework.format.annotation.DateTimeFormat;
+
+
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * <p>
@@ -11,27 +16,29 @@ import java.io.Serializable;
  * @author zhangduo
  * @since 2020-04-03
  */
+@TableName("invitation")
 public class Invitation implements Serializable {
-
     private static final long serialVersionUID = 1L;
-
+    //帖子主键
+    @TableId(value = "InvitationId")
     private Integer InvitationId;
-
+    //回复主键
     private Integer ReolyId;
-
+    //帖子标签
     private String InvitationTag;
-
+    //帖子主题
     private String InvitationSubject;
-
+    //相关附件
     private String InvitationFile;
-
+    //帖子内容
     private String InvitationContent;
-
+    //帖子点击量
     private Integer InvitationClick;
-
+    //帖子回复量
     private Integer InvitationReply;
-
-    private LocalDateTime InvitationTime;
+    // 帖子回复日期
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm")
+    private Date InvitationTime;
 
     public Integer getInvitationId() {
         return InvitationId;
@@ -89,12 +96,13 @@ public class Invitation implements Serializable {
     public void setInvitationReply(Integer InvitationReply) {
         this.InvitationReply = InvitationReply;
     }
-    public LocalDateTime getInvitationTime() {
+
+    public Date getInvitationTime() {
         return InvitationTime;
     }
 
-    public void setInvitationTime(LocalDateTime InvitationTime) {
-        this.InvitationTime = InvitationTime;
+    public void setInvitationTime(Date invitationTime) {
+        InvitationTime = invitationTime;
     }
 
     @Override

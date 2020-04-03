@@ -1,9 +1,11 @@
 package com.hy.crmsystem.mrfan.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import java.time.LocalDate;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * <p>
@@ -13,50 +15,48 @@ import java.io.Serializable;
  * @author zhangduo
  * @since 2020-04-03
  */
+@TableName(value = "contract")
 public class Contract implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
+    //合同主键
     @TableId(value = "ContractId", type = IdType.AUTO)
     private Integer ContractId;
-
+    //收入登记主键
     private Integer incomeId;
-
+    //开票主键
     private Integer billId;
-
+    //基础主键
     private Integer baseId;
-
+    //合同名称
     private String ContractName;
-
+    //合同编号
     private String ContractNum;
-
+    //合同金额
     private String ContractMoney;
-
-    /**
-     * ǩԼ
-     */
-    private LocalDate SignedTime;
-
-    private LocalDate ContractStarTime;
-
-    private LocalDate ContractEndTime;
-
+    //签约日期
+    private Date SignedTime;
+    //生效时间
+    private Date ContractStarTime;
+    //服务期至
+    private Date ContractEndTime;
+    //对方联系人
     private String ContractLinkMan;
-
+    //固定电话
     private String ContractFixNum;
-
+    //移动电话
     private String Phone;
-
+    //邮件/qq
     private String Email;
-
+    //主要技术条款
     private String Technical;
-
+    //主要商务条款
     private String Commerce;
-
+    //相关附件
     private String Contractfile;
-
+    //合同所属部门
     private Integer ofdept;
-
+    //关联人员
     private String RelevancyPeople;
 
     public Integer getContractId() {
@@ -105,30 +105,34 @@ public class Contract implements Serializable {
         return ContractMoney;
     }
 
-    public void setContractMoney(String ContractMoney) {
-        this.ContractMoney = ContractMoney;
+    public void setContractMoney(String contractMoney) {
+        ContractMoney = contractMoney;
     }
-    public LocalDate getSignedTime() {
+
+    public Date getSignedTime() {
         return SignedTime;
     }
 
-    public void setSignedTime(LocalDate SignedTime) {
-        this.SignedTime = SignedTime;
+    public void setSignedTime(Date signedTime) {
+        SignedTime = signedTime;
     }
-    public LocalDate getContractStarTime() {
+
+    public Date getContractStarTime() {
         return ContractStarTime;
     }
 
-    public void setContractStarTime(LocalDate ContractStarTime) {
-        this.ContractStarTime = ContractStarTime;
+    public void setContractStarTime(Date contractStarTime) {
+        ContractStarTime = contractStarTime;
     }
-    public LocalDate getContractEndTime() {
+
+    public Date getContractEndTime() {
         return ContractEndTime;
     }
 
-    public void setContractEndTime(LocalDate ContractEndTime) {
-        this.ContractEndTime = ContractEndTime;
+    public void setContractEndTime(Date contractEndTime) {
+        ContractEndTime = contractEndTime;
     }
+
     public String getContractLinkMan() {
         return ContractLinkMan;
     }
