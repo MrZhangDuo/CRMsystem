@@ -93,6 +93,12 @@
       <version>1.4.0</version>
     </dependency>
 
+    <dependency> <!--分页插件-->
+          <groupId>com.github.pagehelper</groupId>
+          <artifactId>pagehelper</artifactId>
+          <version>5.1.2</version>
+    </dependency>
+
   </dependencies>
 
   <build>
