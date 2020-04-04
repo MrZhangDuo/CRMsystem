@@ -27,11 +27,25 @@ public class Documentary implements Serializable {
 
     private Integer baseId;
 
+    /**
+     * 跟单时间
+     */
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date DocTime;
 
+    /**
+     * 跟单人
+     */
     private String DocPeople;
 
+    /**
+     * 跟单标题
+     */
+    private String DocTitle;
+
+    /**
+     * 跟单内容
+     */
     private String DocContent;
 
     private String DocFile;
@@ -45,6 +59,15 @@ public class Documentary implements Serializable {
     }
     public Integer getBaseId() {
         return baseId;
+    }
+
+
+    public String getDocTitle() {
+        return DocTitle;
+    }
+
+    public void setDocTitle(String docTitle) {
+        DocTitle = docTitle;
     }
 
     public void setBaseId(Integer baseId) {
