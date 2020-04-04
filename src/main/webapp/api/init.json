@@ -120,6 +120,12 @@
           "target": "_self"
         },
         {
+          "title": "系统设置",
+          "href": "page/system/system.html",
+          "icon": "fa fa-file-text",
+          "target": "_self"
+        },
+        {
           "title": "统计分析",
           "href": "page/count/queryAllCount.html",
           "icon": "fa fa-file-text",

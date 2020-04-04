@@ -141,7 +141,6 @@
       </plugin>
     </plugins>
 
-
     <!-- maven在扫描java文件夹时，不会扫描其中的.xml文件，因为它默认是扫描java文件的 在build里面加入对xml和properties文件的扫描即可：-->
     <resources>
       <resource>
@@ -162,5 +161,6 @@
         <filtering>false</filtering>
       </resource>
     </resources>
+
   </build>
 </project>

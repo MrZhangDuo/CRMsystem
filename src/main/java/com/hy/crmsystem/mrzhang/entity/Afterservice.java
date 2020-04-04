@@ -2,8 +2,12 @@ package com.hy.crmsystem.mrzhang.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDateTime;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * <p>
@@ -13,6 +17,7 @@ import java.io.Serializable;
  * @author zhangduo
  * @since 2020-04-03
  */
+@TableName("afterservice")
 public class Afterservice implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -42,9 +47,11 @@ public class Afterservice implements Serializable {
 
     private String ServiceMain;
 
-    private LocalDateTime ServiceStartTime;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date ServiceStartTime;
 
-    private LocalDateTime ServiceEndTime;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date ServiceEndTime;
 
     private String ServiceContent;
 
@@ -55,6 +62,10 @@ public class Afterservice implements Serializable {
     private Integer ServicesCore;
 
     private String File;
+
+    public String getServiceContent() {
+        return ServiceContent;
+    }
 
     public Integer getServiceId() {
         return ServiceId;
@@ -140,22 +151,21 @@ public class Afterservice implements Serializable {
     public void setServiceMain(String ServiceMain) {
         this.ServiceMain = ServiceMain;
     }
-    public LocalDateTime getServiceStartTime() {
+
+    public Date getServiceStartTime() {
         return ServiceStartTime;
     }
 
-    public void setServiceStartTime(LocalDateTime ServiceStartTime) {
-        this.ServiceStartTime = ServiceStartTime;
+    public void setServiceStartTime(Date serviceStartTime) {
+        ServiceStartTime = serviceStartTime;
     }
-    public LocalDateTime getServiceEndTime() {
+
+    public Date getServiceEndTime() {
         return ServiceEndTime;
     }
 
-    public void setServiceEndTime(LocalDateTime ServiceEndTime) {
-        this.ServiceEndTime = ServiceEndTime;
-    }
-    public String getServiceContent() {
-        return ServiceContent;
+    public void setServiceEndTime(Date serviceEndTime) {
+        ServiceEndTime = serviceEndTime;
     }
 
     public void setServiceContent(String ServiceContent) {

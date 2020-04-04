@@ -12,7 +12,7 @@
     <!-- 1、配置springMVC的映射处理器、适配处理器（"mvc:annotation-driven"） -->
     <mvc:annotation-driven></mvc:annotation-driven>
     <!-- 2、<context:component-scan>（扫描所有注解为 @controller 的类 把他们交由 SpringMvc 处理 ） -->
-    <context:component-scan base-package="com.hy.crmsystem.controller"></context:component-scan>
+    <context:component-scan base-package="com.hy.crmsystem"></context:component-scan>
 
     <!-- 静态资源放行-->
     <mvc:default-servlet-handler></mvc:default-servlet-handler>
