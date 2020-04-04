@@ -3,6 +3,7 @@ package com.hy.crmsystem.mrfan.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -35,10 +36,13 @@ public class Contract implements Serializable {
     //合同金额
     private String ContractMoney;
     //签约日期
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date SignedTime;
     //生效时间
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date ContractStarTime;
     //服务期至
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date ContractEndTime;
     //对方联系人
     private String ContractLinkMan;
