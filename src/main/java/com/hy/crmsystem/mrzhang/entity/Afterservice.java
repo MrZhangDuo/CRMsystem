@@ -1,13 +1,18 @@
 package com.hy.crmsystem.mrzhang.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * <p>
@@ -25,43 +30,77 @@ public class Afterservice implements Serializable {
     @TableId(value = "ServiceId", type = IdType.AUTO)
     private Integer ServiceId;
 
-    private Integer baseId;
+    @TableField("ServiceTheme")
+    private String ServiceTheme;
 
-    private Integer ServiceTheme;
+    @TableField("ServiceCustName")
+    private String ServiceCustName;
 
-    private Integer ServiceCustName;
-
+    @TableField("ServiceContractNum")
     private String ServiceContractNum;
 
+    @TableField("ServiceContractInfor")
     private String ServiceContractInfor;
 
+    @TableField("ServiceLinkMan")
     private String ServiceLinkMan;
 
+    @TableField("FixNum")
     private String FixNum;
 
+    @TableField("Phone")
     private String Phone;
 
+    @TableField("Email")
     private String Email;
 
+    @TableField("ServiceType")
     private String ServiceType;
 
+    @TableField("ServiceMain")
     private String ServiceMain;
 
+    @TableField("ServiceStartTime")
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date ServiceStartTime;
 
+    @TableField(exist = false)
+    private String StartTime;
+
+    @TableField("ServiceEndTime")
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date ServiceEndTime;
 
+    @TableField("ServiceContent")
     private String ServiceContent;
 
+    @TableField("CustReturn")
     private String CustReturn;
 
+    @TableField("ServicePeople")
     private String ServicePeople;
 
+    @TableField("ServicesCore")
     private Integer ServicesCore;
 
+    @TableField("File")
     private String File;
+
+    public Afterservice(){}
+
+    public String getStartTime() {
+        if(ServiceStartTime!=null){
+            return  new SimpleDateFormat( "yyyy-MM-dd ").format(ServiceStartTime);
+        }else {
+            return StartTime;
+        }
+    }
+
+    public void setStartTime(Date ServiceStartTime) {
+        StartTime = new SimpleDateFormat( "yyyy-MM-dd ").format(ServiceStartTime);
+    }
+
+
 
     public String getServiceContent() {
         return ServiceContent;
@@ -74,27 +113,23 @@ public class Afterservice implements Serializable {
     public void setServiceId(Integer ServiceId) {
         this.ServiceId = ServiceId;
     }
-    public Integer getBaseId() {
-        return baseId;
-    }
 
-    public void setBaseId(Integer baseId) {
-        this.baseId = baseId;
-    }
-    public Integer getServiceTheme() {
+    public String getServiceTheme() {
         return ServiceTheme;
     }
 
-    public void setServiceTheme(Integer ServiceTheme) {
-        this.ServiceTheme = ServiceTheme;
+    public void setServiceTheme(String serviceTheme) {
+        ServiceTheme = serviceTheme;
     }
-    public Integer getServiceCustName() {
+
+    public String getServiceCustName() {
         return ServiceCustName;
     }
 
-    public void setServiceCustName(Integer ServiceCustName) {
-        this.ServiceCustName = ServiceCustName;
+    public void setServiceCustName(String serviceCustName) {
+        ServiceCustName = serviceCustName;
     }
+
     public String getServiceContractNum() {
         return ServiceContractNum;
     }
@@ -204,7 +239,6 @@ public class Afterservice implements Serializable {
     public String toString() {
         return "Afterservice{" +
         "ServiceId=" + ServiceId +
-        ", baseId=" + baseId +
         ", ServiceTheme=" + ServiceTheme +
         ", ServiceCustName=" + ServiceCustName +
         ", ServiceContractNum=" + ServiceContractNum +
@@ -224,4 +258,5 @@ public class Afterservice implements Serializable {
         ", File=" + File +
         "}";
     }
+
 }
