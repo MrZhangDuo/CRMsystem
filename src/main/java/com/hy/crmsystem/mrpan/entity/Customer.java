@@ -23,54 +23,54 @@ public class Customer implements Serializable {
    //客户id
     @TableId(value = "CustId", type = IdType.AUTO)
     private Integer CustId;
-
+  //商机主键
     private Integer BusId;
-
+  //合同主键
     private Integer ContractId;
-
+    //售后主键
     private Integer ServiceId;
-
+    //财务主键
     private Integer MoneyId;
-
+    //客户姓名
     private String CustName;
-
+    //客户姓名拼音
     private String CustSpell;
-
-    private Integer CustClassify;
-
+    //客户分类
+    private String CustClassify;
+    //客户来源
     private Integer CustSource;
-
+    //客户行业
     private String CustTrade;
-
+    //客户网址
     private String CustUrl;
-
+    //客户国家/地区
     private String CustCountry;
-
+    //客户城市
     private String CustCity;
-
+    //客户详细地址
     private String CustAddress;
-
+    //客户邮政编码
     private String CustPostCode;
-
+    //客户传真
     private String CustFax;
-
+    //客户联系人
     private String CustLinkMan;
-
+    //客户部门
     private String CustDept;
 
-
+    //客户职务
     private String CustJob;
-
+    //客户办公电话
     private String CustOfficeTel;
-
+    //客户移动电话
     private String CustPhone;
-
+    //客户邮件/QQ
     private String CustEmail;
-
+    //客户法人
     private String CustCorporation;
-
+    //客户注册资本
     private String CustCapital;
-
+   //附加说明
     private String CustExplain;
 
     public Integer getCustId() {
@@ -122,13 +122,15 @@ public class Customer implements Serializable {
     public void setCustSpell(String CustSpell) {
         this.CustSpell = CustSpell;
     }
-    public Integer getCustClassify() {
+
+    public String getCustClassify() {
         return CustClassify;
     }
 
-    public void setCustClassify(Integer CustClassify) {
-        this.CustClassify = CustClassify;
+    public void setCustClassify(String custClassify) {
+        CustClassify = custClassify;
     }
+
     public Integer getCustSource() {
         return CustSource;
     }
