@@ -1,6 +1,8 @@
 package com.hy.crmsystem.mrzhang.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.hy.crmsystem.mrfan.entity.Contract;
+import com.hy.crmsystem.mrpan.entity.Customer;
 import com.hy.crmsystem.mrzhang.entity.Afterservice;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -20,7 +22,8 @@ public interface IAfterserviceService extends IService<Afterservice> {
 
     public IPage<Afterservice> queryAllAfterService(Integer page, Integer limit,String ServiceTheme, String ServiceType
             , String ServiceStartTime, String ServicePeople, String ServicesCore,
-                                                    String benzhou,String shangzhou ,String benyue,String shangyue,String benji,String shangji);
+                                                    String chul,String chec,String jies,String benzhou,String shangzhou ,String benyue,String shangyue,String benji,String shangji);
     public List<Afterservice> queryAllServiceTheme();
     public Integer countServiceanditionChuLi();
+    public List<Contract> queryCustContract(String contractNum);
 }

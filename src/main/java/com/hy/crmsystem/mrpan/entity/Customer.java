@@ -1,6 +1,7 @@
 package com.hy.crmsystem.mrpan.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
@@ -24,53 +25,76 @@ public class Customer implements Serializable {
     @TableId(value = "CustId", type = IdType.AUTO)
     private Integer CustId;
 
+    @TableField("BusId")
     private Integer BusId;
 
+    @TableField("ContractId")
     private Integer ContractId;
 
+    @TableField("ServiceId")
     private Integer ServiceId;
 
+    @TableField("MoneyId")
     private Integer MoneyId;
 
+    @TableField("CustName")
     private String CustName;
 
+    @TableField("CustSpell")
     private String CustSpell;
 
-    private Integer CustClassify;
+    @TableField("CustClassify")
+    private String CustClassify;
 
-    private Integer CustSource;
+    @TableField("CustSource")
+    private String CustSource;
 
+    @TableField("CustTrade")
     private String CustTrade;
 
+    @TableField("CustUrl")
     private String CustUrl;
 
+    @TableField("CustCountry")
     private String CustCountry;
 
+    @TableField("CustCity")
     private String CustCity;
 
+    @TableField("CustAddress")
     private String CustAddress;
 
+    @TableField("CustPostCode")
     private String CustPostCode;
 
+    @TableField("CustFax")
     private String CustFax;
 
+    @TableField("CustLinkMan")
     private String CustLinkMan;
 
+    @TableField("CustDept")
     private String CustDept;
 
-
+    @TableField("CustJob")
     private String CustJob;
 
+    @TableField("CustOfficeTel")
     private String CustOfficeTel;
 
+    @TableField("CustPhone")
     private String CustPhone;
 
+    @TableField("CustEmail")
     private String CustEmail;
 
+    @TableField("CustCorporation")
     private String CustCorporation;
 
+    @TableField("CustCapital")
     private String CustCapital;
 
+    @TableField("CustExplain")
     private String CustExplain;
 
     public Integer getCustId() {
@@ -122,20 +146,23 @@ public class Customer implements Serializable {
     public void setCustSpell(String CustSpell) {
         this.CustSpell = CustSpell;
     }
-    public Integer getCustClassify() {
+
+    public String getCustClassify() {
         return CustClassify;
     }
 
-    public void setCustClassify(Integer CustClassify) {
-        this.CustClassify = CustClassify;
+    public void setCustClassify(String custClassify) {
+        CustClassify = custClassify;
     }
-    public Integer getCustSource() {
+
+    public String getCustSource() {
         return CustSource;
     }
 
-    public void setCustSource(Integer CustSource) {
-        this.CustSource = CustSource;
+    public void setCustSource(String custSource) {
+        CustSource = custSource;
     }
+
     public String getCustTrade() {
         return CustTrade;
     }

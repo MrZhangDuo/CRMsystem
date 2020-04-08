@@ -71,6 +71,9 @@ public class Afterservice implements Serializable {
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date ServiceEndTime;
 
+    @TableField(exist = false)
+    private String EndTime;
+
     @TableField("ServiceContent")
     private String ServiceContent;
 
@@ -86,7 +89,6 @@ public class Afterservice implements Serializable {
     @TableField("File")
     private String File;
 
-    public Afterservice(){}
 
     public String getStartTime() {
         if(ServiceStartTime!=null){
@@ -96,11 +98,21 @@ public class Afterservice implements Serializable {
         }
     }
 
-    public void setStartTime(Date ServiceStartTime) {
-        StartTime = new SimpleDateFormat( "yyyy-MM-dd ").format(ServiceStartTime);
+    public void setStartTime(String startTime) {
+        StartTime = startTime;
     }
 
+    public String getEndTime() {
+        if(ServiceStartTime!=null){
+            return  new SimpleDateFormat( "yyyy-MM-dd ").format(ServiceEndTime);
+        }else {
+            return EndTime;
+        }
+    }
 
+    public void setEndTime(String endTime) {
+        EndTime = endTime;
+    }
 
     public String getServiceContent() {
         return ServiceContent;
