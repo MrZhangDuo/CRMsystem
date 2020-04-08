@@ -1,10 +1,9 @@
-
-<!DOCTYPE html>
-<html>
+<html  xmlns:th="http://www.thymeleaf.org" >
 <head>
     <meta charset="utf-8">
     <title>layui</title>
     <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="/lib/layui-v2.5.5/css/layui.css" media="all">
@@ -41,75 +40,87 @@
             line-height: 24px;
             overflow: auto; /*  新加的 */
         }
-
     </style>
+
 </head>
 <body>
+<!--======================================================================格式化数据库时间（layui内部格式列）（1.6）==================================================-->
+<script type="text/html" id="createDateTpl">
+    {{layui.util.toDateString(serviceStartTime, 'yyyy-MM-dd')}}<!--createDate为date类型-->
+</script>
+<!--======================================================================格式化数据库时间（layui内部格式列）（1.6）==================================================-->
 <div class="layuimini-container">
-        <fieldset class="table-search-fieldset">
-            <legend>搜索信息</legend>
-            <div style="margin: 10px 10px 10px 293px">
-                <form class="layui-form layui-form-pane" action="">
-                    <div class="layui-inline">
-                        <label class="layui-form-label">搜索选择框</label>
-                        <div class="layui-input-inline">
-                            <select name="afterservicelimit" lay-verify="required" lay-search="">
-                                <option value="">直接选择或搜索选择</option>
-                                <option name="" value="1">主题</option>
-                                <option name="" value="2">服务类型</option>
-                                <option name="" value="3">开始时间</option>
-                                <option name="" value="4">服务人员</option>
-                                <option name="" value="5">服务评分</option>
-                            </select>
-                        </div>
-                        <div class="layui-input-inline">
-                                <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入关键字" class="layui-input">
-                        </div>
+    <fieldset class="table-search-fieldset">
+        <legend>搜索信息</legend>
+        <div style="margin: 10px 10px 10px 293px">
+            <form class="layui-form layui-form-pane" action="">
+                <div class="layui-inline">
+                    <label class="layui-form-label">搜索选择框</label>
+                    <div class="layui-input-inline">
+                        <select  lay-filter="sousuo">
+                            <option value="">直接选择或搜索选择</option>
+                            <option  value="1">主题</option>
+                            <option  value="2">服务类型</option>
+                            <option  value="3">开始时间</option>
+                            <option  value="4">服务人员</option>
+                            <option  value="5">服务评分</option>
+                        </select>
                     </div>
-                    <div class="layui-inline">
-                        <button type="submit" class="layui-btn layui-btn-primary" lay-submit  lay-filter="data-search-btn"><i class="layui-icon"></i> 搜 索</button>
+                    <div class="layui-input-inline">
+                        <input  id="inpu" name="ServiceStartTime" type="text" lay-verify="title" autocomplete="off" placeholder="请输入关键字" class="layui-input">
+                        <div id="xiala" style="display: none" class="layui-input-inline"><select  name="ServiceTheme" id="xia" lay-filter="cartype"></select></div>
+                        <div id="xiala1" style="display: none" class="layui-input-inline"><select name="ServiceType" id="xia1" lay-filter="cartype"></select></div>
+                        <div id="xiala2" style="display: none" class="layui-input-inline"><select name="ServicePeople" id="xia2" lay-filter="cartype"></select></div>
+                        <div id="xiala3" style="display: none" class="layui-input-inline"><select name="ServicesCore" id="xia3" lay-filter="cartype"></select></div>
                     </div>
-                </form>
-            </div>
-        </fieldset>
+                </div>
+                <div class="layui-inline">
+                    <button type="submit" class="layui-btn layui-btn-primary" lay-submit  lay-filter="data-search-btn"><i class="layui-icon"></i> 搜 索</button>
+                </div>
+            </form>
+        </div>
+    </fieldset>
 
-    <div class="layui-col-md3">
+    <div class="layui-col-md3" >
         <div class="layui-card" style="">
             <div class="layui-card-header"><i class="fa fa-bullhorn icon icon-tip"></i>分类</div>
-            <div class="layui-card-body layui-text">
+            <div class="layui-card-body layui-text" style="color:#1e9fff">
                 <div class="layuimini-notice">
-                    <div class="layuimini-notice-title">所有分类</div>
+                    <div class="layuimini-notice-title"><a href="/page/table/edit.html">处理中的服务</a>
+                        <button id="chulizhong"  type="button" style="background-color: #1e9fff" class="layui-btn layui-btn-disabled layui-btn-radius layui-btn-xs"></button>
+                    </div>
                 </div>
                 <div class="layuimini-notice">
-                    <div class="layuimini-notice-title" style="color:#1e9fff">处理中的服务<button type="button" style="background-color: #1e9fff" class="layui-btn layui-btn-disabled layui-btn-radius layui-btn-xs">1</button></div>
+                    <div class="layuimini-notice-title"><a href="/page/table/edit.html">已结束的服务</a>
+                        <button id="jieshu"  type="button" style="background-color: #1e9fff" class="layui-btn layui-btn-disabled layui-btn-radius layui-btn-xs" ></button>
+                    </div>
                 </div>
                 <div class="layuimini-notice">
-                    <div class="layuimini-notice-title">已结束的服务</div>
-                </div>
-                <div class="layuimini-notice">
-                    <div class="layuimini-notice-title">已撤除的服务</div>
+                    <div class="layuimini-notice-title"><a href="/page/table/edit.html">已撤除的服务</a>
+                        <button id="chechu"  type="button" style="background-color: #1e9fff" class="layui-btn layui-btn-disabled layui-btn-radius layui-btn-xs" ></button>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="layui-card">
-            <div class="layui-card-body layui-text">
+            <div class="layui-card-body layui-text" style="color:#1e9fff">
                 <div class="layuimini-notice">
-                    <div class="layuimini-notice-title">本周新增</div>
+                    <div class="layuimini-notice-title"><a href="/afterservice/queryAllAfterService.do">本周新增</a><button type="button" style="background-color: #1e9fff" class="layui-btn layui-btn-disabled layui-btn-radius layui-btn-xs"></button></div>
                 </div>
                 <div class="layuimini-notice">
-                    <div class="layuimini-notice-title">上周新增</div>
+                    <div class="layuimini-notice-title"><a href="/afterservice/queryAllAfterService.do">上周新增</a><button type="button" style="background-color: #1e9fff" class="layui-btn layui-btn-disabled layui-btn-radius layui-btn-xs"></button></div>
                 </div>
                 <div class="layuimini-notice">
-                    <div class="layuimini-notice-title">本月新增</div>
+                    <div class="layuimini-notice-title"><a href="/afterservice/queryAllAfterService.do">本月新增</a><button type="button" style="background-color: #1e9fff" class="layui-btn layui-btn-disabled layui-btn-radius layui-btn-xs"></button></div>
                 </div>
                 <div class="layuimini-notice">
-                    <div class="layuimini-notice-title">上月新增</div>
+                    <div class="layuimini-notice-title"><a href="/afterservice/queryAllAfterService.do">上月新增</a><button type="button" style="background-color: #1e9fff" class="layui-btn layui-btn-disabled layui-btn-radius layui-btn-xs"></button></div>
                 </div>
                 <div class="layuimini-notice">
-                    <div class="layuimini-notice-title">本季度新增</div>
+                    <div class="layuimini-notice-title"><a href="/afterservice/queryAllAfterService.do">本季度新增</a><button type="button" style="background-color: #1e9fff" class="layui-btn layui-btn-disabled layui-btn-radius layui-btn-xs"></button></div>
                 </div>
                 <div class="layuimini-notice">
-                    <div class="layuimini-notice-title">上季度新增</div>
+                    <div class="layuimini-notice-title"><a href="/afterservice/queryAllAfterService.do">上季度新增</a><button type="button" style="background-color: #1e9fff" class="layui-btn layui-btn-disabled layui-btn-radius layui-btn-xs"></button></div>
                 </div>
             </div>
         </div>
@@ -118,14 +129,9 @@
         <script type="text/html" id="toolbarDemo">
             <div class="layui-btn-container">
                 <button class="layui-btn layui-btn-sm data-add-btn" lay-event="add"> 添加用户 </button>
-                <button class="layui-btn layui-btn-sm layui-btn-danger data-delete-btn" lay-event="delete"> 删除用户 </button>
             </div>
         </script>
         <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
-        <script type="text/html" id="currentTableBar">
-            <a class="layui-btn layui-btn-xs data-count-edit" lay-event="edit">编辑</a>
-            <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">删除</a>
-        </script>
     </div>
 </div>
 <script src="/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
@@ -137,7 +143,8 @@
 
         table.render({
             elem: '#currentTableId',
-            url: '/api/table.json',
+            url: '/afterservice/queryAllAfterService.do',
+            cellMinWidth: 80, //全局定义常规单元格的最小宽度，layui 2.2.1 新增
             toolbar: '#toolbarDemo',
             defaultToolbar: ['filter', 'exports', 'print', {
                 title: '提示',
@@ -145,93 +152,233 @@
                 icon: 'layui-icon-tips'
             }],
             cols: [[
-                {type: "checkbox", width: 50, fixed: "left"},
-                {field: 'id', width: 80, title: 'ID', sort: true},
-                {field: 'username', width: 80, title: '用户名'},
-                {field: 'sex', width: 80, title: '性别', sort: true},
-                {field: 'city', width: 80, title: '城市'},
-                {field: 'sign', title: '签名', minWidth: 150},
-                {title: '操作', minWidth: 50, templet: '#currentTableBar', fixed: "right", align: "center"}
+                {type:'numbers'},
+                {field: 'serviceTheme',  title: '主题', align: 'center'},
+                {field: 'serviceType',  title: '服务类型', align: 'center'},
+                {field: 'startTime', title: '开始时间' , align: 'center' },
+                {field: 'servicePeople', title: '服务人员', align: 'center'},
+                {field: 'servicesCore', title: '服务评分', align: 'center'}
             ]],
             limits: [10, 15, 20, 25, 50, 100],
-            limit: 15,
+            limit: 2,
             page: true
+        });
+
+        form.on("select(sousuo)", function(data){
+            if(data.value==1){
+                $("#inpu").val("");
+                $("#xia").val("");
+                $("#xia1").val("");
+                $("#xia2").val("");
+                $("#xia3").val("");
+                $("#inpu").hide(true);
+                $("#xiala").show(true);
+                $("#xiala1").hide(true);
+                $("#xiala2").hide(true);
+                $("#xiala3").hide(true);
+                $.ajax({
+                    type: "GET",
+                    url: "/afterservice/queryAllServiceTheme.do",
+                    dataType: "json",
+                    success: function (data) {
+                        var html = '<option value="">请选择</option>';
+                        if (data.length == 0){
+                            html += "<option value=''>请添加数据</option>";
+                            $("#xia").empty().append(html);
+                        }else{
+                            $.each(data,function (k,v) {
+                                html += "<option value='"+v.serviceTheme+"'>"+v.serviceTheme+"</option>"
+                            })
+                            $("#xia").empty().append(html);
+                        }
+                        form.render("select");
+                    }
+                });
+            }else if(data.value==2){
+                $("#inpu").val("");
+                $("#xia").val("");
+                $("#xia1").val("");
+                $("#xia2").val("");
+                $("#xia3").val("");
+                $("#inpu").hide(true);
+                $("#xiala1").show(true);
+                $("#xiala").hide(true);
+                $("#xiala2").hide(true);
+                $("#xiala3").hide(true);
+                $.ajax({
+                    type: "GET",
+                    url: "/afterservice/queryAllserviceType.do",
+                    dataType: "json",
+                    success: function (data) {
+                        var html = '<option value="">请选择</option>';
+                        if (data.length == 0){
+                            html += "<option value=''>请添加数据</option>";
+                            $("#xia1").empty().append(html);
+                        }else{
+                            $.each(data,function (k,v) {
+                                html += "<option value='"+v.serviceType+"'>"+v.serviceType+"</option>"
+                            })
+                            $("#xia1").empty().append(html);
+                        }
+                        form.render("select");
+                    }
+                });
+            }else if(data.value==3){
+                $("#inpu").val("");
+                $("#xia").val("");
+                $("#xia1").val("");
+                $("#xia2").val("");
+                $("#xia3").val("");
+                $("#inpu").show(true);
+                $("#xiala").hide(true);
+                $("#xiala1").hide(true);
+                $("#xiala2").hide(true);
+                $("#xiala3").hide(true);
+                $("#inpu").attr("type","date");
+            }else if(data.value==4){
+                $("#inpu").val("");
+                $("#xia").val("");
+                $("#xia1").val("");
+                $("#xia2").val("");
+                $("#xia3").val("");
+                $("#inpu").hide(true);
+                $("#xiala2").show(true);
+                $("#xiala1").hide(true);
+                $("#xiala").hide(true);
+                $("#xiala3").hide(true);
+                $.ajax({
+                    type: "GET",
+                    url: "/afterservice/queryAllservicePeople.do",
+                    dataType: "json",
+                    success: function (data) {
+                        var html = '<option value="">请选择</option>';
+                        if (data.length == 0){
+                            html += "<option value=''>请添加数据</option>";
+                            $("#xia2").empty().append(html);
+                        }else{
+                            $.each(data,function (k,v) {
+                                html += "<option value='"+v.servicePeople+"'>"+v.servicePeople+"</option>"
+                            })
+                            $("#xia2").empty().append(html);
+                        }
+                        form.render("select");
+                    }
+                });
+            }else if(data.value==5){
+                $("#inpu").val("");
+                $("#xia").val("");
+                $("#xia1").val("");
+                $("#xia2").val("");
+                $("#xia3").val("");
+                $("#inpu").hide(true);
+                $("#xiala3").show(true);
+                $("#xiala1").hide(true);
+                $("#xiala2").hide(true);
+                $("#xiala").hide(true);
+                $.ajax({
+                    type: "GET",
+                    url: "/afterservice/queryAllservicesCore.do",
+                    dataType: "json",
+                    success: function (data) {
+                        var html = '<option value="">请选择</option>';
+                        if (data.length == 0){
+                            html += "<option value=''>请添加数据</option>";
+                            $("#xia3").empty().append(html);
+                        }else{
+                            $.each(data,function (k,v) {
+                                html += "<option value='"+v.servicesCore+"'>"+v.servicesCore+"</option>"
+                            })
+                            $("#xia3").empty().append(html);
+                        }
+                        form.render("select");
+                    }
+                });
+            }
+            /*alert(data.value);*/ // 获取选中的值
         });
 
         // 监听搜索操作
         form.on('submit(data-search-btn)', function (data) {
-            var result = JSON.stringify(data.field);
-            layer.alert(result, {
-                title: '最终的搜索信息'
+            table.reload('currentTableId',{
+                url: '/afterservice/queryAllAfterService.do'
+                ,where:data.field//设定异步数据接口的额外参数
             });
-
             //执行搜索重载
-            table.reload('currentTableId', {
+            return false;
+        });
+
+
+
+        $.ajax({
+            type: "GET",
+            url: "/afterservice/queryAnditionCount.do",
+            dataType: "json",
+            success: function (data) {
+                for (var key in data) {
+                    if (key=="chulizhong"){
+                        $("#chulizhong").text(data[key]);
+                    }
+                    if (key=="chechu"){
+                        $("#chechu").text(data[key]);
+                    }
+                    if (key=="jieshu"){
+                        $("#jieshu").text(data[key]);
+                    }
+                }
+                form.render("button");
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /*table.reload('currentTableId', {
                 page: {
                     curr: 1
                 }
                 , where: {
                     searchParams: result
                 }
-            }, 'data');
-
-            return false;
-        });
+            }, 'data');*/
 
         /**
          * toolbar监听事件
          */
+
+
         table.on('toolbar(currentTableFilter)', function (obj) {
             if (obj.event === 'add') {  // 监听添加操作
                 var index = layer.open({
                     title: '添加用户',
                     type: 2,
                     shade: 0.2,
-                    maxmin:true,
+                    maxmin:false,
                     shadeClose: true,
                     area: ['100%', '100%'],
-                    content: '/page/table/add.html',
+                    content: '/page/afterservice/insterAfterService.html',
+                   /* end:function () {
+                        table.reload('currentTableFilter');
+                    }*/
                 });
-                $(window).on("resize", function () {
+                /*$(window).on("resize", function () {
                     layer.full(index);
-                });
-            } else if (obj.event === 'delete') {  // 监听删除操作
-                var checkStatus = table.checkStatus('currentTableId')
-                    , data = checkStatus.data;
-                layer.alert(JSON.stringify(data));
+                });*/
             }
         });
-
-        //监听表格复选框选择
-        table.on('checkbox(currentTableFilter)', function (obj) {
-            console.log(obj)
-        });
-
-        table.on('tool(currentTableFilter)', function (obj) {
-            var data = obj.data;
-            if (obj.event === 'edit') {
-
-                var index = layer.open({
-                    title: '编辑用户',
-                    type: 2,
-                    shade: 0.2,
-                    maxmin:true,
-                    shadeClose: true,
-                    area: ['100%', '100%'],
-                    content: '/page/table/edit.html',
-                });
-                $(window).on("resize", function () {
-                    layer.full(index);
-                });
-                return false;
-            } else if (obj.event === 'delete') {
-                layer.confirm('真的删除行么', function (index) {
-                    obj.del();
-                    layer.close(index);
-                });
-            }
-        });
-
         // echarts 窗口缩放自适应
         window.onresize = function(){
             echartsRecords.resize();

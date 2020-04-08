@@ -35,6 +35,22 @@ http://www.springframework.org/schema/aop http://www.springframework.org/schema/
         <property name="dataSource" ref="druidDataSource"></property>
         <property name="typeAliasesPackage" value="com.hy.crmsystem"></property>
         <property name="configLocation" value="classpath:mybatis/mybatis.xml"></property>
+        <property name="plugins">
+            <array>
+                <bean id="interceptor" class="com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor">
+                    <!-- mybatis plus 自带的分页插件-->
+                </bean>
+                <bean class="com.github.pagehelper.PageInterceptor">
+                    <property name="properties"><!-- PageInterceptor 插件分页-->
+                        <props>
+                            <prop key="helperDialect"></prop>
+                            <prop key="reasonable"></prop>
+                        </props>
+                    </property>
+                </bean>
+            </array>
+
+        </property>
     </bean>
 
     <!-- 批量扫描mybatis mapper接口 org.mybatis.spring.mapper.MapperScannerConfigurer
