@@ -4,6 +4,7 @@ package com.hy.crmsystem.mrfan.controller;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hy.crmsystem.mrfan.entity.ImgBean;
+import com.hy.crmsystem.mrfan.entity.Invitation;
 import com.hy.crmsystem.mrfan.entity.InvitationBo;
 import com.hy.crmsystem.mrfan.entity.LayuiDate;
 import com.hy.crmsystem.mrfan.service.impl.InvitationServiceImpl;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -46,5 +49,21 @@ public class InvitationController {
     @ResponseBody
     public ImgBean fileuploadExecl(@RequestParam("file") MultipartFile pictureFile, HttpServletRequest request){
         return invitationService.fileuploadExecl(pictureFile,request);
+    }
+    @RequestMapping("/add.do")
+    @ResponseBody
+    public String add(Invitation invitation){
+        String s="0";
+        try {
+            invitation.setInvitationTime(new Date());
+            invitationService.save(invitation);
+        }catch (Exception e){
+            s="1";
+        }
+        return s;
+    }
+    public static void main(String[] args){
+
+    System.out.println(new SimpleDateFormat( "yyyy-MM-dd").format(new Date()));
     }
 }

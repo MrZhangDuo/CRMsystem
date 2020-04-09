@@ -1,5 +1,6 @@
 package com.hy.crmsystem.mrfan.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -21,7 +22,7 @@ public class Invitation implements Serializable {
 
     private static final long serialVersionUID = 1L;
     //帖子主键
-    @TableId(value = "InvitationId")
+    @TableId(value = "InvitationId",type = IdType.AUTO)
     private Integer InvitationId;
     //回复主键
     private Integer ReolyId;
@@ -37,13 +38,21 @@ public class Invitation implements Serializable {
     private Integer InvitationClick;
     //帖子回复量
     private Integer InvitationReply;
-    // 帖子回复日期
+    // 帖子发表日期
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm")
     private Date InvitationTime;
     //帖子作者
     private String Invitationauthor;
     //帖子分类
     private String Invitationclassification;
+
+    public String getInvitationclassification() {
+        return Invitationclassification;
+    }
+
+    public void setInvitationclassification(String invitationclassification) {
+        Invitationclassification = invitationclassification;
+    }
 
     public String getInvitationauthor() {
         return Invitationauthor;
@@ -117,7 +126,6 @@ public class Invitation implements Serializable {
     public void setInvitationTime(Date invitationTime) {
         InvitationTime = invitationTime;
     }
-
 
     @Override
     public String toString() {

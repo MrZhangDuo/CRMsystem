@@ -15,7 +15,10 @@
     </style>
 </head>
 <body>
+<form class="layui-form">
 <div class="layui-form layuimini-form">
+    <!--帖子主键-->
+    <input type="hidden" name="InvitationId">
     <div class="layui-form-item">
         <label class="layui-form-label required">分类</label>
         <div class="layui-input-inline">
@@ -40,6 +43,7 @@
             <input type="text" name="InvitationSubject" lay-verify="required" lay-reqtext="" placeholder="" value="" class="layui-input">
         </div>
     </div>
+    <input type="hidden" name="InvitationFile" id="inmportimg">
     <div class="layui-upload">
         <button type="button" class="layui-btn" id="test3">上传图片</button>
         <div class="layui-upload-list">
@@ -47,22 +51,22 @@
             <p id="demoText"></p>
         </div>
     </div>
-    <input type="hidden" name="img" id="inmportimg">
 
 
-            <div id="editor" style="margin: 50px 0 50px 0">
-                <p>欢迎使用 <b>wangEditor</b> 富文本编辑器</p>
-            </div>
+    <div id="editor"  style="margin: 50px 0 50px 0">
+
+    </div>
 
 
 
 
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <button class="layui-btn" lay-submit lay-filter="saveBtn">确认保存</button>
+            <button class="layui-btn" lay-submit lay-filter="saveBtn" >确认保存</button>
         </div>
     </div>
 </div>
+</form>
 <script src="/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
 <script src="/js/lay-config.js?v=1.0.4" charset="utf-8"></script>
 <script type="text/javascript">
@@ -72,7 +76,7 @@
             wangEditor = layui.wangEditor;
 
         var editor = new wangEditor('#editor');
-        editor.customConfig.uploadImgServer = "../api/upload.json";
+        editor.customConfig.uploadImgServer = "/api/upload.json";
         editor.customConfig.uploadFileName = 'image';
         editor.customConfig.pasteFilterStyle = false;
         editor.customConfig.uploadImgMaxLength = 5;
@@ -83,7 +87,7 @@
             },
             // 如果服务器端返回的不是 {errno:0, data: [...]} 这种格式，可使用该配置
             customInsert: function (insertImg, result, editor) {
-                console.log(result);
+                alert(result);
                 if (result.code == 1) {
                     var url = result.data.url;
                     url.forEach(function (e) {
@@ -99,17 +103,28 @@
         };
         editor.create();
 
+       /* document.getElementById('editor').addEventListener('blur', function () {
+            // 读取 html
+            alert(editor.txt.html())
+        }, false)
+
+        document.getElementById('editor').addEventListener('click', function () {
+            // 读取 text
+            alert(editor.txt.text())
+        }, false)*/
+
+
+
     });
 </script>
 <script>
-    layui.use(['form','upload'], function () {
+    layui.use(['form','upload','layer','wangEditor'], function () {
         var form = layui.form,
             layer = layui.layer,
             upload=layui.upload,
-            $ = layui.$;
-
-
-
+            $ = layui.$,
+            layer = layui.layer,
+            wangEditor = layui.wangEditor;
 
 
         var uploadInst = upload.render({
@@ -146,7 +161,33 @@
 
         //监听提交
         form.on('submit(saveBtn)', function (data) {
-            var index = layer.alert(JSON.stringify(data.field), {
+            $('#editor').addEventListener( function () {
+                // 读取 text
+                alert($("#editor").txt.text())
+            }, false)
+           /*$.ajax({
+                url:'emp/emp/add.do',
+                type:'post',
+                data:data.field,
+                dataType:'JSON',
+                success: function(data){
+                    var data = JSON.stringify(data);
+                    if(data === '0'){
+                        var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+                        /!*setTimeout(function () {*!/
+                        parent.layer.close(index); // 关闭layer
+                        /!*});*!/
+                        layer.msg('修改成功', {
+                            /!*icon: 1,
+                            time: 0 //2秒关闭（如果不配置，默认是3秒）
+                        }, function(){
+                            //do something*!/
+                        });
+                    }
+                }
+            });
+            return false;*/
+            /*var index = layer.alert(JSON.stringify(data.field), {
                 title: '最终的提交信息'
             }, function () {
 
@@ -156,7 +197,7 @@
                 var iframeIndex = parent.layer.getFrameIndex(window.name);
                 parent.layer.close(iframeIndex);
 
-            });
+            });*/
 
             return false;
         });
