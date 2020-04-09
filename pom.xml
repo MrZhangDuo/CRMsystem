@@ -69,6 +69,13 @@
       <version>3.1.0</version>
     </dependency>
 
+    <!-- json字符串和JavaBean对象互相转换的过程中，需要使用jackson的jar包-->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>2.9.0</version>
+    </dependency>
+
     <!--<dependency>&lt;!&ndash; MyBatis-plus &ndash;&gt;
       <groupId>com.baomidou</groupId>
       <artifactId>mybatis-plus</artifactId>

@@ -32,7 +32,7 @@ public class Business implements Serializable {
 
     private Integer baseId;
 
-    private byte[] BusName;
+    private String BusName;
 
     private Integer BusSource;
 
@@ -94,13 +94,15 @@ public class Business implements Serializable {
     public void setBaseId(Integer baseId) {
         this.baseId = baseId;
     }
-    public byte[] getBusName() {
+
+    public String getBusName() {
         return BusName;
     }
 
-    public void setBusName(byte[] BusName) {
-        this.BusName = BusName;
+    public void setBusName(String busName) {
+        BusName = busName;
     }
+
     public Integer getBusSource() {
         return BusSource;
     }

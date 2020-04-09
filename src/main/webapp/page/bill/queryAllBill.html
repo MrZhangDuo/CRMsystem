@@ -1,6 +1,5 @@
-
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8">
     <title>layui</title>
@@ -9,163 +8,350 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="/lib/layui-v2.5.5/css/layui.css" media="all">
     <link rel="stylesheet" href="/css/public.css" media="all">
+    <style>
+        #id1 {
+            margin-right: 105px;
+        }
+
+        #id2 {
+            margin-left: 106px;
+            margin-right: 105px;
+        }
+
+        #id3 {
+            margin-left: 106px;
+        }
+
+        #top_id {
+            margin-top: 30px;
+        }
+
+        #id1_1 {
+            margin-right: 105px;
+        }
+
+        #id2_1 {
+            margin-left: 106px;
+            margin-right: 105px;
+        }
+
+        #id3_1 {
+            margin-left: 106px;
+        }
+
+        #top_id_1 {
+            margin-top: 30px;
+        }
+
+        #id1_2 {
+            margin-right: 105px;
+        }
+
+        #id2_2 {
+            margin-left: 106px;
+            margin-right: 105px;
+        }
+
+        #id3_2 {
+            margin-left: 106px;
+        }
+
+        #top_id_2 {
+            margin-top: 30px;
+        }
+
+
+    </style>
 </head>
 <body>
 <div class="layuimini-container">
     <div class="layuimini-main">
 
+        <!-- 搜索条件开始 -->
         <fieldset class="table-search-fieldset">
             <legend>搜索信息</legend>
             <div style="margin: 10px 10px 10px 10px">
-                <form class="layui-form layui-form-pane" action="">
+                <form class="layui-form layui-form-pane" action="" id="searchFrm" method="post">
                     <div class="layui-inline">
                         <label class="layui-form-label">搜索选择框</label>
-                        <div class="layui-input-inline">
-                            <select name="afterservicelimit" lay-verify="required" lay-search="">
-                                <option value="">直接选择或搜索选择</option>
-                                <option name="" value="1">主题</option>
-                                <option name="" value="2">服务类型</option>
-                                <option name="" value="3">开始时间</option>
-                                <option name="" value="4">服务人员</option>
-                                <option name="" value="5">服务评分</option>
-                            </select>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">跟单人</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="DocPeople" autocomplete="off" class="layui-input">
+                            </div>
                         </div>
-                        <div class="layui-input-inline">
-                            <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入关键字" class="layui-input">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">跟单主题</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="DocTitle" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">开始时间</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="DocTime" id="DocTime" readonly="readonly"
+                                       autocomplete="off" class="layui-input">
+                            </div>
                         </div>
                     </div>
                     <div class="layui-inline">
-                        <button type="submit" class="layui-btn layui-btn-primary" lay-submit  lay-filter="data-search-btn"><i class="layui-icon"></i> 搜 索</button>
+                        <button type="button" class="layui-btn layui-btn-normal  layui-icon layui-icon-search"
+                                id="doSearch">查询
+                        </button>
+                        <button type="reset" class="layui-btn layui-btn-warm  layui-icon layui-icon-refresh">重置</button>
                     </div>
                 </form>
             </div>
         </fieldset>
+        <!-- 搜索条件结束-->
 
-        <script type="text/html" id="toolbarDemo">
-            <div class="layui-btn-container">
-                <button class="layui-btn layui-btn-sm data-add-btn" lay-event="add"> 添加用户 </button>
-                <button class="layui-btn layui-btn-sm layui-btn-danger data-delete-btn" lay-event="delete"> 删除用户 </button>
-            </div>
-        </script>
+        <!-- 数据表格开始-->
+        <div>
+            <button class="layui-btn layui-btn-normal layui-icon layui-icon-add-1" id="addBtn">新增跟单</button>
+        </div>
+        <table class="layui-hide" id="docTable" lay-filter="docTable"></table>
+        <!-- 数据表格结束-->
 
-        <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
+        <!-- 添加的弹出层开始 -->
+        <div style="display: none;padding: 20px;" id="saveDiv">
+            <form class="layui-form" lay-filter="addFormFilter" id="addForm">
+                <div class="layui-form-item" style="margin-top: 80px">
+                    <label class="layui-form-label">跟单主题</label>
+                    <div class="layui-input-block">
+                        <input type="hidden" name="BusId">
+                        <select id="select1" name="city" lay-filter="docFilter">
+                        </select>
+                    </div>
+                </div>
 
-        <script type="text/html" id="currentTableBar">
-            <a class="layui-btn layui-btn-xs data-count-edit" lay-event="edit">编辑</a>
-            <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">删除</a>
-        </script>
+                <!-- ****     历史跟单记录   开始    **********   -->
+                <blockquote class="layui-elem-quote" style="margin-top: 7px">历史跟单记录</blockquote>
+
+                <fieldset class="table-search-fieldset" style="margin-top: 7px">
+
+                    <div style="margin-top: 8px">
+                        <div id="id1" class="layui-inline">
+                            <span style="color:#FF0000;">*</span><span style="color:#666666;">跟单时间：</span>
+                            <span>2000-06-22 00:00:00</span>
+                        </div>
+
+                        <div id="id2" class="layui-inline">
+                            <span style="color:#FF0000;">*</span><span style="color:#666666;">跟单分类：</span>
+                            <span>上门拜访</span>
+                        </div>
+
+                        <div id="id3" class="layui-inline">
+                            <span>跟单人：</span>
+                            <span>张三</span>
+                        </div>
+                    </div>
+                    <div id="top_id">
+                        <span>详细内容：</span>
+                        <span>java语言的特点：平台无关性(虚拟机实现),支持多线程，支持网络编程，垃圾回收机制</span>
+                    </div>
+
+                </fieldset>
+
+                <fieldset class="table-search-fieldset" style="margin-top: 7px">
+
+                    <div style="margin-top: 8px">
+                        <div id="id1_1" class="layui-inline">
+                            <span style="color:#FF0000;">*</span><span style="color:#090404;">跟单时间：</span>
+                            <span>2000-06-22 00:00:00</span>
+                        </div>
+
+                        <div id="id2_1" class="layui-inline">
+                            <span style="color:#FF0000;">*</span><span style="color:#090404;">跟单分类：</span>
+                            <span>上门拜访</span>
+                        </div>
+
+                        <div id="id3_1" class="layui-inline">
+                            <span>跟单人：</span>
+                            <span>张三</span>
+                        </div>
+                    </div>
+                    <div id="top_id_1">
+                        <span>详细内容：</span>
+                        <span>java语言的特点：平台无关性(虚拟机实现),支持多线程，支持网络编程，垃圾回收机制</span>
+                    </div>
+
+                </fieldset>
+
+                <fieldset class="table-search-fieldset" style="margin-top: 7px">
+
+                    <div style="margin-top: 8px">
+                        <div id="id1_2" class="layui-inline">
+                            <span style="color:#FF0000;">*</span><span style="color:#090404;">跟单时间：</span>
+                            <span>2000-06-22 00:00:00</span>
+                        </div>
+
+                        <div id="id2_2" class="layui-inline">
+                            <span style="color:#FF0000;">*</span><span style="color:#090404;">跟单分类：</span>
+                            <span>上门拜访</span>
+                        </div>
+
+                        <div id="id3_2" class="layui-inline">
+                            <span>跟单人：</span>
+                            <span>张三</span>
+                        </div>
+                    </div>
+                    <div id="top_id_2">
+                        <span>详细内容：</span>
+                        <span>java语言的特点：平台无关性(虚拟机实现),支持多线程，支持网络编程，垃圾回收机制</span>
+                    </div>
+
+                </fieldset>
+
+                <!-- ****     历史跟单记录   结束    **********   -->
+
+
+                <!-- 新增跟单记录  开始  *****************   -->
+                <blockquote class="layui-elem-quote" style="margin-top: 30px">新增跟单记录</blockquote>
+                <div class="layui-form-item" style="margin-top: 30px">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">跟单时间</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="DocTime" id="DocTimeAdd" readonly="readonly" autocomplete="off"
+                                   class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">跟单分类</label>
+                        <div class="layui-input-inline">
+                            <select id="typeSelect" name="city" lay-filter="docFilter">
+                                <option value="1" selected="">阅读</option>
+                                <option value="2">游戏</option>
+                                <option value="3">音乐</option>
+                                <option value="4">旅行</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">跟单人</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="opername" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">详细内容</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="opername" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                </div>
+                <!-- 新增跟单记录  结束  *****************   -->
+
+
+                <div class="layui-form-item" style="text-align: center;margin-top: 25px">
+                    <div class="layui-input-block">
+                        <button type="button"
+                                class="layui-btn layui-btn-normal layui-btn-sm layui-icon layui-icon-release"
+                                lay-filter="doSubmit" lay-submit="">提交
+                        </button>
+                        <button type="reset" id="dataFrmResetBtn"
+                                class="layui-btn layui-btn-warm layui-btn-sm layui-icon layui-icon-refresh">重置
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+        <!-- 添加的弹出层结束 -->
+
 
     </div>
 </div>
+<script src="/lib/jquery-3.4.1/jquery-3.4.1.min.js"></script>
 <script src="/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
 <script>
-    layui.use(['form', 'table'], function () {
-        var $ = layui.jquery,
-            form = layui.form,
-            table = layui.table;
 
-        table.render({
-            elem: '#currentTableId',
-            url: '/api/table.json',
-            toolbar: '#toolbarDemo',
-            defaultToolbar: ['filter', 'exports', 'print', {
-                title: '提示',
-                layEvent: 'LAYTABLE_TIPS',
-                icon: 'layui-icon-tips'
-            }],
-            cols: [[
-                {type: "checkbox", width: 50, fixed: "left"},
-                {field: 'id', width: 80, title: 'ID', sort: true},
-                {field: 'username', width: 80, title: '用户名'},
-                {field: 'sex', width: 80, title: '性别', sort: true},
-                {field: 'city', width: 80, title: '城市'},
-                {field: 'sign', title: '签名', minWidth: 150},
-                {field: 'experience', width: 80, title: '积分', sort: true},
-                {field: 'score', width: 80, title: '评分', sort: true},
-                {field: 'classify', width: 80, title: '职业'},
-                {field: 'wealth', width: 135, title: '财富', sort: true},
-                {title: '操作', minWidth: 50, toolbar: '#currentTableBar', fixed: "right", align: "center"}
-            ]],
-            limits: [10, 15, 20, 25, 50, 100],
-            limit: 15,
-            page: true
+    layui.use(['jquery', 'layer', 'form', 'table', 'laydate'], function () {
+        var $ = layui.jquery;
+        var layer = layui.layer;
+        var form = layui.form;
+        var table = layui.table;
+        var laydate = layui.laydate;
+
+        //渲染时间
+        laydate.render({
+            elem: '#DocTime',
+            type: 'datetime'
         });
 
-        // 监听搜索操作
-        form.on('submit(data-search-btn)', function (data) {
-            var result = JSON.stringify(data.field);
-            layer.alert(result, {
-                title: '最终的搜索信息'
-            });
+        laydate.render({
+            elem: '#DocTimeAdd',
+            type: 'datetime'
+        });
 
-            //执行搜索重载
-            table.reload('currentTableId', {
-                page: {
-                    curr: 1
+        //渲染数据表格
+        tableIns = table.render({
+            elem: '#docTable'   //渲染的目标对象
+            , url: '/documentary/queryAllDocumentary.do' //数据接口
+            , title: '全部跟单'//数据导出来的标题
+            , limit: 7
+            , limits: [5, 7, 10, 15, 20, 30]
+            , page: true  //是否启用分页
+            , cols: [[   //列表数据
+                , {
+                    title: '跟单时间',
+                    align: 'center',
+                    templet: "<div>{{layui.util.toDateString(d.DocTime, 'yyyy-MM-dd HH:mm:ss')}}</div>"
                 }
-                , where: {
-                    searchParams: result
+                , {field: 'docTitle', title: '跟单标题'}
+                , {field: 'docPeople', title: '跟单人', align: 'center'}
+                , {field: 'docContent', title: '详细内容'}
+                , {field: 'docFile', title: '附件'}
+            ]]
+        })
+
+        //模糊查询
+        $("#doSearch").click(function () {
+            var params = $("#searchFrm").serialize();
+            tableIns.reload({
+                url: "/documentary/queryAllDocumentary.do?" + params,
+                page: {curr: 1}
+            })
+        });
+
+        //点击添加按钮，弹出添加页面 start------
+        $("#addBtn").click(function () {
+
+            //为下拉框赋值 开始
+            $.ajax({
+                url: '/documentary/queryBusName.do',
+                dataType: 'json',
+                success: function (result) {
+                    var s = "";
+                    $(result).each(function (i, obj) {
+                        s += "<option value='" + obj.busId + "'>" + obj.busName + "</option>";
+                    });
+                    $("#select1").html(s);
+                    //更新渲染
+                    form.render(null, 'addFormFilter');
                 }
-            }, 'data');
+            })
+            //为下拉框赋值 结束
 
-            return false;
+            layer.open({
+                type: 1,   //弹出层类型，页面框
+                title: '新增跟单',
+                shadeClose: true,  //控制点击弹出层外关闭弹出层
+                scrollbar: true,   //是否允许浏览器出现滚动条
+                fixed: false,      //即鼠标滚动时，层是否固定在可视区域。如果不想，设置fixed: false即可
+                area: '1100px',
+                content: $("#saveDiv")
+            })
+
+
         });
+        //点击添加按钮，弹出添加页面 end------
 
-        /**
-         * toolbar监听事件
-         */
-        table.on('toolbar(currentTableFilter)', function (obj) {
-            if (obj.event === 'add') {  // 监听添加操作
-                var index = layer.open({
-                    title: '添加用户',
-                    type: 2,
-                    shade: 0.2,
-                    maxmin:true,
-                    shadeClose: true,
-                    area: ['100%', '100%'],
-                    content: '/page/table/add.html',
-                });
-                $(window).on("resize", function () {
-                    layer.full(index);
-                });
-            } else if (obj.event === 'delete') {  // 监听删除操作
-                var checkStatus = table.checkStatus('currentTableId')
-                    , data = checkStatus.data;
-                layer.alert(JSON.stringify(data));
-            }
-        });
 
-        //监听表格复选框选择
-        table.on('checkbox(currentTableFilter)', function (obj) {
-            console.log(obj)
-        });
+    })
 
-        table.on('tool(currentTableFilter)', function (obj) {
-            var data = obj.data;
-            if (obj.event === 'edit') {
 
-                var index = layer.open({
-                    title: '编辑用户',
-                    type: 2,
-                    shade: 0.2,
-                    maxmin:true,
-                    shadeClose: true,
-                    area: ['100%', '100%'],
-                    content: '/page/table/edit.html',
-                });
-                $(window).on("resize", function () {
-                    layer.full(index);
-                });
-                return false;
-            } else if (obj.event === 'delete') {
-                layer.confirm('真的删除行么', function (index) {
-                    obj.del();
-                    layer.close(index);
-                });
-            }
-        });
-
-    });
 </script>
 <script>
 

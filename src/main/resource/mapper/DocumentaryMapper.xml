@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hy.crmsystem.mrli.mapper.DocumentaryMapper">
+
+    <select id="queryAllDocumentary" resultType="com.hy.crmsystem.mrli.entity.Documentary">
+        select  DocTime,DocTitle,DocPeople,DocContent,DocFile from documentary
+        <where>
+            <if test="DocPeople!=null and DocPeople!=''">
+                and DocPeople like concat("%",#{docPeople},"%")
+            </if>
+            <if test="DocTitle != null and DocTitle != ''">
+                and DocTitle like concat("%",#{docTitle},"%")
+            </if>
+            <if test="DocTime!=null">
+                and DocTime >=#{docTime}
+            </if>
+        </where>
+        order by DocTime desc
+    </select>
+
+
+</mapper>

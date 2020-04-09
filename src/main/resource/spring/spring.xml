@@ -35,6 +35,12 @@ http://www.springframework.org/schema/aop http://www.springframework.org/schema/
         <property name="dataSource" ref="druidDataSource"></property>
         <property name="typeAliasesPackage" value="com.hy.crmsystem"></property>
         <property name="configLocation" value="classpath:mybatis/mybatis.xml"></property>
+        <!-- 注入mapper.xml -->
+        <property name="mapperLocations">
+            <array>
+                <value>classpath:mapper/*Mapper.xml</value>
+            </array>
+        </property>
         <property name="plugins">
             <array>
                 <bean id="interceptor" class="com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor">
@@ -57,7 +63,14 @@ http://www.springframework.org/schema/aop http://www.springframework.org/schema/
             mybatis引入数据源 批量扫描mapper 设置别名 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="sqlSessionFactoryBeanName" value="mybatisSqlSessionFactoryBean"></property>
-        <property name="basePackage" value="com.hy.crmsystem"></property>
+        <property name="basePackage">
+            <value>
+                com.hy.crmsystem.mrfan.mapper
+                com.hy.crmsystem.mrli.mapper
+                com.hy.crmsystem.mrzhang.mapper
+                com.hy.crmsystem.mrpan.mapper
+            </value>
+        </property>
     </bean>
 
     <!-- 5、开启事务管理器("org.springframework.jdbc.datasource.DataSourceTransactionManager") -->

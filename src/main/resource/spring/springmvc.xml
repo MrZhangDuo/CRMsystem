@@ -17,29 +17,29 @@
     <!-- 静态资源放行-->
     <mvc:default-servlet-handler></mvc:default-servlet-handler>
 
-    <bean id="templateResolver" class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver">
+    <!--<bean id="templateResolver" class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver">
         <property name="characterEncoding" value="utf-8"></property>
-        <!--prefix，用于指定template所在目录；-->
+        &lt;!&ndash;prefix，用于指定template所在目录；&ndash;&gt;
         <property name="prefix" value="/"></property>
-        <!--suffix，过滤请求，这里是处理所有以.html结尾的请求；-->
+        &lt;!&ndash;suffix，过滤请求，这里是处理所有以.html结尾的请求；&ndash;&gt;
         <property name="suffix" value=".html"></property>
-        <!--是否缓存页面，开发时设置为false，这样就可以在不重启服务器的情况下刷新页面即可查看修改效果；-->
+        &lt;!&ndash;是否缓存页面，开发时设置为false，这样就可以在不重启服务器的情况下刷新页面即可查看修改效果；&ndash;&gt;
         <property name="cacheable" value="false"></property>
-        <!--templateMode，设置为html；-->
+        &lt;!&ndash;templateMode，设置为html；&ndash;&gt;
         <property name="templateMode" value="HTML"></property>
     </bean>
 
-    <!--配置模板引擎-->
+    &lt;!&ndash;配置模板引擎&ndash;&gt;
     <bean id="templateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">
         <property name="templateResolver" ref="templateResolver"></property>
     </bean>
 
-    <!--视图解析器-->
+    &lt;!&ndash;视图解析器&ndash;&gt;
     <bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
-        <!--解决中文乱码-->
+        &lt;!&ndash;解决中文乱码&ndash;&gt;
         <property name="characterEncoding" value="utf-8"></property>
         <property name="templateEngine" ref="templateEngine"></property>
-    </bean>
+    </bean>-->
 
 
     <!-- 保证实现了Shiro内部lifecycle函数的bean执行
