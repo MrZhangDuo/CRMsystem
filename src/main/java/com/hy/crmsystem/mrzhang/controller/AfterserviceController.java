@@ -48,11 +48,11 @@ public class AfterserviceController {
 
     @ResponseBody
     @RequestMapping("queryAllAfterService.do")
-    public LayuiData queryAllAfterService(Model model,Integer page, Integer limit, String ServiceTheme, String ServiceType, String ServiceStartTime, String ServicePeople, String ServicesCore ,
+    public LayuiData queryAllAfterService(Model model,Integer page, Integer limit, String type,String serviceTheme, String serviceType, String serviceStartTime, String servicePeople, String servicesCore ,
                                           String chul,String chec,String jies,String benzhou,String shangzhou ,String benyue,String shangyue,String benji,String shangji ){
         LayuiData layuiData = new LayuiData();
-        IPage<Afterservice> afterserviceIPage = afterserviceService.queryAllAfterService(page,limit,ServiceTheme,
-                ServiceType,ServiceStartTime,ServicePeople,ServicesCore,chul,chec,jies,benzhou,shangzhou,benyue,shangyue,benji,shangji);
+        IPage<Afterservice> afterserviceIPage = afterserviceService.queryAllAfterService(page,limit,type,serviceTheme,
+                serviceType,serviceStartTime,servicePeople,servicesCore,chul,chec,jies,benzhou,shangzhou,benyue,shangyue,benji,shangji);
 
         layuiData.setData(afterserviceIPage.getRecords());
         layuiData.setCount(Integer.parseInt(String.valueOf(afterserviceIPage.getTotal())));
@@ -123,14 +123,15 @@ public class AfterserviceController {
     @ResponseBody
     @RequestMapping("queryCustContract.do")
     public List<Contract> queryCustContract(String ServiceCustName){
+        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"+ServiceCustName);
         return afterserviceService.queryCustContract(ServiceCustName);
     }
 
 
     /* 查询某一条数据 */
     @RequestMapping("queryAfterServiceById.do")
-    public String queryAfterServiceById(Model model,String ServiceId){
-        model.addAttribute("afterservice",afterserviceService.getById(Integer.parseInt(ServiceId)));
+    public String queryAfterServiceById(Model model,String serviceId){
+        model.addAttribute("afterservice",afterserviceService.queryAfterServiceById(serviceId));
         return  "page/afterservice/queryAfterServiceById";
     }
 

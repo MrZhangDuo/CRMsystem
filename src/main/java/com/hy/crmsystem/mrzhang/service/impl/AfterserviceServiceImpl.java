@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hy.crmsystem.mrfan.entity.Contract;
 import com.hy.crmsystem.mrpan.entity.Customer;
 import com.hy.crmsystem.mrzhang.entity.Afterservice;
+import com.hy.crmsystem.mrzhang.entity.AfterserviceBo;
 import com.hy.crmsystem.mrzhang.mapper.AfterserviceMapper;
 import com.hy.crmsystem.mrzhang.service.IAfterserviceService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -32,28 +33,27 @@ public class AfterserviceServiceImpl extends ServiceImpl<AfterserviceMapper, Aft
     AfterserviceMapper afterserviceMapper;
 
     @Override
-    public IPage<Afterservice> queryAllAfterService(Integer page, Integer limit, String ServiceTheme, String ServiceType,
-                 String ServiceStartTime,String ServicePeople, String ServicesCore,
+    public IPage<Afterservice> queryAllAfterService(Integer page, Integer limit,String type, String serviceTheme, String serviceType,
+                 String serviceStartTime,String servicePeople, String servicesCore,
                                                     String chul,String chec,String jies,String benzhou,String shangzhou,
                                                     String benyue,String shangyue,String benji,String shangji) {
         Logger logger =Logger.getLogger(AfterserviceServiceImpl.class);
         QueryWrapper<Afterservice> queryWrapper = new QueryWrapper<>();
-        if (StringUtils.isNotEmpty(ServiceTheme)){
-            queryWrapper.like("ServiceTheme",ServiceTheme);
+
+        if(StringUtils.isNotEmpty(type)){
+            if (type.equals("1") && StringUtils.isNotEmpty(serviceTheme)){
+                queryWrapper.like("serviceTheme",serviceTheme);
+            }else if (type.equals("2") && StringUtils.isNotEmpty(serviceType)){
+                queryWrapper.like("serviceType",serviceType);
+            }else if (type.equals("4") && StringUtils.isNotEmpty(servicePeople)){
+                queryWrapper.like("servicePeople",servicePeople);
+            }else if (type.equals("5") && StringUtils.isNotEmpty(servicesCore)){
+                queryWrapper.eq("servicesCore",Integer.parseInt(servicesCore));
+            }else if (type.equals("3") && StringUtils.isNotEmpty(serviceStartTime)){
+                queryWrapper.ge("serviceStartTime",serviceStartTime);
+            }
         }
-        if (StringUtils.isNotEmpty(ServiceType)){
-            queryWrapper.like("ServiceType",ServiceType);
-        }
-        if (StringUtils.isNotEmpty(ServicePeople)){
-            queryWrapper.like("ServicePeople",ServicePeople);
-        }
-        if (StringUtils.isNotEmpty(ServicesCore)){
-            queryWrapper.eq("ServicesCore",Integer.parseInt(ServicesCore));
-        }
-        if (StringUtils.isNotEmpty(ServiceStartTime)){
-            queryWrapper.ge("ServiceStartTime",ServiceStartTime);
-        }
-        if(StringUtils.isNotEmpty(chul)&&chul.equals("chul")){
+         if(StringUtils.isNotEmpty(chul)&&chul.equals("chul")){
             queryWrapper.eq("serviceCondition","处理中");
         }else if (StringUtils.isNotEmpty(chec)&&chec.equals("chec")){
             queryWrapper.eq("serviceCondition","撤除");
@@ -168,7 +168,11 @@ public class AfterserviceServiceImpl extends ServiceImpl<AfterserviceMapper, Aft
     }
 
     @Override
-    public List<Contract> queryCustContract(String ServiceCustName) {
-        return afterserviceMapper.queryCustContract(ServiceCustName);
+    public List<Contract> queryCustContract(String custName) {
+        return afterserviceMapper.queryCustContract(custName);
+    }
+
+    public AfterserviceBo queryAfterServiceById(String serviceId){
+        return afterserviceMapper.queryAfterServiceById(serviceId);
     }
 }

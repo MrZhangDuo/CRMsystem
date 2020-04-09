@@ -21,172 +21,170 @@ public class Contract implements Serializable {
 
     private static final long serialVersionUID = 1L;
     //合同主键
-    @TableId(value = "ContractId", type = IdType.AUTO)
-    private Integer ContractId;
-    //收入登记主键
-    private Integer incomeId;
-    //开票主键
-    private Integer billId;
-    //基础主键
-    private Integer baseId;
+    @TableId(value = "contractId", type = IdType.AUTO)
+    private Integer contractId;
+
+    private Integer custId;
+
     //合同名称
-    private String ContractName;
+    private String contractName;
     //合同编号
-    private String ContractNum;
+    private String contractNum;
     //合同金额
-    private String ContractMoney;
+    private String contractMoney;
     //签约日期
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date SignedTime;
+    private Date signedTime;
     //生效时间
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date ContractStarTime;
+    private Date contractStarTime;
     //服务期至
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date ContractEndTime;
+    private Date contractEndTime;
     //对方联系人
-    private String ContractLinkMan;
+    private String contractLinkMan;
     //固定电话
-    private String ContractFixNum;
+    private String contractFixNum;
     //移动电话
-    private String Phone;
+    private String phone;
     //邮件/qq
-    private String Email;
+    private String email;
     //主要技术条款
-    private String Technical;
+    private String technical;
     //主要商务条款
-    private String Commerce;
+    private String commerce;
     //相关附件
-    private String Contractfile;
+    private String contractfile;
     //合同所属部门
     private Integer ofdept;
     //关联人员
-    private String RelevancyPeople;
+    private String relevancyPeople;
 
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
 
     public Integer getContractId() {
-        return ContractId;
+        return contractId;
     }
 
-    public void setContractId(Integer ContractId) {
-        this.ContractId = ContractId;
-    }
-    public Integer getIncomeId() {
-        return incomeId;
+    public void setContractId(Integer contractId) {
+        this.contractId = contractId;
     }
 
-    public void setIncomeId(Integer incomeId) {
-        this.incomeId = incomeId;
-    }
-    public Integer getBillId() {
-        return billId;
+    public Integer getCustId() {
+        return custId;
     }
 
-    public void setBillId(Integer billId) {
-        this.billId = billId;
-    }
-    public Integer getBaseId() {
-        return baseId;
+    public void setCustId(Integer custId) {
+        this.custId = custId;
     }
 
-    public void setBaseId(Integer baseId) {
-        this.baseId = baseId;
-    }
     public String getContractName() {
-        return ContractName;
+        return contractName;
     }
 
-    public void setContractName(String ContractName) {
-        this.ContractName = ContractName;
+    public void setContractName(String contractName) {
+        this.contractName = contractName;
     }
+
     public String getContractNum() {
-        return ContractNum;
+        return contractNum;
     }
 
-    public void setContractNum(String ContractNum) {
-        this.ContractNum = ContractNum;
+    public void setContractNum(String contractNum) {
+        this.contractNum = contractNum;
     }
+
     public String getContractMoney() {
-        return ContractMoney;
+        return contractMoney;
     }
 
     public void setContractMoney(String contractMoney) {
-        ContractMoney = contractMoney;
+        this.contractMoney = contractMoney;
     }
 
     public Date getSignedTime() {
-        return SignedTime;
+        return signedTime;
     }
 
     public void setSignedTime(Date signedTime) {
-        SignedTime = signedTime;
+        this.signedTime = signedTime;
     }
 
     public Date getContractStarTime() {
-        return ContractStarTime;
+        return contractStarTime;
     }
 
     public void setContractStarTime(Date contractStarTime) {
-        ContractStarTime = contractStarTime;
+        this.contractStarTime = contractStarTime;
     }
 
     public Date getContractEndTime() {
-        return ContractEndTime;
+        return contractEndTime;
     }
 
     public void setContractEndTime(Date contractEndTime) {
-        ContractEndTime = contractEndTime;
+        this.contractEndTime = contractEndTime;
     }
 
     public String getContractLinkMan() {
-        return ContractLinkMan;
+        return contractLinkMan;
     }
 
-    public void setContractLinkMan(String ContractLinkMan) {
-        this.ContractLinkMan = ContractLinkMan;
+    public void setContractLinkMan(String contractLinkMan) {
+        this.contractLinkMan = contractLinkMan;
     }
+
     public String getContractFixNum() {
-        return ContractFixNum;
+        return contractFixNum;
     }
 
-    public void setContractFixNum(String ContractFixNum) {
-        this.ContractFixNum = ContractFixNum;
+    public void setContractFixNum(String contractFixNum) {
+        this.contractFixNum = contractFixNum;
     }
+
     public String getPhone() {
-        return Phone;
+        return phone;
     }
 
-    public void setPhone(String Phone) {
-        this.Phone = Phone;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
+
     public String getEmail() {
-        return Email;
+        return email;
     }
 
-    public void setEmail(String Email) {
-        this.Email = Email;
+    public void setEmail(String email) {
+        this.email = email;
     }
+
     public String getTechnical() {
-        return Technical;
+        return technical;
     }
 
-    public void setTechnical(String Technical) {
-        this.Technical = Technical;
+    public void setTechnical(String technical) {
+        this.technical = technical;
     }
+
     public String getCommerce() {
-        return Commerce;
+        return commerce;
     }
 
-    public void setCommerce(String Commerce) {
-        this.Commerce = Commerce;
+    public void setCommerce(String commerce) {
+        this.commerce = commerce;
     }
+
     public String getContractfile() {
-        return Contractfile;
+        return contractfile;
     }
 
-    public void setContractfile(String Contractfile) {
-        this.Contractfile = Contractfile;
+    public void setContractfile(String contractfile) {
+        this.contractfile = contractfile;
     }
+
     public Integer getOfdept() {
         return ofdept;
     }
@@ -194,37 +192,35 @@ public class Contract implements Serializable {
     public void setOfdept(Integer ofdept) {
         this.ofdept = ofdept;
     }
+
     public String getRelevancyPeople() {
-        return RelevancyPeople;
+        return relevancyPeople;
     }
 
-    public void setRelevancyPeople(String RelevancyPeople) {
-        this.RelevancyPeople = RelevancyPeople;
+    public void setRelevancyPeople(String relevancyPeople) {
+        this.relevancyPeople = relevancyPeople;
     }
-
 
     @Override
     public String toString() {
         return "Contract{" +
-        "ContractId=" + ContractId +
-        ", incomeId=" + incomeId +
-        ", billId=" + billId +
-        ", baseId=" + baseId +
-        ", ContractName=" + ContractName +
-        ", ContractNum=" + ContractNum +
-        ", ContractMoney=" + ContractMoney +
-        ", SignedTime=" + SignedTime +
-        ", ContractStarTime=" + ContractStarTime +
-        ", ContractEndTime=" + ContractEndTime +
-        ", ContractLinkMan=" + ContractLinkMan +
-        ", ContractFixNum=" + ContractFixNum +
-        ", Phone=" + Phone +
-        ", Email=" + Email +
-        ", Technical=" + Technical +
-        ", Commerce=" + Commerce +
-        ", Contractfile=" + Contractfile +
-        ", ofdept=" + ofdept +
-        ", RelevancyPeople=" + RelevancyPeople +
-        "}";
+                "contractId=" + contractId +
+                ", custId=" + custId +
+                ", contractName='" + contractName + '\'' +
+                ", contractNum='" + contractNum + '\'' +
+                ", contractMoney='" + contractMoney + '\'' +
+                ", signedTime=" + signedTime +
+                ", contractStarTime=" + contractStarTime +
+                ", contractEndTime=" + contractEndTime +
+                ", contractLinkMan='" + contractLinkMan + '\'' +
+                ", contractFixNum='" + contractFixNum + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", technical='" + technical + '\'' +
+                ", commerce='" + commerce + '\'' +
+                ", contractfile='" + contractfile + '\'' +
+                ", ofdept=" + ofdept +
+                ", relevancyPeople='" + relevancyPeople + '\'' +
+                '}';
     }
 }

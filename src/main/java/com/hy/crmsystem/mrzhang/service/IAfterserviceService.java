@@ -20,8 +20,8 @@ import java.util.Set;
  */
 public interface IAfterserviceService extends IService<Afterservice> {
 
-    public IPage<Afterservice> queryAllAfterService(Integer page, Integer limit,String ServiceTheme, String ServiceType
-            , String ServiceStartTime, String ServicePeople, String ServicesCore,
+    public IPage<Afterservice> queryAllAfterService(Integer page, Integer limit,String type,String serviceTheme, String serviceType
+            , String serviceStartTime, String servicePeople, String servicesCore,
                                                     String chul,String chec,String jies,String benzhou,String shangzhou ,String benyue,String shangyue,String benji,String shangji);
     public List<Afterservice> queryAllServiceTheme();
     public Integer countServiceanditionChuLi();
