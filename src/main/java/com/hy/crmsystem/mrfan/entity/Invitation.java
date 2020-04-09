@@ -42,6 +42,8 @@ public class Invitation implements Serializable {
     private Date InvitationTime;
     //帖子作者
     private String Invitationauthor;
+    //帖子分类
+    private String Invitationclassification;
 
     public String getInvitationauthor() {
         return Invitationauthor;
@@ -62,52 +64,52 @@ public class Invitation implements Serializable {
     public Integer getReolyId() {
         return ReolyId;
     }
+
     public void setReolyId(Integer ReolyId) {
         this.ReolyId = ReolyId;
     }
-
     public String getInvitationTag() {
         return InvitationTag;
     }
+
     public void setInvitationTag(String InvitationTag) {
         this.InvitationTag = InvitationTag;
     }
-
     public String getInvitationSubject() {
         return InvitationSubject;
     }
+
     public void setInvitationSubject(String InvitationSubject) {
         this.InvitationSubject = InvitationSubject;
     }
-
     public String getInvitationFile() {
         return InvitationFile;
     }
+
     public void setInvitationFile(String InvitationFile) {
         this.InvitationFile = InvitationFile;
     }
-
     public String getInvitationContent() {
         return InvitationContent;
     }
+
     public void setInvitationContent(String InvitationContent) {
         this.InvitationContent = InvitationContent;
     }
-
     public Integer getInvitationClick() {
         return InvitationClick;
     }
+
     public void setInvitationClick(Integer InvitationClick) {
         this.InvitationClick = InvitationClick;
     }
-
     public Integer getInvitationReply() {
         return InvitationReply;
     }
+
     public void setInvitationReply(Integer InvitationReply) {
         this.InvitationReply = InvitationReply;
     }
-
     public Date getInvitationTime() {
         return InvitationTime;
     }
@@ -130,6 +132,7 @@ public class Invitation implements Serializable {
                 ", InvitationReply=" + InvitationReply +
                 ", InvitationTime=" + InvitationTime +
                 ", Invitationauthor='" + Invitationauthor + '\'' +
+                ", Invitationclassification='" + Invitationclassification + '\'' +
                 '}';
     }
 }
