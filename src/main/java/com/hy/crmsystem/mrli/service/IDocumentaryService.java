@@ -24,4 +24,9 @@ public interface IDocumentaryService extends IService<Documentary> {
     DataGridView queryAllDocumentary(DocumentaryVo documentaryVo);
 
 
+    /**
+     * 新增跟单
+     * @param documentaryVo
+     */
+    void addDocumentary(DocumentaryVo documentaryVo);
 }

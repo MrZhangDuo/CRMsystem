@@ -119,7 +119,7 @@
                     <label class="layui-form-label">跟单主题</label>
                     <div class="layui-input-block">
                         <input type="hidden" name="BusId">
-                        <select id="select1" name="city" lay-filter="docFilter">
+                        <select id="select1" name="DocTitle" lay-filter="docFilter">
                         </select>
                     </div>
                 </div>
@@ -218,18 +218,21 @@
                     <div class="layui-inline">
                         <label class="layui-form-label">跟单分类</label>
                         <div class="layui-input-inline">
-                            <select id="typeSelect" name="city" lay-filter="docFilter">
-                                <option value="1" selected="">阅读</option>
-                                <option value="2">游戏</option>
-                                <option value="3">音乐</option>
-                                <option value="4">旅行</option>
+                            <select id="typeSelect" name="DocType" lay-filter="docFilter">
+                                <option value="0" selected="">请选择</option>
+                                <option value="电话沟通">电话沟通</option>
+                                <option value="邮件联系">邮件联系</option>
+                                <option value="网上交流">网上交流</option>
+                                <option value="上门拜访">上门拜访</option>
+                                <option value="产品送样">产品送样</option>
+                                <option value="其他">其他</option>
                             </select>
                         </div>
                     </div>
                     <div class="layui-inline">
                         <label class="layui-form-label">跟单人</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="opername" autocomplete="off" class="layui-input">
+                            <input type="text" name="DocPeople" autocomplete="off" class="layui-input">
                         </div>
                     </div>
                 </div>
@@ -237,7 +240,7 @@
                     <div class="layui-inline">
                         <label class="layui-form-label">详细内容</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="opername" autocomplete="off" class="layui-input">
+                            <input type="text" name="DocContent" autocomplete="off" class="layui-input">
                         </div>
                     </div>
                 </div>
@@ -257,6 +260,7 @@
                 </div>
             </form>
 
+
         </div>
         <!-- 添加的弹出层结束 -->
 
@@ -267,6 +271,7 @@
 <script src="/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
 <script>
 
+    var tableIns;
     layui.use(['jquery', 'layer', 'form', 'table', 'laydate'], function () {
         var $ = layui.jquery;
         var layer = layui.layer;
@@ -315,6 +320,9 @@
             })
         });
 
+
+        var mainIndex;
+        var url;  //动态的url
         //点击添加按钮，弹出添加页面 start------
         $("#addBtn").click(function () {
 
@@ -325,7 +333,7 @@
                 success: function (result) {
                     var s = "";
                     $(result).each(function (i, obj) {
-                        s += "<option value='" + obj.busId + "'>" + obj.busName + "</option>";
+                        s += "<option id='" + obj.BusId + "' value='" + obj.busName + "'>" + obj.busName + "</option>";
                     });
                     $("#select1").html(s);
                     //更新渲染
@@ -334,19 +342,40 @@
             })
             //为下拉框赋值 结束
 
-            layer.open({
+            mainIndex = layer.open({
                 type: 1,   //弹出层类型，页面框
                 title: '新增跟单',
                 shadeClose: true,  //控制点击弹出层外关闭弹出层
                 scrollbar: true,   //是否允许浏览器出现滚动条
                 fixed: false,      //即鼠标滚动时，层是否固定在可视区域。如果不想，设置fixed: false即可
-                area: '1100px',
-                content: $("#saveDiv")
+                area: '1000px',
+                content: $("#saveDiv"),
             })
 
 
         });
         //点击添加按钮，弹出添加页面 end------
+
+        // ----- 保存弹出层的表单  开始   -----------------
+        form.on("submit(doSubmit)", function (obj) {
+            $.ajax({
+                url: '/documentary/addDocumentary.do',
+                data: obj.field,
+                type: "get",
+                dataType: "json",
+                success: function (result) {
+                    if (result.flag) {
+                        layer.closeAll();   //关闭添加的界面弹出层
+                        $("#addForm")[0].reset();      //使用js中的reset方法清空表单中的数据
+                        layer.msg('添加成功');
+                        table.reload('myTable', {})
+                    }
+                }
+
+            });
+            return false;
+        })
+        // ----- 保存弹出层的表单  结束   -----------------
 
 
     })

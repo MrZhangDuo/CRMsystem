@@ -50,4 +50,10 @@ public class DocumentaryServiceImpl extends ServiceImpl<DocumentaryMapper, Docum
         List<Documentary> data = this.documentaryMapper.queryAllDocumentary(documentaryVo);
         return new DataGridView(page.getTotal(), data);
     }
+
+
+    @Override
+    public void addDocumentary(DocumentaryVo documentaryVo) {
+        this.documentaryMapper.insert(documentaryVo);
+    }
 }

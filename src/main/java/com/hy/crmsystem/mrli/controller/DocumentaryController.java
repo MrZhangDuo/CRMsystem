@@ -6,6 +6,7 @@ import com.hy.crmsystem.mrli.entity.BaseEntity;
 import com.hy.crmsystem.mrli.entity.DataGridView;
 import com.hy.crmsystem.mrli.entity.Documentary;
 import com.hy.crmsystem.mrli.service.IDocumentaryService;
+import com.hy.crmsystem.mrli.utils.ResultObj;
 import com.hy.crmsystem.mrli.vo.DocumentaryVo;
 import com.hy.crmsystem.mrpan.entity.Business;
 import com.hy.crmsystem.mrpan.service.IBusinessService;
@@ -15,7 +16,9 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -51,7 +54,27 @@ public class DocumentaryController {
      */
     @RequestMapping(value = "/queryBusName")
     @ResponseBody
-    public List<Business> queryBusName(){
+    public List<Business> queryBusName() {
         return this.businessService.queryBusName();
     }
+
+
+    /**
+     * 新增跟单记录
+     */
+    @RequestMapping("/addDocumentary")
+    @ResponseBody
+    public Map addDocumentary(DocumentaryVo documentaryVo) {
+        Map map = new HashMap<>(16);
+        try {
+            this.documentaryService.addDocumentary(documentaryVo);
+            map.put("flag", true);
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put("flag", false);
+        }
+        return map;
+    }
+
+
 }
