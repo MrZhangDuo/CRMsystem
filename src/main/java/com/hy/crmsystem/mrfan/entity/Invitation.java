@@ -1,5 +1,6 @@
 package com.hy.crmsystem.mrfan.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -21,7 +22,7 @@ public class Invitation implements Serializable {
 
     private static final long serialVersionUID = 1L;
     //帖子主键
-    @TableId(value = "InvitationId")
+    @TableId(value = "InvitationId",type = IdType.AUTO)
     private Integer InvitationId;
     //回复主键
     private Integer ReolyId;
@@ -37,11 +38,21 @@ public class Invitation implements Serializable {
     private Integer InvitationClick;
     //帖子回复量
     private Integer InvitationReply;
-    // 帖子回复日期
+    // 帖子发表日期
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm")
     private Date InvitationTime;
     //帖子作者
     private String Invitationauthor;
+    //帖子分类
+    private String Invitationclassification;
+
+    public String getInvitationclassification() {
+        return Invitationclassification;
+    }
+
+    public void setInvitationclassification(String invitationclassification) {
+        Invitationclassification = invitationclassification;
+    }
 
     public String getInvitationauthor() {
         return Invitationauthor;
@@ -62,52 +73,52 @@ public class Invitation implements Serializable {
     public Integer getReolyId() {
         return ReolyId;
     }
+
     public void setReolyId(Integer ReolyId) {
         this.ReolyId = ReolyId;
     }
-
     public String getInvitationTag() {
         return InvitationTag;
     }
+
     public void setInvitationTag(String InvitationTag) {
         this.InvitationTag = InvitationTag;
     }
-
     public String getInvitationSubject() {
         return InvitationSubject;
     }
+
     public void setInvitationSubject(String InvitationSubject) {
         this.InvitationSubject = InvitationSubject;
     }
-
     public String getInvitationFile() {
         return InvitationFile;
     }
+
     public void setInvitationFile(String InvitationFile) {
         this.InvitationFile = InvitationFile;
     }
-
     public String getInvitationContent() {
         return InvitationContent;
     }
+
     public void setInvitationContent(String InvitationContent) {
         this.InvitationContent = InvitationContent;
     }
-
     public Integer getInvitationClick() {
         return InvitationClick;
     }
+
     public void setInvitationClick(Integer InvitationClick) {
         this.InvitationClick = InvitationClick;
     }
-
     public Integer getInvitationReply() {
         return InvitationReply;
     }
+
     public void setInvitationReply(Integer InvitationReply) {
         this.InvitationReply = InvitationReply;
     }
-
     public Date getInvitationTime() {
         return InvitationTime;
     }
@@ -115,7 +126,6 @@ public class Invitation implements Serializable {
     public void setInvitationTime(Date invitationTime) {
         InvitationTime = invitationTime;
     }
-
 
     @Override
     public String toString() {
@@ -130,6 +140,7 @@ public class Invitation implements Serializable {
                 ", InvitationReply=" + InvitationReply +
                 ", InvitationTime=" + InvitationTime +
                 ", Invitationauthor='" + Invitationauthor + '\'' +
+                ", Invitationclassification='" + Invitationclassification + '\'' +
                 '}';
     }
 }

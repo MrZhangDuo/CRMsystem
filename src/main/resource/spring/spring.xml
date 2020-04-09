@@ -70,5 +70,5 @@ http://www.springframework.org/schema/aop http://www.springframework.org/schema/
 
     <!-- 7、扫描带有 @Component（组件）@Service（服务层）@Controller（控制层）@Repository(数据库访问层)
            等component下得子类 通过factoryBean完成创建 -->
-    <context:component-scan base-package="com.hy.crmsystem"></context:component-scan>
+    <context:component-scan base-package="com.hy.crmsystem" ></context:component-scan>
 </beans>
