@@ -53,12 +53,9 @@
     </div>
 
 
-    <div id="editor"  style="margin: 50px 0 50px 0">
-
-    </div>
-
-
-
+    <input type="text" name="InvitationContent" id="InvitationContent">
+    <!-- 富文本编辑器 -->
+    <textarea id="fuwenben" style="display: none;"></textarea>
 
     <div class="layui-form-item">
         <div class="layui-input-block">
@@ -68,63 +65,60 @@
 </div>
 </form>
 <script src="/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
-<script src="/js/lay-config.js?v=1.0.4" charset="utf-8"></script>
-<script type="text/javascript">
-    layui.use(['layer','wangEditor'], function () {
-        var $ = layui.jquery,
-            layer = layui.layer,
-            wangEditor = layui.wangEditor;
-
-        var editor = new wangEditor('#editor');
-        editor.customConfig.uploadImgServer = "/api/upload.json";
-        editor.customConfig.uploadFileName = 'image';
-        editor.customConfig.pasteFilterStyle = false;
-        editor.customConfig.uploadImgMaxLength = 5;
-        editor.customConfig.uploadImgHooks = {
-            // 上传超时
-            timeout: function (xhr, editor) {
-                layer.msg('上传超时！')
-            },
-            // 如果服务器端返回的不是 {errno:0, data: [...]} 这种格式，可使用该配置
-            customInsert: function (insertImg, result, editor) {
-                alert(result);
-                if (result.code == 1) {
-                    var url = result.data.url;
-                    url.forEach(function (e) {
-                        insertImg(e);
-                    })
-                } else {
-                    layer.msg(result.msg);
-                }
-            }
-        };
-        editor.customConfig.customAlert = function (info) {
-            layer.msg(info);
-        };
-        editor.create();
-
-       /* document.getElementById('editor').addEventListener('blur', function () {
-            // 读取 html
-            alert(editor.txt.html())
-        }, false)
-
-        document.getElementById('editor').addEventListener('click', function () {
-            // 读取 text
-            alert(editor.txt.text())
-        }, false)*/
-
-
-
-    });
-</script>
 <script>
-    layui.use(['form','upload','layer','wangEditor'], function () {
+    layui.use(['layedit','form','upload'], function () {
+        var layedit = layui.layedit;
         var form = layui.form,
-            layer = layui.layer,
             upload=layui.upload,
-            $ = layui.$,
-            layer = layui.layer,
-            wangEditor = layui.wangEditor;
+            $ = layui.$;
+        layedit.set({
+            uploadImage: {
+                url: '/invitation/fileuploadExecl.do' //接口url
+                ,type: 'get' //默认post
+            }
+        });
+        //注意：layedit.set 一定要放在 build 前面，否则配置全局接口将无效。
+        var index = layedit.build('fuwenben'); //建立编辑器
+
+        //监听提交
+        form.on('submit(saveBtn)', function (data) {
+           $("#InvitationContent").val(layedit.getContent(index));
+            /*$.ajax({
+                 url:'emp/emp/add.do',
+                 type:'post',
+                 data:data.field,
+                 dataType:'JSON',
+                 success: function(data){
+                     var data = JSON.stringify(data);
+                     if(data === '0'){
+                         var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+                         /!*setTimeout(function () {*!/
+                         parent.layer.close(index); // 关闭layer
+                         /!*});*!/
+                         layer.msg('修改成功', {
+                             /!*icon: 1,
+                             time: 0 //2秒关闭（如果不配置，默认是3秒）
+                         }, function(){
+                             //do something*!/
+                         });
+                     }
+                 }
+             });
+             return false;*/
+            /*var index = layer.alert(JSON.stringify(data.field), {
+                title: '最终的提交信息'
+            }, function () {
+
+                // 关闭弹出层
+                layer.close(index);
+
+                var iframeIndex = parent.layer.getFrameIndex(window.name);
+                parent.layer.close(iframeIndex);
+
+            });*/
+
+            return false;
+        });
 
 
         var uploadInst = upload.render({
@@ -153,55 +147,6 @@
                 });
             }
         });
-
-
-
-
-
-
-        //监听提交
-        form.on('submit(saveBtn)', function (data) {
-            $('#editor').addEventListener( function () {
-                // 读取 text
-                alert($("#editor").txt.text())
-            }, false)
-           /*$.ajax({
-                url:'emp/emp/add.do',
-                type:'post',
-                data:data.field,
-                dataType:'JSON',
-                success: function(data){
-                    var data = JSON.stringify(data);
-                    if(data === '0'){
-                        var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
-                        /!*setTimeout(function () {*!/
-                        parent.layer.close(index); // 关闭layer
-                        /!*});*!/
-                        layer.msg('修改成功', {
-                            /!*icon: 1,
-                            time: 0 //2秒关闭（如果不配置，默认是3秒）
-                        }, function(){
-                            //do something*!/
-                        });
-                    }
-                }
-            });
-            return false;*/
-            /*var index = layer.alert(JSON.stringify(data.field), {
-                title: '最终的提交信息'
-            }, function () {
-
-                // 关闭弹出层
-                layer.close(index);
-
-                var iframeIndex = parent.layer.getFrameIndex(window.name);
-                parent.layer.close(iframeIndex);
-
-            });*/
-
-            return false;
-        });
-
     });
 </script>
 </body>
