@@ -40,7 +40,16 @@ public class Invitation implements Serializable {
     // 帖子回复日期
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm")
     private Date InvitationTime;
+    //帖子作者
+    private String Invitationauthor;
 
+    public String getInvitationauthor() {
+        return Invitationauthor;
+    }
+
+    public void setInvitationauthor(String invitationauthor) {
+        Invitationauthor = invitationauthor;
+    }
 
     public Integer getInvitationId() {
         return InvitationId;
@@ -49,52 +58,52 @@ public class Invitation implements Serializable {
     public void setInvitationId(Integer InvitationId) {
         this.InvitationId = InvitationId;
     }
+
     public Integer getReolyId() {
         return ReolyId;
     }
-
     public void setReolyId(Integer ReolyId) {
         this.ReolyId = ReolyId;
     }
+
     public String getInvitationTag() {
         return InvitationTag;
     }
-
     public void setInvitationTag(String InvitationTag) {
         this.InvitationTag = InvitationTag;
     }
+
     public String getInvitationSubject() {
         return InvitationSubject;
     }
-
     public void setInvitationSubject(String InvitationSubject) {
         this.InvitationSubject = InvitationSubject;
     }
+
     public String getInvitationFile() {
         return InvitationFile;
     }
-
     public void setInvitationFile(String InvitationFile) {
         this.InvitationFile = InvitationFile;
     }
+
     public String getInvitationContent() {
         return InvitationContent;
     }
-
     public void setInvitationContent(String InvitationContent) {
         this.InvitationContent = InvitationContent;
     }
+
     public Integer getInvitationClick() {
         return InvitationClick;
     }
-
     public void setInvitationClick(Integer InvitationClick) {
         this.InvitationClick = InvitationClick;
     }
+
     public Integer getInvitationReply() {
         return InvitationReply;
     }
-
     public void setInvitationReply(Integer InvitationReply) {
         this.InvitationReply = InvitationReply;
     }
@@ -111,15 +120,16 @@ public class Invitation implements Serializable {
     @Override
     public String toString() {
         return "Invitation{" +
-        "InvitationId=" + InvitationId +
-        ", ReolyId=" + ReolyId +
-        ", InvitationTag=" + InvitationTag +
-        ", InvitationSubject=" + InvitationSubject +
-        ", InvitationFile=" + InvitationFile +
-        ", InvitationContent=" + InvitationContent +
-        ", InvitationClick=" + InvitationClick +
-        ", InvitationReply=" + InvitationReply +
-        ", InvitationTime=" + InvitationTime +
-        "}";
+                "InvitationId=" + InvitationId +
+                ", ReolyId=" + ReolyId +
+                ", InvitationTag='" + InvitationTag + '\'' +
+                ", InvitationSubject='" + InvitationSubject + '\'' +
+                ", InvitationFile='" + InvitationFile + '\'' +
+                ", InvitationContent='" + InvitationContent + '\'' +
+                ", InvitationClick=" + InvitationClick +
+                ", InvitationReply=" + InvitationReply +
+                ", InvitationTime=" + InvitationTime +
+                ", Invitationauthor='" + Invitationauthor + '\'' +
+                '}';
     }
 }

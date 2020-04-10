@@ -1,13 +1,18 @@
 package com.hy.crmsystem.mrzhang.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * <p>
@@ -22,206 +27,264 @@ public class Afterservice implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "ServiceId", type = IdType.AUTO)
-    private Integer ServiceId;
+    @TableId(value = "serviceId", type = IdType.AUTO)
+    private Integer serviceId;
 
-    private Integer baseId;
+    @TableField("custId")
+    private Integer custId;
 
-    private Integer ServiceTheme;
+    @TableField("serviceTheme")
+    private String serviceTheme;
 
-    private Integer ServiceCustName;
+    @TableField("serviceContractNum")
+    private String serviceContractNum;
 
-    private String ServiceContractNum;
+    @TableField("serviceContractInfor")
+    private String serviceContractInfor;
 
-    private String ServiceContractInfor;
+    @TableField("serviceLinkMan")
+    private String serviceLinkMan;
 
-    private String ServiceLinkMan;
+    @TableField("fixNum")
+    private String fixNum;
 
-    private String FixNum;
+    @TableField("phone")
+    private String phone;
 
-    private String Phone;
-
+    @TableField("email")
     private String Email;
 
-    private String ServiceType;
+    @TableField("serviceType")
+    private String serviceType;
 
-    private String ServiceMain;
+    @TableField("serviceMain")
+    private String serviceMain;
 
+    @TableField("serviceStartTime")
     @DateTimeFormat(pattern="yyyy-MM-dd")
-    private Date ServiceStartTime;
+    private Date serviceStartTime;
 
+    @TableField(exist = false)
+    private String StartTime;
+
+    @TableField("serviceEndTime")
     @DateTimeFormat(pattern="yyyy-MM-dd")
-    private Date ServiceEndTime;
+    private Date serviceEndTime;
 
+    @TableField(exist = false)
+    private String EndTime;
+
+    @TableField("serviceContent")
     private String ServiceContent;
 
-    private String CustReturn;
+    @TableField("custReturn")
+    private String custReturn;
 
+    @TableField("ServicePeople")
     private String ServicePeople;
 
-    private Integer ServicesCore;
+    @TableField("servicesCore")
+    private Integer servicesCore;
 
-    private String File;
+    @TableField("file")
+    private String file;
+
+
+    public String getStartTime() {
+        if(serviceStartTime!=null){
+            return  new SimpleDateFormat( "yyyy-MM-dd ").format(serviceStartTime);
+        }else {
+            return StartTime;
+        }
+    }
+
+    public void setStartTime(String startTime) {
+        StartTime = startTime;
+    }
+
+    public String getEndTime() {
+        if(serviceEndTime!=null){
+            return  new SimpleDateFormat( "yyyy-MM-dd ").format(serviceEndTime);
+        }else {
+            return EndTime;
+        }
+    }
+
+    public void setEndTime(String endTime) {
+        EndTime = endTime;
+    }
 
     public String getServiceContent() {
         return ServiceContent;
     }
 
     public Integer getServiceId() {
-        return ServiceId;
+        return serviceId;
     }
 
-    public void setServiceId(Integer ServiceId) {
-        this.ServiceId = ServiceId;
-    }
-    public Integer getBaseId() {
-        return baseId;
+    public void setServiceId(Integer serviceId) {
+        this.serviceId = serviceId;
     }
 
-    public void setBaseId(Integer baseId) {
-        this.baseId = baseId;
-    }
-    public Integer getServiceTheme() {
-        return ServiceTheme;
+    public Integer getCustId() {
+        return custId;
     }
 
-    public void setServiceTheme(Integer ServiceTheme) {
-        this.ServiceTheme = ServiceTheme;
-    }
-    public Integer getServiceCustName() {
-        return ServiceCustName;
+    public void setCustId(Integer custId) {
+        this.custId = custId;
     }
 
-    public void setServiceCustName(Integer ServiceCustName) {
-        this.ServiceCustName = ServiceCustName;
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
+
+    public String getServiceTheme() {
+        return serviceTheme;
+    }
+
+    public void setServiceTheme(String serviceTheme) {
+        this.serviceTheme = serviceTheme;
+    }
+
     public String getServiceContractNum() {
-        return ServiceContractNum;
+        return serviceContractNum;
     }
 
-    public void setServiceContractNum(String ServiceContractNum) {
-        this.ServiceContractNum = ServiceContractNum;
+    public void setServiceContractNum(String serviceContractNum) {
+        this.serviceContractNum = serviceContractNum;
     }
+
     public String getServiceContractInfor() {
-        return ServiceContractInfor;
+        return serviceContractInfor;
     }
 
-    public void setServiceContractInfor(String ServiceContractInfor) {
-        this.ServiceContractInfor = ServiceContractInfor;
+    public void setServiceContractInfor(String serviceContractInfor) {
+        this.serviceContractInfor = serviceContractInfor;
     }
+
     public String getServiceLinkMan() {
-        return ServiceLinkMan;
+        return serviceLinkMan;
     }
 
-    public void setServiceLinkMan(String ServiceLinkMan) {
-        this.ServiceLinkMan = ServiceLinkMan;
+    public void setServiceLinkMan(String serviceLinkMan) {
+        this.serviceLinkMan = serviceLinkMan;
     }
+
     public String getFixNum() {
-        return FixNum;
+        return fixNum;
     }
 
-    public void setFixNum(String FixNum) {
-        this.FixNum = FixNum;
+    public void setFixNum(String fixNum) {
+        this.fixNum = fixNum;
     }
+
     public String getPhone() {
-        return Phone;
+        return phone;
     }
 
-    public void setPhone(String Phone) {
-        this.Phone = Phone;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
+
     public String getEmail() {
         return Email;
     }
 
-    public void setEmail(String Email) {
-        this.Email = Email;
+    public void setEmail(String email) {
+        Email = email;
     }
+
     public String getServiceType() {
-        return ServiceType;
+        return serviceType;
     }
 
-    public void setServiceType(String ServiceType) {
-        this.ServiceType = ServiceType;
+    public void setServiceType(String serviceType) {
+        this.serviceType = serviceType;
     }
+
     public String getServiceMain() {
-        return ServiceMain;
+        return serviceMain;
     }
 
-    public void setServiceMain(String ServiceMain) {
-        this.ServiceMain = ServiceMain;
+    public void setServiceMain(String serviceMain) {
+        this.serviceMain = serviceMain;
     }
 
     public Date getServiceStartTime() {
-        return ServiceStartTime;
+        return serviceStartTime;
     }
 
     public void setServiceStartTime(Date serviceStartTime) {
-        ServiceStartTime = serviceStartTime;
+        this.serviceStartTime = serviceStartTime;
     }
 
     public Date getServiceEndTime() {
-        return ServiceEndTime;
+        return serviceEndTime;
     }
 
     public void setServiceEndTime(Date serviceEndTime) {
-        ServiceEndTime = serviceEndTime;
+        this.serviceEndTime = serviceEndTime;
     }
 
-    public void setServiceContent(String ServiceContent) {
-        this.ServiceContent = ServiceContent;
+    public void setServiceContent(String serviceContent) {
+        ServiceContent = serviceContent;
     }
+
     public String getCustReturn() {
-        return CustReturn;
+        return custReturn;
     }
 
-    public void setCustReturn(String CustReturn) {
-        this.CustReturn = CustReturn;
+    public void setCustReturn(String custReturn) {
+        this.custReturn = custReturn;
     }
+
     public String getServicePeople() {
         return ServicePeople;
     }
 
-    public void setServicePeople(String ServicePeople) {
-        this.ServicePeople = ServicePeople;
+    public void setServicePeople(String servicePeople) {
+        ServicePeople = servicePeople;
     }
+
     public Integer getServicesCore() {
-        return ServicesCore;
+        return servicesCore;
     }
 
-    public void setServicesCore(Integer ServicesCore) {
-        this.ServicesCore = ServicesCore;
+    public void setServicesCore(Integer servicesCore) {
+        this.servicesCore = servicesCore;
     }
+
     public String getFile() {
-        return File;
+        return file;
     }
 
-    public void setFile(String File) {
-        this.File = File;
+    public void setFile(String file) {
+        this.file = file;
     }
 
     @Override
     public String toString() {
         return "Afterservice{" +
-        "ServiceId=" + ServiceId +
-        ", baseId=" + baseId +
-        ", ServiceTheme=" + ServiceTheme +
-        ", ServiceCustName=" + ServiceCustName +
-        ", ServiceContractNum=" + ServiceContractNum +
-        ", ServiceContractInfor=" + ServiceContractInfor +
-        ", ServiceLinkMan=" + ServiceLinkMan +
-        ", FixNum=" + FixNum +
-        ", Phone=" + Phone +
-        ", Email=" + Email +
-        ", ServiceType=" + ServiceType +
-        ", ServiceMain=" + ServiceMain +
-        ", ServiceStartTime=" + ServiceStartTime +
-        ", ServiceEndTime=" + ServiceEndTime +
-        ", ServiceContent=" + ServiceContent +
-        ", CustReturn=" + CustReturn +
-        ", ServicePeople=" + ServicePeople +
-        ", ServicesCore=" + ServicesCore +
-        ", File=" + File +
-        "}";
+                "serviceId=" + serviceId +
+                ", custId=" + custId +
+                ", serviceTheme='" + serviceTheme + '\'' +
+                ", serviceContractNum='" + serviceContractNum + '\'' +
+                ", serviceContractInfor='" + serviceContractInfor + '\'' +
+                ", serviceLinkMan='" + serviceLinkMan + '\'' +
+                ", fixNum='" + fixNum + '\'' +
+                ", phone='" + phone + '\'' +
+                ", Email='" + Email + '\'' +
+                ", serviceType='" + serviceType + '\'' +
+                ", serviceMain='" + serviceMain + '\'' +
+                ", serviceStartTime=" + serviceStartTime +
+                ", StartTime='" + StartTime + '\'' +
+                ", serviceEndTime=" + serviceEndTime +
+                ", EndTime='" + EndTime + '\'' +
+                ", ServiceContent='" + ServiceContent + '\'' +
+                ", custReturn='" + custReturn + '\'' +
+                ", ServicePeople='" + ServicePeople + '\'' +
+                ", servicesCore=" + servicesCore +
+                ", file='" + file + '\'' +
+                '}';
     }
 }

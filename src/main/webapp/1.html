@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<select id="sousuo">
+    <option value="">直接选择或搜索选择</option>
+    <option name="11" value="1">主题</option>
+    <option name="22" value="2">服务类型</option>
+    <option name="33" value="3">开始时间</option>
+    <option name="44" value="4">服务人员</option>
+    <option name="55" value="5">服务评分</option>
+</select>
+
+<input id="inpu" type="text">
+
+<script src="/js/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+    $("#sousuo").change(function(){
+        var value = $("#sousuo").val();
+        if(value==3){
+            alert("来了")
+            $("#inpu").attr("type","date");
+            $("#inpu").attr("name","time");
+        }
+
+    });
+    $("#but").click(function () {
+        alert("1111");
+    });
+</script>
+
+</body>
+</html>

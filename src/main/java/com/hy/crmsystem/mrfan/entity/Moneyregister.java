@@ -1,9 +1,11 @@
 package com.hy.crmsystem.mrfan.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * <p>
@@ -20,7 +22,8 @@ public class Moneyregister implements Serializable {
     //收入登记主键
     private Integer incomeId;
     //收入日期
-    private LocalDate incomeTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date incomeTime;
     //收入分类
     private Integer incomesort;
     //收入金额
@@ -51,13 +54,14 @@ public class Moneyregister implements Serializable {
         this.incomeId = incomeId;
     }
 
-    public LocalDate getIncomeTime() {
+    public Date getIncomeTime() {
         return incomeTime;
     }
 
-    public void setIncomeTime(LocalDate incomeTime) {
+    public void setIncomeTime(Date incomeTime) {
         this.incomeTime = incomeTime;
     }
+
     public Integer getIncomesort() {
         return incomesort;
     }
@@ -128,7 +132,6 @@ public class Moneyregister implements Serializable {
     public void setIncomeldExplain(String incomeldExplain) {
         this.incomeldExplain = incomeldExplain;
     }
-
 
     @Override
     public String toString() {
