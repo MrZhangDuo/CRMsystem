@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hy.crmsystem.mrfan.entity.Contract;
 import com.hy.crmsystem.mrpan.entity.Customer;
+import com.hy.crmsystem.mrpan.mapper.BusinessMapper;
 import com.hy.crmsystem.mrzhang.entity.Afterservice;
 import com.hy.crmsystem.mrzhang.entity.AfterserviceBo;
 import com.hy.crmsystem.mrzhang.mapper.AfterserviceMapper;
@@ -31,6 +32,8 @@ import java.util.*;
 public class AfterserviceServiceImpl extends ServiceImpl<AfterserviceMapper, Afterservice> implements IAfterserviceService {
     @Autowired
     AfterserviceMapper afterserviceMapper;
+    @Autowired
+    BusinessMapper businessMapper;
 
     @Override
     public IPage<Afterservice> queryAllAfterService(Integer page, Integer limit,String type, String serviceTheme, String serviceType,
@@ -39,7 +42,6 @@ public class AfterserviceServiceImpl extends ServiceImpl<AfterserviceMapper, Aft
                                                     String benyue,String shangyue,String benji,String shangji) {
         Logger logger =Logger.getLogger(AfterserviceServiceImpl.class);
         QueryWrapper<Afterservice> queryWrapper = new QueryWrapper<>();
-
         if(StringUtils.isNotEmpty(type)){
             if (type.equals("1") && StringUtils.isNotEmpty(serviceTheme)){
                 queryWrapper.like("serviceTheme",serviceTheme);
@@ -174,5 +176,37 @@ public class AfterserviceServiceImpl extends ServiceImpl<AfterserviceMapper, Aft
 
     public AfterserviceBo queryAfterServiceById(String serviceId){
         return afterserviceMapper.queryAfterServiceById(serviceId);
+    }
+
+    public Float countBusinessMoneryBZ(){
+        return 0f;
+    }
+    public Float countBusinessMonerySZ(){
+
+        return 0f;
+    }
+    public Float countBusinessMoneryBY(){
+
+        return 0f;
+    }
+    public Float countBusinessMonerySY(){
+
+        return 0f;
+    }
+    public Float countBusinessMoneryBJ(){
+
+        return 0f;
+    }
+    public Float countBusinessMonerySJ(){
+
+        return 0f;
+    }
+    public Float countBusinessMoneryBN(){
+
+        return 0f;
+    }
+    public Float countBusinessMonerySN(){
+
+        return 0f;
     }
 }

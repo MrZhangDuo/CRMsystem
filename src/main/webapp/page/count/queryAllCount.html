@@ -8,7 +8,7 @@
 <body>
 <div class="layui-inline">
     <div id="u4921">
-        <i class="layui-icon " style="font-size: 50000px; color: #1E9FFF;">&#xe629;统计分析</i>
+        <i class="layui-icon " style="font-size: 50px; color: #1E9FFF;">&#xe629;统计分析</i>
     </div>
 </div>
 <div class="layui-row layui-form-pane">
@@ -651,124 +651,97 @@
 
 
 ////获取本周新增商机可获得多少钱
-       /* $.ajax({
+        $.ajax({
             type: "post",
-            url: "/crm/business/sumMonkey.do",
+            url: "/afterservice/countBusinessMoneryBZ.do",
             // dataType: "json",
             success: function (data) {
                 $("#byid1").empty();
-                $("#byid1").append((data==""?0:data)+"万");
+                $("#byid1").append((data==0?0:data)+"万");
             },
-            error: function () {
-                alert("出错啦");
-            }
-        });*/
+        });
 ////获取上周新增商机可获得多少钱
-       /* $.ajax({
+        $.ajax({
             type: "post",
-            url: "/crm/business/sumSMonkey.do",
+            url: "/afterservice/countBusinessMonerySZ.do",
             // dataType: "json",
             success: function (data) {
                 $("#byid2").empty();
-                $("#byid2").append((data==""?0:data)+"万");
+                $("#byid2").append((data==0?0:data)+"万");
             },
-            error: function () {
-                alert("出错啦");
-            }
-        });*/
+        });
 ////获取本月新增商机可获得多少钱
-       /* $.ajax({
+        $.ajax({
             type: "post",
-            url: "/crm/business/sumYMeonkey.do",
+            url: "/afterservice/countBusinessMoneryBY.do",
             // dataType: "json",
             success: function (data) {
                 $("#byid9").empty();
-                $("#byid9").append((data==""?0:data)+"万");
+                $("#byid9").append((data==0?0:data)+"万");
             },
-            error: function () {
-                alert("出错啦");
-            }
-        });*/
+        });
 ////获取上月新增商机可获得多少钱
-       /* $.ajax({
+        $.ajax({
             type: "post",
-            url: "/crm/business/sumSYMeonkey.do",
+            url: "/afterservice/countBusinessMonerySY.do",
             // dataType: "json",
             success: function (data) {
                 $("#byid10").empty();
-                $("#byid10").append((data==""?0:data)+"万");
+                $("#byid10").append((data==0?0:data)+"万");
             },
-            error: function () {
-                alert("出错啦");
-            }
-        });*/
+        });
 ////获取本季度新增商机可获得多少钱
-        /*$.ajax({
+        $.ajax({
             type: "post",
-            url: "/crm/business/sumJdMeonkey.do",
+            url: "/afterservice/countBusinessMoneryBJ.do",
             // dataType: "json",
             success: function (data) {
                 $("#byid17").empty();
-                $("#byid17").append((data==""?0:data)+"万");
+                $("#byid17").append((data==0?0:data)+"万");
             },
-            error: function () {
-                alert("出错啦");
-            }
-        });*/
+        });
 ////获取上季度新增商机可获得多少钱
-        /*$.ajax({
+        $.ajax({
             type: "post",
-            url: "/crm/business/sumSJdMeonkey.do",
+            url: "/afterservice/countBusinessMonerySJ.do",
             // dataType: "json",
             success: function (data) {
                 $("#byid18").empty();
-                $("#byid18").append((data==""?0:data)+"万");
+                $("#byid18").append((data==0?0:data)+"万");
             },
-            error: function () {
-                alert("出错啦");
-            }
-        });*/
+        });
 ////获取本年新增商机可获得多少钱
-       /* $.ajax({
+        $.ajax({
             type: "post",
-            url: "/crm/business/sumNMeonkey.do",
+            url: "/afterservice/countBusinessMoneryBN.do",
             // dataType: "json",
             success: function (data) {
                 $("#byid25").empty();
-                $("#byid25").append((data==""?0:data)+"万");
+                $("#byid25").append((data==0?0:data)+"万");
             },
-            error: function () {
-                alert("出错啦");
-            }
-        });*/
+        });
 ////获取上年新增商机可获得多少钱
-       /* $.ajax({
+        $.ajax({
             type: "post",
-            url: "/crm/business/sumSNMeonkey.do",
+            url: "/afterservice/countBusinessMonerySN.do",
             // dataType: "json",
             success: function (data) {
                 $("#byid26").empty();
-                $("#byid26").append((data==""?0:data)+"万");
+                $("#byid26").append((data==0?0:data)+"万");
             },
-            error: function () {
-                alert("出错啦");
-            }
-        });*/
+        });
 
 
 
 ////获取本周新增合同可获得多少钱
         /*$.ajax({
             type: "post",
-            url: "/crm/contracts/sumMonkey.do",
+            url: "/afterservice/sumMonkey.do",
             // dataType: "json",
             success: function (data) {
                 $("#byid7").empty();
-                $("#byid7").append((data==""?0:data)+"万");
+                $("#byid7").append((data.busBeforeMoney==0?0:data.busBeforeMoney)+"万");
             },
-            error: function () {
-                alert("出错啦");
-            }
         });*/
 ////获取上周新增合同可获得多少钱
        /* $.ajax({
