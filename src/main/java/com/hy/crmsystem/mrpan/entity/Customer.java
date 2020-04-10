@@ -1,6 +1,7 @@
 package com.hy.crmsystem.mrpan.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
@@ -21,264 +22,278 @@ public class Customer implements Serializable {
     private static final long serialVersionUID = 1L;
 
    //客户id
-    @TableId(value = "CustId", type = IdType.AUTO)
-    private Integer CustId;
-  //商机主键
-    private Integer BusId;
-  //合同主键
-    private Integer ContractId;
-    //售后主键
-    private Integer ServiceId;
-    //财务主键
-    private Integer MoneyId;
-    //客户姓名
-    private String CustName;
-    //客户姓名拼音
-    private String CustSpell;
-    //客户分类
-    private String CustClassify;
-    //客户来源
-    private Integer CustSource;
-    //客户行业
-    private String CustTrade;
-    //客户网址
-    private String CustUrl;
-    //客户国家/地区
-    private String CustCountry;
-    //客户城市
-    private String CustCity;
-    //客户详细地址
-    private String CustAddress;
-    //客户邮政编码
-    private String CustPostCode;
-    //客户传真
-    private String CustFax;
-    //客户联系人
-    private String CustLinkMan;
-    //客户部门
-    private String CustDept;
+    @TableId(value = "custId", type = IdType.AUTO)
+    private Integer custId;
 
-    //客户职务
-    private String CustJob;
-    //客户办公电话
-    private String CustOfficeTel;
-    //客户移动电话
-    private String CustPhone;
-    //客户邮件/QQ
-    private String CustEmail;
-    //客户法人
-    private String CustCorporation;
-    //客户注册资本
-    private String CustCapital;
-   //附加说明
-    private String CustExplain;
+
+    @TableField("moneyId")
+    private Integer moneyId;
+
+    @TableField("custName")
+    private String custName;
+
+    @TableField("custSpell")
+    private String custSpell;
+
+    @TableField("custClassify")
+    private String custClassify;
+
+    @TableField("custSource")
+    private String custSource;
+
+    @TableField("custTrade")
+    private String custTrade;
+
+    @TableField("custUrl")
+    private String custUrl;
+
+    @TableField("custCountry")
+    private String custCountry;
+
+    @TableField("custCity")
+    private String custCity;
+
+    @TableField("custAddress")
+    private String custAddress;
+
+    @TableField("custPostCode")
+    private String custPostCode;
+
+    @TableField("custFax")
+    private String custFax;
+
+    @TableField("custLinkMan")
+    private String custLinkMan;
+
+    @TableField("custDept")
+    private String custDept;
+
+    @TableField("custJob")
+    private String custJob;
+
+    @TableField("custOfficeTel")
+    private String custOfficeTel;
+
+    @TableField("custPhone")
+    private String custPhone;
+
+    @TableField("custEmail")
+    private String custEmail;
+
+    @TableField("custCorporation")
+    private String custCorporation;
+
+    @TableField("custCapital")
+    private String custCapital;
+
+    @TableField("custExplain")
+    private String custExplain;
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
 
     public Integer getCustId() {
-        return CustId;
+        return custId;
     }
 
-    public void setCustId(Integer CustId) {
-        this.CustId = CustId;
-    }
-    public Integer getBusId() {
-        return BusId;
+    public void setCustId(Integer custId) {
+        this.custId = custId;
     }
 
-    public void setBusId(Integer BusId) {
-        this.BusId = BusId;
-    }
-    public Integer getContractId() {
-        return ContractId;
-    }
-
-    public void setContractId(Integer ContractId) {
-        this.ContractId = ContractId;
-    }
-    public Integer getServiceId() {
-        return ServiceId;
-    }
-
-    public void setServiceId(Integer ServiceId) {
-        this.ServiceId = ServiceId;
-    }
     public Integer getMoneyId() {
-        return MoneyId;
+        return moneyId;
     }
 
-    public void setMoneyId(Integer MoneyId) {
-        this.MoneyId = MoneyId;
+    public void setMoneyId(Integer moneyId) {
+        this.moneyId = moneyId;
     }
+
     public String getCustName() {
-        return CustName;
+        return custName;
     }
 
-    public void setCustName(String CustName) {
-        this.CustName = CustName;
+    public void setCustName(String custName) {
+        this.custName = custName;
     }
+
     public String getCustSpell() {
-        return CustSpell;
+        return custSpell;
     }
 
-    public void setCustSpell(String CustSpell) {
-        this.CustSpell = CustSpell;
+    public void setCustSpell(String custSpell) {
+        this.custSpell = custSpell;
     }
 
     public String getCustClassify() {
-        return CustClassify;
+        return custClassify;
     }
 
     public void setCustClassify(String custClassify) {
-        CustClassify = custClassify;
+        this.custClassify = custClassify;
     }
 
-    public Integer getCustSource() {
-        return CustSource;
+    public String getCustSource() {
+        return custSource;
     }
 
-    public void setCustSource(Integer CustSource) {
-        this.CustSource = CustSource;
+    public void setCustSource(String custSource) {
+        this.custSource = custSource;
     }
+
     public String getCustTrade() {
-        return CustTrade;
+        return custTrade;
     }
 
-    public void setCustTrade(String CustTrade) {
-        this.CustTrade = CustTrade;
+    public void setCustTrade(String custTrade) {
+        this.custTrade = custTrade;
     }
+
     public String getCustUrl() {
-        return CustUrl;
+        return custUrl;
     }
 
-    public void setCustUrl(String CustUrl) {
-        this.CustUrl = CustUrl;
+    public void setCustUrl(String custUrl) {
+        this.custUrl = custUrl;
     }
+
     public String getCustCountry() {
-        return CustCountry;
+        return custCountry;
     }
 
-    public void setCustCountry(String CustCountry) {
-        this.CustCountry = CustCountry;
+    public void setCustCountry(String custCountry) {
+        this.custCountry = custCountry;
     }
+
     public String getCustCity() {
-        return CustCity;
+        return custCity;
     }
 
-    public void setCustCity(String CustCity) {
-        this.CustCity = CustCity;
+    public void setCustCity(String custCity) {
+        this.custCity = custCity;
     }
+
     public String getCustAddress() {
-        return CustAddress;
+        return custAddress;
     }
 
-    public void setCustAddress(String CustAddress) {
-        this.CustAddress = CustAddress;
+    public void setCustAddress(String custAddress) {
+        this.custAddress = custAddress;
     }
+
     public String getCustPostCode() {
-        return CustPostCode;
+        return custPostCode;
     }
 
-    public void setCustPostCode(String CustPostCode) {
-        this.CustPostCode = CustPostCode;
+    public void setCustPostCode(String custPostCode) {
+        this.custPostCode = custPostCode;
     }
+
     public String getCustFax() {
-        return CustFax;
+        return custFax;
     }
 
-    public void setCustFax(String CustFax) {
-        this.CustFax = CustFax;
+    public void setCustFax(String custFax) {
+        this.custFax = custFax;
     }
+
     public String getCustLinkMan() {
-        return CustLinkMan;
+        return custLinkMan;
     }
 
-    public void setCustLinkMan(String CustLinkMan) {
-        this.CustLinkMan = CustLinkMan;
+    public void setCustLinkMan(String custLinkMan) {
+        this.custLinkMan = custLinkMan;
     }
+
     public String getCustDept() {
-        return CustDept;
+        return custDept;
     }
 
-    public void setCustDept(String CustDept) {
-        this.CustDept = CustDept;
+    public void setCustDept(String custDept) {
+        this.custDept = custDept;
     }
+
     public String getCustJob() {
-        return CustJob;
+        return custJob;
     }
 
-    public void setCustJob(String CustJob) {
-        this.CustJob = CustJob;
+    public void setCustJob(String custJob) {
+        this.custJob = custJob;
     }
+
     public String getCustOfficeTel() {
-        return CustOfficeTel;
+        return custOfficeTel;
     }
 
-    public void setCustOfficeTel(String CustOfficeTel) {
-        this.CustOfficeTel = CustOfficeTel;
+    public void setCustOfficeTel(String custOfficeTel) {
+        this.custOfficeTel = custOfficeTel;
     }
+
     public String getCustPhone() {
-        return CustPhone;
+        return custPhone;
     }
 
-    public void setCustPhone(String CustPhone) {
-        this.CustPhone = CustPhone;
+    public void setCustPhone(String custPhone) {
+        this.custPhone = custPhone;
     }
+
     public String getCustEmail() {
-        return CustEmail;
+        return custEmail;
     }
 
-    public void setCustEmail(String CustEmail) {
-        this.CustEmail = CustEmail;
+    public void setCustEmail(String custEmail) {
+        this.custEmail = custEmail;
     }
+
     public String getCustCorporation() {
-        return CustCorporation;
+        return custCorporation;
     }
 
-    public void setCustCorporation(String CustCorporation) {
-        this.CustCorporation = CustCorporation;
+    public void setCustCorporation(String custCorporation) {
+        this.custCorporation = custCorporation;
     }
+
     public String getCustCapital() {
-        return CustCapital;
+        return custCapital;
     }
 
-    public void setCustCapital(String CustCapital) {
-        this.CustCapital = CustCapital;
+    public void setCustCapital(String custCapital) {
+        this.custCapital = custCapital;
     }
+
     public String getCustExplain() {
-        return CustExplain;
+        return custExplain;
     }
 
-    public void setCustExplain(String CustExplain) {
-        this.CustExplain = CustExplain;
+    public void setCustExplain(String custExplain) {
+        this.custExplain = custExplain;
     }
 
     @Override
     public String toString() {
         return "Customer{" +
-        "CustId=" + CustId +
-        ", BusId=" + BusId +
-        ", ContractId=" + ContractId +
-        ", ServiceId=" + ServiceId +
-        ", MoneyId=" + MoneyId +
-        ", CustName=" + CustName +
-        ", CustSpell=" + CustSpell +
-        ", CustClassify=" + CustClassify +
-        ", CustSource=" + CustSource +
-        ", CustTrade=" + CustTrade +
-        ", CustUrl=" + CustUrl +
-        ", CustCountry=" + CustCountry +
-        ", CustCity=" + CustCity +
-        ", CustAddress=" + CustAddress +
-        ", CustPostCode=" + CustPostCode +
-        ", CustFax=" + CustFax +
-        ", CustLinkMan=" + CustLinkMan +
-        ", CustDept=" + CustDept +
-        ", CustJob=" + CustJob +
-        ", CustOfficeTel=" + CustOfficeTel +
-        ", CustPhone=" + CustPhone +
-        ", CustEmail=" + CustEmail +
-        ", CustCorporation=" + CustCorporation +
-        ", CustCapital=" + CustCapital +
-        ", CustExplain=" + CustExplain +
-        "}";
+                "custId=" + custId +
+                ", moneyId=" + moneyId +
+                ", custName='" + custName + '\'' +
+                ", custSpell='" + custSpell + '\'' +
+                ", custClassify='" + custClassify + '\'' +
+                ", custSource='" + custSource + '\'' +
+                ", custTrade='" + custTrade + '\'' +
+                ", custUrl='" + custUrl + '\'' +
+                ", custCountry='" + custCountry + '\'' +
+                ", custCity='" + custCity + '\'' +
+                ", custAddress='" + custAddress + '\'' +
+                ", custPostCode='" + custPostCode + '\'' +
+                ", custFax='" + custFax + '\'' +
+                ", custLinkMan='" + custLinkMan + '\'' +
+                ", custDept='" + custDept + '\'' +
+                ", custJob='" + custJob + '\'' +
+                ", custOfficeTel='" + custOfficeTel + '\'' +
+                ", custPhone='" + custPhone + '\'' +
+                ", custEmail='" + custEmail + '\'' +
+                ", custCorporation='" + custCorporation + '\'' +
+                ", custCapital='" + custCapital + '\'' +
+                ", custExplain='" + custExplain + '\'' +
+                '}';
     }
 }
