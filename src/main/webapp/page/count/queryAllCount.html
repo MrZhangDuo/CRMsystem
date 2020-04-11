@@ -649,11 +649,11 @@
         });
 
 
-
+ /***************************************** 统计商机金额   **************************************************************/
 ////获取本周新增商机可获得多少钱
         $.ajax({
             type: "post",
-            url: "/afterservice/countBusinessMoneryBZ.do",
+            url: "/count/countBusinessMoneryBZ.do",
             // dataType: "json",
             success: function (data) {
                 $("#byid1").empty();
@@ -663,7 +663,7 @@
 ////获取上周新增商机可获得多少钱
         $.ajax({
             type: "post",
-            url: "/afterservice/countBusinessMonerySZ.do",
+            url: "/count/countBusinessMonerySZ.do",
             // dataType: "json",
             success: function (data) {
                 $("#byid2").empty();
@@ -673,7 +673,7 @@
 ////获取本月新增商机可获得多少钱
         $.ajax({
             type: "post",
-            url: "/afterservice/countBusinessMoneryBY.do",
+            url: "/count/countBusinessMoneryBY.do",
             // dataType: "json",
             success: function (data) {
                 $("#byid9").empty();
@@ -683,7 +683,7 @@
 ////获取上月新增商机可获得多少钱
         $.ajax({
             type: "post",
-            url: "/afterservice/countBusinessMonerySY.do",
+            url: "/count/countBusinessMonerySY.do",
             // dataType: "json",
             success: function (data) {
                 $("#byid10").empty();
@@ -693,7 +693,7 @@
 ////获取本季度新增商机可获得多少钱
         $.ajax({
             type: "post",
-            url: "/afterservice/countBusinessMoneryBJ.do",
+            url: "/count/countBusinessMoneryBJ.do",
             // dataType: "json",
             success: function (data) {
                 $("#byid17").empty();
@@ -703,7 +703,7 @@
 ////获取上季度新增商机可获得多少钱
         $.ajax({
             type: "post",
-            url: "/afterservice/countBusinessMonerySJ.do",
+            url: "/count/countBusinessMonerySJ.do",
             // dataType: "json",
             success: function (data) {
                 $("#byid18").empty();
@@ -713,7 +713,7 @@
 ////获取本年新增商机可获得多少钱
         $.ajax({
             type: "post",
-            url: "/afterservice/countBusinessMoneryBN.do",
+            url: "/count/countBusinessMoneryBN.do",
             // dataType: "json",
             success: function (data) {
                 $("#byid25").empty();
@@ -723,120 +723,310 @@
 ////获取上年新增商机可获得多少钱
         $.ajax({
             type: "post",
-            url: "/afterservice/countBusinessMonerySN.do",
+            url: "/count/countBusinessMonerySN.do",
             // dataType: "json",
             success: function (data) {
                 $("#byid26").empty();
                 $("#byid26").append((data==0?0:data)+"万");
             },
         });
+/***************************************** 统计商机金额   👆👆↑       **************************************************************/
 
-
-
+/***************************************** 统计合同金额  👇👇↓ **************************************************************/
 ////获取本周新增合同可获得多少钱
-        /*$.ajax({
+        $.ajax({
             type: "post",
-            url: "/afterservice/sumMonkey.do",
+            url: "/count/countContractMoneryBZ.do",
             // dataType: "json",
             success: function (data) {
                 $("#byid7").empty();
-                $("#byid7").append((data.busBeforeMoney==0?0:data.busBeforeMoney)+"万");
+                $("#byid7").append((data==0?0:data)+"万");
             },
-        });*/
+        });
 ////获取上周新增合同可获得多少钱
-       /* $.ajax({
+        $.ajax({
             type: "post",
-            url: "/crm/contracts/sumSMonkey.do",
+            url: "/count/countContractMonerySZ.do",
             // dataType: "json",
             success: function (data) {
                 $("#byid8").empty();
-                $("#byid8").append((data==""?0:data)+"万");
+                $("#byid8").append((data==0?0.0:data)+"万");
             },
-            error: function () {
-                alert("出错啦");
-            }
-        });*/
+        });
 ////获取本月新增合同可获得多少钱
-       /* $.ajax({
+        $.ajax({
             type: "post",
-            url: "/crm/contracts/sumYMeonkey.do",
+            url: "/count/countContractMoneryBY.do",
             // dataType: "json",
             success: function (data) {
                 $("#byid15").empty();
-                $("#byid15").append((data==""?0:data)+"万");
+                $("#byid15").append((data==0?0.0:data)+"万");
             },
-            error: function () {
-                alert("出错啦");
-            }
-        });*/
+        });
 ////获取上月新增合同可获得多少钱
-       /* $.ajax({
+        $.ajax({
             type: "post",
-            url: "/crm/contracts/sumSYMeonkey.do",
+            url: "/count/countContractMonerySY.do",
             // dataType: "json",
             success: function (data) {
                 $("#byid16").empty();
                 $("#byid16").append((data==""?0:data)+"万");
             },
-            error: function () {
-                alert("出错啦");
-            }
-        });*/
+        });
 ////获取本季度新增合同可获得多少钱
-        /*$.ajax({
+        $.ajax({
             type: "post",
-            url: "/crm/contracts/sumJdMeonkey.do",
+            url: "/count/countContractMoneryBJ.do",
             // dataType: "json",
             success: function (data) {
                 $("#byid23").empty();
                 $("#byid23").append((data==""?0:data)+"万");
             },
-            error: function () {
-                alert("出错啦");
-            }
-        });*/
+        });
 ////获取上季度新增合同可获得多少钱
-       /* $.ajax({
+        $.ajax({
             type: "post",
-            url: "/crm/contracts/sumSJdMeonkey.do",
+            url: "/count/countContractMonerySJ.do",
             // dataType: "json",
             success: function (data) {
                 $("#byid24").empty();
                 $("#byid24").append((data==""?0:data)+"万");
             },
-            error: function () {
-                alert("出错啦");
-            }
-        });*/
+        });
 ////获取本年新增合同可获得多少钱
-        /*$.ajax({
+        $.ajax({
             type: "post",
-            url: "/crm/contracts/sumNMeonkey.do",
+            url: "/count/countContractMoneryBN.do",
             // dataType: "json",
             success: function (data) {
                 $("#byid31").empty();
                 $("#byid31").append((data==""?0:data)+"万");
             },
-            error: function () {
-                alert("出错啦");
-            }
-        });*/
+        });
 ////获取上年新增商合同可获得多少钱
-       /* $.ajax({
+        $.ajax({
             type: "post",
-            url: "/crm/contracts/sumSNMeonkey.do",
+            url: "/count/countContractMonerySN.do",
             // dataType: "json",
             success: function (data) {
                 $("#byid32").empty();
                 $("#byid32").append((data==""?0:data)+"万");
             },
-            error: function () {
-                alert("出错啦");
-            }
-        });*/
+        });
+/***************************************** 统计合同金额   **************************************************************/
+
+/***************************************** 统计跟单金额   **************************************************************/
+/*
+* 查询本周新增跟单金额
+* */
+        $.ajax({
+            type: "post",
+            url: "/count/countDocumentaryMoneyBZ.do",
+            // dataType: "json",
+            success: function (data) {
+                $("#byid5").empty();
+                $("#byid5").append((data==0?0.0:data)+"万");
+            },
+        });
+
+/*
+* 查询上周新增跟单金额
+* */
+        $.ajax({
+            type: "post",
+            url: "/count/countDocumentaryMoneySZ.do",
+            // dataType: "json",
+            success: function (data) {
+                $("#byid6").empty();
+                $("#byid6").append((data==""?0:data)+"万");
+            },
+        });
+
+/*
+* 查询本月新增跟单金额
+* */
+        $.ajax({
+            type: "post",
+            url: "/count/countDocumentaryMoneyBY.do",
+            // dataType: "json",
+            success: function (data) {
+                $("#byid13").empty();
+                $("#byid13").append((data==""?0:data)+"万");
+            },
+        });
+
+/*
+* 查询上月新增跟单金额
+* */
+        $.ajax({
+            type: "post",
+            url: "/count/countDocumentaryMoneySY.do",
+            // dataType: "json",
+            success: function (data) {
+                $("#byid14").empty();
+                $("#byid14").append((data==""?0:data)+"万");
+            },
+        });
+
+/*
+* 查询本季度新增跟单金额
+* */
+        $.ajax({
+            type: "post",
+            url: "/count/countDocumentaryMoneyBJ.do",
+            // dataType: "json",
+            success: function (data) {
+                $("#byid21").empty();
+                $("#byid21").append((data==""?0:data)+"万");
+            },
+        });
+
+/*
+* 查询上季度新增跟单金额
+* */
+        $.ajax({
+            type: "post",
+            url: "/count/countDocumentaryMoneySJ.do",
+            // dataType: "json",
+            success: function (data) {
+                $("#byid22").empty();
+                $("#byid22").append((data==""?0:data)+"万");
+            },
+        });
+
+/*
+* 查询本年度新增跟单金额
+* */
+        $.ajax({
+            type: "post",
+            url: "/count/countDocumentaryMoneyBN.do",
+            // dataType: "json",
+            success: function (data) {
+                $("#byid29").empty();
+                $("#byid29").append((data==""?0:data)+"万");
+            },
+        });
+
+/*
+* 查询上年度新增跟单金额
+* */
+        $.ajax({
+            type: "post",
+            url: "/count/countDocumentaryMoneySN.do",
+            // dataType: "json",
+            success: function (data) {
+                $("#byid30").empty();
+                $("#byid30").append((data==""?0:data)+"万");
+            },
+        });
 
 
+        /***************************************** 统计成交金额   **************************************************************/
+        /*
+        * 查询本周新增跟单金额
+        * */
+        $.ajax({
+            type: "post",
+            url: "/count/countChengJMoneryBZ.do",
+            // dataType: "json",
+            success: function (data) {
+                $("#byid3").empty();
+                $("#byid3").append((data==0?0.0:data)+"万");
+            },
+        });
 
-    })
+        /*
+        * 查询上周新增跟单金额
+        * */
+        $.ajax({
+            type: "post",
+            url: "/count/countChengJMonerySZ.do",
+            // dataType: "json",
+            success: function (data) {
+                $("#byid4").empty();
+                $("#byid4").append((data==""?0:data)+"万");
+            },
+        });
+
+        /*
+        * 查询本月新增跟单金额
+        * */
+        $.ajax({
+            type: "post",
+            url: "/count/countChengJMoneryBY.do",
+            // dataType: "json",
+            success: function (data) {
+                $("#byid11").empty();
+                $("#byid11").append((data==""?0:data)+"万");
+            },
+        });
+
+        /*
+        * 查询上月新增跟单金额
+        * */
+        $.ajax({
+            type: "post",
+            url: "/count/countChengJMonerySY.do",
+            // dataType: "json",
+            success: function (data) {
+                $("#byid12").empty();
+                $("#byid12").append((data==""?0:data)+"万");
+            },
+        });
+
+        /*
+        * 查询本季度新增跟单金额
+        * */
+        $.ajax({
+            type: "post",
+            url: "/count/countChengJMoneryBJ.do",
+            // dataType: "json",
+            success: function (data) {
+                $("#byid19").empty();
+                $("#byid19").append((data==""?0:data)+"万");
+            },
+        });
+
+        /*
+        * 查询上季度新增跟单金额
+        * */
+        $.ajax({
+            type: "post",
+            url: "/count/countChengJMonerySJ.do",
+            // dataType: "json",
+            success: function (data) {
+                $("#byid20").empty();
+                $("#byid20").append((data==""?0:data)+"万");
+            },
+        });
+
+        /*
+        * 查询本年度新增跟单金额
+        * */
+        $.ajax({
+            type: "post",
+            url: "/count/countChengJMoneryBN.do",
+            // dataType: "json",
+            success: function (data) {
+                $("#byid27").empty();
+                $("#byid27").append((data==""?0:data)+"万");
+            },
+        });
+
+        /*
+        * 查询上年度新增跟单金额
+        * */
+        $.ajax({
+            type: "post",
+            url: "/count/countChengJMonerySN.do",
+            // dataType: "json",
+            success: function (data) {
+                $("#byid28").empty();
+                $("#byid28").append((data==""?0:data)+"万");
+            },
+        });
+
+
+})
 </script>
 </html>
