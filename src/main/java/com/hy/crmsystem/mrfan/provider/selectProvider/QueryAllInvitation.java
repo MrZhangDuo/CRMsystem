@@ -6,11 +6,11 @@ import org.apache.ibatis.annotations.Param;
 
 public class QueryAllInvitation {
     public String queryAllInvitation(@Param("invitationBo") InvitationBo invitationBo){
-        StringBuffer sql=new StringBuffer("SELECT i.InvitationSubject,i.Invitationauthor,i.InvitationTime,b.BusName ,i.InvitationClick,i.InvitationReply,r.ReolyTime FROM invitation i,business b,reolyinvitation r WHERE i.`InvitationId`=b.`InvitationId` AND r.`ReolyId`=i.`ReolyId`");
+        StringBuffer sql=new StringBuffer("SELECT i.invitationSubject,i.invitationAuthor,i.invitationTime,b.busName ,i.invitationClick,i.invitationReply,r.reolyTime FROM invitation i,business b,reolyinvitation r WHERE i.`invitationId`=r.`invitationId` AND i.`invitationSubject`=b.`busId`");
         if(StringUtils.isNotEmpty(invitationBo.getInvitationSubject())){
-            sql.append(" and i.InvitationSubject like '%"+invitationBo.getInvitationSubject()+"%'");
-        }if(StringUtils.isNotEmpty(invitationBo.getInvitationauthor())){
-            sql.append(" and i.Invitationauthor like '%"+invitationBo.getInvitationauthor()+"%'");
+            sql.append(" and i.invitationSubject like '%"+invitationBo.getInvitationSubject()+"%'");
+        }if(StringUtils.isNotEmpty(invitationBo.getInvitationAuthor())){
+            sql.append(" and i.invitationAuthor like '%"+invitationBo.getInvitationAuthor()+"%'");
         }
         return sql.toString();
     }

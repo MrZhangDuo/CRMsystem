@@ -30,7 +30,7 @@
                         <div class="layui-inline">
                             <label class="layui-form-label">按作者</label>
                             <div class="layui-input-inline">
-                                <input type="text" name="Invitationauthor" autocomplete="off" class="layui-input">
+                                <input type="text" name="InvitationAuthor" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-inline">
@@ -53,6 +53,9 @@
 
     </div>
 </div>
+<script type="text/html" id="invitationSubject">
+<a href="#" style="color: chartreuse" onclick="">{{}}</a>
+</script>
 <script src="/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
 <script>
     layui.use(['form', 'table'], function () {
@@ -77,8 +80,8 @@
                 icon: 'layui-icon-tips'
             }],
             cols: [[
-                {field: 'invitationSubject', title: '主题', sort: true},
-                {field: 'invitationauthor',  title: '作者'},
+                {field: 'invitationSubject', title: '主题', sort: true,templet:'#invitationSubject'},
+                {field: 'invitationAuthor',  title: '作者'},
                 {field: 'busName',  title: '所属商机', sort: true},
                 {field: 'invitationClick', title: '点击'},
                 {field: 'invitationReply', title: '回复'},
