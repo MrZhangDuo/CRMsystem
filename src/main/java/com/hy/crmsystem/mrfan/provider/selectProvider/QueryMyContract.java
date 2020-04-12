@@ -6,8 +6,8 @@ import org.apache.ibatis.annotations.Param;
 
 public class QueryMyContract {
     public String querymy(){
-        StringBuffer sql=new StringBuffer("SELECT c.contractName,c.contractNum,c.contractMoney,m.incomesMoney,b.billMoney,c.signedTime FROM contract c,moneyregister m,billaskfor b WHERE m.incomeId=c.custId AND b.contractId=c.contractId");
+        StringBuffer sql=new StringBuffer("");
         return sql.toString();
     }
 }
-
+}
