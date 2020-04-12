@@ -1,12 +1,21 @@
 package com.hy.crmsystem.mrzhang.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.hy.crmsystem.mrpan.entity.Customer;
+import com.hy.crmsystem.mrpan.mapper.CustomerMapper;
 import com.hy.crmsystem.mrpan.service.impl.BusinessServiceImpl;
+import com.hy.crmsystem.mrzhang.entity.CountDocumetMoery;
 import com.hy.crmsystem.mrzhang.mapper.CountMmapper;
 import com.hy.crmsystem.mrzhang.service.ICountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class CountImpl implements ICountService {
     @Autowired
@@ -15,6 +24,8 @@ public class CountImpl implements ICountService {
     BusinessServiceImpl businessService;
     @Autowired
     CountMmapper countMmapper;
+    @Autowired
+    CustomerMapper customerMapper;
 
     public Float countBusinessMoneryBZ(){
         QueryWrapper queryWrapper = new QueryWrapper();
@@ -497,5 +508,264 @@ public class CountImpl implements ICountService {
         }else{
             return 0f;
         }
+    }
+
+    public List<CountDocumetMoery> countCustBZMoney(Integer page, Integer limit){
+        QueryWrapper queryWrapper = new QueryWrapper();
+        /* 查询所有客户 */
+        IPage<Customer> customerIPage = customerMapper.selectPage(new Page<>(page,limit),queryWrapper);
+        /* 转换为集合客户 进行遍历 */
+        List<Customer> customerList = customerIPage.getRecords();
+        List<CountDocumetMoery> list = new ArrayList();
+        for (int i = 0; i <customerList.size() ; i++) {
+            CountDocumetMoery countDocumetMoery= new CountDocumetMoery();
+            String custName=customerList.get(i).getCustName();
+            countDocumetMoery.setCustName(custName);
+            if(countMmapper.countCustBusBZ(customerList.get(i).getCustId()).getCustIds()!=0){
+                countDocumetMoery.setBzsj(countMmapper.countCustBusBZ(customerList.get(i).getCustId()).getBzsj());
+            }else{
+                countDocumetMoery.setBzsj(0f);
+            }
+
+            if(countMmapper.countCustBusSZ(customerList.get(i).getCustId()).getCustIds()!=0){
+                countDocumetMoery.setSzsj(countMmapper.countCustBusSZ(customerList.get(i).getCustId()).getSzsj());
+            }else{
+                countDocumetMoery.setSzsj(0f);
+            }
+
+            if(countMmapper.countCustCJBZ(customerList.get(i).getCustId()).getCustIds()!=0){
+                countDocumetMoery.setCjbz(countMmapper.countCustCJBZ(customerList.get(i).getCustId()).getCjbz());
+            }else{
+                countDocumetMoery.setCjbz(0f);
+            }
+
+            if(countMmapper.countCustCJSZ(customerList.get(i).getCustId()).getCustIds()!=0){
+                countDocumetMoery.setCjsz(countMmapper.countCustCJSZ(customerList.get(i).getCustId()).getCjsz());
+            }else{
+                countDocumetMoery.setCjsz(0f);
+            }
+
+            if(countMmapper.countCustDocBZ(customerList.get(i).getCustId()).getCustIds()!=0){
+                countDocumetMoery.setGdbz(countMmapper.countCustDocBZ(customerList.get(i).getCustId()).getGdbz());
+            }else{
+                countDocumetMoery.setGdbz(0f);
+            }
+
+            if(countMmapper.countCustDocSZ(customerList.get(i).getCustId()).getCustIds()!=0){
+                countDocumetMoery.setGdsz(countMmapper.countCustDocSZ(customerList.get(i).getCustId()).getGdsz());
+            }else{
+                countDocumetMoery.setGdsz(0f);
+            }
+
+            if(countMmapper.countCustConBZ(customerList.get(i).getCustId()).getCustIds()!=0){
+                countDocumetMoery.setHtbz(countMmapper.countCustConBZ(customerList.get(i).getCustId()).getHtbz());
+            }else{
+                countDocumetMoery.setHtbz(0f);
+            }
+
+            if(countMmapper.countCustConSZ(customerList.get(i).getCustId()).getCustIds()!=0){
+                countDocumetMoery.setHtsz(countMmapper.countCustConSZ(customerList.get(i).getCustId()).getHtsz());
+            }else{
+                countDocumetMoery.setHtsz(0f);
+            }
+
+            list.add(countDocumetMoery);
+        }
+        return list;
+    }
+
+
+    public List<CountDocumetMoery> countCustBYMoney(Integer page, Integer limit){
+        QueryWrapper queryWrapper = new QueryWrapper();
+        /* 查询所有客户 */
+        IPage<Customer> customerIPage = customerMapper.selectPage(new Page<>(page,limit),queryWrapper);
+        /* 转换为集合客户 进行遍历 */
+        List<Customer> customerList = customerIPage.getRecords();
+        List<CountDocumetMoery> list = new ArrayList();
+        for (int i = 0; i <customerList.size() ; i++) {
+            CountDocumetMoery countDocumetMoery= new CountDocumetMoery();
+            String custName=customerList.get(i).getCustName();
+            countDocumetMoery.setCustName(custName);
+            if(countMmapper.countCustBusBY(customerList.get(i).getCustId()).getCustIds()!=0){
+                countDocumetMoery.setBysj(countMmapper.countCustBusBY(customerList.get(i).getCustId()).getBysj());
+            }else{
+                countDocumetMoery.setBysj(0f);
+            }
+
+            if(countMmapper.countCustBusSY(customerList.get(i).getCustId()).getCustIds()!=0){
+                countDocumetMoery.setSysj(countMmapper.countCustBusSY(customerList.get(i).getCustId()).getSysj());
+            }else{
+                countDocumetMoery.setSysj(0f);
+            }
+
+            if(countMmapper.countCustCJBY(customerList.get(i).getCustId()).getCustIds()!=0){
+                countDocumetMoery.setBycj(countMmapper.countCustCJBY(customerList.get(i).getCustId()).getBycj());
+            }else{
+                countDocumetMoery.setBycj(0f);
+            }
+
+            if(countMmapper.countCustCJSY(customerList.get(i).getCustId()).getCustIds()!=0){
+                countDocumetMoery.setSycj(countMmapper.countCustCJSY(customerList.get(i).getCustId()).getSycj());
+            }else{
+                countDocumetMoery.setSycj(0f);
+            }
+
+            if(countMmapper.countCustDocBY(customerList.get(i).getCustId()).getCustIds()!=0){
+                countDocumetMoery.setBygd(countMmapper.countCustDocBY(customerList.get(i).getCustId()).getBygd());
+            }else{
+                countDocumetMoery.setBygd(0f);
+            }
+
+            if(countMmapper.countCustDocSY(customerList.get(i).getCustId()).getCustIds()!=0){
+                countDocumetMoery.setSygd(countMmapper.countCustDocSY(customerList.get(i).getCustId()).getSygd());
+            }else{
+                countDocumetMoery.setSygd(0f);
+            }
+
+            if(countMmapper.countCustConBY(customerList.get(i).getCustId()).getCustIds()!=0){
+                countDocumetMoery.setByht(countMmapper.countCustConBY(customerList.get(i).getCustId()).getByht());
+            }else{
+                countDocumetMoery.setByht(0f);
+            }
+
+            if(countMmapper.countCustConSY(customerList.get(i).getCustId()).getCustIds()!=0){
+                countDocumetMoery.setSyht(countMmapper.countCustConSY(customerList.get(i).getCustId()).getSyht());
+            }else{
+                countDocumetMoery.setSyht(0f);
+            }
+
+            list.add(countDocumetMoery);
+        }
+        return list;
+    }
+
+    public List<CountDocumetMoery> countCustBJMoney(Integer page, Integer limit){
+        QueryWrapper queryWrapper = new QueryWrapper();
+        /* 查询所有客户 */
+        IPage<Customer> customerIPage = customerMapper.selectPage(new Page<>(page,limit),queryWrapper);
+        /* 转换为集合客户 进行遍历 */
+        List<Customer> customerList = customerIPage.getRecords();
+        List<CountDocumetMoery> list = new ArrayList();
+        for (int i = 0; i <customerList.size() ; i++) {
+            CountDocumetMoery countDocumetMoery= new CountDocumetMoery();
+            String custName=customerList.get(i).getCustName();
+            countDocumetMoery.setCustName(custName);
+            if(countMmapper.countCustBusBJ(customerList.get(i).getCustId()).getCustIds()!=0){
+                countDocumetMoery.setBjsj(countMmapper.countCustBusBJ(customerList.get(i).getCustId()).getBjsj());
+            }else{
+                countDocumetMoery.setBjsj(0f);
+            }
+
+            if(countMmapper.countCustBusSJ(customerList.get(i).getCustId()).getCustIds()!=0){
+                countDocumetMoery.setSjsj(countMmapper.countCustBusSJ(customerList.get(i).getCustId()).getSjsj());
+            }else{
+                countDocumetMoery.setSjsj(0f);
+            }
+
+            if(countMmapper.countCustCJBJ(customerList.get(i).getCustId()).getCustIds()!=0){
+                countDocumetMoery.setBjcj(countMmapper.countCustCJBJ(customerList.get(i).getCustId()).getBjcj());
+            }else{
+                countDocumetMoery.setBjcj(0f);
+            }
+
+            if(countMmapper.countCustCJSJ(customerList.get(i).getCustId()).getCustIds()!=0){
+                countDocumetMoery.setSjcj(countMmapper.countCustCJSJ(customerList.get(i).getCustId()).getSjcj());
+            }else{
+                countDocumetMoery.setSjcj(0f);
+            }
+
+            if(countMmapper.countCustDocBJ(customerList.get(i).getCustId()).getCustIds()!=0){
+                countDocumetMoery.setBjgd(countMmapper.countCustDocBJ(customerList.get(i).getCustId()).getBjgd());
+            }else{
+                countDocumetMoery.setBjgd(0f);
+            }
+
+            if(countMmapper.countCustDocSJ(customerList.get(i).getCustId()).getCustIds()!=0){
+                countDocumetMoery.setSjgd(countMmapper.countCustDocSJ(customerList.get(i).getCustId()).getSjgd());
+            }else{
+                countDocumetMoery.setSjgd(0f);
+            }
+
+            if(countMmapper.countCustConBJ(customerList.get(i).getCustId()).getCustIds()!=0){
+                countDocumetMoery.setBjht(countMmapper.countCustConBJ(customerList.get(i).getCustId()).getBjht());
+            }else{
+                countDocumetMoery.setBjht(0f);
+            }
+
+            if(countMmapper.countCustConSJ(customerList.get(i).getCustId()).getCustIds()!=0){
+                countDocumetMoery.setSjht(countMmapper.countCustConSJ(customerList.get(i).getCustId()).getSjht());
+            }else{
+                countDocumetMoery.setSjht(0f);
+            }
+
+            list.add(countDocumetMoery);
+        }
+        return list;
+    }
+
+
+
+    public List<CountDocumetMoery> countCustBNMoney(Integer page, Integer limit){
+        QueryWrapper queryWrapper = new QueryWrapper();
+        /* 查询所有客户 */
+        IPage<Customer> customerIPage = customerMapper.selectPage(new Page<>(page,limit),queryWrapper);
+        /* 转换为集合客户 进行遍历 */
+        List<Customer> customerList = customerIPage.getRecords();
+        List<CountDocumetMoery> list = new ArrayList();
+        for (int i = 0; i <customerList.size() ; i++) {
+            CountDocumetMoery countDocumetMoery= new CountDocumetMoery();
+            String custName=customerList.get(i).getCustName();
+            countDocumetMoery.setCustName(custName);
+            if(countMmapper.countCustBusBN(customerList.get(i).getCustId()).getCustIds()!=0){
+                countDocumetMoery.setBnsj(countMmapper.countCustBusBN(customerList.get(i).getCustId()).getBnsj());
+            }else{
+                countDocumetMoery.setBnsj(0f);
+            }
+
+            if(countMmapper.countCustBusSN(customerList.get(i).getCustId()).getCustIds()!=0){
+                countDocumetMoery.setSnsj(countMmapper.countCustBusSN(customerList.get(i).getCustId()).getSnsj());
+            }else{
+                countDocumetMoery.setSnsj(0f);
+            }
+
+            if(countMmapper.countCustCJBN(customerList.get(i).getCustId()).getCustIds()!=0){
+                countDocumetMoery.setBncj(countMmapper.countCustCJBN(customerList.get(i).getCustId()).getBncj());
+            }else{
+                countDocumetMoery.setBncj(0f);
+            }
+
+            if(countMmapper.countCustCJSN(customerList.get(i).getCustId()).getCustIds()!=0){
+                countDocumetMoery.setSncj(countMmapper.countCustCJSN(customerList.get(i).getCustId()).getSncj());
+            }else{
+                countDocumetMoery.setSncj(0f);
+            }
+
+            if(countMmapper.countCustDocBN(customerList.get(i).getCustId()).getCustIds()!=0){
+                countDocumetMoery.setBngd(countMmapper.countCustDocBN(customerList.get(i).getCustId()).getBngd());
+            }else{
+                countDocumetMoery.setBngd(0f);
+            }
+
+            if(countMmapper.countCustDocSN(customerList.get(i).getCustId()).getCustIds()!=0){
+                countDocumetMoery.setSngd(countMmapper.countCustDocSN(customerList.get(i).getCustId()).getSngd());
+            }else{
+                countDocumetMoery.setSngd(0f);
+            }
+
+            if(countMmapper.countCustConBN(customerList.get(i).getCustId()).getCustIds()!=0){
+                countDocumetMoery.setBnht(countMmapper.countCustConBN(customerList.get(i).getCustId()).getBnht());
+            }else{
+                countDocumetMoery.setBnht(0f);
+            }
+
+            if(countMmapper.countCustConSN(customerList.get(i).getCustId()).getCustIds()!=0){
+                countDocumetMoery.setSnht(countMmapper.countCustConSN(customerList.get(i).getCustId()).getSnht());
+            }else{
+                countDocumetMoery.setSnht(0f);
+            }
+
+            list.add(countDocumetMoery);
+        }
+        return list;
     }
 }

@@ -31,7 +31,7 @@ public class Contract implements Serializable {
     //合同编号
     private String contractNum;
     //合同金额
-    private String contractMoney;
+    private Float contractMoney;
     //签约日期
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date signedTime;
@@ -97,11 +97,11 @@ public class Contract implements Serializable {
         this.contractNum = contractNum;
     }
 
-    public String getContractMoney() {
+    public Float getContractMoney() {
         return contractMoney;
     }
 
-    public void setContractMoney(String contractMoney) {
+    public void setContractMoney(Float contractMoney) {
         this.contractMoney = contractMoney;
     }
 

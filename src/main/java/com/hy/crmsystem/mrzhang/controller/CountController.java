@@ -1,6 +1,8 @@
 package com.hy.crmsystem.mrzhang.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.hy.crmsystem.mrzhang.entity.CountDocumetMoery;
+import com.hy.crmsystem.mrzhang.entity.LayuiData;
 import com.hy.crmsystem.mrzhang.service.impl.CountImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 @Controller
 @Transactional
@@ -289,6 +293,46 @@ public class CountController {
     @RequestMapping(value = "countChengJMonerySN.do",method = RequestMethod.POST)
     public Float countChengJMonerySN(){
         return countService.countChengJMonerySN();
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "countCustBZMoney.do",method = RequestMethod.GET)
+    public LayuiData countCustBZMoney(Integer page, Integer limit){
+        LayuiData layuiData = new LayuiData();
+        List<CountDocumetMoery> countDocumetMoeryList = countService.countCustBZMoney(page,limit);
+        layuiData.setData(countDocumetMoeryList);
+        layuiData.setCount(countDocumetMoeryList.size());
+        return layuiData;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "countCustBYMoney.do",method = RequestMethod.GET)
+    public LayuiData countCustBYMoney(Integer page, Integer limit){
+        LayuiData layuiData = new LayuiData();
+        List<CountDocumetMoery> countDocumetMoeryList = countService.countCustBYMoney(page,limit);
+        layuiData.setData(countDocumetMoeryList);
+        layuiData.setCount(countDocumetMoeryList.size());
+        return layuiData;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "countCustBJMoney.do",method = RequestMethod.GET)
+    public LayuiData countCustBJMoney(Integer page, Integer limit){
+        LayuiData layuiData = new LayuiData();
+        List<CountDocumetMoery> countDocumetMoeryList = countService.countCustBJMoney(page,limit);
+        layuiData.setData(countDocumetMoeryList);
+        layuiData.setCount(countDocumetMoeryList.size());
+        return layuiData;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "countCustBNMoney.do",method = RequestMethod.GET)
+    public LayuiData countCustBNMoney(Integer page, Integer limit){
+        LayuiData layuiData = new LayuiData();
+        List<CountDocumetMoery> countDocumetMoeryList = countService.countCustBNMoney(page,limit);
+        layuiData.setData(countDocumetMoeryList);
+        layuiData.setCount(countDocumetMoeryList.size());
+        return layuiData;
     }
 
 }

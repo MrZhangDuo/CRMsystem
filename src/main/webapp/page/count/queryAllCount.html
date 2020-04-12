@@ -502,100 +502,100 @@
     </div>
     <!--    周表/-->
     <div class="layui-col-xs9" id="div2" style="display: none">
-        <table class="layui-table" lay-data="{width:1100, url:'', page: true, limit: 6, limits:[6]}">
+        <table class="layui-table" lay-data="{width:1100, url:'/count/countCustBZMoney.do' ,page: true, limit: 6, limits:[6]}">
             <thead>
             <tr>
                 <!--                <th lay-data="{checkbox:true, fixed:'left'}" rowspan="2"></th>-->
-                <th lay-data="{field:'username', width:150}" rowspan="2">用户名</th>
+                <th lay-data="{field:'custName', width:150}" rowspan="2">用户名</th>
                 <th lay-data="{align:'center'}" colspan="2">商机数</th>
                 <th lay-data="{align:'center'}" colspan="2">成交数</th>
                 <th lay-data="{align:'center'}" colspan="2">跟单数</th>
                 <th lay-data="{align:'center'}" colspan="2">合同数</th>
             </tr>
             <tr>
-                <th lay-data="{field:'province', width:120}">本周</th>
-                <th lay-data="{field:'city', width:120}">上周</th>
-                <th lay-data="{field:'province', width:120}">本周</th>
-                <th lay-data="{field:'city', width:120}">上周</th>
-                <th lay-data="{field:'province', width:120}">本周</th>
-                <th lay-data="{field:'city', width:120}">上周</th>
-                <th lay-data="{field:'province', width:120}">本周</th>
-                <th lay-data="{field:'city', width:120}">上周</th>
+                <th lay-data="{field:'bzsj', width:120}">本周</th>
+                <th lay-data="{field:'szsj', width:120}">上周</th>
+                <th lay-data="{field:'cjbz', width:120}">本周</th>
+                <th lay-data="{field:'cjsz', width:120}">上周</th>
+                <th lay-data="{field:'gdbz', width:120}">本周</th>
+                <th lay-data="{field:'gdsz', width:120}">上周</th>
+                <th lay-data="{field:'htbz', width:120}">本周</th>
+                <th lay-data="{field:'htsz', width:120}">上周</th>
             </tr>
             </thead>
         </table>
     </div>
     <!--    月表-->
     <div class="layui-col-xs9" id="div3" style="display: none">
-        <table class="layui-table" lay-data="{width:1100, url:'', page: true, limit: 6, limits:[6]}">
+        <table class="layui-table" lay-data="{width:1100, url:'/count/countCustBYMoney.do', page: true, limit: 6, limits:[6]}">
             <thead>
             <tr>
                 <!--                <th lay-data="{checkbox:true, fixed:'left'}" rowspan="2"></th>-->
-                <th lay-data="{field:'username', width:150}" rowspan="2">用户名</th>
+                <th lay-data="{field:'custName', width:150}" rowspan="2">用户名</th>
                 <th lay-data="{align:'center'}" colspan="2">商机数</th>
                 <th lay-data="{align:'center'}" colspan="2">成交数</th>
                 <th lay-data="{align:'center'}" colspan="2">跟单数</th>
                 <th lay-data="{align:'center'}" colspan="2">合同数</th>
             </tr>
             <tr>
-                <th lay-data="{field:'province', width:120}">本月</th>
-                <th lay-data="{field:'city', width:120}">上月</th>
-                <th lay-data="{field:'province', width:120}">本月</th>
-                <th lay-data="{field:'city', width:120}">上月</th>
-                <th lay-data="{field:'province', width:120}">本月</th>
-                <th lay-data="{field:'city', width:120}">上月</th>
-                <th lay-data="{field:'province', width:120}">本月</th>
-                <th lay-data="{field:'city', width:120}">上月</th>
+                <th lay-data="{field:'bysj', width:120}">本月</th>
+                <th lay-data="{field:'sysj', width:120}">上月</th>
+                <th lay-data="{field:'bycj', width:120}">本月</th>
+                <th lay-data="{field:'sycj', width:120}">上月</th>
+                <th lay-data="{field:'bygd', width:120}">本月</th>
+                <th lay-data="{field:'sygd', width:120}">上月</th>
+                <th lay-data="{field:'byht', width:120}">本月</th>
+                <th lay-data="{field:'syht', width:120}">上月</th>
             </tr>
             </thead>
         </table>
     </div>
     <!--    季度表-->
     <div class="layui-col-xs9" id="div4" style="display: none">
-        <table class="layui-table" lay-data="{width:1100, url:'', page: true, limit: 6, limits:[6]}">
+        <table class="layui-table" lay-data="{width:1100, url:'/count/countCustBJMoney.do', page: true, limit: 6, limits:[6]}">
             <thead>
             <tr>
                 <!--                <th lay-data="{checkbox:true, fixed:'left'}" rowspan="2"></th>-->
-                <th lay-data="{field:'username', width:150}" rowspan="2">用户名</th>
+                <th lay-data="{field:'custName', width:150}" rowspan="2">用户名</th>
                 <th lay-data="{align:'center'}" colspan="2">商机数</th>
                 <th lay-data="{align:'center'}" colspan="2">成交数</th>
                 <th lay-data="{align:'center'}" colspan="2">跟单数</th>
                 <th lay-data="{align:'center'}" colspan="2">合同数</th>
             </tr>
             <tr>
-                <th lay-data="{field:'province', width:120}">本季度</th>
-                <th lay-data="{field:'city', width:120}">上季度</th>
-                <th lay-data="{field:'province', width:120}">本季度</th>
-                <th lay-data="{field:'city', width:120}">上季度</th>
-                <th lay-data="{field:'province', width:120}">本季度</th>
-                <th lay-data="{field:'city', width:120}">上季度</th>
-                <th lay-data="{field:'province', width:120}">本季度</th>
-                <th lay-data="{field:'city', width:120}">上季度</th>
+                <th lay-data="{field:'bjsj', width:120}">本季度</th>
+                <th lay-data="{field:'sjsj', width:120}">上季度</th>
+                <th lay-data="{field:'bjcj', width:120}">本季度</th>
+                <th lay-data="{field:'sjcj', width:120}">上季度</th>
+                <th lay-data="{field:'bjgd', width:120}">本季度</th>
+                <th lay-data="{field:'sjgd', width:120}">上季度</th>
+                <th lay-data="{field:'bjht', width:120}">本季度</th>
+                <th lay-data="{field:'sjht', width:120}">上季度</th>
             </tr>
             </thead>
         </table>
     </div>
     <!--    年表-->
     <div class="layui-col-xs9" id="div5" style="display: none">
-        <table class="layui-table" lay-data="{width:1100, url:'', page: true, limit: 6, limits:[6]}">
+        <table class="layui-table" lay-data="{width:1100, url:'/count/countCustBNMoney.do', page: true, limit: 6, limits:[6]}">
             <thead>
             <tr>
                 <!--                <th lay-data="{checkbox:true, fixed:'left'}" rowspan="2"></th>-->
-                <th lay-data="{field:'username', width:150}" rowspan="2">用户名</th>
+                <th lay-data="{field:'custName', width:150}" rowspan="2">用户名</th>
                 <th lay-data="{align:'center'}" colspan="2">商机数</th>
                 <th lay-data="{align:'center'}" colspan="2">成交数</th>
                 <th lay-data="{align:'center'}" colspan="2">跟单数</th>
                 <th lay-data="{align:'center'}" colspan="2">合同数</th>
             </tr>
             <tr>
-                <th lay-data="{field:'province', width:120}">本年</th>
-                <th lay-data="{field:'city', width:120}">上年</th>
-                <th lay-data="{field:'province', width:120}">本年</th>
-                <th lay-data="{field:'city', width:120}">上年</th>
-                <th lay-data="{field:'province', width:120}">本年</th>
-                <th lay-data="{field:'city', width:120}">上年</th>
-                <th lay-data="{field:'province', width:120}">本年</th>
-                <th lay-data="{field:'city', width:120}">上年</th>
+                <th lay-data="{field:'bnsj', width:120}">本年</th>
+                <th lay-data="{field:'snsj', width:120}">上年</th>
+                <th lay-data="{field:'bncj', width:120}">本年</th>
+                <th lay-data="{field:'sncj', width:120}">上年</th>
+                <th lay-data="{field:'bngd', width:120}">本年</th>
+                <th lay-data="{field:'sngd', width:120}">上年</th>
+                <th lay-data="{field:'bnht', width:120}">本年</th>
+                <th lay-data="{field:'snht', width:120}">上年</th>
             </tr>
             </thead>
         </table>
@@ -917,112 +917,6 @@
             success: function (data) {
                 $("#byid30").empty();
                 $("#byid30").append((data==""?0:data)+"万");
-            },
-        });
-
-
-        /***************************************** 统计成交金额   **************************************************************/
-        /*
-        * 查询本周新增跟单金额
-        * */
-        $.ajax({
-            type: "post",
-            url: "/count/countChengJMoneryBZ.do",
-            // dataType: "json",
-            success: function (data) {
-                $("#byid3").empty();
-                $("#byid3").append((data==0?0.0:data)+"万");
-            },
-        });
-
-        /*
-        * 查询上周新增跟单金额
-        * */
-        $.ajax({
-            type: "post",
-            url: "/count/countChengJMonerySZ.do",
-            // dataType: "json",
-            success: function (data) {
-                $("#byid4").empty();
-                $("#byid4").append((data==""?0:data)+"万");
-            },
-        });
-
-        /*
-        * 查询本月新增跟单金额
-        * */
-        $.ajax({
-            type: "post",
-            url: "/count/countChengJMoneryBY.do",
-            // dataType: "json",
-            success: function (data) {
-                $("#byid11").empty();
-                $("#byid11").append((data==""?0:data)+"万");
-            },
-        });
-
-        /*
-        * 查询上月新增跟单金额
-        * */
-        $.ajax({
-            type: "post",
-            url: "/count/countChengJMonerySY.do",
-            // dataType: "json",
-            success: function (data) {
-                $("#byid12").empty();
-                $("#byid12").append((data==""?0:data)+"万");
-            },
-        });
-
-        /*
-        * 查询本季度新增跟单金额
-        * */
-        $.ajax({
-            type: "post",
-            url: "/count/countChengJMoneryBJ.do",
-            // dataType: "json",
-            success: function (data) {
-                $("#byid19").empty();
-                $("#byid19").append((data==""?0:data)+"万");
-            },
-        });
-
-        /*
-        * 查询上季度新增跟单金额
-        * */
-        $.ajax({
-            type: "post",
-            url: "/count/countChengJMonerySJ.do",
-            // dataType: "json",
-            success: function (data) {
-                $("#byid20").empty();
-                $("#byid20").append((data==""?0:data)+"万");
-            },
-        });
-
-        /*
-        * 查询本年度新增跟单金额
-        * */
-        $.ajax({
-            type: "post",
-            url: "/count/countChengJMoneryBN.do",
-            // dataType: "json",
-            success: function (data) {
-                $("#byid27").empty();
-                $("#byid27").append((data==""?0:data)+"万");
-            },
-        });
-
-        /*
-        * 查询上年度新增跟单金额
-        * */
-        $.ajax({
-            type: "post",
-            url: "/count/countChengJMonerySN.do",
-            // dataType: "json",
-            success: function (data) {
-                $("#byid28").empty();
-                $("#byid28").append((data==""?0:data)+"万");
             },
         });
 
