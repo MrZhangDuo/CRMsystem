@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hy.crmsystem.mrpan.mapper.BusinessMapper">
+
+    <!-- 查询商机名称 -->
+    <select id="queryBusName" resultType="com.hy.crmsystem.mrpan.entity.Business">
+        select BusId,BusName from business
+    </select>
+
+</mapper>

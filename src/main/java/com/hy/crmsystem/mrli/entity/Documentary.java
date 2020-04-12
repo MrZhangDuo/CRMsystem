@@ -1,8 +1,10 @@
 package com.hy.crmsystem.mrli.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
@@ -18,22 +20,58 @@ import java.util.Date;
  * @since 2020-04-03
  */
 @TableName(value = "documentary")
-public class Documentary implements Serializable {
+public class Documentary implements Serializable  {
 
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "DocId", type = IdType.AUTO)
     private Integer DocId;
 
+    @TableField("baseId")
     private Integer baseId;
 
-    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    /**
+     * 跟单时间
+     */
+    @TableField("DocTime")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
     private Date DocTime;
 
+    /**
+     * 跟单人
+     */
+    @TableField("DocPeople")
     private String DocPeople;
 
+    /**
+     * 跟单标题
+     */
+    @TableField("DocTitle")
+    private String DocTitle;
+
+    /**
+     * 跟单内容
+     */
+    @TableField("DocContent")
     private String DocContent;
 
+
+    /**
+     * 跟单分类
+     */
+    @TableField("DocType")
+    private String DocType;
+
+    public String getDocType() {
+        return DocType;
+    }
+
+    public void setDocType(String docType) {
+        DocType = docType;
+    }
+
+    @TableField("DocFile")
     private String DocFile;
 
     public Integer getDocId() {
@@ -45,6 +83,15 @@ public class Documentary implements Serializable {
     }
     public Integer getBaseId() {
         return baseId;
+    }
+
+
+    public String getDocTitle() {
+        return DocTitle;
+    }
+
+    public void setDocTitle(String docTitle) {
+        DocTitle = docTitle;
     }
 
     public void setBaseId(Integer baseId) {

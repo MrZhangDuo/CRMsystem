@@ -123,7 +123,27 @@
           "title": "系统设置",
           "href": "page/system/system.html",
           "icon": "fa fa-file-text",
-          "target": "_self"
+          "target": "_self",
+          "child": [
+            {
+              "title": "用户管理",
+              "href": "page/contract/queryMyContract.html",
+              "icon": "fa fa-snowflake-o",
+              "target": "_self"
+            },
+            {
+              "title": "角色管理",
+              "href": "page/contract/queryAllContract.html",
+              "icon": "fa fa-shield",
+              "target": "_self"
+            },
+            {
+              "title": "桌面公告管理",
+              "href": "page/contract/queryAllContract.html",
+              "icon": "fa fa-shield",
+              "target": "_self"
+            }
+          ]
         },
         {
           "title": "统计分析",

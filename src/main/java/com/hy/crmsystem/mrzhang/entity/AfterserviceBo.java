@@ -4,15 +4,11 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.core.toolkit.StringUtils;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Objects;
 
 /**
  * <p>
@@ -22,73 +18,57 @@ import java.util.Objects;
  * @author zhangduo
  * @since 2020-04-03
  */
-@TableName("afterservice")
-public class Afterservice implements Serializable {
+public class AfterserviceBo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "serviceId", type = IdType.AUTO)
     private Integer serviceId;
 
-    @TableField("custId")
     private Integer custId;
 
-    @TableField("serviceTheme")
     private String serviceTheme;
 
-    @TableField("serviceContractNum")
     private String serviceContractNum;
 
-    @TableField("serviceContractInfor")
     private String serviceContractInfor;
 
-    @TableField("serviceLinkMan")
     private String serviceLinkMan;
 
-    @TableField("fixNum")
     private String fixNum;
-
-    @TableField("phone")
     private String phone;
 
-    @TableField("email")
     private String Email;
 
-    @TableField("serviceType")
     private String serviceType;
 
-    @TableField("serviceMain")
     private String serviceMain;
 
-    @TableField("serviceStartTime")
-    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date serviceStartTime;
 
-    @TableField(exist = false)
     private String StartTime;
 
-    @TableField("serviceEndTime")
-    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date serviceEndTime;
 
-    @TableField(exist = false)
     private String EndTime;
 
-    @TableField("serviceContent")
     private String ServiceContent;
 
-    @TableField("custReturn")
     private String custReturn;
 
-    @TableField("ServicePeople")
     private String ServicePeople;
 
-    @TableField("servicesCore")
     private Integer servicesCore;
 
-    @TableField("file")
     private String file;
+    private String custName;
 
+    public String getCustName() {
+        return custName;
+    }
+
+    public void setCustName(String custName) {
+        this.custName = custName;
+    }
 
     public String getStartTime() {
         if(serviceStartTime!=null){

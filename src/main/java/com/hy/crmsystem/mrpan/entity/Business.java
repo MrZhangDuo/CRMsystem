@@ -23,207 +23,227 @@ public class Business implements Serializable {
     private static final long serialVersionUID = 1L;
 
    //商机id
-    @TableId(value = "BusId", type = IdType.AUTO)
-    private Integer BusId;
+    @TableId(value = "busId", type = IdType.AUTO)
+    private Integer busId;
 
-    private Integer DocId;
-
-    private Integer InvitationId;
-
-    private Integer baseId;
-
-    private byte[] BusName;
-
-    private Integer BusSource;
+    private Integer custId;
 
 
-    private String BusBeforeMoney;
+    private String busName;
+
+    private String busSource;
+
+
+    private Float busBeforeMoney;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date BusBeforedate;
+    private Date busBeforedate;
 
-    private String BusBlinkMan;
+    private String busBlinkMan;
 
-    private String BusDept;
+    private String busDept;
 
-    private String BusJob;
+    private String busJob;
 
-    private String BusFixnum;
+    private String busFixnum;
 
-    private String BusPhone;
+    private String busPhone;
 
-    private String BusEmail;
+    private String busEmail;
 
-    private String BusNeed;
+    private String busNeed;
 
-    private String BusFile;
+    private String busFile;
 
-    private String BusDutyPeople;
+    private String busDutyPeople;
 
-    private String BusJoinPeople;
+    private String busJoinPeople;
 
-    private String BusFollowPeople;
+    private String busFollowPeople;
 
-    private String BusStage;
+    private String busStage;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date busTime;
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
 
     public Integer getBusId() {
-        return BusId;
+        return busId;
     }
 
-    public void setBusId(Integer BusId) {
-        this.BusId = BusId;
-    }
-    public Integer getDocId() {
-        return DocId;
+    public void setBusId(Integer busId) {
+        this.busId = busId;
     }
 
-    public void setDocId(Integer DocId) {
-        this.DocId = DocId;
-    }
-    public Integer getInvitationId() {
-        return InvitationId;
+    public Integer getCustId() {
+        return custId;
     }
 
-    public void setInvitationId(Integer InvitationId) {
-        this.InvitationId = InvitationId;
-    }
-    public Integer getBaseId() {
-        return baseId;
+    public void setCustId(Integer custId) {
+        this.custId = custId;
     }
 
-    public void setBaseId(Integer baseId) {
-        this.baseId = baseId;
-    }
-    public byte[] getBusName() {
-        return BusName;
+    public String getBusName() {
+        return busName;
     }
 
-    public void setBusName(byte[] BusName) {
-        this.BusName = BusName;
-    }
-    public Integer getBusSource() {
-        return BusSource;
+    public void setBusName(String busName) {
+        this.busName = busName;
     }
 
-    public void setBusSource(Integer BusSource) {
-        this.BusSource = BusSource;
+    public String getBusSource() {
+        return busSource;
     }
-    public String getBusBeforeMoney() {
-        return BusBeforeMoney;
+
+    public void setBusSource(String busSource) {
+        this.busSource = busSource;
+    }
+
+    public Float getBusBeforeMoney() {
+        return busBeforeMoney;
+    }
+
+    public void setBusBeforeMoney(Float busBeforeMoney) {
+        this.busBeforeMoney = busBeforeMoney;
     }
 
     public Date getBusBeforedate() {
-        return BusBeforedate;
+        return busBeforedate;
     }
 
     public void setBusBeforedate(Date busBeforedate) {
-        BusBeforedate = busBeforedate;
+        this.busBeforedate = busBeforedate;
     }
 
-    public void setBusBlinkMan(String BusBlinkMan) {
-        this.BusBlinkMan = BusBlinkMan;
+    public String getBusBlinkMan() {
+        return busBlinkMan;
     }
+
+    public void setBusBlinkMan(String busBlinkMan) {
+        this.busBlinkMan = busBlinkMan;
+    }
+
     public String getBusDept() {
-        return BusDept;
+        return busDept;
     }
 
-    public void setBusDept(String BusDept) {
-        this.BusDept = BusDept;
+    public void setBusDept(String busDept) {
+        this.busDept = busDept;
     }
+
     public String getBusJob() {
-        return BusJob;
+        return busJob;
     }
 
-    public void setBusJob(String BusJob) {
-        this.BusJob = BusJob;
+    public void setBusJob(String busJob) {
+        this.busJob = busJob;
     }
+
     public String getBusFixnum() {
-        return BusFixnum;
+        return busFixnum;
     }
 
-    public void setBusFixnum(String BusFixnum) {
-        this.BusFixnum = BusFixnum;
+    public void setBusFixnum(String busFixnum) {
+        this.busFixnum = busFixnum;
     }
+
     public String getBusPhone() {
-        return BusPhone;
+        return busPhone;
     }
 
-    public void setBusPhone(String BusPhone) {
-        this.BusPhone = BusPhone;
+    public void setBusPhone(String busPhone) {
+        this.busPhone = busPhone;
     }
+
     public String getBusEmail() {
-        return BusEmail;
+        return busEmail;
     }
 
-    public void setBusEmail(String BusEmail) {
-        this.BusEmail = BusEmail;
+    public void setBusEmail(String busEmail) {
+        this.busEmail = busEmail;
     }
+
     public String getBusNeed() {
-        return BusNeed;
+        return busNeed;
     }
 
-    public void setBusNeed(String BusNeed) {
-        this.BusNeed = BusNeed;
+    public void setBusNeed(String busNeed) {
+        this.busNeed = busNeed;
     }
+
     public String getBusFile() {
-        return BusFile;
+        return busFile;
     }
 
-    public void setBusFile(String BusFile) {
-        this.BusFile = BusFile;
+    public void setBusFile(String busFile) {
+        this.busFile = busFile;
     }
+
     public String getBusDutyPeople() {
-        return BusDutyPeople;
+        return busDutyPeople;
     }
 
-    public void setBusDutyPeople(String BusDutyPeople) {
-        this.BusDutyPeople = BusDutyPeople;
+    public void setBusDutyPeople(String busDutyPeople) {
+        this.busDutyPeople = busDutyPeople;
     }
+
     public String getBusJoinPeople() {
-        return BusJoinPeople;
+        return busJoinPeople;
     }
 
-    public void setBusJoinPeople(String BusJoinPeople) {
-        this.BusJoinPeople = BusJoinPeople;
+    public void setBusJoinPeople(String busJoinPeople) {
+        this.busJoinPeople = busJoinPeople;
     }
+
     public String getBusFollowPeople() {
-        return BusFollowPeople;
+        return busFollowPeople;
     }
 
-    public void setBusFollowPeople(String BusFollowPeople) {
-        this.BusFollowPeople = BusFollowPeople;
+    public void setBusFollowPeople(String busFollowPeople) {
+        this.busFollowPeople = busFollowPeople;
     }
+
     public String getBusStage() {
-        return BusStage;
+        return busStage;
     }
 
-    public void setBusStage(String BusStage) {
-        this.BusStage = BusStage;
+    public void setBusStage(String busStage) {
+        this.busStage = busStage;
+    }
+
+    public Date getBusTime() {
+        return busTime;
+    }
+
+    public void setBusTime(Date busTime) {
+        this.busTime = busTime;
     }
 
     @Override
     public String toString() {
         return "Business{" +
-        "BusId=" + BusId +
-        ", DocId=" + DocId +
-        ", InvitationId=" + InvitationId +
-        ", baseId=" + baseId +
-        ", BusName=" + BusName +
-        ", BusSource=" + BusSource +
-        ", BusBeforeMoney=" + BusBeforeMoney +
-        ", BusBeforedate=" + BusBeforedate +
-        ", BusBlinkMan=" + BusBlinkMan +
-        ", BusDept=" + BusDept +
-        ", BusJob=" + BusJob +
-        ", BusFixnum=" + BusFixnum +
-        ", BusPhone=" + BusPhone +
-        ", BusEmail=" + BusEmail +
-        ", BusNeed=" + BusNeed +
-        ", BusFile=" + BusFile +
-        ", BusDutyPeople=" + BusDutyPeople +
-        ", BusJoinPeople=" + BusJoinPeople +
-        ", BusFollowPeople=" + BusFollowPeople +
-        ", BusStage=" + BusStage +
-        "}";
+                "busId=" + busId +
+                ", custId=" + custId +
+                ", busName='" + busName + '\'' +
+                ", busSource='" + busSource + '\'' +
+                ", busBeforeMoney=" + busBeforeMoney +
+                ", busBeforedate=" + busBeforedate +
+                ", busBlinkMan='" + busBlinkMan + '\'' +
+                ", busDept='" + busDept + '\'' +
+                ", busJob='" + busJob + '\'' +
+                ", busFixnum='" + busFixnum + '\'' +
+                ", busPhone='" + busPhone + '\'' +
+                ", busEmail='" + busEmail + '\'' +
+                ", busNeed='" + busNeed + '\'' +
+                ", busFile='" + busFile + '\'' +
+                ", busDutyPeople='" + busDutyPeople + '\'' +
+                ", busJoinPeople='" + busJoinPeople + '\'' +
+                ", busFollowPeople='" + busFollowPeople + '\'' +
+                ", busStage='" + busStage + '\'' +
+                ", busTime=" + busTime +
+                '}';
     }
 }

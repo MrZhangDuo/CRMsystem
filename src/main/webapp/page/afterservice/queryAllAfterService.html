@@ -44,11 +44,6 @@
 
 </head>
 <body>
-<!--======================================================================格式化数据库时间（layui内部格式列）（1.6）==================================================-->
-<script type="text/html" id="createDateTpl">
-    {{layui.util.toDateString(serviceStartTime, 'yyyy-MM-dd')}}<!--createDate为date类型-->
-</script>
-<!--======================================================================格式化数据库时间（layui内部格式列）（1.6）==================================================-->
 <div class="layuimini-container">
     <fieldset class="table-search-fieldset">
         <legend>搜索信息</legend>
@@ -57,7 +52,7 @@
                 <div class="layui-inline">
                     <label class="layui-form-label">搜索选择框</label>
                     <div class="layui-input-inline">
-                        <select  lay-filter="sousuo">
+                        <select id="sousuo" name="type"  lay-filter="sousuo">
                             <option value="">直接选择或搜索选择</option>
                             <option  value="1">主题</option>
                             <option  value="2">服务类型</option>
@@ -66,12 +61,8 @@
                             <option  value="5">服务评分</option>
                         </select>
                     </div>
-                    <div class="layui-input-inline">
-                        <input  id="inpu" name="ServiceStartTime" type="text" lay-verify="title" autocomplete="off" placeholder="请输入关键字" class="layui-input">
-                        <div id="xiala" style="display: none" class="layui-input-inline"><select  name="ServiceTheme" id="xia" lay-filter="cartype"></select></div>
-                        <div id="xiala1" style="display: none" class="layui-input-inline"><select name="ServiceType" id="xia1" lay-filter="cartype"></select></div>
-                        <div id="xiala2" style="display: none" class="layui-input-inline"><select name="ServicePeople" id="xia2" lay-filter="cartype"></select></div>
-                        <div id="xiala3" style="display: none" class="layui-input-inline"><select name="ServicesCore" id="xia3" lay-filter="cartype"></select></div>
+                    <div class="layui-input-inline" id="mhs">
+                        <input type="text" lay-verify="title" autocomplete="off" placeholder="请输入关键字" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-inline">
@@ -86,17 +77,17 @@
             <div class="layui-card-header"><i class="fa fa-bullhorn icon icon-tip"></i>分类</div>
             <div class="layui-card-body layui-text" style="color:#1e9fff">
                 <div class="layuimini-notice">
-                    <div class="layuimini-notice-title"><a href="/page/table/edit.html">处理中的服务</a>
+                    <div class="layuimini-notice-title"><a id="chul" href="javascript:void(0);">处理中的服务</a>
                         <button id="chulizhong"  type="button" style="background-color: #1e9fff" class="layui-btn layui-btn-disabled layui-btn-radius layui-btn-xs"></button>
                     </div>
                 </div>
                 <div class="layuimini-notice">
-                    <div class="layuimini-notice-title"><a href="/page/table/edit.html">已结束的服务</a>
+                    <div class="layuimini-notice-title"><a id="jies" href="javascript:void(0);">已结束的服务</a>
                         <button id="jieshu"  type="button" style="background-color: #1e9fff" class="layui-btn layui-btn-disabled layui-btn-radius layui-btn-xs" ></button>
                     </div>
                 </div>
                 <div class="layuimini-notice">
-                    <div class="layuimini-notice-title"><a href="/page/table/edit.html">已撤除的服务</a>
+                    <div class="layuimini-notice-title"><a id="chec" href="javascript:void(0);">已撤除的服务</a>
                         <button id="chechu"  type="button" style="background-color: #1e9fff" class="layui-btn layui-btn-disabled layui-btn-radius layui-btn-xs" ></button>
                     </div>
                 </div>
@@ -105,22 +96,22 @@
         <div class="layui-card">
             <div class="layui-card-body layui-text" style="color:#1e9fff">
                 <div class="layuimini-notice">
-                    <div class="layuimini-notice-title"><a href="/afterservice/queryAllAfterService.do">本周新增</a><button type="button" style="background-color: #1e9fff" class="layui-btn layui-btn-disabled layui-btn-radius layui-btn-xs"></button></div>
+                    <div class="layuimini-notice-title"><a id="benzhou" href="javascript:void(0);">本周新增</a><button id="benz" type="button" style="background-color: #1e9fff" class="layui-btn layui-btn-disabled layui-btn-radius layui-btn-xs"></button></div>
                 </div>
                 <div class="layuimini-notice">
-                    <div class="layuimini-notice-title"><a href="/afterservice/queryAllAfterService.do">上周新增</a><button type="button" style="background-color: #1e9fff" class="layui-btn layui-btn-disabled layui-btn-radius layui-btn-xs"></button></div>
+                    <div class="layuimini-notice-title"><a id="shangzhou" href="javascript:void(0);">上周新增</a><button id="shangz" type="button" style="background-color: #1e9fff" class="layui-btn layui-btn-disabled layui-btn-radius layui-btn-xs"></button></div>
                 </div>
                 <div class="layuimini-notice">
-                    <div class="layuimini-notice-title"><a href="/afterservice/queryAllAfterService.do">本月新增</a><button type="button" style="background-color: #1e9fff" class="layui-btn layui-btn-disabled layui-btn-radius layui-btn-xs"></button></div>
+                    <div class="layuimini-notice-title"><a id="benyue" href="javascript:void(0);">本月新增</a><button id="beny" type="button" style="background-color: #1e9fff" class="layui-btn layui-btn-disabled layui-btn-radius layui-btn-xs"></button></div>
                 </div>
                 <div class="layuimini-notice">
-                    <div class="layuimini-notice-title"><a href="/afterservice/queryAllAfterService.do">上月新增</a><button type="button" style="background-color: #1e9fff" class="layui-btn layui-btn-disabled layui-btn-radius layui-btn-xs"></button></div>
+                    <div class="layuimini-notice-title"><a id="shangyue" href="javascript:void(0);">上月新增</a><button id="shangy" type="button" style="background-color: #1e9fff" class="layui-btn layui-btn-disabled layui-btn-radius layui-btn-xs"></button></div>
                 </div>
                 <div class="layuimini-notice">
-                    <div class="layuimini-notice-title"><a href="/afterservice/queryAllAfterService.do">本季度新增</a><button type="button" style="background-color: #1e9fff" class="layui-btn layui-btn-disabled layui-btn-radius layui-btn-xs"></button></div>
+                    <div class="layuimini-notice-title"><a id="benji" href="javascript:void(0);">本季度新增</a><button id="benj" type="button" style="background-color: #1e9fff" class="layui-btn layui-btn-disabled layui-btn-radius layui-btn-xs"></button></div>
                 </div>
                 <div class="layuimini-notice">
-                    <div class="layuimini-notice-title"><a href="/afterservice/queryAllAfterService.do">上季度新增</a><button type="button" style="background-color: #1e9fff" class="layui-btn layui-btn-disabled layui-btn-radius layui-btn-xs"></button></div>
+                    <div class="layuimini-notice-title"><a id="shangji" href="javascript:void(0);">上季度新增</a><button id="shangj" type="button" style="background-color: #1e9fff" class="layui-btn layui-btn-disabled layui-btn-radius layui-btn-xs"></button></div>
                 </div>
             </div>
         </div>
@@ -136,7 +127,7 @@
 </div>
 <script src="/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
 <script>
-    layui.use(['form', 'table'], function () {
+    layui.use(['form', 'table','jquery'], function () {
         var $ = layui.jquery,
             form = layui.form,
             table = layui.table;
@@ -146,6 +137,9 @@
             url: '/afterservice/queryAllAfterService.do',
             cellMinWidth: 80, //全局定义常规单元格的最小宽度，layui 2.2.1 新增
             toolbar: '#toolbarDemo',
+            limits: [10, 15, 20, 25, 50, 100],
+            limit: 6,
+            page: true,
             defaultToolbar: ['filter', 'exports', 'print', {
                 title: '提示',
                 layEvent: 'LAYTABLE_TIPS',
@@ -153,29 +147,18 @@
             }],
             cols: [[
                 {type:'numbers'},
-                {field: 'serviceTheme',  title: '主题', align: 'center'},
+                {field: 'serviceTheme',  title: '主题', align: 'center',templet:'<div><a  href="/afterservice/queryAfterServiceById.do?serviceId={{d.serviceId}}" class="layui-table-link">{{d.serviceTheme}}</a></div>'},
                 {field: 'serviceType',  title: '服务类型', align: 'center'},
                 {field: 'startTime', title: '开始时间' , align: 'center' },
                 {field: 'servicePeople', title: '服务人员', align: 'center'},
                 {field: 'servicesCore', title: '服务评分', align: 'center'}
             ]],
-            limits: [10, 15, 20, 25, 50, 100],
-            limit: 2,
-            page: true
         });
 
         form.on("select(sousuo)", function(data){
             if(data.value==1){
-                $("#inpu").val("");
-                $("#xia").val("");
-                $("#xia1").val("");
-                $("#xia2").val("");
-                $("#xia3").val("");
-                $("#inpu").hide(true);
-                $("#xiala").show(true);
-                $("#xiala1").hide(true);
-                $("#xiala2").hide(true);
-                $("#xiala3").hide(true);
+                $("#mhs").empty();
+                $("#mhs").append("<select  name=\"serviceTheme\" id=\"xia\" lay-filter=\"cartype\"></select>");
                 $.ajax({
                     type: "GET",
                     url: "/afterservice/queryAllServiceTheme.do",
@@ -188,23 +171,15 @@
                         }else{
                             $.each(data,function (k,v) {
                                 html += "<option value='"+v.serviceTheme+"'>"+v.serviceTheme+"</option>"
-                            })
+                            });
                             $("#xia").empty().append(html);
                         }
-                        form.render("select");
+                        form.render();
                     }
                 });
             }else if(data.value==2){
-                $("#inpu").val("");
-                $("#xia").val("");
-                $("#xia1").val("");
-                $("#xia2").val("");
-                $("#xia3").val("");
-                $("#inpu").hide(true);
-                $("#xiala1").show(true);
-                $("#xiala").hide(true);
-                $("#xiala2").hide(true);
-                $("#xiala3").hide(true);
+                $("#mhs").empty();
+                $("#mhs").append("<select  name=\"serviceType\" id=\"xia1\" lay-filter=\"cartype\"></select>");
                 $.ajax({
                     type: "GET",
                     url: "/afterservice/queryAllserviceType.do",
@@ -217,35 +192,18 @@
                         }else{
                             $.each(data,function (k,v) {
                                 html += "<option value='"+v.serviceType+"'>"+v.serviceType+"</option>"
-                            })
+                            });
                             $("#xia1").empty().append(html);
                         }
-                        form.render("select");
+                        form.render();
                     }
                 });
             }else if(data.value==3){
-                $("#inpu").val("");
-                $("#xia").val("");
-                $("#xia1").val("");
-                $("#xia2").val("");
-                $("#xia3").val("");
-                $("#inpu").show(true);
-                $("#xiala").hide(true);
-                $("#xiala1").hide(true);
-                $("#xiala2").hide(true);
-                $("#xiala3").hide(true);
-                $("#inpu").attr("type","date");
+                $("#mhs").empty();
+                $("#mhs").append("<input name=\"serviceStartTime\" type=\"date\" lay-verify=\"title\" autocomplete=\"off\" placeholder=\"请输入关键字\" class=\"layui-input\">");
             }else if(data.value==4){
-                $("#inpu").val("");
-                $("#xia").val("");
-                $("#xia1").val("");
-                $("#xia2").val("");
-                $("#xia3").val("");
-                $("#inpu").hide(true);
-                $("#xiala2").show(true);
-                $("#xiala1").hide(true);
-                $("#xiala").hide(true);
-                $("#xiala3").hide(true);
+                $("#mhs").empty();
+                $("#mhs").append("<select  name=\"servicePeople\" id=\"xia2\" lay-filter=\"cartype\"></select>");
                 $.ajax({
                     type: "GET",
                     url: "/afterservice/queryAllservicePeople.do",
@@ -258,23 +216,15 @@
                         }else{
                             $.each(data,function (k,v) {
                                 html += "<option value='"+v.servicePeople+"'>"+v.servicePeople+"</option>"
-                            })
+                            });
                             $("#xia2").empty().append(html);
                         }
-                        form.render("select");
+                        form.render();
                     }
                 });
             }else if(data.value==5){
-                $("#inpu").val("");
-                $("#xia").val("");
-                $("#xia1").val("");
-                $("#xia2").val("");
-                $("#xia3").val("");
-                $("#inpu").hide(true);
-                $("#xiala3").show(true);
-                $("#xiala1").hide(true);
-                $("#xiala2").hide(true);
-                $("#xiala").hide(true);
+                $("#mhs").empty();
+                $("#mhs").append("<select  name=\"servicesCore\" id=\"xia3\" lay-filter=\"cartype\"></select>");
                 $.ajax({
                     type: "GET",
                     url: "/afterservice/queryAllservicesCore.do",
@@ -287,16 +237,14 @@
                         }else{
                             $.each(data,function (k,v) {
                                 html += "<option value='"+v.servicesCore+"'>"+v.servicesCore+"</option>"
-                            })
+                            });
                             $("#xia3").empty().append(html);
                         }
-                        form.render("select");
+                        form.render();
                     }
                 });
             }
-            /*alert(data.value);*/ // 获取选中的值
         });
-
         // 监听搜索操作
         form.on('submit(data-search-btn)', function (data) {
             table.reload('currentTableId',{
@@ -324,42 +272,267 @@
                     if (key=="jieshu"){
                         $("#jieshu").text(data[key]);
                     }
+                    if (key=="benzhou"){
+                        $("#benz").text(data[key]);
+                    }
+                    if (key=="shangzhou"){
+                        $("#shangz").text(data[key]);
+                    }
+                    if (key=="benyue"){
+                        $("#beny").text(data[key]);
+                    }
+                    if (key=="shangyue"){
+                        $("#shangy").text(data[key]);
+                    }
+                    if (key=="benji"){
+                        $("#benj").text(data[key]);
+                    }
+                    if (key=="shangji"){
+                        $("#shangj").text(data[key]);
+                    }
                 }
-                form.render("button");
             }
         });
 
+        $("#chul").click(function () {
+            table.render({
+                elem: '#currentTableId',
+                url: '/afterservice/queryAllAfterService.do?chul=chul',
+                cellMinWidth: 80, //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+                toolbar: '#toolbarDemo',
+                defaultToolbar: ['filter', 'exports', 'print', {
+                    title: '提示',
+                    layEvent: 'LAYTABLE_TIPS',
+                    icon: 'layui-icon-tips'
+                }],
+                cols: [[
+                    {type:'numbers'},
+                    {field: 'serviceTheme',  title: '主题', align: 'center',templet:'<div><a  href="/afterservice/queryAfterServiceById.do?serviceId={{d.serviceId}}" class="layui-table-link">{{d.serviceTheme}}</a></div>'},
+                    {field: 'serviceType',  title: '服务类型', align: 'center'},
+                    {field: 'startTime', title: '开始时间' , align: 'center' },
+                    {field: 'servicePeople', title: '服务人员', align: 'center'},
+                    {field: 'servicesCore', title: '服务评分', align: 'center'}
+                ]],
+                limits: [10, 15, 20, 25, 50, 100],
+                limit: 2,
+                page: true
+            });
+        });
 
+        $("#chec").click(function () {
+            table.render({
+                elem: '#currentTableId',
+                url: '/afterservice/queryAllAfterService.do?chec=chec',
+                cellMinWidth: 80, //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+                toolbar: '#toolbarDemo',
+                defaultToolbar: ['filter', 'exports', 'print', {
+                    title: '提示',
+                    layEvent: 'LAYTABLE_TIPS',
+                    icon: 'layui-icon-tips'
+                }],
+                cols: [[
+                    {type:'numbers'},
+                    {field: 'serviceTheme',  title: '主题', align: 'center',templet:'<div><a  href="/afterservice/queryAfterServiceById.do?serviceId={{d.serviceId}}" class="layui-table-link">{{d.serviceTheme}}</a></div>'},
+                    {field: 'serviceType',  title: '服务类型', align: 'center'},
+                    {field: 'startTime', title: '开始时间' , align: 'center' },
+                    {field: 'servicePeople', title: '服务人员', align: 'center'},
+                    {field: 'servicesCore', title: '服务评分', align: 'center'}
+                ]],
+                limits: [10, 15, 20, 25, 50, 100],
+                limit: 2,
+                page: true
+            });
+        });
 
+        $("#jies").click(function () {
+            table.render({
+                elem: '#currentTableId',
+                url: '/afterservice/queryAllAfterService.do?jies=jies',
+                cellMinWidth: 80, //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+                toolbar: '#toolbarDemo',
+                defaultToolbar: ['filter', 'exports', 'print', {
+                    title: '提示',
+                    layEvent: 'LAYTABLE_TIPS',
+                    icon: 'layui-icon-tips'
+                }],
+                cols: [[
+                    {type:'numbers'},
+                    {field: 'serviceTheme',  title: '主题', align: 'center',templet:'<div><a  href="/afterservice/queryAfterServiceById.do?serviceId={{d.serviceId}}" class="layui-table-link">{{d.serviceTheme}}</a></div>'},
+                    {field: 'serviceType',  title: '服务类型', align: 'center'},
+                    {field: 'startTime', title: '开始时间' , align: 'center' },
+                    {field: 'servicePeople', title: '服务人员', align: 'center'},
+                    {field: 'servicesCore', title: '服务评分', align: 'center'}
+                ]],
+                limits: [10, 15, 20, 25, 50, 100],
+                limit: 2,
+                page: true
+            });
+        });
 
+        $("#benzhou").click(function () {
+            table.render({
+                elem: '#currentTableId',
+                url: '/afterservice/queryAllAfterService.do?benzhou=benzhou',
+                cellMinWidth: 80, //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+                toolbar: '#toolbarDemo',
+                defaultToolbar: ['filter', 'exports', 'print', {
+                    title: '提示',
+                    layEvent: 'LAYTABLE_TIPS',
+                    icon: 'layui-icon-tips'
+                }],
+                cols: [[
+                    {type:'numbers'},
+                    {field: 'serviceTheme',  title: '主题', align: 'center',templet:'<div><a  href="/afterservice/queryAfterServiceById.do?serviceId={{d.serviceId}}" class="layui-table-link">{{d.serviceTheme}}</a></div>'},
+                    {field: 'serviceType',  title: '服务类型', align: 'center'},
+                    {field: 'startTime', title: '开始时间' , align: 'center' },
+                    {field: 'servicePeople', title: '服务人员', align: 'center'},
+                    {field: 'servicesCore', title: '服务评分', align: 'center'}
+                ]],
+                limits: [10, 15, 20, 25, 50, 100],
+                limit: 2,
+                page: true
+            });
+                /*$.ajax({
+                    type: "GET",
+                    url: "/afterservice/queryAllAfterService.do?page=1&limit=2&benzhou=benzhou",
+                    dataType: "json",
+                    success: function (data) {
+                        table.reload('currentTableId',{
+                            url: '/afterservice/queryAllAfterService.do?page=1&limit=2&benzhou=benzhou'
+                            ,where:data.field//设定异步数据接口的额外参数
+                        });
+                    }
+                });*/
+        });
 
+        $("#shangzhou").click(function () {
+            table.render({
+                elem: '#currentTableId',
+                url: '/afterservice/queryAllAfterService.do?shangzhou=shangzhou',
+                cellMinWidth: 80, //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+                toolbar: '#toolbarDemo',
+                defaultToolbar: ['filter', 'exports', 'print', {
+                    title: '提示',
+                    layEvent: 'LAYTABLE_TIPS',
+                    icon: 'layui-icon-tips'
+                }],
+                cols: [[
+                    {type:'numbers'},
+                    {field: 'serviceTheme',  title: '主题', align: 'center',templet:'<div><a  href="/afterservice/queryAfterServiceById.do?serviceId={{d.serviceId}}" class="layui-table-link">{{d.serviceTheme}}</a></div>'},
+                    {field: 'serviceType',  title: '服务类型', align: 'center'},
+                    {field: 'startTime', title: '开始时间' , align: 'center' },
+                    {field: 'servicePeople', title: '服务人员', align: 'center'},
+                    {field: 'servicesCore', title: '服务评分', align: 'center'}
+                ]],
+                limits: [10, 15, 20, 25, 50, 100],
+                limit: 2,
+                page: true
+            });
+        });
 
+        $("#benyue").click(function () {
+            table.render({
+                elem: '#currentTableId',
+                url: '/afterservice/queryAllAfterService.do?benyue=benyue',
+                cellMinWidth: 80, //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+                toolbar: '#toolbarDemo',
+                defaultToolbar: ['filter', 'exports', 'print', {
+                    title: '提示',
+                    layEvent: 'LAYTABLE_TIPS',
+                    icon: 'layui-icon-tips'
+                }],
+                cols: [[
+                    {type:'numbers'},
+                    {field: 'serviceTheme',  title: '主题', align: 'center',templet:'<div><a  href="/afterservice/queryAfterServiceById.do?serviceId={{d.serviceId}}" class="layui-table-link">{{d.serviceTheme}}</a></div>'},
+                    {field: 'serviceType',  title: '服务类型', align: 'center'},
+                    {field: 'startTime', title: '开始时间' , align: 'center' },
+                    {field: 'servicePeople', title: '服务人员', align: 'center'},
+                    {field: 'servicesCore', title: '服务评分', align: 'center'}
+                ]],
+                limits: [10, 15, 20, 25, 50, 100],
+                limit: 2,
+                page: true
+            });
+        });
 
+        $("#shangyue").click(function () {
+            table.render({
+                elem: '#currentTableId',
+                url: '/afterservice/queryAllAfterService.do?shangyue=shangyue',
+                cellMinWidth: 80, //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+                toolbar: '#toolbarDemo',
+                defaultToolbar: ['filter', 'exports', 'print', {
+                    title: '提示',
+                    layEvent: 'LAYTABLE_TIPS',
+                    icon: 'layui-icon-tips'
+                }],
+                cols: [[
+                    {type:'numbers'},
+                    {field: 'serviceTheme',  title: '主题', align: 'center',templet:'<div><a  href="/afterservice/queryAfterServiceById.do?serviceId={{d.serviceId}}" class="layui-table-link">{{d.serviceTheme}}</a></div>'},
+                    {field: 'serviceType',  title: '服务类型', align: 'center'},
+                    {field: 'startTime', title: '开始时间' , align: 'center' },
+                    {field: 'servicePeople', title: '服务人员', align: 'center'},
+                    {field: 'servicesCore', title: '服务评分', align: 'center'}
+                ]],
+                limits: [10, 15, 20, 25, 50, 100],
+                limit: 2,
+                page: true
+            });
+        });
 
+        $("#benji").click(function () {
+            table.render({
+                elem: '#currentTableId',
+                url: '/afterservice/queryAllAfterService.do?benji=benji',
+                cellMinWidth: 80, //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+                toolbar: '#toolbarDemo',
+                defaultToolbar: ['filter', 'exports', 'print', {
+                    title: '提示',
+                    layEvent: 'LAYTABLE_TIPS',
+                    icon: 'layui-icon-tips'
+                }],
+                cols: [[
+                    {type:'numbers'},
+                    {field: 'serviceTheme',  title: '主题', align: 'center',templet:'<div><a  href="/afterservice/queryAfterServiceById.do?serviceId={{d.serviceId}}" class="layui-table-link">{{d.serviceTheme}}</a></div>'},
+                    {field: 'serviceType',  title: '服务类型', align: 'center'},
+                    {field: 'startTime', title: '开始时间' , align: 'center' },
+                    {field: 'servicePeople', title: '服务人员', align: 'center'},
+                    {field: 'servicesCore', title: '服务评分', align: 'center'}
+                ]],
+                limits: [10, 15, 20, 25, 50, 100],
+                limit: 2,
+                page: true
+            });
+        });
 
-
-
-
-
-
-
-
-
-
-        /*table.reload('currentTableId', {
-                page: {
-                    curr: 1
-                }
-                , where: {
-                    searchParams: result
-                }
-            }, 'data');*/
+        $("#shangji").click(function () {
+            table.render({
+                elem: '#currentTableId',
+                url: '/afterservice/queryAllAfterService.do?shangji=shangji',
+                cellMinWidth: 80, //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+                toolbar: '#toolbarDemo',
+                defaultToolbar: ['filter', 'exports', 'print', {
+                    title: '提示',
+                    layEvent: 'LAYTABLE_TIPS',
+                    icon: 'layui-icon-tips'
+                }],
+                cols: [[
+                    {type:'numbers'},
+                    {field: 'serviceTheme',  title: '主题', align: 'center',templet:'<div><a  href="/afterservice/queryAfterServiceById.do?serviceId={{d.serviceId}}" class="layui-table-link">{{d.serviceTheme}}</a></div>'},
+                    {field: 'serviceType',  title: '服务类型', align: 'center'},
+                    {field: 'startTime', title: '开始时间' , align: 'center' },
+                    {field: 'servicePeople', title: '服务人员', align: 'center'},
+                    {field: 'servicesCore', title: '服务评分', align: 'center'}
+                ]],
+                limits: [10, 15, 20, 25, 50, 100],
+                limit: 2,
+                page: true
+            });
+        });
 
         /**
          * toolbar监听事件
          */
-
-
         table.on('toolbar(currentTableFilter)', function (obj) {
             if (obj.event === 'add') {  // 监听添加操作
                 var index = layer.open({
@@ -370,9 +543,9 @@
                     shadeClose: true,
                     area: ['100%', '100%'],
                     content: '/page/afterservice/insterAfterService.html',
-                   /* end:function () {
-                        table.reload('currentTableFilter');
-                    }*/
+                    end:function () {
+                        table.reload(currentTableId);
+                    }
                 });
                 /*$(window).on("resize", function () {
                     layer.full(index);

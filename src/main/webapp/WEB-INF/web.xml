@@ -21,7 +21,7 @@
 
     <init-param>
       <param-name>encoding</param-name>
-      <param-value>utf-8</param-value>
+      <param-value>UTF-8</param-value>
     </init-param>
 
     <init-param>
@@ -29,6 +29,7 @@
       <param-value>true</param-value>
     </init-param>
   </filter>
+
 
  <!-- <filter>&lt;!&ndash; 配置spring集成shiro 框架的过滤器 必须保证要和spring-shiro.xml内部过滤器ID名称一致 &ndash;&gt;
     <filter-name>shiroFilter</filter-name>
