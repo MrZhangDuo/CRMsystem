@@ -2,12 +2,16 @@ package com.hy.crmsystem.mrfan.service.impl;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.hy.crmsystem.mrfan.entity.ImgBean;
 import com.hy.crmsystem.mrfan.entity.Invitation;
 import com.hy.crmsystem.mrfan.entity.InvitationBo;
+import com.hy.crmsystem.mrfan.entity.Reolyinvitation;
 import com.hy.crmsystem.mrfan.mapper.InvitationMapper;
 import com.hy.crmsystem.mrfan.service.IInvitationService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.hy.crmsystem.mrpan.entity.Business;
+import com.hy.crmsystem.mrpan.service.impl.BusinessServiceImpl;
+import com.hy.crmsystem.mrzhang.entity.LayuiData;
+import com.hy.crmsystem.uploadimage.UploadImage;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,16 +39,27 @@ import java.util.UUID;
 public class InvitationServiceImpl extends ServiceImpl<InvitationMapper, Invitation> implements IInvitationService {
     @Autowired
     private InvitationMapper invitationMapper;
+    @Autowired
+    private BusinessServiceImpl businessService;
+    @Autowired
+    private ReolyinvitationServiceImpl reolyinvitationService;
 
     @Override
-    public IPage<InvitationBo> queryAllInvitation(@RequestParam(name="page") Integer page,@RequestParam(name="limit")Integer limit,InvitationBo invitationBo) {
+    public LayuiData queryAllInvitation(@RequestParam(name="page") Integer page,@RequestParam(name="limit")Integer limit,InvitationBo invitationBo) {
+        LayuiData layuiDate=new LayuiData();
         Page page1=new Page(page,limit);
-        return invitationMapper.queryAllInvitation(page1,invitationBo);
+        layuiDate.setData(invitationMapper.queryAllInvitation(page1,invitationBo).getRecords());
+        layuiDate.setCount(invitationMapper.queryAllInvitation(page1,invitationBo).getTotal());
+        return layuiDate;
+    }
+
+    public List<Business> queryAllBusiness(){
+        return businessService.list();
     }
 
     @Override
-    public ImgBean fileuploadExecl(MultipartFile pictureFile, HttpServletRequest request) {
-        ImgBean imgBean = new ImgBean();
+    public UploadImage fileuploadExecl(MultipartFile pictureFile, HttpServletRequest request) {
+        UploadImage uploadImage = new UploadImage();
         try {
             // 图片上传
             // 设置图片名称，不能重复，可以使用uuid
@@ -57,12 +72,17 @@ public class InvitationServiceImpl extends ServiceImpl<InvitationMapper, Invitat
             String a =request.getSession().getServletContext().getRealPath("/");
             // 开始上传
             pictureFile.transferTo(new File( a+ "\\images\\"+picName + extName));
-            imgBean.setCode("0");
-            imgBean.setFileName(picName + extName);
+            uploadImage.setCode("0");
+            uploadImage.setFilename(picName + extName);
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        return  imgBean;
+        return  uploadImage;
     }
+
+
+    /*public List<Reolyinvitation> queryClick(Integer invitationId){
+        return reolyinvitationService.queryReolyInvitationById1(invitationId);
+    }*/
 }

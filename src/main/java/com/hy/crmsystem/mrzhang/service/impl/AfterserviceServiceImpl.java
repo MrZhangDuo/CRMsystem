@@ -5,9 +5,6 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hy.crmsystem.mrfan.entity.Contract;
-import com.hy.crmsystem.mrfan.service.impl.ContractServiceImpl;
-import com.hy.crmsystem.mrpan.entity.Business;
-import com.hy.crmsystem.mrpan.entity.Customer;
 import com.hy.crmsystem.mrpan.mapper.BusinessMapper;
 import com.hy.crmsystem.mrzhang.entity.Afterservice;
 import com.hy.crmsystem.mrzhang.entity.AfterserviceBo;
@@ -17,12 +14,6 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**

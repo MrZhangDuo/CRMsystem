@@ -9,5 +9,5 @@ public class QueryMyContract {
         StringBuffer sql=new StringBuffer("");
         return sql.toString();
     }
-}
+
 }

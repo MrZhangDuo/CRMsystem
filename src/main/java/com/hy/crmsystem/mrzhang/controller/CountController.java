@@ -244,9 +244,6 @@ public class CountController {
     }
 
 
-
-
-
     @ResponseBody
     @RequestMapping(value = "countChengJMoneryBZ.do",method = RequestMethod.POST)
     public Float countChengJMoneryBZ(){
@@ -298,41 +295,25 @@ public class CountController {
     @ResponseBody
     @RequestMapping(value = "countCustBZMoney.do",method = RequestMethod.GET)
     public LayuiData countCustBZMoney(Integer page, Integer limit){
-        LayuiData layuiData = new LayuiData();
-        List<CountDocumetMoery> countDocumetMoeryList = countService.countCustBZMoney(page,limit);
-        layuiData.setData(countDocumetMoeryList);
-        layuiData.setCount(countDocumetMoeryList.size());
-        return layuiData;
+        return countService.countCustBZMoney(page,limit);
     }
 
     @ResponseBody
     @RequestMapping(value = "countCustBYMoney.do",method = RequestMethod.GET)
     public LayuiData countCustBYMoney(Integer page, Integer limit){
-        LayuiData layuiData = new LayuiData();
-        List<CountDocumetMoery> countDocumetMoeryList = countService.countCustBYMoney(page,limit);
-        layuiData.setData(countDocumetMoeryList);
-        layuiData.setCount(countDocumetMoeryList.size());
-        return layuiData;
+        return countService.countCustBYMoney(page,limit);
     }
 
     @ResponseBody
     @RequestMapping(value = "countCustBJMoney.do",method = RequestMethod.GET)
     public LayuiData countCustBJMoney(Integer page, Integer limit){
-        LayuiData layuiData = new LayuiData();
-        List<CountDocumetMoery> countDocumetMoeryList = countService.countCustBJMoney(page,limit);
-        layuiData.setData(countDocumetMoeryList);
-        layuiData.setCount(countDocumetMoeryList.size());
-        return layuiData;
+        return countService.countCustBJMoney(page,limit);
     }
 
     @ResponseBody
     @RequestMapping(value = "countCustBNMoney.do",method = RequestMethod.GET)
     public LayuiData countCustBNMoney(Integer page, Integer limit){
-        LayuiData layuiData = new LayuiData();
-        List<CountDocumetMoery> countDocumetMoeryList = countService.countCustBNMoney(page,limit);
-        layuiData.setData(countDocumetMoeryList);
-        layuiData.setCount(countDocumetMoeryList.size());
-        return layuiData;
+        return countService.countCustBNMoney(page,limit);
     }
 
 }

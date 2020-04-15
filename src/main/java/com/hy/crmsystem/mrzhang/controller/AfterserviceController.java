@@ -59,7 +59,7 @@ public class AfterserviceController {
                 serviceType,serviceStartTime,servicePeople,servicesCore,chul,chec,jies,benzhou,shangzhou,benyue,shangyue,benji,shangji);
 
         layuiData.setData(afterserviceIPage.getRecords());
-        layuiData.setCount(Integer.parseInt(String.valueOf(afterserviceIPage.getTotal())));
+        layuiData.setCount(afterserviceIPage.getTotal());
         return layuiData;
     }
 

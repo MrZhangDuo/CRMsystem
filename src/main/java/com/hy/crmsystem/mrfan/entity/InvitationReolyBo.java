@@ -6,8 +6,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
-public class InvitationBo implements Serializable {
+public class InvitationReolyBo implements Serializable {
     private static final long serialVersionUID = 1L;
     private Integer invitationId;
     //商机外键
@@ -35,6 +36,77 @@ public class InvitationBo implements Serializable {
     //最后回复时间
     private Date reolyTime;
     private String zuihouTime;
+
+    private Integer reolyId;
+    //回复人
+    private String reolyPeople;
+    //被回复人
+    private String quiltReolyPeople;
+    //回复内容
+
+    private String people;
+
+    private String reolyContent;
+    private List<InvitationReolyBo> reolyinvitationList;
+
+    private String erreoly;
+
+    public String getErreoly() {
+        return erreoly;
+    }
+
+    public void setErreoly(String erreoly) {
+        this.erreoly = erreoly;
+    }
+
+
+    public String getPeople() {
+        return people;
+    }
+
+    public void setPeople(String people) {
+        this.people = people;
+    }
+
+    public Integer getReolyId() {
+        return reolyId;
+    }
+
+    public void setReolyId(Integer reolyId) {
+        this.reolyId = reolyId;
+    }
+
+    public String getReolyPeople() {
+        return reolyPeople;
+    }
+
+    public void setReolyPeople(String reolyPeople) {
+        this.reolyPeople = reolyPeople;
+    }
+
+    public String getQuiltReolyPeople() {
+        return quiltReolyPeople;
+    }
+
+    public void setQuiltReolyPeople(String quiltReolyPeople) {
+        this.quiltReolyPeople = quiltReolyPeople;
+    }
+
+    public String getReolyContent() {
+        return reolyContent;
+    }
+
+    public void setReolyContent(String reolyContent) {
+        this.reolyContent = reolyContent;
+    }
+
+    public List<InvitationReolyBo> getReolyinvitationList() {
+        return reolyinvitationList;
+    }
+
+    public void setReolyinvitationList(List<InvitationReolyBo> reolyinvitationList) {
+        this.reolyinvitationList = reolyinvitationList;
+    }
 
     public String getZuihouTime() {
         if(reolyTime!=null){
@@ -154,5 +226,31 @@ public class InvitationBo implements Serializable {
 
     public void setReolyTime(Date reolyTime) {
         this.reolyTime = reolyTime;
+    }
+
+    @Override
+    public String toString() {
+        return "InvitationReolyBo{" +
+                "invitationId=" + invitationId +
+                ", busId=" + busId +
+                ", invitationSubject='" + invitationSubject + '\'' +
+                ", invitationTag='" + invitationTag + '\'' +
+                ", invitationFile='" + invitationFile + '\'' +
+                ", invitationContent='" + invitationContent + '\'' +
+                ", invitationClick=" + invitationClick +
+                ", invitationReply=" + invitationReply +
+                ", invitationTime=" + invitationTime +
+                ", invitationType='" + invitationType + '\'' +
+                ", invitationAuthor='" + invitationAuthor + '\'' +
+                ", busName='" + busName + '\'' +
+                ", reolyTime=" + reolyTime +
+                ", zuihouTime='" + zuihouTime + '\'' +
+                ", reolyId=" + reolyId +
+                ", reolyPeople='" + reolyPeople + '\'' +
+                ", quiltReolyPeople='" + quiltReolyPeople + '\'' +
+                ", people='" + people + '\'' +
+                ", reolyContent='" + reolyContent + '\'' +
+                ", reolyinvitationList=" + reolyinvitationList +
+                '}';
     }
 }

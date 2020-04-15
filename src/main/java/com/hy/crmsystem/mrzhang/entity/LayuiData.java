@@ -5,7 +5,7 @@ import java.util.List;
 public class LayuiData {
     private  Integer code=0;
     private  String  msg="";
-    private  Integer count;
+    private  Long count;
     private  List    data;
 
     public Integer getCode() {
@@ -24,11 +24,11 @@ public class LayuiData {
         this.msg = msg;
     }
 
-    public Integer getCount() {
+    public Long getCount() {
         return count;
     }
 
-    public void setCount(Integer count) {
+    public void setCount(Long count) {
         this.count = count;
     }
 

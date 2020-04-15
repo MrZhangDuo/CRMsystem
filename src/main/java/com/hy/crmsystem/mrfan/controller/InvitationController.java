@@ -1,25 +1,27 @@
 package com.hy.crmsystem.mrfan.controller;
 
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.hy.crmsystem.mrfan.entity.ImgBean;
 import com.hy.crmsystem.mrfan.entity.Invitation;
 import com.hy.crmsystem.mrfan.entity.InvitationBo;
-import com.hy.crmsystem.mrfan.entity.LayuiDate;
+import com.hy.crmsystem.mrfan.entity.InvitationReolyBo;
+import com.hy.crmsystem.mrfan.entity.Reolyinvitation;
 import com.hy.crmsystem.mrfan.service.impl.InvitationServiceImpl;
+import com.hy.crmsystem.mrfan.service.impl.ReolyinvitationServiceImpl;
+import com.hy.crmsystem.mrpan.entity.Business;
+import com.hy.crmsystem.mrzhang.entity.LayuiData;
+import com.hy.crmsystem.uploadimage.UploadImage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
-import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -35,35 +37,52 @@ import java.util.List;
 public class InvitationController {
     @Autowired
     InvitationServiceImpl invitationService;
+    @Autowired
+    private ReolyinvitationServiceImpl reolyinvitationService;
 
     @ResponseBody
     @RequestMapping("queryAllInvitation.do")
-    public LayuiDate queryAllInvitation(@RequestParam(name="page" )String page,@RequestParam(name="limit")String limit,InvitationBo invitationBo){
-        LayuiDate layuiDate=new LayuiDate();
-        IPage<InvitationBo> invitationBoIPage= invitationService.queryAllInvitation(Integer.parseInt(page),Integer.parseInt(limit),invitationBo);
-        layuiDate.setData(invitationBoIPage.getRecords());
-        layuiDate.setCount(Integer.parseInt(String.valueOf(invitationBoIPage.getTotal())));
-        return layuiDate;
+    public LayuiData queryAllInvitation(@RequestParam(name="page" )String page, @RequestParam(name="limit")String limit, InvitationBo invitationBo){
+        return invitationService.queryAllInvitation(Integer.parseInt(page),Integer.parseInt(limit),invitationBo);
     }
-    @RequestMapping("/fileuploadExecl.do")
+
     @ResponseBody
-    public ImgBean fileuploadExecl(@RequestParam("file") MultipartFile pictureFile, HttpServletRequest request){
+    @RequestMapping("/fileuploadExecl.do")
+    public UploadImage fileuploadExecl(@RequestParam("file") MultipartFile pictureFile, HttpServletRequest request){
         return invitationService.fileuploadExecl(pictureFile,request);
     }
-    @RequestMapping("/add.do")
-    @ResponseBody
-    public String add(Invitation invitation){
-        String s="0";
-        try {
-            invitation.setInvitationTime(new Date());
-            invitationService.save(invitation);
-        }catch (Exception e){
-            s="1";
-        }
-        return s;
-    }
-    public static void main(String[] args){
 
-    System.out.println(new SimpleDateFormat( "yyyy-MM-dd").format(new Date()));
+    @ResponseBody
+    @RequestMapping("/queryAllBusiness.do")
+    public List<Business> queryAllBusiness(){
+        return invitationService.queryAllBusiness();
     }
+
+
+    @RequestMapping("/addInvitation.do")
+    public String addInvitation(Invitation invitation){
+            invitation.setInvitationTime(new Date());
+            invitation.setInvitationAuthor("zzzz");
+            invitationService.save(invitation);
+        return "redirect:/page/invitation/queryAllInvitation.html";
+    }
+
+    /*  查询回复 */
+    @RequestMapping("/queryInvitationById.do")
+    public String queryInvitationById(Integer invitationId, Model model){
+        Invitation invitation = invitationService.getById(invitationId);/* 查询当前主题的帖子 */
+        System.out.println("============================"+invitation+"===========================");
+        List<InvitationReolyBo> YiJiHuiFu = reolyinvitationService.queryReolyInvitationById1(invitation.getInvitationId());/* 查询当前帖子的一级回复*/
+        List<InvitationReolyBo> YiJiXiaHuiFu = reolyinvitationService.queryReolyId(YiJiHuiFu);/* 查询一级回复下面的回复*/
+        model.addAttribute("invitation",invitation);
+        model.addAttribute("YiJiHuiFu",YiJiHuiFu);/* 查询所有的一级回复*/
+        model.addAttribute("YiJiXiaHuiFu",YiJiXiaHuiFu);/* 查询一级回复下的回复 */
+        return "page/invitation/queryInvitationById";
+    }
+
+    /*@ResponseBody
+    @RequestMapping("/queryInvitationByReolyId.do")
+    public List<InvitationReolyBo> queryInvitationByReolyId(Integer reolyId){
+        return reolyinvitationService.queryReolyId(reolyId);*//* 查询一级回复下面的回复*//*
+    }*/
 }

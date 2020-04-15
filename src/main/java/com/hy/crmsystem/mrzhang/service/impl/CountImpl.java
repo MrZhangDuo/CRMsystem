@@ -8,6 +8,7 @@ import com.hy.crmsystem.mrpan.entity.Customer;
 import com.hy.crmsystem.mrpan.mapper.CustomerMapper;
 import com.hy.crmsystem.mrpan.service.impl.BusinessServiceImpl;
 import com.hy.crmsystem.mrzhang.entity.CountDocumetMoery;
+import com.hy.crmsystem.mrzhang.entity.LayuiData;
 import com.hy.crmsystem.mrzhang.mapper.CountMmapper;
 import com.hy.crmsystem.mrzhang.service.ICountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -510,7 +511,7 @@ public class CountImpl implements ICountService {
         }
     }
 
-    public List<CountDocumetMoery> countCustBZMoney(Integer page, Integer limit){
+    public LayuiData countCustBZMoney(Integer page, Integer limit){
         QueryWrapper queryWrapper = new QueryWrapper();
         /* 查询所有客户 */
         IPage<Customer> customerIPage = customerMapper.selectPage(new Page<>(page,limit),queryWrapper);
@@ -571,11 +572,14 @@ public class CountImpl implements ICountService {
 
             list.add(countDocumetMoery);
         }
-        return list;
+        LayuiData layuiData = new LayuiData();
+        layuiData.setData(list);
+        layuiData.setCount(Long.parseLong(String.valueOf(customerIPage.getTotal())));
+        return layuiData;
     }
 
 
-    public List<CountDocumetMoery> countCustBYMoney(Integer page, Integer limit){
+    public LayuiData countCustBYMoney(Integer page, Integer limit){
         QueryWrapper queryWrapper = new QueryWrapper();
         /* 查询所有客户 */
         IPage<Customer> customerIPage = customerMapper.selectPage(new Page<>(page,limit),queryWrapper);
@@ -636,15 +640,20 @@ public class CountImpl implements ICountService {
 
             list.add(countDocumetMoery);
         }
-        return list;
+        LayuiData layuiData = new LayuiData();
+        layuiData.setData(list);
+        layuiData.setCount(Long.parseLong(String.valueOf(customerIPage.getTotal())));
+        return layuiData;
     }
 
-    public List<CountDocumetMoery> countCustBJMoney(Integer page, Integer limit){
+    public LayuiData countCustBJMoney(Integer page, Integer limit){
+        LayuiData layuiData = new LayuiData();
         QueryWrapper queryWrapper = new QueryWrapper();
         /* 查询所有客户 */
         IPage<Customer> customerIPage = customerMapper.selectPage(new Page<>(page,limit),queryWrapper);
         /* 转换为集合客户 进行遍历 */
         List<Customer> customerList = customerIPage.getRecords();
+        layuiData.setCount(Long.parseLong(String.valueOf(customerIPage.getTotal())));
         List<CountDocumetMoery> list = new ArrayList();
         for (int i = 0; i <customerList.size() ; i++) {
             CountDocumetMoery countDocumetMoery= new CountDocumetMoery();
@@ -700,12 +709,15 @@ public class CountImpl implements ICountService {
 
             list.add(countDocumetMoery);
         }
-        return list;
+        layuiData.setData(list);
+        return layuiData;
+
     }
 
 
 
-    public List<CountDocumetMoery> countCustBNMoney(Integer page, Integer limit){
+    public LayuiData countCustBNMoney(Integer page, Integer limit){
+        LayuiData layuiData = new LayuiData();
         QueryWrapper queryWrapper = new QueryWrapper();
         /* 查询所有客户 */
         IPage<Customer> customerIPage = customerMapper.selectPage(new Page<>(page,limit),queryWrapper);
@@ -766,6 +778,8 @@ public class CountImpl implements ICountService {
 
             list.add(countDocumetMoery);
         }
-        return list;
+        layuiData.setData(list);
+        layuiData.setCount(Long.parseLong(String.valueOf(customerIPage.getTotal())));
+        return layuiData;
     }
 }
