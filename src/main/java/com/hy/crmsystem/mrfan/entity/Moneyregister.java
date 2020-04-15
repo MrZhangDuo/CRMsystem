@@ -21,6 +21,8 @@ public class Moneyregister implements Serializable {
     private static final long serialVersionUID = 1L;
     //收入登记主键
     private Integer incomeId;
+    //合同主键
+    private Integer contractId;
     //收入日期
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date incomeTime;
@@ -29,11 +31,11 @@ public class Moneyregister implements Serializable {
     //收入金额
     private String incomesMoney;
     //大写
-    private String MoneyBigWrite;
+    private String moneyBigWrite;
     //收款方式
     private Integer incomeWay;
     //登记人
-    private String RegisterPeople;
+    private String registerPeople;
     //关联人员
     private String relevancyPeople;
     //关联部门
@@ -45,13 +47,20 @@ public class Moneyregister implements Serializable {
     //收入说明
     private String incomeldExplain;
 
-
     public Integer getIncomeId() {
         return incomeId;
     }
 
     public void setIncomeId(Integer incomeId) {
         this.incomeId = incomeId;
+    }
+
+    public Integer getContractId() {
+        return contractId;
+    }
+
+    public void setContractId(Integer contractId) {
+        this.contractId = contractId;
     }
 
     public Date getIncomeTime() {
@@ -69,6 +78,7 @@ public class Moneyregister implements Serializable {
     public void setIncomesort(Integer incomesort) {
         this.incomesort = incomesort;
     }
+
     public String getIncomesMoney() {
         return incomesMoney;
     }
@@ -76,13 +86,15 @@ public class Moneyregister implements Serializable {
     public void setIncomesMoney(String incomesMoney) {
         this.incomesMoney = incomesMoney;
     }
+
     public String getMoneyBigWrite() {
-        return MoneyBigWrite;
+        return moneyBigWrite;
     }
 
-    public void setMoneyBigWrite(String MoneyBigWrite) {
-        this.MoneyBigWrite = MoneyBigWrite;
+    public void setMoneyBigWrite(String moneyBigWrite) {
+        this.moneyBigWrite = moneyBigWrite;
     }
+
     public Integer getIncomeWay() {
         return incomeWay;
     }
@@ -90,13 +102,15 @@ public class Moneyregister implements Serializable {
     public void setIncomeWay(Integer incomeWay) {
         this.incomeWay = incomeWay;
     }
+
     public String getRegisterPeople() {
-        return RegisterPeople;
+        return registerPeople;
     }
 
-    public void setRegisterPeople(String RegisterPeople) {
-        this.RegisterPeople = RegisterPeople;
+    public void setRegisterPeople(String registerPeople) {
+        this.registerPeople = registerPeople;
     }
+
     public String getRelevancyPeople() {
         return relevancyPeople;
     }
@@ -104,6 +118,7 @@ public class Moneyregister implements Serializable {
     public void setRelevancyPeople(String relevancyPeople) {
         this.relevancyPeople = relevancyPeople;
     }
+
     public Integer getRelevancyDept() {
         return relevancyDept;
     }
@@ -111,6 +126,7 @@ public class Moneyregister implements Serializable {
     public void setRelevancyDept(Integer relevancyDept) {
         this.relevancyDept = relevancyDept;
     }
+
     public String getUnit() {
         return unit;
     }
@@ -118,6 +134,7 @@ public class Moneyregister implements Serializable {
     public void setUnit(String unit) {
         this.unit = unit;
     }
+
     public String getRelevancyContract() {
         return relevancyContract;
     }
@@ -125,6 +142,7 @@ public class Moneyregister implements Serializable {
     public void setRelevancyContract(String relevancyContract) {
         this.relevancyContract = relevancyContract;
     }
+
     public String getIncomeldExplain() {
         return incomeldExplain;
     }
@@ -137,12 +155,13 @@ public class Moneyregister implements Serializable {
     public String toString() {
         return "Moneyregister{" +
                 "incomeId=" + incomeId +
+                ", contractId=" + contractId +
                 ", incomeTime=" + incomeTime +
                 ", incomesort=" + incomesort +
                 ", incomesMoney='" + incomesMoney + '\'' +
-                ", MoneyBigWrite='" + MoneyBigWrite + '\'' +
+                ", moneyBigWrite='" + moneyBigWrite + '\'' +
                 ", incomeWay=" + incomeWay +
-                ", RegisterPeople='" + RegisterPeople + '\'' +
+                ", registerPeople='" + registerPeople + '\'' +
                 ", relevancyPeople='" + relevancyPeople + '\'' +
                 ", relevancyDept=" + relevancyDept +
                 ", unit='" + unit + '\'' +

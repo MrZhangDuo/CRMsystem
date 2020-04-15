@@ -17,8 +17,7 @@
     <!-- 静态资源放行-->
     <mvc:default-servlet-handler></mvc:default-servlet-handler>
 
-
-   <bean id="templateResolver" class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver">
+    <bean id="templateResolver" class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver">
         <property name="characterEncoding" value="utf-8"></property>
         <!--prefix，用于指定template所在目录；-->
         <property name="prefix" value="/"></property>
@@ -30,7 +29,6 @@
         <property name="templateMode" value="HTML"></property>
     </bean>
 
-
     <!--配置模板引擎-->
     <bean id="templateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">
         <property name="templateResolver" ref="templateResolver"></property>
@@ -38,7 +36,7 @@
 
     <!--视图解析器-->
     <bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
-       <!-- 解决中文乱码-->
+        <!--解决中文乱码-->
         <property name="characterEncoding" value="utf-8"></property>
         <property name="templateEngine" ref="templateEngine"></property>
     </bean>

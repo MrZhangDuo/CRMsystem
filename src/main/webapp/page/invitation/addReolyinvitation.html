@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="/css/public.css" media="all">
+    <style>
+        body {
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+<form class="layui-form" id="add">
+    <div class="layui-form layuimini-form">
+        <input type="hidden" name="reolyContent" id="reolyContent">
+        <!-- 富文本编辑器 -->
+        <textarea id="fuwenben" style="display: none;"></textarea>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="saveBtn" >确认保存</button>
+            </div>
+        </div>
+    </div>
+</form>
+<script src="/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script>
+    layui.use(['layedit','form','upload'], function () {
+        var layedit = layui.layedit;
+        var form = layui.form,
+            upload=layui.upload,
+            $ = layui.$;
+        layedit.set({
+            uploadImage: {
+                url: '/invitation/fileuploadExecl.do' //接口url
+                ,type: 'get' //默认post
+            }
+        });
+        //注意：layedit.set 一定要放在 build 前面，否则配置全局接口将无效。
+        var index = layedit.build('fuwenben'); //建立编辑器
+        var dizhi = window.location.search;
+        alert(dizhi);
+        //监听提交
+        form.on('submit(saveBtn)', function (data) {
+            window.location.href="/reolyinvitation/insertErReoly.do"+dizhi+"&reolyContent="+layedit.getContent(index)
+            return false;
+        });
+
+        var uploadInst = upload.render({
+            elem: '#test3'
+            ,url: '/invitation/fileuploadExecl.do'
+            ,before: function(obj){
+                //预读本地文件示例，不支持ie8
+                obj.preview(function(index, file, result){
+                    $('#fileupload').attr('src', result); //图片链接（base64）
+                });
+            }
+            ,done: function(res){
+                //如果上传成功
+                if(res.code ==="0"){
+                    $("#inmportimg").val(res.fileName)
+                    return layer.msg('上传成功');
+                }
+                //上传成功
+            }
+            ,error: function(){
+                //演示失败状态，并实现重传
+                var demoText = $('#demoText');
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                demoText.find('.demo-reload').on('click', function(){
+                    uploadInst.upload();
+                });
+            }
+        });
+    });
+</script>
+</body>
+</html>

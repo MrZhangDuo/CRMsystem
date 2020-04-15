@@ -23,20 +23,22 @@ public class Billaskfor implements Serializable {
     //开票主键
     @TableId(value = "billId", type = IdType.AUTO)
     private Integer billId;
+    //合同外键
+    private Integer contractId;
     //结束时间
     @DateTimeFormat(pattern="yyyy-MM-dd")
-    private Date Endtime;
+    private Date endtime;
     //详细地址
-    private String Address;
+    private String address;
     //申请人姓名
-    private String AskForName;
+    private String askForName;
     //所属部门
     private String BillDept;
     //申请日期
     @DateTimeFormat(pattern="yyyy-MM-dd")
-    private Date AskFortime;
+    private Date askFortime;
     //主要技术条款
-    private String BillTechnical;
+    private String billTechnical;
     //对方单位全称
     private String unitName;
     //关联合同图片
@@ -48,11 +50,11 @@ public class Billaskfor implements Serializable {
     //开户银行及账号
     private String account;
     //地址电话
-    private String AdderssPhone;
+    private String adderssPhone;
     //开票金额
     private String billMoney;
     //金额大写
-    private String MoneyBigwriter;
+    private String moneyBigwriter;
     //开票日期
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date billTime;
@@ -61,22 +63,6 @@ public class Billaskfor implements Serializable {
     //相关附件
     private String file;
 
-    public Date getEndtime() {
-        return Endtime;
-    }
-
-    public void setEndtime(Date endtime) {
-        Endtime = endtime;
-    }
-
-    public Date getAskFortime() {
-        return AskFortime;
-    }
-
-    public void setAskFortime(Date askFortime) {
-        AskFortime = askFortime;
-    }
-
     public Integer getBillId() {
         return billId;
     }
@@ -84,34 +70,63 @@ public class Billaskfor implements Serializable {
     public void setBillId(Integer billId) {
         this.billId = billId;
     }
+
+    public Integer getContractId() {
+        return contractId;
+    }
+
+    public void setContractId(Integer contractId) {
+        this.contractId = contractId;
+    }
+
+    public Date getEndtime() {
+        return endtime;
+    }
+
+    public void setEndtime(Date endtime) {
+        this.endtime = endtime;
+    }
+
     public String getAddress() {
-        return Address;
+        return address;
     }
 
-    public void setAddress(String Address) {
-        this.Address = Address;
+    public void setAddress(String address) {
+        this.address = address;
     }
+
     public String getAskForName() {
-        return AskForName;
+        return askForName;
     }
 
-    public void setAskForName(String AskForName) {
-        this.AskForName = AskForName;
+    public void setAskForName(String askForName) {
+        this.askForName = askForName;
     }
+
     public String getBillDept() {
         return BillDept;
     }
 
-    public void setBillDept(String BillDept) {
-        this.BillDept = BillDept;
-    }
-    public String getBillTechnical() {
-        return BillTechnical;
+    public void setBillDept(String billDept) {
+        BillDept = billDept;
     }
 
-    public void setBillTechnical(String BillTechnical) {
-        this.BillTechnical = BillTechnical;
+    public Date getAskFortime() {
+        return askFortime;
     }
+
+    public void setAskFortime(Date askFortime) {
+        this.askFortime = askFortime;
+    }
+
+    public String getBillTechnical() {
+        return billTechnical;
+    }
+
+    public void setBillTechnical(String billTechnical) {
+        this.billTechnical = billTechnical;
+    }
+
     public String getUnitName() {
         return unitName;
     }
@@ -119,6 +134,7 @@ public class Billaskfor implements Serializable {
     public void setUnitName(String unitName) {
         this.unitName = unitName;
     }
+
     public String getRelevancyContract() {
         return relevancyContract;
     }
@@ -126,6 +142,7 @@ public class Billaskfor implements Serializable {
     public void setRelevancyContract(String relevancyContract) {
         this.relevancyContract = relevancyContract;
     }
+
     public String getBillSort() {
         return billSort;
     }
@@ -133,6 +150,7 @@ public class Billaskfor implements Serializable {
     public void setBillSort(String billSort) {
         this.billSort = billSort;
     }
+
     public String getTaxpayernum() {
         return taxpayernum;
     }
@@ -140,6 +158,7 @@ public class Billaskfor implements Serializable {
     public void setTaxpayernum(String taxpayernum) {
         this.taxpayernum = taxpayernum;
     }
+
     public String getAccount() {
         return account;
     }
@@ -147,13 +166,15 @@ public class Billaskfor implements Serializable {
     public void setAccount(String account) {
         this.account = account;
     }
+
     public String getAdderssPhone() {
-        return AdderssPhone;
+        return adderssPhone;
     }
 
-    public void setAdderssPhone(String AdderssPhone) {
-        this.AdderssPhone = AdderssPhone;
+    public void setAdderssPhone(String adderssPhone) {
+        this.adderssPhone = adderssPhone;
     }
+
     public String getBillMoney() {
         return billMoney;
     }
@@ -161,12 +182,13 @@ public class Billaskfor implements Serializable {
     public void setBillMoney(String billMoney) {
         this.billMoney = billMoney;
     }
+
     public String getMoneyBigwriter() {
-        return MoneyBigwriter;
+        return moneyBigwriter;
     }
 
     public void setMoneyBigwriter(String moneyBigwriter) {
-        MoneyBigwriter = moneyBigwriter;
+        this.moneyBigwriter = moneyBigwriter;
     }
 
     public Date getBillTime() {
@@ -188,29 +210,30 @@ public class Billaskfor implements Serializable {
     public String getFile() {
         return file;
     }
+
     public void setFile(String file) {
         this.file = file;
     }
-
 
     @Override
     public String toString() {
         return "Billaskfor{" +
                 "billId=" + billId +
-                ", Endtime=" + Endtime +
-                ", Address='" + Address + '\'' +
-                ", AskForName='" + AskForName + '\'' +
+                ", contractId=" + contractId +
+                ", endtime=" + endtime +
+                ", address='" + address + '\'' +
+                ", askForName='" + askForName + '\'' +
                 ", BillDept='" + BillDept + '\'' +
-                ", AskFortime=" + AskFortime +
-                ", BillTechnical='" + BillTechnical + '\'' +
+                ", askFortime=" + askFortime +
+                ", billTechnical='" + billTechnical + '\'' +
                 ", unitName='" + unitName + '\'' +
                 ", relevancyContract='" + relevancyContract + '\'' +
                 ", billSort='" + billSort + '\'' +
                 ", taxpayernum='" + taxpayernum + '\'' +
                 ", account='" + account + '\'' +
-                ", AdderssPhone='" + AdderssPhone + '\'' +
+                ", adderssPhone='" + adderssPhone + '\'' +
                 ", billMoney='" + billMoney + '\'' +
-                ", MoneyBigwriter='" + MoneyBigwriter + '\'' +
+                ", moneyBigwriter='" + moneyBigwriter + '\'' +
                 ", billTime=" + billTime +
                 ", billNum='" + billNum + '\'' +
                 ", file='" + file + '\'' +

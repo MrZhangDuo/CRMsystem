@@ -1,7 +1,6 @@
-package com.hy.crmsystem.mrzhang.provider.selectProvider;
+package com.hy.crmsystem.mrzhang.provider.selectprovider;
 
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
-import org.apache.ibatis.annotations.Param;
 
 public class QueryCustContractNum {
 
@@ -14,7 +13,7 @@ public class QueryCustContractNum {
     }
 
     public String queryAfterServiceById(String serviceId){
-        return new StringBuffer("SELECT a.*,c.`custName` FROM afterservice a,customer c WHERE a.`custId`=c.`custId` AND a.`serviceId`='"+Integer.parseInt(serviceId)+"' ").toString();
+        return new StringBuffer("SELECT a.*,c.`custName` FROM afterservice a,customer c WHERE a.`custId`=c.`custId` AND a.`serviceId`='"+Integer.parseInt(serviceId)+"'").toString();
     }
 
 }
