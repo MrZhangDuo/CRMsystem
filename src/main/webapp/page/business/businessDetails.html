@@ -1,0 +1,282 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>商机详情</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="/css/public.css" media="all">
+</head>
+<style type="text/css">
+   /* 文本框样式设置*/
+    .layui-input-block {
+        width: 600px;
+        height:30px;
+    }
+    #update{
+        margin: 0px auto;
+        width: 200px;
+        margin-left: 450px;
+    }
+    #cancle{
+        margin: 0px auto;
+        width: 200px;
+        margin-left: 50px;
+    }
+</style>
+
+<body bgcolor="#faebd7">
+<div class="layuimini-container">
+    <div class="layuimini-main">
+
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">商机名称</label>
+                <div class="layui-input-block">
+                    <input type="text" name="busName" th:value="${selectCustInfo.getBusName()}" lay-verify="title" autocomplete="off" placeholder="请输入所在城市" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">优先级</label>
+                <div class="layui-input-block">
+                    <input type="radio" th:value="低" th:checked="${selectCustInfo.getBusPriority()eq'低'}" >低
+                    <input type="radio" th:value="中" th:checked="${selectCustInfo.getBusPriority()eq'中'}" >中
+                    <input type="radio" th:value="高" th:checked="${selectCustInfo.getBusPriority()eq'高'}" >高
+                </div>
+            </div>
+        </div>
+        </div>
+
+
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+            <legend>客户信息</legend>
+        </fieldset>
+
+        <form class="layui-form" id="business">
+            <!--添加商机的时间-->
+            <input type="hidden" name="busNowTime" th:value="${selectCustInfo.getNowTime()}" >
+           <!--客户id-->
+            <input type="hidden" id="custId" name="custId" th:value="${selectCustInfo.getCustId()}" >
+
+            <div class="layui-inline">
+                <label class="layui-form-label">客户名称</label>
+                <div class="layui-input-block">
+                    <input type="text" name="custName" th:value="${selectCustInfo.getCustName()}"  lay-verify="title" autocomplete="off" placeholder="请输入客户名称" class="layui-input">
+                </div>
+            </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">所属行业</label>
+                    <div class="layui-input-block">
+                        <select name="custTrade" lay-verify="required">
+                            <option th:text="${selectCustInfo.getCustTrade()}"></option>
+                            <option th:value="经融" th:selected="${selectCustInfo.getCustTrade()eq '经融'}" >经融</option>
+                            <option th:value="医药" th:selected="*{selectCustInfo.getCustTrade()eq '医药'}">医药</option>
+                            <option th:value="加工制造" th:selected="*{selectCustInfo.getCustTrade()eq '加工制造'}">加工制造</option>
+                            <option th:value="酒店旅游" th:selected="*{selectCustInfo.getCustTrade()eq '酒店旅游'}">酒店旅游</option>
+                        </select>
+                    </div>
+                </div>
+
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">所在城市</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="custCity" th:value="${selectCustInfo.getCustCity()}" lay-verify="title" autocomplete="off" placeholder="请输入所在城市" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">详细地址</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="custAddress" th:value="${selectCustInfo.getCustAddress()}" lay-verify="title" autocomplete="off" placeholder="请输入详细地址" class="layui-input">
+                    </div>
+                </div>
+            </div>
+
+            <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+                <legend>商机信息</legend>
+            </fieldset>
+            <!--商机id-->
+              <input type="hidden" name="busId" th:value="${selectCustInfo.getBusId()}">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">商机名称</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="busName" th:value="${selectCustInfo.getBusName()}" lay-verify="title" autocomplete="off" placeholder="请输入商机名称" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">客户来源</label>
+                    <div class="layui-input-block">
+                        <select name="custSource" lay-verify="required">
+                            <option th:text="${selectCustInfo.getCustSource()}"></option>
+                            <option th:value="老客户" th:selected="${selectCustInfo.getCustSource()eq '老客户'}" >老客户</option>
+                            <option th:value="代理商" th:selected="${selectCustInfo.getCustSource()eq '代理商'}">代理商</option>
+                            <option th:value="互联网" th:selected="${selectCustInfo.getCustSource()eq '互联网'}">互联网</option>
+                            <option th:value="朋友推荐" th:selected="${selectCustInfo.getCustSource()eq '朋友推荐'}" >朋友推荐</option>
+                            <option th:value="看海报" th:selected="${selectCustInfo.getCustSource()eq '看海报'}">看海报</option>
+                            <option th:value="电话访问" th:selected="${selectCustInfo.getCustSource()eq '电话访问'}">电话访问</option>
+                            <option th:value="其他" th:selected="${selectCustInfo.getCustSource()eq '其他'}">其他</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">预计成交金额</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="busBeforeMoney" th:value="${selectCustInfo.getBusBeforeMoney()}" lay-verify="title" autocomplete="off" placeholder="请输入预计成交金额" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">预计结单日期</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="busBeforedate" th:value="${selectCustInfo.getBeForedate()}" lay-verify="title" autocomplete="off" placeholder="请输入预计结单日期" class="layui-input">
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">联系人</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="busBlinkMan" th:value="${selectCustInfo.getBusBlinkMan()}" lay-verify="title" autocomplete="off" placeholder="请输入联系人" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">部门</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="busDept" th:value="${selectCustInfo.getBusDept()}" lay-verify="title" autocomplete="off" placeholder="请输入部门" class="layui-input">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">职务</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="busJob" th:value="${selectCustInfo.getBusJob()}" lay-verify="title" autocomplete="off" placeholder="请输入职务" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">固定电话</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="busFixnum" th:value="${selectCustInfo.getBusFixnum()}" lay-verify="title" autocomplete="off" placeholder="请输入固定电话" class="layui-input">
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">移动电话</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="busPhone" th:value="${selectCustInfo.getBusPhone()}" lay-verify="title" autocomplete="off" placeholder="请输入移动电话" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">邮件/QQ</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="busEmail" th:value="${selectCustInfo.getBusEmail()}" lay-verify="title" autocomplete="off" placeholder="请输入邮件/QQ" class="layui-input">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">主要业务需求</label>
+                <div class="layui-input-block" style="height:90px">
+                    <textarea name="busNeed" th:text="${selectCustInfo.getBusNeed()}" placeholder="请输入内容" class="layui-textarea"></textarea>
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">相关附件</label>
+                    <div class="layui-input-block">
+                        <input type="file" name="busFile" th:value="${selectCustInfo.getBusFile()}" formmethod="post" formenctype="multipart/form-data"  lay-verify="title" class="layui-input">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">商机所属部门</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="custDept" th:value="${selectCustInfo.getCustDept()}" lay-verify="title" autocomplete="off" placeholder="请输入职务" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">商机负责人</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="busDutyPeople" th:value="${selectCustInfo.getBusDutyPeople()}" lay-verify="title" autocomplete="off" placeholder="请输入固定电话" class="layui-input">
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">商机参与人</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="busJoinPeople" th:value="${selectCustInfo.getBusJoinPeople()}" lay-verify="title" autocomplete="off" placeholder="请输入职务" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">商机关注人</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="busFollowPeople" th:value="${selectCustInfo.getBusFollowPeople()}" lay-verify="title" autocomplete="off" placeholder="请输入固定电话" class="layui-input">
+                    </div>
+                </div>
+            </div>
+
+            <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;height:20px">
+                <legend>处理流程日志</legend>
+            </fieldset>
+            <button type="submit" class="layui-btn layui-btn-primary" lay-submit  lay-filter="update" id="update" ><i class="layui-icon"></i>修改</button>
+            <a class='btn btn-info' href="javascript:history.go(-1)"><button type="button" class="layui-btn layui-btn-primary" >取消</button></a>
+           <!-- <a th:href="@{'/page/customer/businessNumberInfo.html?custId='+${selectCustInfo.getCustId()}}"	class="layui-btn layui-btn-radius layui-btn-warm" lay-filter="qux"  id="cancle" >取消</a>-->
+
+        </form>
+    </div>
+</div>
+<script src="/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+<script>
+    layui.use(['form', 'layedit', 'laydate','jquery'], function () {
+        var form = layui.form
+        var $ = layui.jquery
+            , layer = layui.layer
+            , layedit = layui.layedit
+            , laydate = layui.laydate;
+
+
+        //自定义验证规则
+        /*form.verify({
+            title: function (value) {
+                if (value.length < 5) {
+                    return '标题至少得5个字符啊';
+                }
+            }
+            , pass: [
+                /^[\S]{6,12}$/
+                , '密码必须6到12位，且不能出现空格'
+            ]
+            , content: function (value) {
+                layedit.sync(editIndex);
+            }
+        });*/
+
+        //监听提交修改
+        form.on('submit(update)', function (data) {
+            $('form[id=business]').attr('action','/business/updateBusDetails.do').submit();
+            return false;
+        });
+    });
+
+
+</script>
+
+</body>
+</html>

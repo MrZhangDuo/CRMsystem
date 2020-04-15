@@ -190,8 +190,26 @@
       </plugin>
     </plugins>
 
-     <!--maven在扫描java文件夹时，不会扫描其中的.xml文件，因为它默认是扫描java文件的 在build里面加入对xml和properties文件的扫描即可：-->
-
+    <!-- maven在扫描java文件夹时，不会扫描其中的.xml文件，因为它默认是扫描java文件的 在build里面加入对xml和properties文件的扫描即可：-->
+    <resources>
+      <resource>
+        <directory>src/main/java</directory>
+        <includes>
+          <include>**/*.properties</include>
+          <include>**/*.xml</include>
+        </includes>
+        <filtering>false</filtering>
+      </resource>
+      <!--由于修改了默认的resource目录，导致src/main/resources的所有文件都不能被扫描，因此还要配多一个-->
+      <resource>
+        <directory>src/main/resources</directory>
+        <includes>
+          <include>**/*.properties</include>
+          <include>**/*.xml</include>
+        </includes>
+        <filtering>false</filtering>
+      </resource>
+    </resources>
 
   </build>
 </project>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <html>
 <head>
     <meta charset="utf-8">
@@ -19,7 +19,7 @@
     }
 
     /*按钮位置设置*/
-    #return{
+    #fanhui{
         margin: 0px auto;
         width: 130px;
         margin-top: -10px;
@@ -36,14 +36,14 @@
         margin: 0px auto;
         width: 200px;
         margin-top: -30px;
-        margin-left: 300px;
+        margin-left: 400px;
     }
 
     #select{
         margin: 0px auto;
         width: 200px;
         margin-top: -30px;
-        margin-left: 260px;
+        margin-left: 60px;
     }
 </style>
 
@@ -56,23 +56,21 @@
             <legend>商机列表</legend>
         </fieldset>
 
-            <a class="layui-btn layui-btn-radius" lay-event="update" id="return">返回</a>
-            <a class="layui-btn layui-btn-radius" lay-event="refresh" id="shuaxing">刷新</a>
+        <button class="layui-btn layui-btn-radius" lay-event="update" id="fanhui">返回</button>
 
-
-        <form class="layui-form" action="">
+        <form class="layui-form">
 
             <div class="layui-form-item">
                 <div class="layui-inline">
                     <label class="layui-form-label">商机全称</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入商机全称" class="layui-input">
+                        <input type="text" name="busName" lay-verify="title" autocomplete="off" placeholder="请输入商机全称" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-inline">
                     <label class="layui-form-label">商机阶段</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入商机阶段" class="layui-input">
+                        <input type="text" name="busStage" lay-verify="title" autocomplete="off" placeholder="请输入商机阶段" class="layui-input">
                     </div>
                 </div>
             </div>
@@ -82,13 +80,13 @@
                 <div class="layui-inline">
                     <label class="layui-form-label">商机负责人</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入商机负责人" class="layui-input">
+                        <input type="text" name="busDutyPeople" lay-verify="title" autocomplete="off" placeholder="请输入商机负责人" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-inline">
                     <label class="layui-form-label">所属部门</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入所属部门" class="layui-input">
+                        <input type="text" name="busDept" lay-verify="title" autocomplete="off" placeholder="请输入所属部门" class="layui-input">
                     </div>
                 </div>
             </div>
@@ -97,20 +95,18 @@
                 <div class="layui-inline">
                     <label class="layui-form-label">预计成交金额</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入预计成交金额" class="layui-input">
+                        <input type="text" name="busBeforeMoney" lay-verify="title" autocomplete="off" placeholder="请输入预计成交金额" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-inline">
                     <label class="layui-form-label">预计结单日期</label>
                     <div class="layui-input-block">
-                        <input type="date" name="title" lay-verify="title" autocomplete="off" placeholder="yyyy-mm-dd" class="layui-input">
+                        <input type="date" name="busBeforedate" lay-verify="title" autocomplete="off" placeholder="yyyy-mm-dd" class="layui-input">
                     </div>
                 </div>
             </div>
-
-            <a class="layui-btn layui-btn-radius" lay-event="select" id="select">查找商机</a>
+            <button type="submit" class="layui-btn layui-btn-radius" lay-submit  lay-filter="chaxun" id="select"> 查找商机</button>
             <input type="reset" class="layui-btn layui-btn-radius layui-btn-danger" id="rese" value="重置">
-           <!-- <a class="layui-btn layui-btn-radius layui-btn-danger" type="reset" id="reset">重置</a>-->
         </form>
     </div>
 </div>
@@ -119,28 +115,42 @@
 
 <script src="/layui/layui.js"></script>
 <script>
-    layui.use('table', function(){
-        var table = layui.table;
+    layui.use(['form', 'table','jquery'], function(){
+        var $ = layui.jquery,
+            form = layui.form,
+            table = layui.table;
+        var url=window.location.search; //获取url中"?"符后的字串
 
         //第一个实例
         table.render({
             elem: '#demo',
             toolbar: '#toolbarDemo'
             ,page: true //开启分页
-            ,url: '/demo/table/user/' //数据接口
-            ,
-            cols: [[ //表头
-                {field: 'busName', title: '商机名称', width:380}
-                ,{field: 'busStage', title: '商机阶段', width:270}
-                ,{field: 'busBeforeMoney', title: '预计成交金额', width:250}
+            ,url: '/business/selectBusInfo.do'+url//数据接口
+            ,type:'get'
+            ,cols: [[ //表头
+                {field: 'busName', title: '商机名称', width:280,templet:'<div><a  href="/business/custByBusId.do?busId={{d.busId}}" class="layui-table-link">{{d.busName}}</a></div>'}
+                ,{field: 'busStage', title: '商机阶段', width:150}
+                ,{field: 'busBeforeMoney', title: '预计成交金额', width:180}
                 ,{field: 'busDutyPeople', title: '商机负责人', width: 180}
-                ,{field: 'docId', title: '最后跟单', width: 200}
-                ,{field: 'invitationId', title: '讨论版', width: 130}
+                ,{field: 'docId', title: '最后跟单', width: 140,templet:'<div><a  href="  " class="layui-table-link">{{d.docId}}</a></div>'}
+                ,{field: 'invitationId', title: '讨论版', width: 140,templet:'<div><a  href=" " class="layui-table-link">{{d.invitationId==null:0?d.invitationId}}</a></div>'}
             ]]
         });
 
+        $("#fanhui").click(function(){
+            window.location.href="/page/customer/queryAllCust.html";
+        });
+
+        /*监听form表单中的提交事件*/
+        form.on('submit(chaxun)', function(data){
+            table.reload('demo', {
+                url:'/business/selectBusInfo.do'+url,
+                where: data.field //设定异步数据接口的额外参数
+            });
+            return false;
+        });
     });
 </script>
-
 </body>
 </html>
