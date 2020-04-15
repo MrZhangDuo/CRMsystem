@@ -1,12 +1,6 @@
 package com.hy.crmsystem.mrli.vo;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.hy.crmsystem.mrli.entity.BaseEntity;
 import com.hy.crmsystem.mrli.entity.Documentary;
-import org.springframework.format.annotation.DateTimeFormat;
-import sun.plugin.dom.core.Document;
-
-import java.util.Date;
 
 /**
  * @author licheng

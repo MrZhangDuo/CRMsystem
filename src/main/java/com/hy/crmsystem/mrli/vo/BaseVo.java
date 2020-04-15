@@ -1,10 +1,10 @@
-package com.hy.crmsystem.mrli.entity;
+package com.hy.crmsystem.mrli.vo;
 
 /**
  * @author licheng
  * @date 2020/4/4 18:34
  */
-public class BaseEntity {
+public class BaseVo {
     private Integer page;
     private Integer limit;
 

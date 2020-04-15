@@ -19,7 +19,8 @@ http://www.springframework.org/schema/aop http://www.springframework.org/schema/
             6、开启事务注解扫描("tx:annotation-driven")
     -->
 
-    <!--<import resource="classpath:spring/spring-shiro.xml"></import>-->
+    <!-- 引入shiro的配置文件  -->
+    <import resource="classpath:spring/spring-shiro.xml"></import>
     <!-- 引入jdbc.properties 文件 -->
     <context:property-placeholder location="classpath:properties/jdbc.properties"></context:property-placeholder>
     <!-- 引入阿里巴巴DruidDateSource数据源 填写jdbc.properties设置的数据库属性 -->

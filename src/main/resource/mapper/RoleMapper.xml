@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hy.crmsystem.mrli.mapper.RoleMapper">
+
+    <resultMap id="BaseResultMap" type="com.hy.crmsystem.mrli.entity.Role">
+        <id column="roleid" jdbcType="INTEGER" property="roleid"/>
+        <result column="rolename" jdbcType="VARCHAR"
+                property="rolename"/>
+        <result column="roledesc" jdbcType="VARCHAR"
+                property="roledesc"/>
+        <result column="available" jdbcType="INTEGER"
+                property="available"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+		roleid, rolename, roledesc, available
+	</sql>
+
+    <!-- 查询角色 -->
+    <select id="queryAllRole" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_role
+        <where>
+            <if test="rolename!=null and rolename!=''">
+                and rolename like concat("%",#{rolename},"%")
+            </if>
+            <if test="roledesc!=null and roledesc!=''">
+                and roledesc like concat("%",#{roledesc},"%")
+            </if>
+            <if test="available!=null">
+                and available =#{available}
+            </if>
+        </where>
+    </select>
+
+
+    <!-- 根据角色id删除sys_role_menu里面的数据deleteRoleMenuByRid -->
+    <delete id="deleteRoleMenuByRid">
+        delete from sys_role_menu where rid =#{value}
+    </delete>
+    <!-- 根据角色id删除sys_role_user里面的数据 deleteRoleUserByRid -->
+    <delete id="deleteRoleUserByRid">
+        delete from sys_role_user where rid=#{value}
+    </delete>
+
+    <!-- 查询所有可用的角色 -->
+    <select id="queryRole" resultType="com.hy.crmsystem.mrli.entity.Role">
+          select * from sys_role where available=1
+    </select>
+
+
+    <!-- 根据用户id查询角色列表 -->
+    <select id="queryRoleByUid" resultMap="BaseResultMap">
+        select t1.* from sys_role
+        t1 inner join sys_role_user t2 on(t1.roleid=t2.rid) where t2.uid=#{uid}
+        and t1.available=#{available}
+    </select>
+
+    <!-- 根据用户id删除sys_role_user里面的数据 -->
+    <delete id="deleteRoleUserByUid">
+        delete from sys_role_user where uid=#{value}
+    </delete>
+
+
+    <!-- 根据用户id查询角色 -->
+    <select id="queryRolesByUserId" resultMap="BaseResultMap">
+        select t1.*  from sys_role t1 inner join sys_role_user t2 on(t1.roleid=t2.rid) where t2.uid=#{value}
+
+    </select>
+
+</mapper>

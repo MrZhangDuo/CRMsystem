@@ -1,18 +1,12 @@
 package com.hy.crmsystem.mrli.controller;
 
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.hy.crmsystem.mrli.entity.BaseEntity;
 import com.hy.crmsystem.mrli.entity.DataGridView;
-import com.hy.crmsystem.mrli.entity.Documentary;
 import com.hy.crmsystem.mrli.service.IDocumentaryService;
-import com.hy.crmsystem.mrli.utils.ResultObj;
 import com.hy.crmsystem.mrli.vo.DocumentaryVo;
 import com.hy.crmsystem.mrpan.entity.Business;
 import com.hy.crmsystem.mrpan.service.IBusinessService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 

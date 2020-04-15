@@ -121,25 +121,31 @@
         },
         {
           "title": "系统设置",
-          "href": "page/system/system.html",
-          "icon": "fa fa-file-text",
-          "target": "_self",
+          "href": "",
+          "icon": "fa fa-snowflake-o",
+          "target": "",
           "child": [
             {
               "title": "用户管理",
-              "href": "page/contract/queryMyContract.html",
+              "href": "page/system/userManager.html",
               "icon": "fa fa-snowflake-o",
               "target": "_self"
             },
             {
               "title": "角色管理",
-              "href": "page/contract/queryAllContract.html",
+              "href": "page/system/roleManager.html",
               "icon": "fa fa-shield",
               "target": "_self"
             },
             {
               "title": "桌面公告管理",
-              "href": "page/contract/queryAllContract.html",
+              "href": "page/system/noticeManager.html",
+              "icon": "fa fa-shield",
+              "target": "_self"
+            },
+            {
+              "title": "登录日志管理",
+              "href": "page/system/logininfo.html",
               "icon": "fa fa-shield",
               "target": "_self"
             }

@@ -1,11 +1,7 @@
 package com.hy.crmsystem.mrli.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.hy.crmsystem.mrli.entity.BaseEntity;
 import com.hy.crmsystem.mrli.entity.DataGridView;
 import com.hy.crmsystem.mrli.entity.Documentary;
 import com.hy.crmsystem.mrli.mapper.DocumentaryMapper;

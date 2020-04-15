@@ -1,52 +1,60 @@
 package com.hy.crmsystem.mrli.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
- * <p>
- * 
- * </p>
- *
- * @author zhangduo
- * @since 2020-04-03
+ *@author licheng
+ *@date 2020/4/12 15:59
  */
-@TableName(value = "role")
+@TableName(value = "sys_role")
 public class Role implements Serializable {
+    @TableId(value = "roleid", type = IdType.AUTO)
+    private Integer roleid;
 
-    private static final long serialVersionUID = 1L;
+    @TableField(value = "rolename")
+    private String rolename;
 
-    /**
-     * 角色主键
-     */
-    private Integer roleId;
+    @TableField(value = "roledesc")
+    private String roledesc;
 
-    /**
-     * 角色名称
-     */
-    private String roleName;
+    @TableField(value = "available")
+    private Integer available;
 
-    public Integer getRoleId() {
-        return roleId;
+    public Integer getRoleid() {
+        return roleid;
     }
 
-    public void setRoleId(Integer roleId) {
-        this.roleId = roleId;
-    }
-    public String getRoleName() {
-        return roleName;
+    public void setRoleid(Integer roleid) {
+        this.roleid = roleid;
     }
 
-    public void setRoleName(String roleName) {
-        this.roleName = roleName;
+    public String getRolename() {
+        return rolename;
     }
 
-    @Override
-    public String toString() {
-        return "Role{" +
-        "roleId=" + roleId +
-        ", roleName=" + roleName +
-        "}";
+    public void setRolename(String rolename) {
+        this.rolename = rolename;
+    }
+
+    public String getRoledesc() {
+        return roledesc;
+    }
+
+    public void setRoledesc(String roledesc) {
+        this.roledesc = roledesc;
+    }
+
+    public Integer getAvailable() {
+        return available;
+    }
+
+    public void setAvailable(Integer available) {
+        this.available = available;
     }
 }

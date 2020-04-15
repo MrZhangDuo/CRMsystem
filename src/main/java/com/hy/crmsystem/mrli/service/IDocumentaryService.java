@@ -1,6 +1,5 @@
 package com.hy.crmsystem.mrli.service;
 
-import com.hy.crmsystem.mrli.entity.BaseEntity;
 import com.hy.crmsystem.mrli.entity.DataGridView;
 import com.hy.crmsystem.mrli.entity.Documentary;
 import com.baomidou.mybatisplus.extension.service.IService;
