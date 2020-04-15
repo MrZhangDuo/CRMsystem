@@ -48,7 +48,7 @@ public class BusinessCustBo {
     //商机阶段
     private String busStage;
     // 添加商机的时间
-    private Date busNowTime;
+    private Date busTime;
     private String nowTime;
     //商机的优先级
     private String busPriority;
@@ -61,14 +61,22 @@ public class BusinessCustBo {
     private String custSource;
 
     public String getNowTime() {
-        if(nowTime!=null){
-            return new SimpleDateFormat("yyyy-MM-dd").format(nowTime);
+        if(busTime!=null){
+            return new SimpleDateFormat("yyyy-MM-dd").format(busTime);
         }
         return nowTime;
     }
 
     public void setNowTime(String nowTime) {
         this.nowTime = nowTime;
+    }
+
+    public Date getBusTime() {
+        return busTime;
+    }
+
+    public void setBusTime(Date busTime) {
+        this.busTime = busTime;
     }
 
     public String getBeForedate() {
@@ -300,13 +308,6 @@ public class BusinessCustBo {
         this.busStage = busStage;
     }
 
-    public Date getBusNowTime() {
-        return busNowTime;
-    }
-
-    public void setBusNowTime(Date busNowTime) {
-        this.busNowTime = busNowTime;
-    }
 
     public String getBusPriority() {
         return busPriority;

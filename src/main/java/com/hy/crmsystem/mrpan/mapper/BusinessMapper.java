@@ -104,63 +104,63 @@ public interface BusinessMapper extends BaseMapper<Business> {
 
     /*本周新增*/
     @Select("SELECT cb.`busName` AS busName,cb.`busStage` AS busStage,cb.`busBeforeMoney` AS busBeforeMoney,cb.`busDutyPeople` AS busDutyPeople,bd.docTime AS docId,bi.tlbs AS invitationId  FROM \n" +
-            "(SELECT b.`busNowTime`,b.`busId`,b.busName,b.`busStage`,b.`busBeforeMoney`,b.`busDutyPeople`  FROM  business b )AS cb  LEFT JOIN (SELECT b.busId, MAX(d.docTime)AS docTime  FROM business b\n" +
+            "(SELECT b.`busTime`,b.`busId`,b.busName,b.`busStage`,b.`busBeforeMoney`,b.`busDutyPeople`  FROM  business b )AS cb  LEFT JOIN (SELECT b.busId, MAX(d.docTime)AS docTime  FROM business b\n" +
             "LEFT JOIN documentary d ON b.`busId`=d.busId GROUP BY b.busId )AS bd  ON cb.`busId`=bd.busId LEFT JOIN  (SELECT i.`busId`,COUNT(i.busId)AS tlbs FROM business b LEFT JOIN invitation i ON b.`busId`=i.busId GROUP BY b.busId)AS bi ON cb.`busId`=bi.busId \n" +
-            " WHERE YEARWEEK(DATE_FORMAT(busNowTime,'%Y-%m-%d')) = YEARWEEK(NOW())")
+            " WHERE YEARWEEK(DATE_FORMAT(busTime,'%Y-%m-%d')) = YEARWEEK(NOW())")
     public List<BusinessBo> weekAdd();
     /*本周新增数量*/
-    @Select("SELECT COUNT(busId) FROM `business` where YEARWEEK(DATE_FORMAT(busNowTime,'%Y-%m-%d')) = YEARWEEK(NOW())")
+    @Select("SELECT COUNT(busId) FROM `business` where YEARWEEK(DATE_FORMAT(busTime,'%Y-%m-%d')) = YEARWEEK(NOW())")
     public Integer weekAddNumber();
 
     /*上周新增*/
     @Select("SELECT cb.`busName` AS busName,cb.`busStage` AS busStage,cb.`busBeforeMoney` AS busBeforeMoney,cb.`busDutyPeople` AS busDutyPeople,bd.docTime AS docId,bi.tlbs AS invitationId  FROM \n" +
-            "(SELECT b.`busNowTime`,b.`busId`,b.busName,b.`busStage`,b.`busBeforeMoney`,b.`busDutyPeople`  FROM  business b )AS cb  LEFT JOIN (SELECT b.busId, MAX(d.docTime)AS docTime  FROM business b\n" +
+            "(SELECT b.`busTime`,b.`busId`,b.busName,b.`busStage`,b.`busBeforeMoney`,b.`busDutyPeople`  FROM  business b )AS cb  LEFT JOIN (SELECT b.busId, MAX(d.docTime)AS docTime  FROM business b\n" +
             "LEFT JOIN documentary d ON b.`busId`=d.busId GROUP BY b.busId )AS bd  ON cb.`busId`=bd.busId LEFT JOIN  (SELECT i.`busId`,COUNT(i.busId)AS tlbs FROM business b LEFT JOIN invitation i ON b.`busId`=i.busId GROUP BY b.busId)AS bi ON cb.`busId`=bi.busId \n" +
-            "WHERE YEARWEEK(DATE_FORMAT(busNowTime,'%Y-%m-%d')) = YEARWEEK(NOW())-1 ")
+            "WHERE YEARWEEK(DATE_FORMAT(busTime,'%Y-%m-%d')) = YEARWEEK(NOW())-1 ")
     public List<BusinessBo> lastWeekAdd();
     /*上周新增数量*/
-    @Select("SELECT COUNT(busId) FROM `business` where YEARWEEK(DATE_FORMAT(busNowTime,'%Y-%m-%d')) = YEARWEEK(NOW())-1")
+    @Select("SELECT COUNT(busId) FROM `business` where YEARWEEK(DATE_FORMAT(busTime,'%Y-%m-%d')) = YEARWEEK(NOW())-1")
     public Integer lastWeekAddNumber();
 
     /*本月新增*/
     @Select("SELECT cb.`busName` AS busName,cb.`busStage` AS busStage,cb.`busBeforeMoney` AS busBeforeMoney,cb.`busDutyPeople` AS busDutyPeople,bd.docTime AS docId,bi.tlbs AS invitationId  FROM \n" +
-            "(SELECT b.`busNowTime`,b.`busId`,b.busName,b.`busStage`,b.`busBeforeMoney`,b.`busDutyPeople`  FROM  business b )AS cb  LEFT JOIN (SELECT b.busId, MAX(d.docTime)AS docTime  FROM business b\n" +
+            "(SELECT b.`busTime`,b.`busId`,b.busName,b.`busStage`,b.`busBeforeMoney`,b.`busDutyPeople`  FROM  business b )AS cb  LEFT JOIN (SELECT b.busId, MAX(d.docTime)AS docTime  FROM business b\n" +
             "LEFT JOIN documentary d ON b.`busId`=d.busId GROUP BY b.busId )AS bd  ON cb.`busId`=bd.busId LEFT JOIN  (SELECT i.`busId`,COUNT(i.busId)AS tlbs FROM business b LEFT JOIN invitation i ON b.`busId`=i.busId GROUP BY b.busId)AS bi ON cb.`busId`=bi.busId \n" +
-            "WHERE DATE_FORMAT( busNowTime, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' )")
+            "WHERE DATE_FORMAT( busTime, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' )")
     public List<BusinessBo> monthAdd();
     /*本月新增数量*/
-    @Select("SELECT COUNT(busId) FROM `business` WHERE DATE_FORMAT( busNowTime, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' )")
+    @Select("SELECT COUNT(busId) FROM `business` WHERE DATE_FORMAT( busTime, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' )")
     public Integer monthAddNumber();
 
     /*上月新增*/
     @Select("SELECT cb.`busName` AS busName,cb.`busStage` AS busStage,cb.`busBeforeMoney` AS busBeforeMoney,cb.`busDutyPeople` AS busDutyPeople,bd.docTime AS docId,bi.tlbs AS invitationId  FROM \n" +
-            "(SELECT b.`busNowTime`,b.`busId`,b.busName,b.`busStage`,b.`busBeforeMoney`,b.`busDutyPeople`  FROM  business b )AS cb  LEFT JOIN (SELECT b.busId, MAX(d.docTime)AS docTime  FROM business b\n" +
+            "(SELECT b.`busTime`,b.`busId`,b.busName,b.`busStage`,b.`busBeforeMoney`,b.`busDutyPeople`  FROM  business b )AS cb  LEFT JOIN (SELECT b.busId, MAX(d.docTime)AS docTime  FROM business b\n" +
             "LEFT JOIN documentary d ON b.`busId`=d.busId GROUP BY b.busId )AS bd  ON cb.`busId`=bd.busId LEFT JOIN  (SELECT i.`busId`,COUNT(i.busId)AS tlbs FROM business b LEFT JOIN invitation i ON b.`busId`=i.busId GROUP BY b.busId)AS bi ON cb.`busId`=bi.busId \n" +
-            "WHERE PERIOD_DIFF( DATE_FORMAT( NOW( ) , '%Y%m' ) , DATE_FORMAT( busNowTime, '%Y%m' ) ) =1")
+            "WHERE PERIOD_DIFF( DATE_FORMAT( NOW( ) , '%Y%m' ) , DATE_FORMAT( busTime, '%Y%m' ) ) =1")
     public List<BusinessBo> lastMonthAdd();
     /*上月新增数量*/
-    @Select("SELECT COUNT(busId) FROM `business` WHERE PERIOD_DIFF( DATE_FORMAT( NOW( ) , '%Y%m' ) , DATE_FORMAT( busNowTime, '%Y%m' ) ) =1")
+    @Select("SELECT COUNT(busId) FROM `business` WHERE PERIOD_DIFF( DATE_FORMAT( NOW( ) , '%Y%m' ) , DATE_FORMAT( busTime, '%Y%m' ) ) =1")
     public Integer lastMonthAddNumber();
 
 
     /*本季度新增*/
     @Select("SELECT cb.`busName` AS busName,cb.`busStage` AS busStage,cb.`busBeforeMoney` AS busBeforeMoney,cb.`busDutyPeople` AS busDutyPeople,bd.docTime AS docId,bi.tlbs AS invitationId  FROM \n" +
-            "(SELECT b.`busNowTime`,b.`busId`,b.busName,b.`busStage`,b.`busBeforeMoney`,b.`busDutyPeople`  FROM  business b )AS cb  LEFT JOIN (SELECT b.busId, MAX(d.docTime)AS docTime  FROM business b\n" +
+            "(SELECT b.`busTime`,b.`busId`,b.busName,b.`busStage`,b.`busBeforeMoney`,b.`busDutyPeople`  FROM  business b )AS cb  LEFT JOIN (SELECT b.busId, MAX(d.docTime)AS docTime  FROM business b\n" +
             "LEFT JOIN documentary d ON b.`busId`=d.busId GROUP BY b.busId )AS bd  ON cb.`busId`=bd.busId LEFT JOIN  (SELECT i.`busId`,COUNT(i.busId)AS tlbs FROM business b LEFT JOIN invitation i ON b.`busId`=i.busId GROUP BY b.busId)AS bi ON cb.`busId`=bi.busId \n" +
-            "WHERE QUARTER(busNowTime)=QUARTER(NOW())")
+            "WHERE QUARTER(busTime)=QUARTER(NOW())")
     public List<BusinessBo> quarterAdd();
     /*本季度新增数量*/
-    @Select("SELECT COUNT(busId) FROM `business` WHERE QUARTER(busNowTime)=QUARTER(NOW())")
+    @Select("SELECT COUNT(busId) FROM `business` WHERE QUARTER(busTime)=QUARTER(NOW())")
     public Integer quarterAddNumber();
 
     /*上季度新增*/
     @Select(" SELECT cb.`busName` AS busName,cb.`busStage` AS busStage,cb.`busBeforeMoney` AS busBeforeMoney,cb.`busDutyPeople` AS busDutyPeople,bd.docTime AS docId,bi.tlbs AS invitationId  FROM \n" +
-            "(SELECT b.`busNowTime`,b.`busId`,b.busName,b.`busStage`,b.`busBeforeMoney`,b.`busDutyPeople`  FROM  business b )AS cb  LEFT JOIN (SELECT b.busId, MAX(d.docTime)AS docTime  FROM business b\n" +
+            "(SELECT b.`busTime`,b.`busId`,b.busName,b.`busStage`,b.`busBeforeMoney`,b.`busDutyPeople`  FROM  business b )AS cb  LEFT JOIN (SELECT b.busId, MAX(d.docTime)AS docTime  FROM business b\n" +
             "LEFT JOIN documentary d ON b.`busId`=d.busId GROUP BY b.busId )AS bd  ON cb.`busId`=bd.busId LEFT JOIN  (SELECT i.`busId`,COUNT(i.busId)AS tlbs FROM business b LEFT JOIN invitation i ON b.`busId`=i.busId GROUP BY b.busId)AS bi ON cb.`busId`=bi.busId \n" +
-            "WHERE QUARTER(busNowTime)=QUARTER(DATE_SUB(NOW(),INTERVAL 1 QUARTER))")
+            "WHERE QUARTER(busTime)=QUARTER(DATE_SUB(NOW(),INTERVAL 1 QUARTER))")
     public List<BusinessBo> lastQuarterAdd();
     /*上季度新增数量*/
-    @Select("SELECT COUNT(busId) FROM `business` WHERE QUARTER(busNowTime)=QUARTER(DATE_SUB(NOW(),INTERVAL 1 QUARTER))")
+    @Select("SELECT COUNT(busId) FROM `business` WHERE QUARTER(busTime)=QUARTER(DATE_SUB(NOW(),INTERVAL 1 QUARTER))")
     public Integer lastQuarterAddNumber();
 
 
