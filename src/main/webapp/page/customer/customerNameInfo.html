@@ -1,3 +1,4 @@
+<html xmlns:th="http://www.thymeleaf.org">
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,8 +7,8 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" href="/lib/layui-v2.5.5/css/layui.css" media="all">
-    <link rel="stylesheet" href="/css/public.css" media="all">
+    <link rel="stylesheet" th:href="@{/lib/layui-v2.5.5/css/layui.css}" media="all">
+    <link rel="stylesheet" th:href="@{/css/public.css}" media="all">
 </head>
 <style type="text/css">
     /*文本框样式设置*/
@@ -15,17 +16,17 @@
         width: 500px;
         height:30px;
     }
-    #update{
+   #update{
         margin: 0px auto;
         width: 100px;
-        margin-left:460px;
+        margin-left:430px;
     }
-    #delete{
+   #del{
         margin: 0px auto;
         width: 100px;
         margin-left: 60px;
     }
-    #cancle{
+    #quxiao{
         margin: 0px auto;
         width: 100px;
         margin-left: 60px;
@@ -41,19 +42,20 @@
             <legend>基本信息</legend>
         </fieldset>
 
-        <form class="layui-form" action="">
+        <form class="layui-form" id="cust">
+            <input type="hidden" name="custId" th:value="${customerInfo.getCustId()}">
 
             <div class="layui-form-item">
                 <div class="layui-inline">
                     <label class="layui-form-label">客户名称</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入客户名称" class="layui-input">
+                        <input type="text" name="custName" th:value="${customerInfo.getCustName()}" lay-verify="title" autocomplete="off" placeholder="请输入客户名称" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-inline">
                     <label class="layui-form-label">拼音</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入拼音" class="layui-input">
+                        <input type="text" name="custSpell" th:value="${customerInfo.getCustSpell()}" lay-verify="customerInfo.CustSpell" autocomplete="off" placeholder="请输入拼音" class="layui-input">
                     </div>
                 </div>
             </div>
@@ -62,18 +64,26 @@
                 <div class="layui-inline">
                     <label class="layui-form-label">分类</label>
                     <div class="layui-input-block">
-                        <select name="city" lay-verify="required">
-                            <option value="">请选择</option>
-                            <option value="">请选择</option>
+                        <select name="custClassify" lay-verify="required">
+                            <option th:text="${customerInfo.getCustClassify()}"></option>
+                            <option th:value="vip1" th:selected="${customerInfo.getCustClassify()eq 'vip1'}" >客户分类一</option>
+                            <option th:value="vip2" th:selected="*{customerInfo.getCustClassify()eq 'vip2'}">客户分类二</option>
+                            <option th:value="svip" th:selected="*{customerInfo.getCustClassify()eq 'svip'}">客户分类三</option>
                         </select>
                     </div>
                 </div>
                 <div class="layui-inline">
                     <label class="layui-form-label">客户来源</label>
                     <div class="layui-input-block">
-                        <select name="city" lay-verify="required">
-                            <option value="">请选择</option>
-                            <option value="">请选择</option>
+                        <select name="custSource" lay-verify="required">
+                            <option th:text="${customerInfo.getCustSource()}"></option>
+                            <option th:value="老客户" th:selected="${customerInfo.getCustSource()eq '老客户'}" >老客户</option>
+                            <option th:value="代理商" th:selected="*{customerInfo.getCustSource()eq '代理商'}">代理商</option>
+                            <option th:value="互联网" th:selected="*{customerInfo.getCustSource()eq '互联网'}">互联网</option>
+                            <option th:value="朋友推荐" th:selected="${customerInfo.getCustSource()eq '朋友推荐'}" >朋友推荐</option>
+                            <option th:value="看海报" th:selected="*{customerInfo.getCustSource()eq '看海报'}">看海报</option>
+                            <option th:value="电话访问" th:selected="*{customerInfo.getCustSource()eq '电话访问'}">电话访问</option>
+                            <option th:value="其他" th:selected="*{customerInfo.getCustSource()eq '其他'}">其他</option>
                         </select>
                     </div>
                 </div>
@@ -83,16 +93,19 @@
                 <div class="layui-inline">
                     <label class="layui-form-label">所属行业</label>
                     <div class="layui-input-block">
-                        <select name="city" lay-verify="required">
-                            <option value="">请选择</option>
-                            <option value="">请选择</option>
+                        <select name="custTrade" lay-verify="required">
+                            <option th:text="${customerInfo.getCustTrade()}"></option>
+                            <option th:value="经融" th:selected="${customerInfo.getCustTrade()eq '经融'}" >经融</option>
+                            <option th:value="医药" th:selected="*{customerInfo.getCustTrade()eq '医药'}">医药</option>
+                            <option th:value="加工制造" th:selected="*{customerInfo.getCustTrade()eq '加工制造'}">加工制造</option>
+                            <option th:value="酒店旅游" th:selected="*{customerInfo.getCustTrade()eq '酒店旅游'}">酒店旅游</option>
                         </select>
                     </div>
                 </div>
                 <div class="layui-inline">
                     <label class="layui-form-label">客户网址</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入客户网址" class="layui-input">
+                        <input type="text" name="custUrl" th:value="${customerInfo.getCustUrl()}" lay-verify="title" autocomplete="off" placeholder="请输入客户网址" class="layui-input">
                     </div>
                 </div>
             </div>
@@ -101,13 +114,13 @@
                 <div class="layui-inline">
                     <label class="layui-form-label">国家/地区</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入国家/地区" class="layui-input">
+                        <input type="text" name="CustCountry" th:value="${customerInfo.getCustCountry()}" lay-verify="title" autocomplete="off" placeholder="请输入国家/地区" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-inline">
                     <label class="layui-form-label">所在城市</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入所在城市" class="layui-input">
+                        <input type="text" name="custCity" th:value="${customerInfo.getCustCity()}" lay-verify="title" autocomplete="off" placeholder="请输入所在城市" class="layui-input">
                     </div>
                 </div>
             </div>
@@ -115,7 +128,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">详细地址</label>
                 <div class="layui-input-block">
-                    <input type="text" name="title" required  lay-verify="required" placeholder="请输入详细地址" autocomplete="off" class="layui-input">
+                    <input type="text" name="custAddress" th:value="${customerInfo.getCustAddress()}" required  lay-verify="required" placeholder="请输入详细地址" autocomplete="off" class="layui-input">
                 </div>
             </div>
 
@@ -123,13 +136,13 @@
                 <div class="layui-inline">
                     <label class="layui-form-label">邮政编码</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入邮政编码" class="layui-input">
+                        <input type="text" name="custPostCode" th:value="${customerInfo.getCustPostCode()}" lay-verify="title" autocomplete="off" placeholder="请输入邮政编码" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-inline">
                     <label class="layui-form-label">传真</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入传真" class="layui-input">
+                        <input type="text" name="custFax" th:value="${customerInfo.getCustFax()}" lay-verify="title" autocomplete="off" placeholder="请输入传真" class="layui-input">
                     </div>
                 </div>
             </div>
@@ -138,13 +151,13 @@
                 <div class="layui-inline">
                     <label class="layui-form-label">联系人</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入联系人" class="layui-input">
+                        <input type="text" name="custLinkMan" th:value="${customerInfo.getCustLinkMan()}" lay-verify="title" autocomplete="off" placeholder="请输入联系人" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-inline">
                     <label class="layui-form-label">部门</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入部门" class="layui-input">
+                        <input type="text" name="custDept" th:value="${customerInfo.getCustDept()}" lay-verify="title" autocomplete="off" placeholder="请输入部门" class="layui-input">
                     </div>
                 </div>
             </div>
@@ -153,13 +166,13 @@
                 <div class="layui-inline">
                     <label class="layui-form-label">职务</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入职务" class="layui-input">
+                        <input type="text" name="custJob" th:value="${customerInfo.getCustJob()}" lay-verify="title" autocomplete="off" placeholder="请输入职务" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-inline">
                     <label class="layui-form-label">办公电话</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入办公电话" class="layui-input">
+                        <input type="text" name="custOfficeTel" th:value="${customerInfo.getCustOfficeTel()}" lay-verify="title" autocomplete="off" placeholder="请输入办公电话" class="layui-input">
                     </div>
                 </div>
             </div>
@@ -168,13 +181,13 @@
                 <div class="layui-inline">
                     <label class="layui-form-label">移动电话</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入移动电话" class="layui-input">
+                        <input type="text" name="custPhone" th:value="${customerInfo.getCustPhone()}" lay-verify="title" autocomplete="off" placeholder="请输入移动电话" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-inline">
                     <label class="layui-form-label">邮件/QQ</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入邮件/QQ" class="layui-input">
+                        <input type="text" name="custEmail" th:value="${customerInfo.getCustEmail()}" lay-verify="title" autocomplete="off" placeholder="请输入邮件/QQ" class="layui-input">
                     </div>
                 </div>
             </div>
@@ -183,13 +196,13 @@
                 <div class="layui-inline">
                     <label class="layui-form-label">法人代表</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入法人代表" class="layui-input">
+                        <input type="text" name="custCorporation" th:value="${customerInfo.getCustCorporation()}"lay-verify="title" autocomplete="off" placeholder="请输入法人代表" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-inline">
                     <label class="layui-form-label">资本注册</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入资本注册" class="layui-input">
+                        <input type="text" name="custCapital" th:value="${customerInfo.getCustCapital()}" lay-verify="title" autocomplete="off" placeholder="请输入资本注册" class="layui-input">
                     </div>
                 </div>
             </div>
@@ -199,7 +212,7 @@
             <div class="layui-form-item layui-form-text">
                 <label class="layui-form-label">附加说明</label>
                 <div class="layui-input-block" style="height:90px">
-                    <textarea placeholder="请输入内容" class="layui-textarea"></textarea>
+                    <textarea placeholder="请输入内容" name="custExplain" th:text="${customerInfo.getCustExplain()}" class="layui-textarea"></textarea>
                 </div>
             </div>
 
@@ -208,17 +221,18 @@
                 <legend>财务信息</legend>
             </fieldset>
 
+            <input type="hidden" name="moneyId"  th:value="${customerInfo.getMoneyId()}">
             <div class="layui-form-item">
                 <div class="layui-inline">
                     <label class="layui-form-label">银行账号</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入银行账号" class="layui-input">
+                        <input type="text" name="moneyBankCard" th:value="${customerInfo.getMoneyBankCard()}" lay-verify="title" autocomplete="off" placeholder="请输入银行账号" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-inline">
                     <label class="layui-form-label">开户名称</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入开户名称" class="layui-input">
+                        <input type="text" name="moneyBankName" th:value="${customerInfo.getMoneyBankName()}" lay-verify="title" autocomplete="off" placeholder="请输入开户名称" class="layui-input">
                     </div>
                 </div>
             </div>
@@ -227,13 +241,13 @@
                 <div class="layui-inline">
                     <label class="layui-form-label">开户银行</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入开户银行" class="layui-input">
+                        <input type="text" name="moneybank" th:value="${customerInfo.getMoneybank()}" lay-verify="title" autocomplete="off" placeholder="请输入开户银行" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-inline">
                     <label class="layui-form-label">银行地址</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入银行地址" class="layui-input">
+                        <input type="text" name="moneyAddress" th:value="${customerInfo.getMoneyAddress()}" lay-verify="title" autocomplete="off" placeholder="请输入银行地址" class="layui-input">
                     </div>
                 </div>
             </div>
@@ -242,21 +256,22 @@
                 <div class="layui-inline">
                     <label class="layui-form-label">税号</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入税号" class="layui-input">
+                        <input type="text" name="moneyDutyNo" th:value="${customerInfo.getMoneyDutyNo()}" lay-verify="title" autocomplete="off" placeholder="请输入税号" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-inline">
                     <label class="layui-form-label">电话</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入电话" class="layui-input">
+                        <input type="text" name="moneyPhone" th:value="${customerInfo.getMoneyPhone()}" lay-verify="title" autocomplete="off" placeholder="请输入电话" class="layui-input">
                     </div>
                 </div>
             </div>
-
-            <a class="layui-btn layui-btn-radius" lay-event="update" id="update">修改</a>
-            <a class="layui-btn layui-btn-radius layui-btn-danger" lay-event="del" id="delete">删除</a>
-            <a 	class="layui-btn layui-btn-radius layui-btn-warm" lay-event="cancle" id="cancle">取消</a>
-
+            <div class="layui-inline">
+                <button type="submit" class="layui-btn" lay-submit  lay-filter="xiugai" id="update">修改</button>
+                <button type="submit" class="layui-btn layui-btn-danger" lay-submit  lay-filter="shanchu" id="del">删除</button>
+                <a class='btn btn-info' href="javascript:history.go(-1)"><button type="button" class="layui-btn" id="quxiao">取消</button></a>
+                <!--<button type="submit" class="layui-btn layui-btn-normal" lay-submit  lay-filter="quxiao" id="quxiao">取消</button>-->
+            </div>
         </form>
     </div>
 </div>
@@ -264,84 +279,23 @@
 <script src="/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 <script>
-    layui.use(['form', 'layedit', 'laydate'], function () {
+    layui.use(['form', 'layedit', 'laydate','jquery'], function () {
         var form = layui.form
+            ,$ = layui.jquery
             , layer = layui.layer
             , layedit = layui.layedit
             , laydate = layui.laydate;
 
-        //监听行工具事件
-        table.on('tool(test)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
-            var data = obj.data, //获得当前行数据
-                layEvent = obj.event; //获得 lay-event 对应的值
-            if(layEvent === 'detail'){
-                layer.msg('查看操作');
-            } else if(layEvent === 'del'){
-                layer.confirm('真的删除行么', function(index){
-                    obj.del(); //删除对应行（tr）的DOM结构
-                    layer.close(index);
-                    //向服务端发送删除指令
-                });
-            } else if(layEvent === 'edit'){
-                layer.msg('编辑操作');
-            }
-        });
 
-        //日期
-        laydate.render({
-            elem: '#date'
+        //监听提交修改
+        form.on('submit(xiugai)', function (data) {
+            $('form[id=cust]').attr('action','/customer/updateCustomerInfo.do').submit();
         });
-        laydate.render({
-            elem: '#date1'
-        });
-
-        //创建一个编辑器
-        var editIndex = layedit.build('LAY_demo_editor');
-
-        //自定义验证规则
-        form.verify({
-            title: function (value) {
-                if (value.length < 5) {
-                    return '标题至少得5个字符啊';
-                }
-            }
-            , pass: [
-                /^[\S]{6,12}$/
-                , '密码必须6到12位，且不能出现空格'
-            ]
-            , content: function (value) {
-                layedit.sync(editIndex);
-            }
-        });
-
-        //监听指定开关
-        form.on('switch(switchTest)', function (data) {
-            layer.msg('开关checked：' + (this.checked ? 'true' : 'false'), {
-                offset: '6px'
-            });
-            layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅仅是ON|OFF', data.othis)
-        });
-
-        //监听提交
-        form.on('submit(demo1)', function (data) {
-            layer.alert(JSON.stringify(data.field), {
-                title: '最终的提交信息'
-            })
+        //监听提交取消
+       /* form.on('submit(quxiao)', function (data) {
+                window.location.href="/page/customer/queryAllCust.html";
             return false;
-        });
-
-        //表单初始赋值
-        form.val('example', {
-            "username": "贤心" // "name": "value"
-            , "password": "123456"
-            , "interest": 1
-            , "like[write]": true //复选框选中状态
-            , "close": true //开关状态
-            , "sex": "女"
-            , "desc": "我爱 layui"
-        })
-
-
+        });*/
     });
 
 

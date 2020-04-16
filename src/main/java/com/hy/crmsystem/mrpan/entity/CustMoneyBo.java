@@ -1,98 +1,69 @@
 package com.hy.crmsystem.mrpan.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+public class CustMoneyBo {
 
-import java.io.Serializable;
-import java.util.List;
-
-/**
- * <p>
- * 
- * </p>
- *
- * @author zhangduo
- * @since 2020-04-03
- * 客户表
- */
-@TableName(value = "customer")
-public class Customer implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
-   //客户id
-    @TableId(value = "custId", type = IdType.AUTO)
     private Integer custId;
-
-
-    @TableField("moneyId")
+    //合同主键
+    private Integer contractId;
+    //售后主键
+    private Integer serviceId;
+    //财务主键
     private Integer moneyId;
-
-    @TableField("custName")
+    //客户姓名
     private String custName;
-
-    @TableField("custSpell")
+    //客户姓名拼音
     private String custSpell;
-
-    @TableField("custClassify")
+    //客户分类
     private String custClassify;
-
-    @TableField("custSource")
+    //客户来源
     private String custSource;
-
-    @TableField("custTrade")
+    //客户行业
     private String custTrade;
-
-    @TableField("custUrl")
+    //客户网址
     private String custUrl;
-
-    @TableField("custCountry")
+    //客户国家/地区
     private String custCountry;
-
-    @TableField("custCity")
+    //客户城市
     private String custCity;
-
-    @TableField("custAddress")
+    //客户详细地址
     private String custAddress;
-
-    @TableField("custPostCode")
+    //客户邮政编码
     private String custPostCode;
-
-    @TableField("custFax")
+    //客户传真
     private String custFax;
-
-    @TableField("custLinkMan")
+    //客户联系人
     private String custLinkMan;
-
-    @TableField("custDept")
+    //客户部门
     private String custDept;
 
-    @TableField("custJob")
+    //客户职务
     private String custJob;
-
-    @TableField("custOfficeTel")
+    //客户办公电话
     private String custOfficeTel;
-
-    @TableField("custPhone")
+    //客户移动电话
     private String custPhone;
-
-    @TableField("custEmail")
+    //客户邮件/QQ
     private String custEmail;
-
-    @TableField("custCorporation")
+    //客户法人
     private String custCorporation;
-
-    @TableField("custCapital")
+    //客户注册资本
     private String custCapital;
-
-    @TableField("custExplain")
+    //附加说明
     private String custExplain;
 
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
+    //银行卡号
+    private String moneyBankCard;
+    //开户名称
+    private String moneyBankName;
+    //开户银行
+    private String moneybank;
+    //税号
+    private String moneyDutyNo;
+    //电话
+    private String moneyPhone;
+
+    //银行地址
+    private String moneyAddress;
 
     public Integer getCustId() {
         return custId;
@@ -102,12 +73,76 @@ public class Customer implements Serializable {
         this.custId = custId;
     }
 
+    public Integer getContractId() {
+        return contractId;
+    }
+
+    public void setContractId(Integer contractId) {
+        this.contractId = contractId;
+    }
+
+    public Integer getServiceId() {
+        return serviceId;
+    }
+
+    public void setServiceId(Integer serviceId) {
+        this.serviceId = serviceId;
+    }
+
     public Integer getMoneyId() {
         return moneyId;
     }
 
     public void setMoneyId(Integer moneyId) {
         this.moneyId = moneyId;
+    }
+
+    public String getMoneyBankCard() {
+        return moneyBankCard;
+    }
+
+    public void setMoneyBankCard(String moneyBankCard) {
+        this.moneyBankCard = moneyBankCard;
+    }
+
+    public String getMoneyBankName() {
+        return moneyBankName;
+    }
+
+    public void setMoneyBankName(String moneyBankName) {
+        this.moneyBankName = moneyBankName;
+    }
+
+    public String getMoneybank() {
+        return moneybank;
+    }
+
+    public void setMoneybank(String moneybank) {
+        this.moneybank = moneybank;
+    }
+
+    public String getMoneyDutyNo() {
+        return moneyDutyNo;
+    }
+
+    public void setMoneyDutyNo(String moneyDutyNo) {
+        this.moneyDutyNo = moneyDutyNo;
+    }
+
+    public String getMoneyPhone() {
+        return moneyPhone;
+    }
+
+    public void setMoneyPhone(String moneyPhone) {
+        this.moneyPhone = moneyPhone;
+    }
+
+    public String getMoneyAddress() {
+        return moneyAddress;
+    }
+
+    public void setMoneyAddress(String moneyAddress) {
+        this.moneyAddress = moneyAddress;
     }
 
     public String getCustName() {
@@ -269,33 +304,4 @@ public class Customer implements Serializable {
     public void setCustExplain(String custExplain) {
         this.custExplain = custExplain;
     }
-
-    @Override
-    public String toString() {
-        return "Customer{" +
-                "custId=" + custId +
-                ", moneyId=" + moneyId +
-                ", custName='" + custName + '\'' +
-                ", custSpell='" + custSpell + '\'' +
-                ", custClassify='" + custClassify + '\'' +
-                ", custSource='" + custSource + '\'' +
-                ", custTrade='" + custTrade + '\'' +
-                ", custUrl='" + custUrl + '\'' +
-                ", custCountry='" + custCountry + '\'' +
-                ", custCity='" + custCity + '\'' +
-                ", custAddress='" + custAddress + '\'' +
-                ", custPostCode='" + custPostCode + '\'' +
-                ", custFax='" + custFax + '\'' +
-                ", custLinkMan='" + custLinkMan + '\'' +
-                ", custDept='" + custDept + '\'' +
-                ", custJob='" + custJob + '\'' +
-                ", custOfficeTel='" + custOfficeTel + '\'' +
-                ", custPhone='" + custPhone + '\'' +
-                ", custEmail='" + custEmail + '\'' +
-                ", custCorporation='" + custCorporation + '\'' +
-                ", custCapital='" + custCapital + '\'' +
-                ", custExplain='" + custExplain + '\'' +
-                '}';
-    }
 }
-

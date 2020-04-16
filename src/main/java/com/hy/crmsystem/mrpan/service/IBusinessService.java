@@ -1,8 +1,10 @@
 package com.hy.crmsystem.mrpan.service;
 
-import com.hy.crmsystem.mrli.entity.DataGridView;
-import com.hy.crmsystem.mrpan.entity.Business;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.hy.crmsystem.mrpan.entity.Business;
+import com.hy.crmsystem.mrpan.entity.BusinessBo;
+import com.hy.crmsystem.mrpan.entity.BusinessCustBo;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -17,10 +19,68 @@ import java.util.List;
 public interface IBusinessService extends IService<Business> {
 
 
-    /**
-     * 查询商机名称
-     * @return
-     */
-    List<Business> queryBusName();
+ /**
+  * 查询商机名称
+  * @return
+  */
+ List<Business> queryBusName();
 
+    //点商机数时查询所有商机的对应信息
+    public List<BusinessBo> selectBusInfo(@Param("businessBo") BusinessBo businessBo, Integer currentPage, Integer pageSize);
+   //查询所有商机的信息
+   public List<BusinessBo> selectAllBusInfo(Integer currentPage, Integer pageSize);
+    /*根据商机ID查询客户的客户名称，所属行业，所在城市，详细地址*/
+    public BusinessCustBo custByBusId(Integer custId);
+    /*查询进行中的商机*/
+    public List<BusinessBo> proceedBus(Integer currentPage, Integer pageSize);
+    /*查询进行中的商机数量*/
+    public Integer proceedBusNumber();
+    /*已成交商机*/
+    public List<BusinessBo> tradedBus(Integer currentPage, Integer pageSize);
+    /*查询已成交商机数量*/
+    public Integer tradedBusNumber();
+    /*已丢单商机*/
+    public List<BusinessBo> throwBus(Integer currentPage, Integer pageSize);
+   /*已丢单商机数量*/
+    public Integer throwBusNumber();
+    /*已搁置商机*/
+    public List<BusinessBo> shelveBus(Integer currentPage, Integer pageSize);
+   /*已搁置商机数量*/
+    public Integer shelveBusNumber();
+    /*七天未跟单*/
+    public List<BusinessBo> docTimeLessSeven(Integer currentPage, Integer pageSize);
+    /*七天未跟单数量*/
+    public Integer docTimeLessSevenNumber();
+    /*三十天未跟单*/
+    public List<BusinessBo> docTimeLessThirty(Integer currentPage, Integer pageSize);
+    /*三十天未跟单数量*/
+    public Integer docTimeLessThirtyNumber();
+    /*九十天未跟单*/
+    public List<BusinessBo> docTimeLessNinety(Integer currentPage, Integer pageSize);
+    /*九十天未跟单数量*/
+    public Integer docTimeLessNinetyNumber();
+ /*本周新增*/
+ public List<BusinessBo> weekAdd(Integer currentPage, Integer pageSize);
+ /*本周新增数量*/
+ public Integer weekAddNumber();
+ /*上周新增*/
+ public List<BusinessBo> lastWeekAdd(Integer currentPage, Integer pageSize);
+ /*上周新增数量*/
+ public Integer lastWeekAddNumber();
+ /*本月新增*/
+ public List<BusinessBo> monthAdd(Integer currentPage, Integer pageSize);
+ /*本月新增数量*/
+ public Integer monthAddNumber();
+ /*上月新增*/
+ public List<BusinessBo> lastMonthAdd(Integer currentPage, Integer pageSize);
+ /*上月新增数量*/
+ public Integer lastMonthAddNumber();
+ /*本季度新增*/
+ public List<BusinessBo> quarterAdd(Integer currentPage, Integer pageSize);
+ /*本季度新增数量*/
+ public Integer quarterAddNumber();
+ /*上季度新增*/
+ public List<BusinessBo> lastQuarterAdd(Integer currentPage, Integer pageSize);
+ /*上季度新增数量*/
+ public Integer lastQuarterAddNumber();
 }

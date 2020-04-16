@@ -13,4 +13,5 @@ import com.hy.crmsystem.mrpan.entity.Moneyinfor;
  */
 public interface IMoneyinforService extends IService<Moneyinfor> {
 
+
 }

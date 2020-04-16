@@ -1,5 +1,3 @@
-
-<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -10,31 +8,9 @@
     <link rel="stylesheet" href="/lib/layui-v2.5.5/css/layui.css" media="all">
     <link rel="stylesheet" href="/css/public.css" media="all">
     <link rel="stylesheet" href="/lib/font-awesome-4.7.0/css/font-awesome.min.css" media="all">
-    <style>
-        .layui-card {border:1px solid #f2f2f2;border-radius:5px;}
-        .icon {margin-right:10px;color:#1aa094;}
-        .icon-cray {color:#ffb800!important;}
-        .icon-blue {color:#1e9fff!important;}
-        .icon-tip {color:#ff5722!important;}
-        .layuimini-qiuck-module {text-align:center;margin-top: 10px}
-        .layuimini-qiuck-module a i {display:inline-block;width:100%;height:60px;line-height:60px;text-align:center;border-radius:2px;font-size:30px;background-color:#F8F8F8;color:#333;transition:all .3s;-webkit-transition:all .3s;}
-        .layuimini-qiuck-module a cite {position:relative;top:2px;display:block;color:#666;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;font-size:14px;}
-        .welcome-module {width:100%;height:210px;}
-        .panel {background-color:#fff;border:1px solid transparent;border-radius:3px;-webkit-box-shadow:0 1px 1px rgba(0,0,0,.05);box-shadow:0 1px 1px rgba(0,0,0,.05)}
-        .panel-body {padding:10px}
-        .panel-title {margin-top:0;margin-bottom:0;font-size:12px;color:inherit}
-        .label {display:inline;padding:.2em .6em .3em;font-size:75%;font-weight:700;line-height:1;color:#fff;text-align:center;white-space:nowrap;vertical-align:baseline;border-radius:.25em;margin-top: .3em;}
-        .layui-red {color:red}
-        .main_btn > p {height:40px;}
-        .layui-bg-number {background-color:#F8F8F8;}
-        .layuimini-notice:hover {background:#f6f6f6;}
-        .layuimini-notice {padding:7px 16px;clear:both;font-size:12px !important;cursor:pointer;position:relative;transition:background 0.2s ease-in-out;}
-        .layuimini-notice-title,.layuimini-notice-label {
-            padding-right: 70px !important;text-overflow:ellipsis!important;overflow:hidden!important;white-space:nowrap!important;}
-        .layuimini-notice-title {line-height:28px;font-size:14px;}
-        .layuimini-notice-extra {position:absolute;top:50%;margin-top:-8px;right:16px;display:inline-block;height:16px;color:#999;}
-    </style>
+
 </head>
+
 
 <body>
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
@@ -45,25 +21,25 @@
     <fieldset class="table-search-fieldset">
         <legend>搜索信息</legend>
         <div style="margin: 10px 10px 5px 293px">
-            <form class="layui-form layui-form-pane" action="com.hy.crmsystem.mrpan.provider.selectProvider.customerManage">
-                <div class="layui-inline" style="margin-left: 300px" >
+            <form class="layui-form layui-form-pane">
+                <div class="layui-inline" style="margin-left: 50px" >
                     <div class="layui-input-inline">
-                        <select name="afterservicelimit" lay-verify="required">
+                        <select name="type" lay-filter="chaxun">
                             <option value="0">请选择</option>
-                            <option name="1" value="1">按客户名称</option>
-                            <option name="2" value="2">按拼音</option>
-                            <option name="3" value="3">按客户来源</option>
-                            <option name="4" value="4">按国家/地区</option>
-                            <option name="5" value="5">按所在城市</option>
-                            <option name="6" value="6">按所属行业</option>
+                            <option name="custName" value="1">按客户名称</option>
+                            <option name="custSpell" value="2">按拼音</option>
+                            <option name="custSource" value="3">按客户来源</option>
+                            <option name="custCountry" value="4">按国家/地区</option>
+                            <option name="custCity" value="5">按所在城市</option>
+                            <option name="custTrade" value="6">按所属行业</option>
                         </select>
                     </div>
-                    <div class="layui-input-inline">
-                        <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入关键字" class="layui-input">
+                    <div class="layui-input-inline" id="shuxingValue">
+                        <input type="text" id="inp" autocomplete="off" placeholder="请输入关键字" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-inline">
-                    <button type="submit" class="layui-btn layui-btn-primary" lay-submit  lay-filter="data-search-btn"><i class="layui-icon"></i> 搜 索</button>
+                    <button type="submit" class="layui-btn layui-btn-primary" lay-submit  lay-filter="sousuo"><i class="layui-icon"></i> 搜 索</button>
                 </div>
             </form>
         </div>
@@ -78,17 +54,17 @@
                 </div>
                 <div class="layuimini-notice">
                     <div class="layuimini-notice-title">
-                        <a>客户分类一</a>
+                        <a href="javascript:void(0);" id="classifyOne">客户分类一</a>
                     </div>
                 </div>
                 <div class="layuimini-notice">
                     <div class="layuimini-notice-title">
-                        <a>客户分类二</a>
+                        <a href="javascript:void(0);" id="classifyTwo">客户分类二</a>
                     </div>
                 </div>
                 <div class="layuimini-notice">
                     <div class="layuimini-notice-title">
-                        <a>客户分类三</a>
+                        <a href="javascript:void(0);" id="classifyThree">客户分类三</a>
                     </div>
                 </div>
             </div>
@@ -107,9 +83,11 @@
         <script type="text/html" id="toolbarDemo">
             <div class="layui-btn-container">
                 <button class="layui-btn layui-btn-sm data-add-btn" lay-event="add">
-                    <a href="customerNameInfo.html"> 新增用户</a>
+                    <a href="addCustomer.html"> 新增用户</a>
                 </button>
-                <button class="layui-btn layui-btn-sm layui-btn-sm" lay-event="select"> 刷新 </button>
+                <button class="layui-btn layui-btn-sm layui-btn-sm" lay-event="select">
+                    <a href="javascript:void(0);" id="shuaxin"> 刷新 </a>
+                </button>
             </div>
         </script>
        <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
@@ -129,19 +107,147 @@
             url: '/customer/customerSelect.do',
             toolbar: '#toolbarDemo',
             cols: [[
-                {field: 'custName', width: 280, title: '客户名称',templet:'<div><a href="customerNameInfo.html">{{d.custName}}</a></div>'},
-                {field: 'busId', width: 90, title: '商机数',templet:'<div><a href="businessNumberInfo.html">{{d.BusId}}</a></div>',},
-                {field: 'busBeforeMoney', width: 150, title: '预计成交金额'},
-                {field: 'contractId', width: 100, title: '合同数',templet:'<div><a href="customerNameInfo.html">{{d.contractId}}</a></div>'},
-                {field: 'contractMoney', width: 150, title: '合同金额'},
-                {field: 'incomesMoney', width: 150, title: '回款额'},
-                {field: 'serviceId', width: 100, title: '售后服务数'},
+                {field: 'busName', width: 230, title: '客户名称',templet:'<div><a  href="/customer/selectCustMoney.do?custId={{d.custId}}" class="layui-table-link">{{d.custName}}</a></div>'},
+                {field: 'busId', width: 80, title: '商机数',templet:'<div><a  href="/page/customer/businessNumberInfo.html?custId={{d.custId}}" class="layui-table-link">{{d.busId==null?0:d.busId}}</a></div>'},
+                {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
+                {field: 'contractId', width: 80, title: '合同数',templet:'<div><a  href="/page/customer/contractListInfo.html?custId={{d.custId}}" class="layui-table-link">{{d.contractId==null?0:d.contractId}}</a></div>'},
+                {field: 'contractMoney', width: 130, title: '合同金额'},
+                {field: 'incomesMoney', width: 130, title: '回款额'},
+                {field: 'serviceId', width: 100, title: '售后服务数',templet:'<div><a  href="/page/customer/afterServiceNumber.html?custId={{d.custId}}" class="layui-table-link">{{d.serviceId==null?0:d.serviceId}}</a></div>'},
                 {field: 'servicesCore', width: 90, title: '服务均分'},
             ]]
             ,page:true /*进行分页*/
-            ,limit:3/*每页三条数据*/
+            ,limit:9/*每页三条数据*/
             ,limits:[1,3,5,7]
         });
+        /*监听select表单*/
+        /*将文本框的值清空后赋新值*/
+        form.on('select(chaxun)', function(data){
+            if(data.value==1){
+                $("#shuxingValue").empty();
+                $("#shuxingValue").append("<input name='custName' type=\"text\" lay-verify=\"title\" autocomplete=\"off\" placeholder=\"请输入关键字\" class=\"layui-input\">");
+            }else if(data.value==2){
+                $("#shuxingValue").empty();
+                $("#shuxingValue").append("<input name='custSpell' type=\"text\" lay-verify=\"title\" autocomplete=\"off\" placeholder=\"请输入关键字\" class=\"layui-input\">");
+            }else if(data.value==3){
+                $("#shuxingValue").empty();
+                $("#shuxingValue").append("<input name='custSource' type=\"text\" lay-verify=\"title\" autocomplete=\"off\" placeholder=\"请输入关键字\" class=\"layui-input\">");
+            }else if(data.value==4){
+                $("#shuxingValue").empty();
+                $("#shuxingValue").append("<input name='custCountry' type=\"text\" lay-verify=\"title\" autocomplete=\"off\" placeholder=\"请输入关键字\" class=\"layui-input\">");
+            }else if(data.value==5){
+                $("#shuxingValue").empty();
+                $("#shuxingValue").append("<input name='custCity' type=\"text\" lay-verify=\"title\" autocomplete=\"off\" placeholder=\"请输入关键字\" class=\"layui-input\">");
+            }else if(data.value==6){
+                $("#shuxingValue").empty();
+                $("#shuxingValue").append("<input name='custTrade' type=\"text\" lay-verify=\"title\" autocomplete=\"off\" placeholder=\"请输入关键字\" class=\"layui-input\">");
+            }
+            form.render();
+        });
+
+        $("#shuaxin").click(function(){
+            table.render({
+                elem: '#currentTableId',
+                type:'get',
+                dataType:'json',
+                url:'/customer/customerSelect.do',
+                toolbar: '#toolbarDemo',
+                cols: [[
+                    {field: 'busName', width: 250, title: '客户名称',templet:'<div><a  href="/customer/selectCustomerInfo.do?CustName={{d.custName}}" class="layui-table-link">{{d.custName}}</a></div>'},
+                    {field: 'busId', width: 80, title: '商机数',templet:'<div><a  href="/page/customer/businessNumberInfo.html?CustName={{d.custName}}" class="layui-table-link">{{d.busId}}</a></div>'},
+                    {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
+                    {field: 'contractId', width: 80, title: '合同数',templet:'<div><a  href="/customer/   ?contractId={{d.serviceId}}" class="layui-table-link">{{d.contractId}}</a></div>'},
+                    {field: 'contractMoney', width: 130, title: '合同金额'},
+                    {field: 'incomesMoney', width: 130, title: '回款额'},
+                    {field: 'serviceId', width: 100, title: '售后服务数',templet:'<div><a  href="/customer/   ?contractId={{d.serviceId}}" class="layui-table-link">{{d.serviceId}}</a></div>'},
+                    {field: 'servicesCore', width: 90, title: '服务均分'},
+                ]]
+                ,page:true /*进行分页*/
+                ,limit:9/*每页三条数据*/
+                ,limits:[1,3,5,7]
+            });
+        });
+
+        $("#classifyOne").click(function(){
+            table.render({
+                elem: '#currentTableId',
+                type:'get',
+                dataType:'json',
+                url:'/customer/custClassifySelect.do?classify=vip1',
+                toolbar: '#toolbarDemo',
+                cols: [[
+                    {field: 'busName', width: 250, title: '客户名称',templet:'<div><a  href="/customer/selectCustomerInfo.do?CustName={{d.custName}}" class="layui-table-link">{{d.custName}}</a></div>'},
+                    {field: 'busId', width: 80, title: '商机数',templet:'<div><a  href="/page/customer/businessNumberInfo.html?CustName={{d.custName}}" class="layui-table-link">{{d.busId}}</a></div>'},
+                    {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
+                    {field: 'contractId', width: 80, title: '合同数',templet:'<div><a  href="/customer/   ?contractId={{d.serviceId}}" class="layui-table-link">{{d.contractId}}</a></div>'},
+                    {field: 'contractMoney', width: 130, title: '合同金额'},
+                    {field: 'incomesMoney', width: 130, title: '回款额'},
+                    {field: 'serviceId', width: 100, title: '售后服务数',templet:'<div><a  href="/customer/   ?contractId={{d.serviceId}}" class="layui-table-link">{{d.serviceId}}</a></div>'},
+                    {field: 'servicesCore', width: 90, title: '服务均分'},
+                ]]
+                ,page:true /*进行分页*/
+                ,limit:9/*每页三条数据*/
+                ,limits:[1,3,5,7]
+            });
+        });
+        $("#classifyTwo").click(function(){
+            table.render({
+                elem: '#currentTableId',
+                type:'get',
+                dataType:'json',
+                url: '/customer/custClassifySelect.do?classify=vip2',
+                toolbar: '#toolbarDemo',
+                cols: [[
+                    {field: 'busName', width: 250, title: '客户名称',templet:'<div><a  href="/customer/selectCustomerInfo.do?CustName={{d.custName}}" class="layui-table-link">{{d.custName}}</a></div>'},
+                    {field: 'busId', width: 80, title: '商机数',templet:'<div><a  href="/page/customer/businessNumberInfo.html?CustName={{d.custName}}" class="layui-table-link">{{d.busId}}</a></div>'},
+                    {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
+                    {field: 'contractId', width: 80, title: '合同数',templet:'<div><a  href="/customer/   ?contractId={{d.serviceId}}" class="layui-table-link">{{d.contractId}}</a></div>'},
+                    {field: 'contractMoney', width: 130, title: '合同金额'},
+                    {field: 'incomesMoney', width: 130, title: '回款额'},
+                    {field: 'serviceId', width: 100, title: '售后服务数',templet:'<div><a  href="/customer/   ?contractId={{d.serviceId}}" class="layui-table-link">{{d.serviceId}}</a></div>'},
+                    {field: 'servicesCore', width: 90, title: '服务均分'},
+                ]]
+                ,page:true /*进行分页*/
+                ,limit:9/*每页三条数据*/
+                ,limits:[1,3,5,7]
+
+            });
+        });
+        $("#classifyThree").click(function(){
+            table.render({
+                elem: '#currentTableId',
+                type:'get',
+                dataType:'json',
+                url: '/customer/custClassifySelect.do?classify=svip',
+                toolbar: '#toolbarDemo',
+                cols: [[
+                    {field: 'busName', width: 250, title: '客户名称',templet:'<div><a  href="/customer/selectCustomerInfo.do?CustName={{d.custName}}" class="layui-table-link">{{d.custName}}</a></div>'},
+                    {field: 'busId', width: 80, title: '商机数',templet:'<div><a  href="/page/customer/businessNumberInfo.html?CustName={{d.custName}}" class="layui-table-link">{{d.busId}}</a></div>'},
+                    {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
+                    {field: 'contractId', width: 80, title: '合同数',templet:'<div><a  href="/customer/   ?contractId={{d.serviceId}}" class="layui-table-link">{{d.contractId}}</a></div>'},
+                    {field: 'contractMoney', width: 130, title: '合同金额'},
+                    {field: 'incomesMoney', width: 130, title: '回款额'},
+                    {field: 'serviceId', width: 100, title: '售后服务数',templet:'<div><a  href="/customer/   ?contractId={{d.serviceId}}" class="layui-table-link">{{d.serviceId}}</a></div>'},
+                    {field: 'servicesCore', width: 90, title: '服务均分'},
+                ]]
+                ,page:true /*进行分页*/
+                ,limit:9/*每页三条数据*/
+                ,limits:[1,3,5,7]
+
+            });
+        });
+
+        /*监听form表单中的提交事件*/
+        form.on('submit(sousuo)', function(data){
+            table.reload('currentTableId', {
+                url:'/customer/customerSelect.do',
+                where: data.field //设定异步数据接口的额外参数
+            });
+            return false;
+        });
+
+
+
 
     });
 </script>

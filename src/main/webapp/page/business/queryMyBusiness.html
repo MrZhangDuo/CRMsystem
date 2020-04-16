@@ -1,106 +1,187 @@
-
-<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
-    <title>layui</title>
+    <title>我的商机</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="/lib/layui-v2.5.5/css/layui.css" media="all">
     <link rel="stylesheet" href="/css/public.css" media="all">
-    <link rel="stylesheet" href="/lib/font-awesome-4.7.0/css/font-awesome.min.css" media="all">
-    <style>
-        .layui-card {border:1px solid #f2f2f2;border-radius:5px;}
-        .icon {margin-right:10px;color:#1aa094;}
-        .icon-cray {color:#ffb800!important;}
-        .icon-blue {color:#1e9fff!important;}
-        .icon-tip {color:#ff5722!important;}
-        .layuimini-qiuck-module {text-align:center;margin-top: 10px}
-        .layuimini-qiuck-module a i {display:inline-block;width:100%;height:60px;line-height:60px;text-align:center;border-radius:2px;font-size:30px;background-color:#F8F8F8;color:#333;transition:all .3s;-webkit-transition:all .3s;}
-        .layuimini-qiuck-module a cite {position:relative;top:2px;display:block;color:#666;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;font-size:14px;}
-        .welcome-module {width:100%;height:210px;}
-        .panel {background-color:#fff;border:1px solid transparent;border-radius:3px;-webkit-box-shadow:0 1px 1px rgba(0,0,0,.05);box-shadow:0 1px 1px rgba(0,0,0,.05)}
-        .panel-body {padding:10px}
-        .panel-title {margin-top:0;margin-bottom:0;font-size:12px;color:inherit}
-        .label {display:inline;padding:.2em .6em .3em;font-size:75%;font-weight:700;line-height:1;color:#fff;text-align:center;white-space:nowrap;vertical-align:baseline;border-radius:.25em;margin-top: .3em;}
-        .layui-red {color:red}
-        .main_btn > p {height:40px;}
-        .layui-bg-number {background-color:#F8F8F8;}
-        .layuimini-notice:hover {background:#f6f6f6;}
-        .layuimini-notice {padding:7px 16px;clear:both;font-size:12px !important;cursor:pointer;position:relative;transition:background 0.2s ease-in-out;}
-        .layuimini-notice-title,.layuimini-notice-label {
-            padding-right: 70px !important;text-overflow:ellipsis!important;overflow:hidden!important;white-space:nowrap!important;}
-        .layuimini-notice-title {line-height:28px;font-size:14px;}
-        .layuimini-notice-extra {position:absolute;top:50%;margin-top:-8px;right:16px;display:inline-block;height:16px;color:#999;}
-    </style>
+
 </head>
+<style type="text/css">
+    /* 文本框样式设置*/
+    .layui-input-block {
+        width: 600px;
+        height:30px;
+        margin-left: 700px;
+    }
+
+    #rese{
+        margin: 0px auto;
+        width: 200px;
+        margin-left: 400px;
+    }
+    #chazhao{
+        margin: 0px auto;
+        width: 200px;
+        margin-left: 50px;
+    }
+
+
+
+</style>
+
 <body>
 <div class="layuimini-container">
     <fieldset class="table-search-fieldset">
         <legend>搜索信息</legend>
-        <div style="margin: 10px 10px 10px 293px">
-            <form class="layui-form layui-form-pane" action="">
-                <div class="layui-inline">
-                    <label class="layui-form-label">搜索选择框</label>
-                    <div class="layui-input-inline">
-                        <select name="afterservicelimit" lay-verify="required" lay-search="">
-                            <option value="">直接选择或搜索选择</option>
-                            <option name="" value="1">主题</option>
-                            <option name="" value="2">服务类型</option>
-                            <option name="" value="3">开始时间</option>
-                            <option name="" value="4">服务人员</option>
-                            <option name="" value="5">服务评分</option>
-                        </select>
-                    </div>
-                    <div class="layui-input-inline">
-                        <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入关键字" class="layui-input">
-                    </div>
+        <form class="layui-form layui-form-pane">
+            <div class="layui-inline">
+                <div class="layui-input-inline">
+                    <input type="text" name="busName" lay-verify="title" autocomplete="off" placeholder="请输入商机全称" class="layui-input">
                 </div>
-                <div class="layui-inline">
-                    <button type="submit" class="layui-btn layui-btn-primary" lay-submit  lay-filter="data-search-btn"><i class="layui-icon"></i> 搜 索</button>
+                <div class="layui-input-inline">
+                    <input type="text" name="busStage" lay-verify="title" autocomplete="off" placeholder="请输入商机阶段" class="layui-input">
                 </div>
-            </form>
-        </div>
+
+                <div class="layui-input-inline">
+                    <input type="text" name="busDutyPeople" lay-verify="title" autocomplete="off" placeholder="请输入商机负责人" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-inline">
+                <div class="layui-input-inline">
+                    <input type="text" name="busDept" lay-verify="title" autocomplete="off" placeholder="请输入所属部门" class="layui-input">
+                </div>
+                <div class="layui-input-inline">
+                    <input type="text" name="busBeforeMoney" lay-verify="title" autocomplete="off" placeholder="请输入预计成交金额" class="layui-input">
+                </div>
+                <div class="layui-input-inline">
+                    <input type="date" name="busBeforedate" lay-verify="title" autocomplete="off" placeholder="请输入预计结单日期" class="layui-input">
+                </div>
+            </div>
+            <div>
+                <input type="reset" class="layui-btn layui-btn-normal" lay-filter="data-search-btn" id="rese"></input>
+                <button type="submit" class="layui-btn layui-btn-normal"  lay-filter="data-search-btn" id="chazhao">查找商机</button>
+            </div>
+        </form>
     </fieldset>
 
     <div class="layui-col-md3">
         <div class="layui-card">
-            <div class="layui-card-header"><i class="fa fa-bullhorn icon icon-tip"></i>分类</div>
+            <div class="layui-card-header">
+                <i class="fa fa-bullhorn icon icon-tip"></i>
+                分类
+            </div>
             <div class="layui-card-body layui-text">
                 <div class="layuimini-notice">
                     <div class="layuimini-notice-title">所有分类</div>
                 </div>
                 <div class="layuimini-notice">
-                    <div class="layuimini-notice-title">处理中的服务</div>
+                    <div class="layuimini-notice-title">
+                        <a herf="javascript:void(0);" id="myResponsibleBus">我负责的商机</a>
+                        <span class="layui-badge layui-bg-blue" id="myResponsibleBusValue"></span>
+                    </div>
                 </div>
                 <div class="layuimini-notice">
-                    <div class="layuimini-notice-title">已结束的服务</div>
+                    <div class="layuimini-notice-title">
+                        <a herf="javascript:void(0);" id="myjoinBus">我参与的商机</a>
+                        <span class="layui-badge layui-bg-blue" id="myjoinBusValue"></span>
+                    </div>
                 </div>
                 <div class="layuimini-notice">
-                    <div class="layuimini-notice-title">已撤除的服务</div>
+                    <div class="layuimini-notice-title">
+                        <a herf="javascript:void(0);" id="myCareBus">我关注的商机</a>
+                        <span class="layui-badge layui-bg-blue" id="myCareBusValue"></span>
+                    </div>
+                </div>
+
+                <div class="layuimini-notice">
+                    <div class="layuimini-notice-title">
+                        <a herf="javascript:void(0);" id="proceedBus">进行中的商机</a>
+                        <span class="layui-badge layui-bg-blue" id="proceedBusValue"></span>
+                    </div>
+                </div>
+                <div class="layuimini-notice">
+                    <div class="layuimini-notice-title">
+                        <a herf="javascript:void(0);" id="Seven">7天未跟单</a>
+                        <span class="layui-badge layui-bg-blue" id="SevenValue"></span>
+                    </div>
+                </div>
+                <div class="layuimini-notice">
+                    <div class="layuimini-notice-title">
+                        <a herf="javascript:void(0);" id="Thirty"> 30天未跟单</a>
+                        <span class="layui-badge layui-bg-blue" id="ThirtyValue"></span>
+                    </div>
+                </div>
+                <div class="layuimini-notice">
+                    <div class="layuimini-notice-title">
+                        <a herf="javascript:void(0);" id="Ninety"> 90天未跟单</a>
+                        <span class="layui-badge layui-bg-blue" id="NinetyValue"></span>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="layui-card">
             <div class="layui-card-body layui-text">
                 <div class="layuimini-notice">
-                    <div class="layuimini-notice-title">本周新增</div>
+                    <div class="layuimini-notice-title">
+                        <a herf="javascript:void(0);" id="week"> 本周新增</a>
+                        <span class="layui-badge layui-bg-blue" id="weekValue"></span>
+                    </div>
                 </div>
                 <div class="layuimini-notice">
-                    <div class="layuimini-notice-title">上周新增</div>
+                    <div class="layuimini-notice-title">
+                        <a herf="javascript:void(0);" id="lastWeek"> 上周新增</a>
+                        <span class="layui-badge layui-bg-blue" id="lastWeekValue"></span>
+                    </div>
                 </div>
                 <div class="layuimini-notice">
-                    <div class="layuimini-notice-title">本月新增</div>
+                    <div class="layuimini-notice-title">
+                        <a herf="javascript:void(0);" id="month"> 本月新增</a>
+                        <span class="layui-badge layui-bg-blue" id="monthValue"></span>
+                    </div>
                 </div>
                 <div class="layuimini-notice">
-                    <div class="layuimini-notice-title">上月新增</div>
+                    <div class="layuimini-notice-title">
+                        <a herf="javascript:void(0);" id="lastMonth"> 上月新增</a>
+                        <span class="layui-badge layui-bg-blue" id="lastMonthValue"></span>
+                    </div>
                 </div>
                 <div class="layuimini-notice">
-                    <div class="layuimini-notice-title">本季度新增</div>
+                    <div class="layuimini-notice-title">
+                        <a herf="javascript:void(0);" id="quarter"> 本季度新增</a>
+                        <span class="layui-badge layui-bg-blue" id="quarterValue"></span>
+                    </div>
                 </div>
                 <div class="layuimini-notice">
-                    <div class="layuimini-notice-title">上季度新增</div>
+                    <div class="layuimini-notice-title">
+                        <a herf="javascript:void(0);" id="lastQuarter"> 上季度新增</a>
+                        <span class="layui-badge layui-bg-blue" id="lastQuarterValue"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-card">
+            <div class="layui-card-body layui-text">
+                <div class="layuimini-notice">
+                    <div class="layuimini-notice-title">
+                        <a herf="javascript:void(0);" id="traded"> 已成交的商机</a>
+                        <span class="layui-badge layui-bg-blue" id="tradedValue"></span>
+                    </div>
+                </div>
+                <div class="layuimini-notice">
+                    <div class="layuimini-notice-title">
+                        <a herf="javascript:void(0);" id="throw"> 已丢单的商机</a>
+                        <span class="layui-badge layui-bg-blue" id="throwValue"></span>
+                    </div>
+                </div>
+                <div class="layuimini-notice">
+                    <div class="layuimini-notice-title">
+                        <a herf="javascript:void(0);" id="shelve"> 已搁置的商机</a>
+                        <span class="layui-badge layui-bg-blue" id="shelveValue"></span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -108,125 +189,365 @@
     <div class="layui-col-md-offset3">
         <script type="text/html" id="toolbarDemo">
             <div class="layui-btn-container">
-                <button class="layui-btn layui-btn-sm data-add-btn" lay-event="add"> 添加用户 </button>
-                <button class="layui-btn layui-btn-sm layui-btn-danger data-delete-btn" lay-event="delete"> 删除用户 </button>
+                <button class="layui-btn layui-btn-sm data-add-btn" lay-event="add"> 添加商机 </button>
+                <button class="layui-btn layui-btn-sm layui-btn-danger data-delete-btn" lay-event="delete"> 刷新 </button>
             </div>
         </script>
+
         <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
-        <script type="text/html" id="currentTableBar">
-            <a class="layui-btn layui-btn-xs data-count-edit" lay-event="edit">编辑</a>
-            <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">删除</a>
-        </script>
     </div>
 </div>
 <script src="/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
 <script>
-    layui.use(['form', 'table'], function () {
+    layui.use(['form', 'table','jquery'], function () {
         var $ = layui.jquery,
             form = layui.form,
             table = layui.table;
-
         table.render({
             elem: '#currentTableId',
-            url: '/api/table.json',
-            toolbar: '#toolbarDemo',
-            defaultToolbar: ['filter', 'exports', 'print', {
-                title: '提示',
-                layEvent: 'LAYTABLE_TIPS',
-                icon: 'layui-icon-tips'
-            }],
-            cols: [[
-                {type: "checkbox", width: 50, fixed: "left"},
-                {field: 'id', width: 80, title: 'ID', sort: true},
-                {field: 'username', width: 80, title: '用户名'},
-                {field: 'sex', width: 80, title: '性别', sort: true},
-                {field: 'city', width: 80, title: '城市'},
-                {field: 'sign', title: '签名', minWidth: 150},
-                {title: '操作', minWidth: 50, templet: '#currentTableBar', fixed: "right", align: "center"}
-            ]],
-            limits: [10, 15, 20, 25, 50, 100],
-            limit: 15,
-            page: true
+            toolbar: '#toolbarDemo'
+            ,page: true //开启分页
+            ,url: '/business/selectAllBusInfo.do' //数据接口
+            ,type:'get'
+            ,cols: [[
+                {field: 'busName', width: 250, title: '商机名称'},
+                {field: 'busStage', width: 180, title: '商机阶段'},
+                {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
+                {field: 'busDutyPeople', width: 180, title: '商机负责人'},
+                {field: 'docId', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.docId}}</a></div>'},
+                {field: 'invitationId', width: 130, title: '讨论版',templet:'<div><a  href="  " class="layui-table-link">{{d.invitationId==null?0:d.invitationId}}</a></div>'},
+            ]]
         });
 
-        // 监听搜索操作
-        form.on('submit(data-search-btn)', function (data) {
-            var result = JSON.stringify(data.field);
-            layer.alert(result, {
-                title: '最终的搜索信息'
+        /*根据id渲染表格*/
+        $("#proceedBus").click(function(){
+            table.render({
+                elem: '#currentTableId',
+                toolbar: '#toolbarDemo'
+                ,page: true //开启分页
+                ,url: '/business/proceedBus.do' //数据接口
+                ,type:'get'
+                ,cols: [[
+                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="  " class="layui-table-link">{{d.busName}}</a></div>'},
+                    {field: 'busStage', width: 180, title: '商机阶段'},
+                    {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
+                    {field: 'busDutyPeople', width: 180, title: '商机负责人'},
+                    {field: 'docId', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.docId}}</a></div>'},
+                    {field: 'invitationId', width: 130, title: '讨论版',templet:'<div><a  href="  " class="layui-table-link">{{d.invitationId==null?0:d.invitationId}}</a></div>'},
+                ]]
             });
-
-            //执行搜索重载
-            table.reload('currentTableId', {
-                page: {
-                    curr: 1
-                }
-                , where: {
-                    searchParams: result
-                }
-            }, 'data');
-
-            return false;
+        });
+        $("#Seven").click(function(){
+            table.render({
+                elem: '#currentTableId',
+                toolbar: '#toolbarDemo'
+                ,page: true //开启分页
+                ,url: '/business/docTimeLessSeven.do' //数据接口
+                ,type:'get'
+                ,cols: [[
+                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="  " class="layui-table-link">{{d.busName}}</a></div>'},
+                    {field: 'busStage', width: 180, title: '商机阶段'},
+                    {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
+                    {field: 'busDutyPeople', width: 180, title: '商机负责人'},
+                    {field: 'docId', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.docId}}</a></div>'},
+                    {field: 'invitationId', width: 130, title: '讨论版',templet:'<div><a  href="  " class="layui-table-link">{{d.invitationId==null?0:d.invitationId}}</a></div>'},
+                ]]
+            });
+        });
+        $("#Thirty").click(function(){
+            table.render({
+                elem: '#currentTableId',
+                toolbar: '#toolbarDemo'
+                ,page: true //开启分页
+                ,url: '/business/docTimeLessThirty.do' //数据接口
+                ,type:'get'
+                ,cols: [[
+                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="  " class="layui-table-link">{{d.busName}}</a></div>'},
+                    {field: 'busStage', width: 180, title: '商机阶段'},
+                    {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
+                    {field: 'busDutyPeople', width: 180, title: '商机负责人'},
+                    {field: 'docId', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.docId}}</a></div>'},
+                    {field: 'invitationId', width: 130, title: '讨论版',templet:'<div><a  href="  " class="layui-table-link">{{d.invitationId==null?0:d.invitationId}}</a></div>'},
+                ]]
+            });
+        });
+        $("#Ninety").click(function(){
+            table.render({
+                elem: '#currentTableId',
+                toolbar: '#toolbarDemo'
+                ,page: true //开启分页
+                ,url: '/business/docTimeLessNinety.do' //数据接口
+                ,type:'get'
+                ,cols: [[
+                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="  " class="layui-table-link">{{d.busName}}</a></div>'},
+                    {field: 'busStage', width: 180, title: '商机阶段'},
+                    {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
+                    {field: 'busDutyPeople', width: 180, title: '商机负责人'},
+                    {field: 'docId', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.docId}}</a></div>'},
+                    {field: 'invitationId', width: 130, title: '讨论版',templet:'<div><a  href="  " class="layui-table-link">{{d.invitationId==null?0:d.invitationId}}</a></div>'},
+                ]]
+            });
+        });
+        $("#traded").click(function(){
+            table.render({
+                elem: '#currentTableId',
+                toolbar: '#toolbarDemo'
+                ,page: true //开启分页
+                ,url: '/business/tradedBus.do' //数据接口
+                ,type:'get'
+                ,cols: [[
+                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="  " class="layui-table-link">{{d.busName}}</a></div>'},
+                    {field: 'busStage', width: 180, title: '商机阶段'},
+                    {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
+                    {field: 'busDutyPeople', width: 180, title: '商机负责人'},
+                    {field: 'docId', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.docId}}</a></div>'},
+                    {field: 'invitationId', width: 130, title: '讨论版',templet:'<div><a  href="  " class="layui-table-link">{{d.invitationId==null?0:d.invitationId}}</a></div>'},
+                ]]
+            });
+        });
+        $("#throw").click(function(){
+            table.render({
+                elem: '#currentTableId',
+                toolbar: '#toolbarDemo'
+                ,page: true //开启分页
+                ,url: '/business/throwBus.do' //数据接口
+                ,type:'get'
+                ,cols: [[
+                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="  " class="layui-table-link">{{d.busName}}</a></div>'},
+                    {field: 'busStage', width: 180, title: '商机阶段'},
+                    {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
+                    {field: 'busDutyPeople', width: 180, title: '商机负责人'},
+                    {field: 'docId', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.docId}}</a></div>'},
+                    {field: 'invitationId', width: 130, title: '讨论版',templet:'<div><a  href="  " class="layui-table-link">{{d.invitationId==null?0:d.invitationId}}</a></div>'},
+                ]]
+            });
+        });
+        $("#shelve").click(function(){
+            table.render({
+                elem: '#currentTableId',
+                toolbar: '#toolbarDemo'
+                ,page: true //开启分页
+                ,url: '/business/shelveBus.do' //数据接口
+                ,type:'get'
+                ,cols: [[
+                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="  " class="layui-table-link">{{d.busName}}</a></div>'},
+                    {field: 'busStage', width: 180, title: '商机阶段'},
+                    {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
+                    {field: 'busDutyPeople', width: 180, title: '商机负责人'},
+                    {field: 'docId', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.docId}}</a></div>'},
+                    {field: 'invitationId', width: 130, title: '讨论版',templet:'<div><a  href="  " class="layui-table-link">{{d.invitationId==null?0:d.invitationId}}</a></div>'},
+                ]]
+            });
+        });
+        $("#week").click(function(){
+            table.render({
+                elem: '#currentTableId',
+                toolbar: '#toolbarDemo'
+                ,page: true //开启分页
+                ,url: '/business/weekAdd.do' //数据接口
+                ,type:'get'
+                ,cols: [[
+                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="  " class="layui-table-link">{{d.busName}}</a></div>'},
+                    {field: 'busStage', width: 180, title: '商机阶段'},
+                    {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
+                    {field: 'busDutyPeople', width: 180, title: '商机负责人'},
+                    {field: 'docId', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.docId}}</a></div>'},
+                    {field: 'invitationId', width: 130, title: '讨论版',templet:'<div><a  href="  " class="layui-table-link">{{d.invitationId==null?0:d.invitationId}}</a></div>'},
+                ]]
+            });
+        });
+        $("#lastWeek").click(function(){
+            table.render({
+                elem: '#currentTableId',
+                toolbar: '#toolbarDemo'
+                ,page: true //开启分页
+                ,url: '/business/lastWeekAdd.do' //数据接口
+                ,type:'get'
+                ,cols: [[
+                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="  " class="layui-table-link">{{d.busName}}</a></div>'},
+                    {field: 'busStage', width: 180, title: '商机阶段'},
+                    {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
+                    {field: 'busDutyPeople', width: 180, title: '商机负责人'},
+                    {field: 'docId', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.docId}}</a></div>'},
+                    {field: 'invitationId', width: 130, title: '讨论版',templet:'<div><a  href="  " class="layui-table-link">{{d.invitationId==null?0:d.invitationId}}</a></div>'},
+                ]]
+            });
+        });
+        $("#month").click(function(){
+            table.render({
+                elem: '#currentTableId',
+                toolbar: '#toolbarDemo'
+                ,page: true //开启分页
+                ,url: '/business/monthAdd.do' //数据接口
+                ,type:'get'
+                ,cols: [[
+                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="  " class="layui-table-link">{{d.busName}}</a></div>'},
+                    {field: 'busStage', width: 180, title: '商机阶段'},
+                    {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
+                    {field: 'busDutyPeople', width: 180, title: '商机负责人'},
+                    {field: 'docId', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.docId}}</a></div>'},
+                    {field: 'invitationId', width: 130, title: '讨论版',templet:'<div><a  href="  " class="layui-table-link">{{d.invitationId==null?0:d.invitationId}}</a></div>'},
+                ]]
+            });
+        });
+        $("#lastMonth").click(function(){
+            table.render({
+                elem: '#currentTableId',
+                toolbar: '#toolbarDemo'
+                ,page: true //开启分页
+                ,url: '/business/lastMonthAdd.do' //数据接口
+                ,type:'get'
+                ,cols: [[
+                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="  " class="layui-table-link">{{d.busName}}</a></div>'},
+                    {field: 'busStage', width: 180, title: '商机阶段'},
+                    {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
+                    {field: 'busDutyPeople', width: 180, title: '商机负责人'},
+                    {field: 'docId', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.docId}}</a></div>'},
+                    {field: 'invitationId', width: 130, title: '讨论版',templet:'<div><a  href="  " class="layui-table-link">{{d.invitationId==null?0:d.invitationId}}</a></div>'},
+                ]]
+            });
+        });
+        $("#quarter").click(function(){
+            table.render({
+                elem: '#currentTableId',
+                toolbar: '#toolbarDemo'
+                ,page: true //开启分页
+                ,url: '/business/quarterAdd.do' //数据接口
+                ,type:'get'
+                ,cols: [[
+                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="  " class="layui-table-link">{{d.busName}}</a></div>'},
+                    {field: 'busStage', width: 180, title: '商机阶段'},
+                    {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
+                    {field: 'busDutyPeople', width: 180, title: '商机负责人'},
+                    {field: 'docId', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.docId}}</a></div>'},
+                    {field: 'invitationId', width: 130, title: '讨论版',templet:'<div><a  href="  " class="layui-table-link">{{d.invitationId==null?0:d.invitationId}}</a></div>'},
+                ]]
+            });
+        });
+        $("#lastQuarter").click(function(){
+            table.render({
+                elem: '#currentTableId',
+                toolbar: '#toolbarDemo'
+                ,page: true //开启分页
+                ,url: '/business/lastQuarterAdd.do' //数据接口
+                ,type:'get'
+                ,cols: [[
+                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="  " class="layui-table-link">{{d.busName}}</a></div>'},
+                    {field: 'busStage', width: 180, title: '商机阶段'},
+                    {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
+                    {field: 'busDutyPeople', width: 180, title: '商机负责人'},
+                    {field: 'docId', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.docId}}</a></div>'},
+                    {field: 'invitationId', width: 130, title: '讨论版',templet:'<div><a  href="  " class="layui-table-link">{{d.invitationId==null?0:d.invitationId}}</a></div>'},
+                ]]
+            });
         });
 
-        /**
-         * toolbar监听事件
-         */
-        table.on('toolbar(currentTableFilter)', function (obj) {
-            if (obj.event === 'add') {  // 监听添加操作
-                var index = layer.open({
-                    title: '添加用户',
-                    type: 2,
-                    shade: 0.2,
-                    maxmin:true,
-                    shadeClose: true,
-                    area: ['100%', '100%'],
-                    content: '/page/table/add.html',
-                });
-                $(window).on("resize", function () {
-                    layer.full(index);
-                });
-            } else if (obj.event === 'delete') {  // 监听删除操作
-                var checkStatus = table.checkStatus('currentTableId')
-                    , data = checkStatus.data;
-                layer.alert(JSON.stringify(data));
+        /*ajax异步提交，根据id给对应的徽章赋值*/
+        $.ajax({
+            url:'/business/proceedBusNumber.do',
+            method:'get',
+            dataType:'JSON',
+            success:function(res) {
+                $("#proceedBusValue").append(res);
             }
-        });
-
-        //监听表格复选框选择
-        table.on('checkbox(currentTableFilter)', function (obj) {
-            console.log(obj)
-        });
-
-        table.on('tool(currentTableFilter)', function (obj) {
-            var data = obj.data;
-            if (obj.event === 'edit') {
-
-                var index = layer.open({
-                    title: '编辑用户',
-                    type: 2,
-                    shade: 0.2,
-                    maxmin:true,
-                    shadeClose: true,
-                    area: ['100%', '100%'],
-                    content: '/page/table/edit.html',
-                });
-                $(window).on("resize", function () {
-                    layer.full(index);
-                });
-                return false;
-            } else if (obj.event === 'delete') {
-                layer.confirm('真的删除行么', function (index) {
-                    obj.del();
-                    layer.close(index);
-                });
+        }) ;
+        $.ajax({
+            url:'/business/docTimeLessSevenNumber.do',
+            method:'get',
+            dataType:'JSON',
+            success:function(res) {
+                $("#SevenValue").append(res);
             }
-        });
+        }) ;
+        $.ajax({
+            url:'/business/docTimeLessThirtyNumber.do',
+            method:'get',
+            dataType:'JSON',
+            success:function(res) {
+                $("#ThirtyValue").append(res);
+            }
+        }) ;
+        $.ajax({
+            url:'/business/docTimeLessNinetyNumber.do',
+            method:'get',
+            dataType:'JSON',
+            success:function(res) {
+                $("#NinetyValue").append(res);
+            }
+        }) ;
+        $.ajax({
+            url:'/business/tradedBusNumber.do',
+            method:'get',
+            dataType:'JSON',
+            success:function(res) {
+                $("#tradedValue").append(res);
+            }
+        }) ;
+        $.ajax({
+            url:'/business/throwBusNumber.do',
+            method:'get',
+            dataType:'JSON',
+            success:function(res) {
+                $("#throwValue").append(res);
+            }
+        }) ;
+        $.ajax({
+            url:'/business/shelveBusNumber.do',
+            method:'get',
+            dataType:'JSON',
+            success:function(res) {
+                $("#shelveValue").append(res);
+            }
+        }) ;
+        $.ajax({
+            url:'/business/weekAddNumber.do',
+            method:'get',
+            dataType:'JSON',
+            success:function(res) {
+                $("#weekValue").append(res);
+            }
+        }) ;
+        $.ajax({
+            url:'/business/lastWeekAddNumber.do',
+            method:'get',
+            dataType:'JSON',
+            success:function(res) {
+                $("#lastWeekValue").append(res);
+            }
+        }) ;
+        $.ajax({
+            url:'/business/monthAddNumber.do',
+            method:'get',
+            dataType:'JSON',
+            success:function(res) {
+                $("#monthValue").append(res);
+            }
+        }) ;
+        $.ajax({
+            url:'/business/lastMonthAddNumber.do',
+            method:'get',
+            dataType:'JSON',
+            success:function(res) {
+                $("#lastMonthValue").append(res);
+            }
+        }) ;
+        $.ajax({
+            url:'/business/quarterAddNumber.do',
+            method:'get',
+            dataType:'JSON',
+            success:function(res) {
+                $("#quarterValue").append(res);
+            }
+        }) ;
+        $.ajax({
+            url:'/business/lastQuarterAddNumber.do',
+            method:'get',
+            dataType:'JSON',
+            success:function(res) {
+                $("#lastQuarterValue").append(res);
+            }
+        }) ;
 
-        // echarts 窗口缩放自适应
-        window.onresize = function(){
-            echartsRecords.resize();
-        }
 
     });
 </script>

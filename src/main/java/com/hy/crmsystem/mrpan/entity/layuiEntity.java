@@ -3,9 +3,9 @@ package com.hy.crmsystem.mrpan.entity;
 import java.util.List;
 
 public class layuiEntity {
-       private Integer code;
-       private String msg;
-       private Integer count;
+       private Integer code=0;
+       private String msg="";
+       private Long count;
        private List data;
 
     public Integer getCode() {
@@ -24,11 +24,11 @@ public class layuiEntity {
         this.msg = msg;
     }
 
-    public Integer getCount() {
+    public Long getCount() {
         return count;
     }
 
-    public void setCount(Integer count) {
+    public void setCount(Long count) {
         this.count = count;
     }
 

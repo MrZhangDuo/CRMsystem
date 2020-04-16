@@ -1,100 +1,74 @@
 package com.hy.crmsystem.mrpan.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
-import org.springframework.format.annotation.DateTimeFormat;
-
-import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- * <p>
- * 
- * </p>
- *
- * @author zhangduo
- * @since 2020-04-03
- * 商机表*/
+public class BusinessCustBo {
 
-
-@TableName(value = "business")
-public class Business implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
-   //商机id
-    @TableId(value = "busId", type = IdType.AUTO)
     private Integer busId;
-    @TableField("custId")
-    private Integer custId;
+    private String custDept;
+    //跟单主键
+    private Integer docId;
+    //帖子主键
+    private Integer invitationId;
+    //基础主键
+    private Integer baseId;
     //商机名称
-    @TableField("busName")
     private String busName;
     //商机来源
-    @TableField("busSource")
     private String busSource;
 
     //预成交金额
-    @TableField("busBeforeMoney")
-    private Float busBeforeMoney;
-   //预结单日期
-   @TableField("busBeforedate")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private String busBeforeMoney;
+    //预结单日期
     private Date busBeforedate;
-    @TableField(exist = false)
     private String beForedate;
     //联系人
-    @TableField("busBlinkMan")
     private String busBlinkMan;
     //部门
-    @TableField("busDept")
     private String busDept;
     //职务
-    @TableField("busJob")
     private String busJob;
     //固定电话
-    @TableField("busFixnum")
     private String busFixnum;
     //移动电话
-    @TableField("busPhone")
     private String busPhone;
     //邮件/QQ
-    @TableField("busEmail")
     private String busEmail;
     //主要业务需求
-    @TableField("busNeed")
     private String busNeed;
     //相关附件
-    @TableField("busFile")
     private String busFile;
     //商机负责人
-    @TableField("busDutyPeople")
     private String busDutyPeople;
     //商机产与人
-    @TableField("busJoinPeople")
     private String busJoinPeople;
     //商机关注人
-    @TableField("busFollowPeople")
     private String busFollowPeople;
     //商机阶段
-    @TableField("busStage")
     private String busStage;
-   // 添加商机的时间
-   @TableField("busTime")
-   @DateTimeFormat(pattern = "yyyy-MM-dd")
-   private Date busTime;
-   //商机的优先级
-   @TableField("busPriority")
-   private String busPriority;
+    // 添加商机的时间
+    private Date busTime;
+    private String nowTime;
+    //商机的优先级
+    private String busPriority;
 
-    public String getBeForedate() {
-        if(busBeforedate!=null){
-            return new SimpleDateFormat("yyyy-MM-dd").format(busBeforedate);
+    private Integer custId;
+    private String custName;
+    private String custTrade;
+    private String custCity;
+    private String custAddress;
+    private String custSource;
+
+    public String getNowTime() {
+        if(busTime!=null){
+            return new SimpleDateFormat("yyyy-MM-dd").format(busTime);
         }
-        return beForedate;
+        return nowTime;
+    }
+
+    public void setNowTime(String nowTime) {
+        this.nowTime = nowTime;
     }
 
     public Date getBusTime() {
@@ -103,6 +77,69 @@ public class Business implements Serializable {
 
     public void setBusTime(Date busTime) {
         this.busTime = busTime;
+    }
+
+    public String getBeForedate() {
+        if(busBeforedate!=null){
+            return new SimpleDateFormat("yyyy-MM-dd").format(busBeforedate);
+        }
+        return beForedate;
+    }
+
+    public Integer getCustId() {
+        return custId;
+    }
+
+    public String getCustDept() {
+        return custDept;
+    }
+
+    public void setCustDept(String custDept) {
+        this.custDept = custDept;
+    }
+
+    public void setCustId(Integer custId) {
+        this.custId = custId;
+    }
+
+    public String getCustName() {
+        return custName;
+    }
+
+    public void setCustName(String custName) {
+        this.custName = custName;
+    }
+
+    public String getCustTrade() {
+        return custTrade;
+    }
+
+    public void setCustTrade(String custTrade) {
+        this.custTrade = custTrade;
+    }
+
+    public String getCustCity() {
+        return custCity;
+    }
+
+    public void setCustCity(String custCity) {
+        this.custCity = custCity;
+    }
+
+    public String getCustAddress() {
+        return custAddress;
+    }
+
+    public void setCustAddress(String custAddress) {
+        this.custAddress = custAddress;
+    }
+
+    public String getCustSource() {
+        return custSource;
+    }
+
+    public void setCustSource(String custSource) {
+        this.custSource = custSource;
     }
 
     public void setBeForedate(String beForedate) {
@@ -117,6 +154,29 @@ public class Business implements Serializable {
         this.busId = busId;
     }
 
+    public Integer getDocId() {
+        return docId;
+    }
+
+    public void setDocId(Integer docId) {
+        this.docId = docId;
+    }
+
+    public Integer getInvitationId() {
+        return invitationId;
+    }
+
+    public void setInvitationId(Integer invitationId) {
+        this.invitationId = invitationId;
+    }
+
+    public Integer getBaseId() {
+        return baseId;
+    }
+
+    public void setBaseId(Integer baseId) {
+        this.baseId = baseId;
+    }
 
     public String getBusName() {
         return busName;
@@ -134,11 +194,11 @@ public class Business implements Serializable {
         this.busSource = busSource;
     }
 
-    public Float getBusBeforeMoney() {
+    public String getBusBeforeMoney() {
         return busBeforeMoney;
     }
 
-    public void setBusBeforeMoney(Float busBeforeMoney) {
+    public void setBusBeforeMoney(String busBeforeMoney) {
         this.busBeforeMoney = busBeforeMoney;
     }
 
@@ -149,6 +209,8 @@ public class Business implements Serializable {
     public void setBusBeforedate(Date busBeforedate) {
         this.busBeforedate = busBeforedate;
     }
+
+
 
     public String getBusBlinkMan() {
         return busBlinkMan;
@@ -253,39 +315,5 @@ public class Business implements Serializable {
 
     public void setBusPriority(String busPriority) {
         this.busPriority = busPriority;
-    }
-
-    public Integer getCustId() {
-        return custId;
-    }
-
-    public void setCustId(Integer custId) {
-        this.custId = custId;
-    }
-
-    @Override
-    public String toString() {
-        return "Business{" +
-                "busId=" + busId +
-                ", custId=" + custId +
-                ", busName='" + busName + '\'' +
-                ", busSource='" + busSource + '\'' +
-                ", busBeforeMoney='" + busBeforeMoney + '\'' +
-                ", busBeforedate=" + busBeforedate +
-                ", beForedate='" + beForedate + '\'' +
-                ", busBlinkMan='" + busBlinkMan + '\'' +
-                ", busDept='" + busDept + '\'' +
-                ", busJob='" + busJob + '\'' +
-                ", busFixnum='" + busFixnum + '\'' +
-                ", busPhone='" + busPhone + '\'' +
-                ", busEmail='" + busEmail + '\'' +
-                ", busNeed='" + busNeed + '\'' +
-                ", busFile='" + busFile + '\'' +
-                ", busDutyPeople='" + busDutyPeople + '\'' +
-                ", busJoinPeople='" + busJoinPeople + '\'' +
-                ", busFollowPeople='" + busFollowPeople + '\'' +
-                ", busStage='" + busStage + '\'' +
-                ", busPriority='" + busPriority + '\'' +
-                '}';
     }
 }

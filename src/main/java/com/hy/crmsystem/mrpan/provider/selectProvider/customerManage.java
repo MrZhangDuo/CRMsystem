@@ -1,24 +1,155 @@
 package com.hy.crmsystem.mrpan.provider.selectProvider;
 
-import com.hy.crmsystem.mrpan.entity.Customer;
+import com.hy.crmsystem.mrpan.entity.AfterServiceNum;
+import com.hy.crmsystem.mrpan.entity.BusinessBo;
+import com.hy.crmsystem.mrpan.entity.ContractBo;
+import com.hy.crmsystem.mrpan.entity.CustomerBo;
+import com.mysql.jdbc.StringUtils;
 
 public class customerManage {
 
 
     /*客户管理页面联合查询*/
-    public String customerselect(Customer customer){
-        boolean selectName;
-        StringBuffer sql=new StringBuffer("SELECT  cus.CustName,COUNT(cus.Busid),SUM( bus.BusBeforeMoney),COUNT(cus.ContractId),\n" +
-                "                        SUM(con.ContractMoney),SUM(money.incomesMoney), COUNT(cus.ServiceId),AVG(ser.ServicesCore)\n" +
-                "                FROM customer cus,business bus,contract con,moneyregister money,service ser\n" +
-                "                WHERE cus.BusId=bus.BusId AND cus.ContractId=con.ContractId AND con.incomeId=money.incomeId AND cus.ServiceId=ser.ServiceId AND 1=1");
+    public String customerselect(CustomerBo customer){
 
+        StringBuffer sql=new StringBuffer("SELECT c.custId,c.custName, sj.sjs AS busId,sj.yje AS busBeforeMoney,ht.hts AS contractId, ht.contractMoney AS contractMoney,ht.hke AS incomesMoney ,sh.shs AS serviceId,sh.pjf AS servicesCore FROM  customer c LEFT JOIN \n" +
+                "(SELECT b.`custId`,COUNT(b.`custId`)AS sjs,SUM(busBeforeMoney)AS yje FROM  customer c LEFT JOIN  business b   ON b.`custId`=c.custId GROUP BY c.custId)AS sj ON c.custId=sj.custId LEFT JOIN \n" +
+                "(SELECT con.`custId`, COUNT(con.custId)AS hts ,con.contractMoney,SUM(mon.incomesMoney)AS hke FROM customer c LEFT JOIN contract con ON c.custId=con.`custId` LEFT JOIN moneyregister mon ON con.`contractId`=mon.`contractId`\n" +
+                "GROUP BY c.custId) AS ht ON c.custId=ht.custId  LEFT JOIN\n" +
+                "(SELECT a.`custId` ,COUNT(a.custId)AS shs ,AVG(servicesCore)AS pjf FROM customer c LEFT JOIN afterservice a ON c.custId=a.`custId` GROUP BY c.custId)sh ON c.custId=sh.custId where 1=1\n");
 
+        if(!StringUtils.isNullOrEmpty(customer.getCustName())){
+            sql.append(" and custName like '%"+customer.getCustName()+"%'");
+        }
+        if(!StringUtils.isNullOrEmpty(customer.getCustSpell())){
+            sql.append(" and custSpell like '%"+customer.getCustSpell()+"%'");
+        }
+        if(!StringUtils.isNullOrEmpty(customer.getCustSource())){
+            sql.append(" and custSource like '%"+customer.getCustSource()+"%'");
+        }
+        if(!StringUtils.isNullOrEmpty(customer.getCustCountry())){
+            sql.append(" and custCountry like '%"+customer.getCustCountry()+"%'");
+        }
+        if(!StringUtils.isNullOrEmpty(customer.getCustCity())){
+            sql.append(" and custCity like '%"+customer.getCustCity()+"%'");
+        }
+        if(!StringUtils.isNullOrEmpty(customer.getCustTrade())){
+            sql.append(" and custTrade like '%"+customer.getCustTrade()+"%'");
+        }
         return sql.toString();
     }
 
 
+    public String selectCustAll(String custName){
+        StringBuffer sql=new StringBuffer("SELECT c.custName, sj.sjs AS busId,sj.yje AS busBeforeMoney,ht.hts AS contractId, ht.contractMoney AS contractMoney,ht.hke AS incomesMoney ,sh.shs AS serviceId,sh.pjf AS servicesCore FROM  customer c LEFT JOIN \n" +
+                "(SELECT b.`custId`,COUNT(b.`custId`)AS sjs,SUM(busBeforeMoney)AS yje FROM  customer c LEFT JOIN  business b   ON b.`custId`=c.custId GROUP BY c.custId)AS sj ON c.custId=sj.custId LEFT JOIN \n" +
+                "(SELECT con.`custId`, COUNT(con.custId)AS hts ,con.contractMoney,SUM(mon.incomesMoney)AS hke FROM customer c LEFT JOIN contract con ON c.custId=con.`custId` LEFT JOIN moneyregister mon ON con.`contractId`=mon.`contractId`\n" +
+                "GROUP BY c.custId) AS ht ON c.custId=ht.custId  LEFT JOIN\n" +
+                "(SELECT a.`custId` ,COUNT(a.custId)AS shs ,AVG(servicesCore)AS pjf FROM customer c LEFT JOIN afterservice a ON c.custId=a.`custId` GROUP BY c.custId)sh ON c.custId=sh.custId where custName='"+custName+"'\n");
+        return sql.toString();
+    }
 
+    /*(客户)点商机数时查询所有商机的对应信息*/
+    public String  selectBusInfo(BusinessBo businessBo){
+        StringBuffer sql=new StringBuffer("SELECT cb.busId, cb.`busName` AS busName,cb.`busStage` AS busStage,cb.`busBeforeMoney` AS busBeforeMoney,cb.`busDutyPeople` AS busDutyPeople,bd.docTime AS docId,bi.tlbs AS invitationId  FROM (SELECT b.`busId`,b.busName,b.`busStage`,b.`busBeforeMoney`,b.`busDutyPeople`  FROM  business b LEFT JOIN customer c ON b.`custId`=c.custId WHERE c.custId="+businessBo.getCustId()+")AS cb  LEFT JOIN \n" +
+                "                    (SELECT b.busId, MAX(d.docTime)AS docTime  FROM business b LEFT JOIN documentary d ON b.`busId`=d.busId GROUP BY b.busId)AS bd  ON cb.`busId`=bd.busId LEFT JOIN\n" +
+                "                    (SELECT i.`busId`,COUNT(i.busId)AS tlbs FROM business b LEFT JOIN invitation i ON b.`busId`=i.busId GROUP BY b.busId)AS bi ON cb.`busId`=bi.busId ");
+        /*if(!StringUtils.isNullOrEmpty(businessBo.getBusName())){
+            sql.append(" and busName='%"+businessBo.getBusName()+"%'");
+        }
+        if(!StringUtils.isNullOrEmpty(businessBo.getBusStage())){
+            sql.append(" and busStage='%"+businessBo.getBusStage()+"%'");
+        }
+        if(!StringUtils.isNullOrEmpty(businessBo.getBusDutyPeople())){
+            sql.append(" and busDutyPeople='%"+businessBo.getBusDutyPeople()+"%'");
+        }
+        if(!StringUtils.isNullOrEmpty(businessBo.getBusDept())){
+            sql.append(" and busDept='%"+businessBo.getBusDept()+"%'");
+        }
+        if(!StringUtils.isNullOrEmpty(businessBo.getBusBeforeMoney())){
+            sql.append(" and busBeforeMoney='%"+businessBo.getBusBeforeMoney()+"%'");
+        }
+        if(null!=businessBo.getBusBeforedate()&& !"".equals(businessBo.getBusBeforedate())){
+            sql.append(" and busBeforedate='%"+businessBo.getBusBeforedate()+"%'");
+        }*/
+        return sql.toString();
+    }
+
+    /*（商机表中）查询所有的商机 */
+    public String  selectAllBusInfo(BusinessBo businessBo){
+        StringBuffer sql=new StringBuffer("SELECT cb.busId, cb.`busName` AS busName,cb.`busStage` AS busStage,cb.`busBeforeMoney` AS busBeforeMoney,cb.`busDutyPeople` AS busDutyPeople,bd.docTime AS docId,bi.tlbs AS invitationId  FROM (SELECT b.`busId`,b.busName,b.`busStage`,b.`busBeforeMoney`,b.`busDutyPeople`  FROM  business b LEFT JOIN customer c ON b.`custId`=c.custId )AS cb  LEFT JOIN \n" +
+                "(SELECT b.busId, MAX(d.docTime)AS docTime  FROM business b LEFT JOIN documentary d ON b.`busId`=d.busId GROUP BY b.busId)AS bd  ON cb.`busId`=bd.busId LEFT JOIN\n" +
+                "(SELECT i.`busId`,COUNT(i.busId)AS tlbs FROM business b LEFT JOIN invitation i ON b.`busId`=i.busId GROUP BY b.busId)AS bi ON cb.`busId`=bi.busId");
+       /* if(!StringUtils.isNullOrEmpty(businessBo.getBusName())){
+            sql.append(" and busName='%"+businessBo.getBusName()+"%'");
+        }
+        if(!StringUtils.isNullOrEmpty(businessBo.getBusStage())){
+            sql.append(" and busStage='%"+businessBo.getBusStage()+"%'");
+        }
+        if(!StringUtils.isNullOrEmpty(businessBo.getBusDutyPeople())){
+            sql.append(" and busDutyPeople='%"+businessBo.getBusDutyPeople()+"%'");
+        }
+        if(!StringUtils.isNullOrEmpty(businessBo.getBusDept())){
+            sql.append(" and busDept='%"+businessBo.getBusDept()+"%'");
+        }
+        if(!StringUtils.isNullOrEmpty(businessBo.getBusBeforeMoney())){
+            sql.append(" and busBeforeMoney='%"+businessBo.getBusBeforeMoney()+"%'");
+        }
+        if(null!=businessBo.getBusBeforedate()&& !"".equals(businessBo.getBusBeforedate())){
+            sql.append(" and busBeforedate='%"+businessBo.getBusBeforedate()+"%'");
+        }*/
+        return sql.toString();
+    }
+
+    //点合同数时根据客户id查询客户下的所有合同
+    public String selectContractInfo(ContractBo contractBo){
+        StringBuffer sql=new StringBuffer("SELECT con.contractId AS contractId,con.contractName AS contractName,con.contractNum AS contractNum,con.contractMoney AS contractMoney,cm.incomesMoney AS incomesMoney,cb.billMoney AS billMoney,con.signedTime AS signedTime \n" +
+                "           FROM contract con LEFT JOIN (SELECT c.*, SUM(incomesMoney)AS incomesMoney   FROM contract c LEFT JOIN `moneyregister` m ON c.`contractId`=m. contractId GROUP BY m.contractId)AS cm ON con.contractId=cm.contractId LEFT JOIN \n" +
+                "           (SELECT c.*,SUM(billMoney)AS billMoney FROM contract c LEFT JOIN billaskfor b ON c.`contractId`=b.contractId GROUP BY b.contractId)AS cb ON con.contractId=cb.contractId WHERE 1=1 and con.custId='"+contractBo.getCustId()+"'");
+
+        if(!StringUtils.isNullOrEmpty(contractBo.getContractName())){
+            sql.append(" and contractName='"+contractBo.getContractName()+"'");
+        }
+        if(!StringUtils.isNullOrEmpty(contractBo.getContractNum())){
+            sql.append(" and contractNum='"+contractBo.getContractNum()+"'");
+        }
+        if(!StringUtils.isNullOrEmpty(contractBo.getOfdept())){
+            sql.append(" and ofdept='"+contractBo.getOfdept()+"'");
+        }
+        if(null!=contractBo.getIncomesMoney() && "".equals(contractBo.getIncomesMoney()) ){
+            sql.append(" and incomesMoney='"+contractBo.getIncomesMoney()+"'");
+        }
+        if(null!=contractBo.getSignedTime() && "".equals(contractBo.getIncomesMoney())){
+            sql.append(" and signedTime='"+contractBo.getSignedTime()+"'");
+        }
+        return sql.toString();
+    }
+
+
+    //点售后服务数时查询售后服务的信息
+    public String selectServiceInfo(AfterServiceNum afterService){
+        StringBuffer sql=new StringBuffer("SELECT serviceTheme ,serviceType ,serviceStartTime,servicePeople ,servicesCore FROM `afterservice` \n" +
+                "   WHERE custId='"+afterService.getCustId()+"'");
+
+        return sql.toString();
+    }
+
+    public String  selectCustMoney(Integer custId){
+        return new StringBuffer("SELECT c.*,m.*  FROM  customer c,moneyinfor m WHERE c.`moneyId`=m.moneyId AND c.`custId`="+custId+"").toString();
+    }
+
+    public String custByBusId(Integer custd){
+        return new StringBuffer("SELECT c.custId,c.custDept, c.custName,c.custTrade,c.custCity,c.custAddress,c.custSource,b.* FROM customer c,business b WHERE c.`custId`=b.custId AND b.busId="+custd+"").toString();
+    }
+
+
+    //根据用户名查询财务信息
+    public String selectMoneyInfo(String CustName){
+        StringBuffer sql=new StringBuffer("SELECT moneyId,moneyBankCard,moneyBankName,moneybank,moneyAddress,moneyDutyNo,moneyPhone" +
+                " FROM moneyinfor WHERE moneyId=(SELECT DISTINCT moneyId FROM  customer WHERE custName='"+CustName+"')");
+
+        return sql.toString();
+    }
 
 
 }
