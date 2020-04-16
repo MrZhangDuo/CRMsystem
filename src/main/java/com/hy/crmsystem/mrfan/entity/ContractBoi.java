@@ -3,84 +3,57 @@ package com.hy.crmsystem.mrfan.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- * <p>
- * 
- * </p>
- *
- * @author zhangduo
- * @since 2020-04-03
- */
-@TableName(value = "contract")
-public class Contract implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class ContractBoi {
     //合同主键
-    @TableId(value = "contractId", type = IdType.AUTO)
     private Integer contractId;
     //客户外键
-    @TableField("custId")
     private Integer custId;
-    @TableField(exist = false)
-    private String custName;
-
     //合同名称
-    @TableField("contractName")
     private String contractName;
     //合同编号
-    @TableField("contractNum")
     private String contractNum;
     //合同金额
-    @TableField("contractMoney")
     private Float contractMoney;
     //签约日期
-    @TableField("signedTime")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date signedTime;
+    private String times;
     //生效时间
-    @TableField("contractStarTime")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date contractStarTime;
+    private String starTime;
     //服务期至
-    @TableField("contractEndTime")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date contractEndTime;
+    private String endTime;
     //对方联系人
-    @TableField("contractLinkMan")
     private String contractLinkMan;
     //固定电话
-    @TableField("contractFixNum")
     private String contractFixNum;
     //移动电话
-    @TableField("phone")
     private String phone;
     //邮件/qq
-    @TableField("email")
     private String email;
     //主要技术条款
-    @TableField("technical")
     private String technical;
     //主要商务条款
-    @TableField("commerce")
     private String commerce;
     //相关附件
-    @TableField("contractfile")
     private String contractfile;
     //合同所属部门
-    @TableField("ofdept")
-    private Integer ofdept;
+    private String ofdept;
     //关联人员
-    @TableField("relevancyPeople")
     private String relevancyPeople;
-    @TableField("contractzhuangtai")
+    //合同状态
     private String contractzhuangtai;
-
+    //汇款额
+    private Float incomesMoney;
+    //开票额
+    private Float billMoney;
+    //客户姓名
+    private String custName;
 
     public String getCustName() {
         return custName;
@@ -90,12 +63,40 @@ public class Contract implements Serializable {
         this.custName = custName;
     }
 
-    public String getContractzhuangtai() {
-        return contractzhuangtai;
+    public String getTimes() {
+        if(signedTime!=null){
+            return new SimpleDateFormat( "yyyy-MM-dd ").format(signedTime);
+        }else{
+            return times;
+        }
     }
 
-    public void setContractzhuangtai(String contractzhuangtai) {
-        this.contractzhuangtai = contractzhuangtai;
+    public void setTimes(String times) {
+        this.times = times;
+    }
+
+    public String getStarTime() {
+        if(contractStarTime!=null){
+            return new SimpleDateFormat( "yyyy-MM-dd ").format(contractStarTime);
+        }else{
+            return starTime;
+        }
+    }
+
+    public void setStarTime(String starTime) {
+        this.starTime = starTime;
+    }
+
+    public String getEndTime() {
+        if(contractEndTime!=null){
+            return new SimpleDateFormat( "yyyy-MM-dd ").format(contractEndTime);
+        }else{
+            return endTime;
+        }
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
     }
 
     public Integer getContractId() {
@@ -218,11 +219,11 @@ public class Contract implements Serializable {
         this.contractfile = contractfile;
     }
 
-    public Integer getOfdept() {
+    public String getOfdept() {
         return ofdept;
     }
 
-    public void setOfdept(Integer ofdept) {
+    public void setOfdept(String ofdept) {
         this.ofdept = ofdept;
     }
 
@@ -234,26 +235,27 @@ public class Contract implements Serializable {
         this.relevancyPeople = relevancyPeople;
     }
 
-    @Override
-    public String toString() {
-        return "Contract{" +
-                "contractId=" + contractId +
-                ", custId=" + custId +
-                ", contractName='" + contractName + '\'' +
-                ", contractNum='" + contractNum + '\'' +
-                ", contractMoney='" + contractMoney + '\'' +
-                ", signedTime=" + signedTime +
-                ", contractStarTime=" + contractStarTime +
-                ", contractEndTime=" + contractEndTime +
-                ", contractLinkMan='" + contractLinkMan + '\'' +
-                ", contractFixNum='" + contractFixNum + '\'' +
-                ", phone='" + phone + '\'' +
-                ", email='" + email + '\'' +
-                ", technical='" + technical + '\'' +
-                ", commerce='" + commerce + '\'' +
-                ", contractfile='" + contractfile + '\'' +
-                ", ofdept=" + ofdept +
-                ", relevancyPeople='" + relevancyPeople + '\'' +
-                '}';
+    public String getContractzhuangtai() {
+        return contractzhuangtai;
+    }
+
+    public void setContractzhuangtai(String contractzhuangtai) {
+        this.contractzhuangtai = contractzhuangtai;
+    }
+
+    public Float getIncomesMoney() {
+        return incomesMoney;
+    }
+
+    public void setIncomesMoney(Float incomesMoney) {
+        this.incomesMoney = incomesMoney;
+    }
+
+    public Float getBillMoney() {
+        return billMoney;
+    }
+
+    public void setBillMoney(Float billMoney) {
+        this.billMoney = billMoney;
     }
 }

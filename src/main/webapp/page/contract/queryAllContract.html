@@ -37,33 +37,41 @@
 </head>
 <body>
 <div class="layuimini-container">
+    <!-- 搜索条件开始 -->
     <fieldset class="table-search-fieldset">
         <legend>搜索信息</legend>
-        <div style="margin: 10px 10px 10px 293px">
-            <form class="layui-form layui-form-pane" action="">
+        <div style="margin: 10px 10px 10px 10px">
+            <form class="layui-form layui-form-pane" action="" id="searchFrm" method="post">
                 <div class="layui-inline">
                     <label class="layui-form-label">搜索选择框</label>
-                    <div class="layui-input-inline">
-                        <select name="afterservicelimit" lay-verify="required" lay-search="">
-                            <option value="">直接选择或搜索选择</option>
-                            <option name="" value="1">按合同全称</option>
-                            <option name="" value="2">按合同编号</option>
-                            <option name="" value="3">按合同所属部门</option>
-                            <option name="" value="4">按关联人员</option>
-                            <option name="" value="5">按合同金额</option>
-                            <option name="" value="5">按签约日期</option>
-                        </select>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">客户姓名</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="custName" autocomplete="off" class="layui-input">
+                        </div>
                     </div>
-                    <div class="layui-input-inline">
-                        <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入关键字" class="layui-input">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">合同名称</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="contractName" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">开始时间</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="signedTime" id="signedTime" readonly="readonly"
+                                   autocomplete="off" class="layui-input">
+                        </div>
                     </div>
                 </div>
                 <div class="layui-inline">
                     <button type="submit" class="layui-btn layui-btn-primary" lay-submit  lay-filter="data-search-btn"><i class="layui-icon"></i> 搜 索</button>
+                    <button type="reset" class="layui-btn layui-btn-warm  layui-icon layui-icon-refresh">重置</button>
                 </div>
             </form>
         </div>
     </fieldset>
+    <!-- 搜索条件结束-->
 
     <div class="layui-col-md3">
         <div class="layui-card">
@@ -72,39 +80,61 @@
                 <div class="layuimini-notice">
                     <div class="layuimini-notice-title">所有分类</div>
                 </div>
-                <div class="layuimini-notice">
-                    <div class="layuimini-notice-title">执行中的合同</div>
-                </div>
-                <div class="layuimini-notice">
-                    <div class="layuimini-notice-title">已关闭的合同</div>
-                </div>
-                <div class="layuimini-notice">
-                    <div class="layuimini-notice-title">已撤除的服务</div>
-                </div>
-                <div class="layuimini-notice">
-                    <div class="layuimini-notice-title">已搁置的合同</div>
+                <div class="layuimini-notice-title">
+                    <div class="layuimini-notice">
+                        <a id="zhixing" href="javascript:void(0);">执行中的合同</a>
+                        <button id="zhix"  type="button" style="background-color: #1e9fff" class="layui-btn layui-btn-disabled layui-btn-radius layui-btn-xs" ></button>
+                    </div>
+                    <div class="layuimini-notice">
+                        <a id="guanbi" href="javascript:void(0);">已关闭的合同</a>
+                        <button id="guanb"  type="button" style="background-color: #1e9fff" class="layui-btn layui-btn-disabled layui-btn-radius layui-btn-xs" ></button>
+                    </div>
+                    <div class="layuimini-notice">
+                        <a id="chechu" href="javascript:void(0);">已撤除的服务</a>
+                        <button id="chec"  type="button" style="background-color: #1e9fff" class="layui-btn layui-btn-disabled layui-btn-radius layui-btn-xs" ></button>
+                    </div>
+                    <div class="layuimini-notice">
+                        <a id="gezhi" href="javascript:void(0);">已搁置的合同</a>
+                        <button id="gez"  type="button" style="background-color: #1e9fff" class="layui-btn layui-btn-disabled layui-btn-radius layui-btn-xs" ></button>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="layui-card">
-            <div class="layui-card-body layui-text">
+            <div class="layui-card-body layui-text" style="color:#1e9fff">
                 <div class="layuimini-notice">
-                    <div class="layuimini-notice-title">本周新增</div>
+                    <div class="layuimini-notice-title"><a id="benzhou" href="javascript:void(0);">本周新增</a>
+                        <button id="benz" type="button" style="background-color: #1e9fff" class="layui-btn layui-btn-disabled layui-btn-radius layui-btn-xs"></button></div>
                 </div>
                 <div class="layuimini-notice">
-                    <div class="layuimini-notice-title">上周新增</div>
+                    <div class="layuimini-notice-title">
+                        <a id="shangzhou" href="javascript:void(0);">上周新增</a>
+                        <button id="shangz" type="button" style="background-color: #1e9fff" class="layui-btn layui-btn-disabled layui-btn-radius layui-btn-xs"></button>
+                    </div>
                 </div>
                 <div class="layuimini-notice">
-                    <div class="layuimini-notice-title">本月新增</div>
+                    <div class="layuimini-notice-title">
+                        <a id="benyue" href="javascript:void(0);">本月新增</a>
+                        <button id="beny" type="button" style="background-color: #1e9fff" class="layui-btn layui-btn-disabled layui-btn-radius layui-btn-xs"></button>
+                    </div>
                 </div>
                 <div class="layuimini-notice">
-                    <div class="layuimini-notice-title">上月新增</div>
+                    <div class="layuimini-notice-title">
+                        <a id="shangyue" href="javascript:void(0);">上月新增</a>
+                        <button id="shangy" type="button" style="background-color: #1e9fff" class="layui-btn layui-btn-disabled layui-btn-radius layui-btn-xs"></button>
+                    </div>
                 </div>
                 <div class="layuimini-notice">
-                    <div class="layuimini-notice-title">本季度新增</div>
+                    <div class="layuimini-notice-title">
+                        <a id="benji" href="javascript:void(0);">本季度新增</a>
+                        <button id="benj" type="button" style="background-color: #1e9fff" class="layui-btn layui-btn-disabled layui-btn-radius layui-btn-xs"></button>
+                    </div>
                 </div>
                 <div class="layuimini-notice">
-                    <div class="layuimini-notice-title">上季度新增</div>
+                    <div class="layuimini-notice-title">
+                        <a id="shangji" href="javascript:void(0);">上季度新增</a>
+                        <button id="shangj" type="button" style="background-color: #1e9fff" class="layui-btn layui-btn-disabled layui-btn-radius layui-btn-xs"></button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -121,14 +151,24 @@
 </div>
 <script src="/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
 <script>
-    layui.use(['form', 'table'], function () {
-        var $ = layui.jquery,
-            form = layui.form,
-            table = layui.table;
+    layui.use(['jquery', 'layer', 'form', 'table', 'laydate'], function () {
+        var $ = layui.jquery;
+        var layer = layui.layer;
+        var form = layui.form;
+        var table = layui.table;
+        var laydate = layui.laydate;
+
+        //渲染时间
+       /* laydate.render({
+            elem: '#signedTime',
+            type: 'datetime'
+        });*/
+
+
 
         table.render({
             elem: '#currentTableId',
-            url: '',
+            url: '/contract/queryAllContract.do',
             cellMinWidth: 80 ,//全局定义常规单元格的最小宽度，layui 2.2.1 新增
             toolbar: '#toolbarDemo',
             defaultToolbar: ['filter', 'exports', 'print', {
@@ -137,12 +177,12 @@
                 icon: 'layui-icon-tips'
             }],
             cols: [[
-                {field: 'contractName', title: '合同全称'},
+                {field: 'contractName', title: '合同全称',templet:'<div><a  href="/afterservice/queryAfterServiceById.do?serviceId={{d.serviceId}}" class="layui-table-link">{{d.contractName}}</a></div>'},
                 {field: 'contractNum', title: '合同编号'},
-                {field: 'contractMoney',  title: '合同金额', sort: true},
-                {field: 'billMoney', title: '汇款额',sort: true},
-                {field: 'billMoney', title: '开票额'},
-                {field: '', title: '签约日期' },
+                {field: 'contractMoney',  title: '合同金额',templet:'<div><a  href="  " class="layui-table-link">{{d.contractMoney==null?0:d.contractMoney}}</a></div>'},
+                {field: 'incomesMoney', title: '汇款额',templet:'<div><a  href="  " class="layui-table-link">{{d.incomesMoney==null?0:d.incomesMoney}}</a></div>'},
+                {field: 'billMoney', title: '开票额',templet:'<div><a  href="  " class="layui-table-link">{{d.billMoney==null?0:d.billMoney}}</a></div>'},
+                {field: 'times', title: '签约日期' },
             ]],
             limits: [3, 4, 5, 6, 8, 10],
             limit: 2,
@@ -151,23 +191,310 @@
 
         // 监听搜索操作
         form.on('submit(data-search-btn)', function (data) {
-            var result = JSON.stringify(data.field);
-            layer.alert(result, {
-                title: '最终的搜索信息'
+            table.reload('currentTableId',{
+                url: '/contract/queryAllContract.do'
+                ,where:data.field//设定异步数据接口的额外参数
             });
-
             //执行搜索重载
-            table.reload('currentTableId', {
-                page: {
-                    curr: 1
-                }
-                , where: {
-                    searchParams: result
-                }
-            }, 'data');
-
             return false;
         });
+
+        $("#zhixing").click(function () {
+            table.render({
+                elem: '#currentTableId',
+                url: '/contract/queryAllContract.do?zhixing=zhixing',
+                cellMinWidth: 80, //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+                toolbar: '#toolbarDemo',
+                defaultToolbar: ['filter', 'exports', 'print', {
+                    title: '提示',
+                    layEvent: 'LAYTABLE_TIPS',
+                    icon: 'layui-icon-tips'
+                }],
+                cols: [[
+                    {field: 'contractName', title: '合同全称',templet:'<div><a  href="/afterservice/queryAfterServiceById.do?serviceId={{d.serviceId}}" class="layui-table-link">{{d.contractName}}</a></div>'},
+                    {field: 'contractNum', title: '合同编号'},
+                    {field: 'contractMoney',  title: '合同金额',templet:'<div><a  href="  " class="layui-table-link">{{d.contractMoney==null?0:d.contractMoney}}</a></div>'},
+                    {field: 'incomesMoney', title: '汇款额',templet:'<div><a  href="  " class="layui-table-link">{{d.incomesMoney==null?0:d.incomesMoney}}</a></div>'},
+                    {field: 'billMoney', title: '开票额',templet:'<div><a  href="  " class="layui-table-link">{{d.billMoney==null?0:d.billMoney}}</a></div>'},
+                    {field: 'times', title: '签约日期' },
+                ]],
+                limits: [10, 15, 20, 25, 50, 100],
+                limit: 2,
+                page: true
+            });
+        });
+
+        $("#guanbi").click(function () {
+            table.render({
+                elem: '#currentTableId',
+                url: '/contract/queryAllContract.do?guanbi=guanbi',
+                cellMinWidth: 80, //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+                toolbar: '#toolbarDemo',
+                defaultToolbar: ['filter', 'exports', 'print', {
+                    title: '提示',
+                    layEvent: 'LAYTABLE_TIPS',
+                    icon: 'layui-icon-tips'
+                }],
+                cols: [[
+                    {field: 'contractName', title: '合同全称',templet:'<div><a  href="/afterservice/queryAfterServiceById.do?serviceId={{d.serviceId}}" class="layui-table-link">{{d.contractName}}</a></div>'},
+                    {field: 'contractNum', title: '合同编号'},
+                    {field: 'contractMoney',  title: '合同金额',templet:'<div><a  href="  " class="layui-table-link">{{d.contractMoney==null?0:d.contractMoney}}</a></div>'},
+                    {field: 'incomesMoney', title: '汇款额',templet:'<div><a  href="  " class="layui-table-link">{{d.incomesMoney==null?0:d.incomesMoney}}</a></div>'},
+                    {field: 'billMoney', title: '开票额',templet:'<div><a  href="  " class="layui-table-link">{{d.billMoney==null?0:d.billMoney}}</a></div>'},
+                    {field: 'times', title: '签约日期' },
+                ]],
+                limits: [10, 15, 20, 25, 50, 100],
+                limit: 2,
+                page: true
+            });
+        });
+
+        $("#chechu").click(function () {
+            table.render({
+                elem: '#currentTableId',
+                url: '/contract/queryAllContract.do?chechu=chechu',
+                cellMinWidth: 80, //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+                toolbar: '#toolbarDemo',
+                defaultToolbar: ['filter', 'exports', 'print', {
+                    title: '提示',
+                    layEvent: 'LAYTABLE_TIPS',
+                    icon: 'layui-icon-tips'
+                }],
+                cols: [[
+                    {field: 'contractName', title: '合同全称',templet:'<div><a  href="/afterservice/queryAfterServiceById.do?serviceId={{d.serviceId}}" class="layui-table-link">{{d.contractName}}</a></div>'},
+                    {field: 'contractNum', title: '合同编号'},
+                    {field: 'contractMoney',  title: '合同金额',templet:'<div><a  href="  " class="layui-table-link">{{d.contractMoney==null?0:d.contractMoney}}</a></div>'},
+                    {field: 'incomesMoney', title: '汇款额',templet:'<div><a  href="  " class="layui-table-link">{{d.incomesMoney==null?0:d.incomesMoney}}</a></div>'},
+                    {field: 'billMoney', title: '开票额',templet:'<div><a  href="  " class="layui-table-link">{{d.billMoney==null?0:d.billMoney}}</a></div>'},
+                    {field: 'times', title: '签约日期' },
+                ]],
+                limits: [10, 15, 20, 25, 50, 100],
+                limit: 2,
+                page: true
+            });
+        });
+
+        $("#gezhi").click(function () {
+            table.render({
+                elem: '#currentTableId',
+                url: '/contract/queryAllContract.do?gezhi=gezhi',
+                cellMinWidth: 80, //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+                toolbar: '#toolbarDemo',
+                defaultToolbar: ['filter', 'exports', 'print', {
+                    title: '提示',
+                    layEvent: 'LAYTABLE_TIPS',
+                    icon: 'layui-icon-tips'
+                }],
+                cols: [[
+                    {field: 'contractName', title: '合同全称',templet:'<div><a  href="/afterservice/queryAfterServiceById.do?serviceId={{d.serviceId}}" class="layui-table-link">{{d.contractName}}</a></div>'},
+                    {field: 'contractNum', title: '合同编号'},
+                    {field: 'contractMoney',  title: '合同金额',templet:'<div><a  href="  " class="layui-table-link">{{d.contractMoney==null?0:d.contractMoney}}</a></div>'},
+                    {field: 'incomesMoney', title: '汇款额',templet:'<div><a  href="  " class="layui-table-link">{{d.incomesMoney==null?0:d.incomesMoney}}</a></div>'},
+                    {field: 'billMoney', title: '开票额',templet:'<div><a  href="  " class="layui-table-link">{{d.billMoney==null?0:d.billMoney}}</a></div>'},
+                    {field: 'times', title: '签约日期' },
+                ]],
+                limits: [10, 15, 20, 25, 50, 100],
+                limit: 2,
+                page: true
+            });
+        });
+
+
+        $("#benzhou").click(function () {
+            table.render({
+                elem: '#currentTableId',
+                url: '/contract/queryAllContract.do?benzhou=benzhou',
+                cellMinWidth: 80, //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+                toolbar: '#toolbarDemo',
+                defaultToolbar: ['filter', 'exports', 'print', {
+                    title: '提示',
+                    layEvent: 'LAYTABLE_TIPS',
+                    icon: 'layui-icon-tips'
+                }],
+                cols: [[
+                    {field: 'contractName', title: '合同全称',templet:'<div><a  href="/afterservice/queryAfterServiceById.do?serviceId={{d.serviceId}}" class="layui-table-link">{{d.contractName}}</a></div>'},
+                    {field: 'contractNum', title: '合同编号'},
+                    {field: 'contractMoney',  title: '合同金额',templet:'<div><a  href="  " class="layui-table-link">{{d.contractMoney==null?0:d.contractMoney}}</a></div>'},
+                    {field: 'incomesMoney', title: '汇款额',templet:'<div><a  href="  " class="layui-table-link">{{d.incomesMoney==null?0:d.incomesMoney}}</a></div>'},
+                    {field: 'billMoney', title: '开票额',templet:'<div><a  href="  " class="layui-table-link">{{d.billMoney==null?0:d.billMoney}}</a></div>'},
+                    {field: 'times', title: '签约日期' },
+                ]],
+                limits: [10, 15, 20, 25, 50, 100],
+                limit: 2,
+                page: true
+            });
+        });
+
+        $("#shangzhou").click(function () {
+            table.render({
+                elem: '#currentTableId',
+                url: '/contract/queryAllContract.do?shangzhou=shangzhou',
+                cellMinWidth: 80, //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+                toolbar: '#toolbarDemo',
+                defaultToolbar: ['filter', 'exports', 'print', {
+                    title: '提示',
+                    layEvent: 'LAYTABLE_TIPS',
+                    icon: 'layui-icon-tips'
+                }],
+                cols: [[
+                    {field: 'contractName', title: '合同全称',templet:'<div><a  href="/afterservice/queryAfterServiceById.do?serviceId={{d.serviceId}}" class="layui-table-link">{{d.contractName}}</a></div>'},
+                    {field: 'contractNum', title: '合同编号'},
+                    {field: 'contractMoney',  title: '合同金额',templet:'<div><a  href="  " class="layui-table-link">{{d.contractMoney==null?0:d.contractMoney}}</a></div>'},
+                    {field: 'incomesMoney', title: '汇款额',templet:'<div><a  href="  " class="layui-table-link">{{d.incomesMoney==null?0:d.incomesMoney}}</a></div>'},
+                    {field: 'billMoney', title: '开票额',templet:'<div><a  href="  " class="layui-table-link">{{d.billMoney==null?0:d.billMoney}}</a></div>'},
+                    {field: 'times', title: '签约日期' },
+                ]],
+                limits: [10, 15, 20, 25, 50, 100],
+                limit: 2,
+                page: true
+            });
+        });
+
+        $("#benyue").click(function () {
+            table.render({
+                elem: '#currentTableId',
+                url: '/contract/queryAllContract.do?benyue=benyue',
+                cellMinWidth: 80, //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+                toolbar: '#toolbarDemo',
+                defaultToolbar: ['filter', 'exports', 'print', {
+                    title: '提示',
+                    layEvent: 'LAYTABLE_TIPS',
+                    icon: 'layui-icon-tips'
+                }],
+                cols: [[
+                    {field: 'contractName', title: '合同全称',templet:'<div><a  href="/afterservice/queryAfterServiceById.do?serviceId={{d.serviceId}}" class="layui-table-link">{{d.contractName}}</a></div>'},
+                    {field: 'contractNum', title: '合同编号'},
+                    {field: 'contractMoney',  title: '合同金额',templet:'<div><a  href="  " class="layui-table-link">{{d.contractMoney==null?0:d.contractMoney}}</a></div>'},
+                    {field: 'incomesMoney', title: '汇款额',templet:'<div><a  href="  " class="layui-table-link">{{d.incomesMoney==null?0:d.incomesMoney}}</a></div>'},
+                    {field: 'billMoney', title: '开票额',templet:'<div><a  href="  " class="layui-table-link">{{d.billMoney==null?0:d.billMoney}}</a></div>'},
+                    {field: 'times', title: '签约日期' },
+                ]],
+                limits: [10, 15, 20, 25, 50, 100],
+                limit: 2,
+                page: true
+            });
+        });
+
+        $("#shangyue").click(function () {
+            table.render({
+                elem: '#currentTableId',
+                url: '/contract/queryAllContract.do?shangyue=shangyue',
+                cellMinWidth: 80, //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+                toolbar: '#toolbarDemo',
+                defaultToolbar: ['filter', 'exports', 'print', {
+                    title: '提示',
+                    layEvent: 'LAYTABLE_TIPS',
+                    icon: 'layui-icon-tips'
+                }],
+                cols: [[
+                    {field: 'contractName', title: '合同全称',templet:'<div><a  href="/afterservice/queryAfterServiceById.do?serviceId={{d.serviceId}}" class="layui-table-link">{{d.contractName}}</a></div>'},
+                    {field: 'contractNum', title: '合同编号'},
+                    {field: 'contractMoney',  title: '合同金额',templet:'<div><a  href="  " class="layui-table-link">{{d.contractMoney==null?0:d.contractMoney}}</a></div>'},
+                    {field: 'incomesMoney', title: '汇款额',templet:'<div><a  href="  " class="layui-table-link">{{d.incomesMoney==null?0:d.incomesMoney}}</a></div>'},
+                    {field: 'billMoney', title: '开票额',templet:'<div><a  href="  " class="layui-table-link">{{d.billMoney==null?0:d.billMoney}}</a></div>'},
+                    {field: 'times', title: '签约日期' },
+                ]],
+                limits: [10, 15, 20, 25, 50, 100],
+                limit: 2,
+                page: true
+            });
+        });
+
+        $("#benji").click(function () {
+            table.render({
+                elem: '#currentTableId',
+                url: '/contract/queryAllContract.do?benji=benji',
+                cellMinWidth: 80, //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+                toolbar: '#toolbarDemo',
+                defaultToolbar: ['filter', 'exports', 'print', {
+                    title: '提示',
+                    layEvent: 'LAYTABLE_TIPS',
+                    icon: 'layui-icon-tips'
+                }],
+                cols: [[
+                    {field: 'contractName', title: '合同全称',templet:'<div><a  href="/afterservice/queryAfterServiceById.do?serviceId={{d.serviceId}}" class="layui-table-link">{{d.contractName}}</a></div>'},
+                    {field: 'contractNum', title: '合同编号'},
+                    {field: 'contractMoney',  title: '合同金额',templet:'<div><a  href="  " class="layui-table-link">{{d.contractMoney==null?0:d.contractMoney}}</a></div>'},
+                    {field: 'incomesMoney', title: '汇款额',templet:'<div><a  href="  " class="layui-table-link">{{d.incomesMoney==null?0:d.incomesMoney}}</a></div>'},
+                    {field: 'billMoney', title: '开票额',templet:'<div><a  href="  " class="layui-table-link">{{d.billMoney==null?0:d.billMoney}}</a></div>'},
+                    {field: 'times', title: '签约日期' },
+                ]],
+                limits: [10, 15, 20, 25, 50, 100],
+                limit: 2,
+                page: true
+            });
+        });
+
+        $("#shangji").click(function () {
+            table.render({
+                elem: '#currentTableId',
+                url: '/contract/queryAllContract.do?shangji=shangji',
+                cellMinWidth: 80, //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+                toolbar: '#toolbarDemo',
+                defaultToolbar: ['filter', 'exports', 'print', {
+                    title: '提示',
+                    layEvent: 'LAYTABLE_TIPS',
+                    icon: 'layui-icon-tips'
+                }],
+                cols: [[
+                    {field: 'contractName', title: '合同全称',templet:'<div><a  href="/afterservice/queryAfterServiceById.do?serviceId={{d.serviceId}}" class="layui-table-link">{{d.contractName}}</a></div>'},
+                    {field: 'contractNum', title: '合同编号'},
+                    {field: 'contractMoney',  title: '合同金额',templet:'<div><a  href="  " class="layui-table-link">{{d.contractMoney==null?0:d.contractMoney}}</a></div>'},
+                    {field: 'incomesMoney', title: '汇款额',templet:'<div><a  href="  " class="layui-table-link">{{d.incomesMoney==null?0:d.incomesMoney}}</a></div>'},
+                    {field: 'billMoney', title: '开票额',templet:'<div><a  href="  " class="layui-table-link">{{d.billMoney==null?0:d.billMoney}}</a></div>'},
+                    {field: 'times', title: '签约日期' },
+                ]],
+                limits: [10, 15, 20, 25, 50, 100],
+                limit: 2,
+                page: true
+            });
+        });
+
+        $.ajax({
+            type: "GET",
+            url: "/contract/queryContractCount.do",
+            dataType: "json",
+            success: function (data) {
+                for (var key in data) {
+                    if (key=="zhixing"){
+                        $("#zhix").text(data[key]);
+                    }
+                    if (key=="guanbi"){
+                        $("#guanb").text(data[key]);
+                    }
+                    if (key=="chechu"){
+                        $("#chec").text(data[key]);
+                    }
+                    if (key=="gezhi"){
+                        $("#gez").text(data[key]);
+                    }
+                    if (key=="benzhou"){
+                        $("#benz").text(data[key]);
+                    }
+                    if (key=="shangzhou"){
+                        $("#shangz").text(data[key]);
+                    }
+                    if (key=="benyue"){
+                        $("#beny").text(data[key]);
+                    }
+                    if (key=="shangyue"){
+                        $("#shangy").text(data[key]);
+                    }
+                    if (key=="benji"){
+                        $("#benj").text(data[key]);
+                    }
+                    if (key=="shangji"){
+                        $("#shangj").text(data[key]);
+                    }
+                }
+            }
+        });
+
+
+
+
+
+
 
         /**
          * toolbar监听事件
