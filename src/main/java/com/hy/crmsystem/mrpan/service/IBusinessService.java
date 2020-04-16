@@ -25,11 +25,25 @@ public interface IBusinessService extends IService<Business> {
   */
  List<Business> queryBusName();
 
-    //点商机数时查询所有商机的对应信息
-    public List<BusinessBo> selectBusInfo(@Param("businessBo") BusinessBo businessBo, Integer currentPage, Integer pageSize);
-   //查询所有商机的信息
-   public List<BusinessBo> selectAllBusInfo(Integer currentPage, Integer pageSize);
-    /*根据商机ID查询客户的客户名称，所属行业，所在城市，详细地址*/
+        //点商机数时查询所有商机的对应信息
+        public List<BusinessBo> selectBusInfo(@Param("businessBo") BusinessBo businessBo, Integer currentPage, Integer pageSize);
+       //查询所有商机的信息
+       public List<BusinessBo> selectAllBusInfo(Integer currentPage, Integer pageSize);
+       //查询我的商机中商机的信息
+        public List<BusinessBo> MyBusInfo(String custName,Integer currentPage, Integer pageSize);
+     //根据商机负责人查询我的商机信息
+     public List<BusinessBo> MyBusInfoByResponsiblePeople(String custName,Integer currentPage, Integer pageSize);
+     //根据商机参与人查询我的商机信息
+     public List<BusinessBo> MyBusInfoByJoinPeople(String custName,Integer currentPage, Integer pageSize);
+     //根据商机关注人查询我的商机信息
+     public List<BusinessBo> MyBusInfoByCarePeople(String custName,Integer currentPage, Integer pageSize);
+    //查询我的商机中商机负责人是登陆人的商机条数
+    public Integer BusResponsiblePeopleNumber(String custName);
+    //查询我的商机中商机参与人是登陆人的商机条数
+    public Integer BusJoinPeopleNumber(String custName);
+    //查询我的商机中商机关注人是登陆人的商机条数
+    public Integer BusCarePeopleNumber(String custName);
+ /*根据商机ID查询客户的客户名称，所属行业，所在城市，详细地址*/
     public BusinessCustBo custByBusId(Integer custId);
     /*查询进行中的商机*/
     public List<BusinessBo> proceedBus(Integer currentPage, Integer pageSize);
@@ -83,4 +97,10 @@ public interface IBusinessService extends IService<Business> {
  public List<BusinessBo> lastQuarterAdd(Integer currentPage, Integer pageSize);
  /*上季度新增数量*/
  public Integer lastQuarterAddNumber();
+
+ /*111111111111111111111111我的商机信息11111111111111111111111111111*/
+    /*成交商机*/
+    public List<BusinessBo> successBus(String custName,Integer currentPage, Integer pageSize);
+    /*成交商机的数量*/
+    public  Integer successBusNumber(String custName);
 }

@@ -46,6 +46,45 @@ public class BusinessServiceImpl extends ServiceImpl<BusinessMapper, Business> i
         return businessMapper.selectAllBusInfo();
     }
 
+    //查询我的商机中商机的信息
+    public List<BusinessBo> MyBusInfo(String custName,Integer currentPage, Integer pageSize){
+        Page page = PageHelper.startPage(currentPage,pageSize, true);
+        return businessMapper.MyBusInfo(custName);
+    }
+    //根据商机负责人查询我的商机信息
+    public List<BusinessBo> MyBusInfoByResponsiblePeople(String custName,Integer currentPage, Integer pageSize){
+        Page page = PageHelper.startPage(currentPage,pageSize, true);
+        return businessMapper.MyBusInfoByResponsiblePeople(custName);
+    }
+    //查询我的商机中商机负责人是登陆人的商机条数
+    public Integer BusResponsiblePeopleNumber(String custName){
+      return  businessMapper.BusResponsiblePeopleNumber(custName);
+    }
+    //查询我的商机中商机参与人是登陆人的商机条数
+    public Integer BusJoinPeopleNumber(String custName){
+        return businessMapper.BusJoinPeopleNumber(custName);
+    }
+    //查询我的商机中商机关注人是登陆人的商机条数
+    public Integer BusCarePeopleNumber(String custName){
+        return businessMapper.BusJoinPeopleNumber(custName);
+    }
+    //根据商机参与人查询我的商机信息
+    public List<BusinessBo> MyBusInfoByJoinPeople(String custName,Integer currentPage, Integer pageSize){
+        Page page = PageHelper.startPage(currentPage,pageSize, true);
+        return businessMapper.MyBusInfoByJoinPeople(custName);
+    }
+    //根据商机关注人查询我的商机信息
+    public List<BusinessBo> MyBusInfoByCarePeople(String custName,Integer currentPage, Integer pageSize){
+        Page page = PageHelper.startPage(currentPage,pageSize, true);
+        List<BusinessBo> bus=businessMapper.MyBusInfoByCarePeople(custName);
+        for (int i = 0; i <bus.size(); i++) {
+            System.out.println("244321235145353242432314232322222222222222222222");
+            System.out.println("============================"+bus.get(i).getBusName()+bus.get(i).getBusStage());
+        }
+        return bus;
+
+    }
+
     /*根据商机名查询客户的客户名称，所属行业，所在城市，详细地址*/
     public BusinessCustBo custByBusId(Integer busId){
        return  businessMapper.custByBusId(busId);
@@ -177,4 +216,16 @@ public class BusinessServiceImpl extends ServiceImpl<BusinessMapper, Business> i
     public Integer lastQuarterAddNumber(){
         return businessMapper.lastQuarterAddNumber();
     }
+
+    /*111111111111111111111111我的商机信息11111111111111111111111111111*/
+
+    /*成交商机*/
+    public List<BusinessBo> successBus(String custName,Integer currentPage, Integer pageSize){
+        Page page = PageHelper.startPage(currentPage,pageSize, true);
+        return businessMapper.successBus(custName);
+    };
+    /*成交商机的数量*/
+    public  Integer successBusNumber(String custName){
+        return businessMapper.successBusNumber(custName);
+    };
 }
