@@ -1,10 +1,16 @@
 package com.hy.crmsystem.mrpan.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.hy.crmsystem.mrpan.entity.*;
+import com.hy.crmsystem.mrli.utils.ActivierUser;
+import com.hy.crmsystem.mrpan.entity.Business;
+import com.hy.crmsystem.mrpan.entity.BusinessBo;
+import com.hy.crmsystem.mrpan.entity.Customer;
+import com.hy.crmsystem.mrpan.entity.layuiEntity;
 import com.hy.crmsystem.mrpan.mapper.CustomerMapper;
 import com.hy.crmsystem.mrpan.service.impl.BusinessServiceImpl;
 import com.hy.crmsystem.mrpan.service.impl.CustomerServiceImpl;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -56,6 +62,91 @@ public class BusinessController {
         return layui;
     }
 
+    //查询我的商机中商机的信息
+    @ResponseBody
+    @RequestMapping(value = "/MyBusInfo.do",method = RequestMethod.GET)
+    public layuiEntity  MyBusInfo(@RequestParam(value = "page", defaultValue = "1") Integer page, @RequestParam(value = "limit", defaultValue = "3") Integer limit){
+       //三行获取当前登陆人
+        Subject subject = SecurityUtils.getSubject();
+        ActivierUser activierUser = (ActivierUser) subject.getPrincipal();
+        String custName=activierUser.getUser().getLoginname();//获取当前登陆人的账号
+
+        List<BusinessBo> pages = businessService.MyBusInfo(custName,page,limit);//
+        PageInfo pageInfo = new PageInfo(pages);
+        layuiEntity layui = new layuiEntity();
+        layui.setCount(pageInfo.getTotal());/*Count数据总条数*/
+        layui.setData(pageInfo.getList());/*数据信息*/
+        return layui;
+    }
+    //根据商机负责人查询我的商机信息
+    @ResponseBody
+    @RequestMapping(value = "/MyBusInfoByResponsiblePeople.do",method = RequestMethod.GET)
+    public layuiEntity  MyBusInfoByResponsiblePeople(@RequestParam(value = "page", defaultValue = "1") Integer page, @RequestParam(value = "limit", defaultValue = "3") Integer limit){
+       //三行获取当前登陆人
+        Subject subject = SecurityUtils.getSubject();
+        ActivierUser activierUser = (ActivierUser) subject.getPrincipal();
+        String custName=activierUser.getUser().getLoginname();//获取当前登陆人的账号
+
+        List<BusinessBo> pages = businessService.MyBusInfoByResponsiblePeople(custName,page,limit);//
+        PageInfo pageInfo = new PageInfo(pages);
+        layuiEntity layui = new layuiEntity();
+        layui.setCount(pageInfo.getTotal());/*Count数据总条数*/
+        layui.setData(pageInfo.getList());/*数据信息*/
+        return layui;
+    }
+    //根据商机参与人查询我的商机信息
+    @ResponseBody
+    @RequestMapping(value = "/MyBusInfoByJoinPeople.do",method = RequestMethod.GET)
+    public layuiEntity  MyBusInfoByJoinPeople(@RequestParam(value = "page", defaultValue = "1") Integer page, @RequestParam(value = "limit", defaultValue = "3") Integer limit){
+       //三行获取当前登陆人
+        Subject subject = SecurityUtils.getSubject();
+        ActivierUser activierUser = (ActivierUser) subject.getPrincipal();
+        String custName=activierUser.getUser().getLoginname();//获取当前登陆人的账号
+
+        List<BusinessBo> pages = businessService.MyBusInfoByJoinPeople(custName,page,limit);//
+        PageInfo pageInfo = new PageInfo(pages);
+        layuiEntity layui = new layuiEntity();
+        layui.setCount(pageInfo.getTotal());/*Count数据总条数*/
+        layui.setData(pageInfo.getList());/*数据信息*/
+        return layui;
+    }
+    //根据商机关注人查询我的商机信息
+    @ResponseBody
+    @RequestMapping(value = "/MyBusInfoByCarePeople.do",method = RequestMethod.GET)
+    public layuiEntity  MyBusInfoByCarePeople(@RequestParam(value = "page", defaultValue = "1") Integer page, @RequestParam(value = "limit", defaultValue = "3") Integer limit){
+       //三行获取当前登陆人
+        Subject subject = SecurityUtils.getSubject();
+        ActivierUser activierUser = (ActivierUser) subject.getPrincipal();
+        String custName=activierUser.getUser().getLoginname();//获取当前登陆人的账号
+
+        List<BusinessBo> pages = businessService.MyBusInfoByCarePeople(custName,page,limit);
+        PageInfo<Business> pageInfo = new PageInfo(pages);
+        layuiEntity layui = new layuiEntity();
+        layui.setCount(pageInfo.getTotal());/*Count数据总条数*/
+        layui.setData(pageInfo.getList());/*数据信息*/
+        return layui;
+    }
+
+    //查询我的商机中商机负责人是登陆人的商机条数
+    @ResponseBody
+    @RequestMapping("/BusResponsiblePeopleNumber.do")
+    public Integer BusResponsiblePeopleNumber(String custName){
+        return businessService.BusResponsiblePeopleNumber(custName);
+    }
+    //查询我的商机中商机参与人是登陆人的商机条数
+    @ResponseBody
+    @RequestMapping("/BusJoinPeopleNumber.do")
+    public Integer BusJoinPeopleNumber(String custName){
+      return   businessService.BusJoinPeopleNumber(custName);
+    }
+    //查询我的商机中商机关注人是登陆人的商机条数
+    @ResponseBody
+    @RequestMapping("/BusCarePeopleNumber.do")
+    public Integer BusCarePeopleNumber(String custName){
+        return businessService.BusCarePeopleNumber(custName);
+    }
+
+
 
     /*根据商机id查询商机及客户信息*/
     @RequestMapping("/custByBusId.do")
@@ -79,7 +170,7 @@ public class BusinessController {
 
     //添加商机
     @ResponseBody
-    @RequestMapping("/updateBusDetailsaddBusiness.do")
+    @RequestMapping("/addBusiness.do")
     public String addBusiness(Customer customer,Business business){
         String a="0";
         try {
@@ -329,7 +420,19 @@ public class BusinessController {
         return  businessService.lastQuarterAddNumber();
     }
 
+    /*111111111111111111111111我的商机信息11111111111111111111111111111*/
 
-
+    /*成交商机*/
+   /* @ResponseBody
+    @RequestMapping("/lastQuarterAdd.do")
+    public layuiEntity successBus(@RequestParam(value = "page", defaultValue = "1") Integer page, @RequestParam(value = "limit", defaultValue = "9") Integer limit){
+        List<BusinessBo> pages = businessService.successBus(page, limit);
+        PageInfo pageInfo = new PageInfo(pages);
+        layuiEntity layui = new layuiEntity();
+        layui.setCount(pageInfo.getTotal());*//*Count数据总条数*//*
+        layui.setData(pageInfo.getList());*//*数据信息*//*
+        return layui;
+    }
+*/
 };
 

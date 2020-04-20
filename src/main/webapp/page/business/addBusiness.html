@@ -8,17 +8,6 @@
     <link rel="stylesheet" href="/lib/layui-v2.5.5/css/layui.css" media="all">
     <link rel="stylesheet" href="/css/public.css" media="all">
 </head>
-<!--<script type="text/javascript">
-    var dangqianTime=new Date();//获取当前时间
-    document.write(dangqianTime);
-    var yearNow=dangqianTime.getFullYear();//获取当前时间的年份
-    var monthNow=dangqianTime.getMonth();//获取当前时间的月
-    var dayNow=dangqianTime.getDay();//获取当前时间的天
-    var showTime=yearNow+"/"+monthNow+"/"+dayNow;
-    document.write(showTime);
-    document.getElementById("addBusTime").value=showTime;
-
-</script>-->
 
 <style type="text/css">
     /* 文本框样式设置*/
@@ -57,7 +46,7 @@
     </fieldset>
 
         <!--添加商机的时间-->
-        <!--<input type="text" name="busNowTime" id="addBusTime">-->
+        <input type="text" name="busNowTime" id="addBusTime">
 
         <div class="layui-inline">
             <label class="layui-form-label">客户名称</label>
@@ -278,6 +267,14 @@
 
     });
 
+    var dangqianTime=new Date();//获取当前时间
+    document.write(dangqianTime);
+    var yearNow=dangqianTime.getFullYear();//获取当前时间的年份
+    var monthNow=dangqianTime.getMonth();//获取当前时间的月
+    var dayNow=dangqianTime.getDay();//获取当前时间的天
+    var showTime=yearNow+"/"+monthNow+"/"+dayNow;
+    document.write(showTime);
+    document.getElementById("addBusTime").value=showTime;
 
 
 </script>

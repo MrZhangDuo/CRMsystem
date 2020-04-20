@@ -12,7 +12,7 @@ public class ShiroGetUserUtil {
     /**
      * shiro工具类 获取当前登录人
      */
-    public static ActivierUser getUser() {
+    public static ActivierUser UserObject() {
         Subject subject = SecurityUtils.getSubject();
         ActivierUser activierUser = (ActivierUser) subject.getPrincipal();
         return activierUser;

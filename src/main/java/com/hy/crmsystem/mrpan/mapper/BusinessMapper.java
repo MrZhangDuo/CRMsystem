@@ -30,9 +30,33 @@ public interface BusinessMapper extends BaseMapper<Business> {
     @SelectProvider(type = customerManage.class,method = "selectBusInfo")
     public List<BusinessBo> selectBusInfo(BusinessBo businessBo);
 
-    //查询所有的商机信息
+    //查询商机中所有的商机信息
     @SelectProvider(type =customerManage.class ,method = "selectAllBusInfo")
     public List<BusinessBo> selectAllBusInfo();
+
+    //查询我的商机中商机的信息
+    @SelectProvider(type =customerManage.class ,method = "MyBusInfo")
+    public List<BusinessBo> MyBusInfo(String custName);
+
+    //根据商机负责人查询我的商机信息
+    @SelectProvider(type =customerManage.class ,method = "MyBusInfoByResponsiblePeople")
+    public List<BusinessBo> MyBusInfoByResponsiblePeople(String custName);
+    //查询我的商机中商机负责人是登陆人的商机条数
+    @Select("SELECT COUNT(busId) FROM business  WHERE busDutyPeople=#{custName}")
+    public Integer BusResponsiblePeopleNumber(String custName);
+    //查询我的商机中商机参与人是登陆人的商机条数
+    @Select("SELECT COUNT(busId) FROM business   WHERE busJoinPeople=#{value}")
+    public Integer BusJoinPeopleNumber(String custName);
+    //查询我的商机中商机关注人是登陆人的商机条数
+    @Select("SELECT COUNT(busId) FROM business WHERE busFollowPeople=#{value}")
+    public Integer BusCarePeopleNumber(String custName);
+    //根据商机参与人查询我的商机信息
+    @SelectProvider(type =customerManage.class ,method = "MyBusInfoByJoinPeople")
+    public List<BusinessBo> MyBusInfoByJoinPeople(String custName);
+
+    //根据商机关注人查询我的商机信息
+    @SelectProvider(type =customerManage.class ,method = "MyBusInfoByCarePeople")
+    public List<BusinessBo> MyBusInfoByCarePeople(String custName);
 
     /*根据商机ID查询客户的客户名称，所属行业，所在城市，详细地址*/
     @SelectProvider(type = customerManage.class,method = "custByBusId")
@@ -163,6 +187,15 @@ public interface BusinessMapper extends BaseMapper<Business> {
     @Select("SELECT COUNT(busId) FROM `business` WHERE QUARTER(busTime)=QUARTER(DATE_SUB(NOW(),INTERVAL 1 QUARTER))")
     public Integer lastQuarterAddNumber();
 
+               /*111111111111111111111111我的商机信息11111111111111111111111111111*/
 
+    /*成交商机*/
+    @Select("SELECT cb.`busName` AS busName,cb.`busStage` AS busStage,cb.`busBeforeMoney` AS busBeforeMoney,cb.`busDutyPeople` AS busDutyPeople,bd.docTime AS docId,bi.tlbs AS invitationId  FROM \n" +
+            "(SELECT b.`busId`,b.busName,b.`busStage`,b.`busBeforeMoney`,b.`busDutyPeople`  FROM  business b  WHERE busStage ='成交')AS cb  LEFT JOIN (SELECT b.busId, MAX(d.docTime)AS docTime  FROM business b LEFT JOIN documentary d ON b.`busId`=d.busId GROUP BY b.busId)AS bd  ON cb.`busId`=bd.busId LEFT JOIN \n" +
+            "(SELECT i.`busId`,COUNT(i.busId)AS tlbs FROM business b LEFT JOIN invitation i ON b.`busId`=i.busId GROUP BY b.busId)AS bi ON cb.`busId`=bi.busId WHERE busDutyPeople=#{value}")
+     public List<BusinessBo> successBus(String custName);
+    /*成交商机的数量*/
+    @Select("SELECT COUNT(busId) FROM business  WHERE busStage = '成交' AND busDutyPeople=#{value}")
+    public  Integer successBusNumber(String custName);
 
 }
