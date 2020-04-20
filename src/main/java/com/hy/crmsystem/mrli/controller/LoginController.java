@@ -58,7 +58,7 @@ public class LoginController {
             subject.login(loginToken);
             Session session = subject.getSession();
             ActivierUser activierUser = (ActivierUser) subject.getPrincipal();
-            session.setAttribute("user", activierUser.getUser().getLoginname());
+            session.setAttribute("user", activierUser.getUser());
 
             // 得到shiro的sessionid==token
             String token = subject.getSession().getId().toString();

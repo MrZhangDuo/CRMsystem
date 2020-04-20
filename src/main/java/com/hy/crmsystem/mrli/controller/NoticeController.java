@@ -5,6 +5,7 @@ import com.hy.crmsystem.mrli.entity.Notice;
 import com.hy.crmsystem.mrli.service.NoticeService;
 import com.hy.crmsystem.mrli.utils.ActivierUser;
 import com.hy.crmsystem.mrli.utils.ResultObj;
+import com.hy.crmsystem.mrli.utils.ShiroGetUserUtil;
 import com.hy.crmsystem.mrli.vo.NoticeVo;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
@@ -44,7 +45,6 @@ public class NoticeController {
         try {
             Subject subject = SecurityUtils.getSubject();
             ActivierUser activierUser = (ActivierUser) subject.getPrincipal();
-
             notice.setOpername(activierUser.getUser().getRealname());
             notice.setCreatetime(new Date());
             this.noticeService.save(notice);

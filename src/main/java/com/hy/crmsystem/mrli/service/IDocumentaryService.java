@@ -28,4 +28,11 @@ public interface IDocumentaryService extends IService<Documentary> {
      * @param documentaryVo
      */
     void addDocumentary(DocumentaryVo documentaryVo);
+
+    /**
+     * 根据跟单标题查询历史跟单记录
+     * @param docTitle
+     * @return
+     */
+    DataGridView queryOldDocumentary(String docTitle);
 }
