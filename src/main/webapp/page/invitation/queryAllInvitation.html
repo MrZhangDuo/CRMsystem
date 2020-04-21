@@ -13,7 +13,6 @@
 <body>
 <div class="layuimini-container">
     <div class="layuimini-main">
-
         <fieldset class="table-search-fieldset">
             <legend>搜索信息</legend>
             <div style="margin: 10px 10px 10px 10px">
@@ -38,17 +37,12 @@
                 </form>
             </div>
         </fieldset>
-
         <script type="text/html" id="toolbarDemo">
             <div class="layui-btn-container">
                 <button class="layui-btn layui-btn-sm data-add-btn" lay-event="add"> 社区发帖 </button>
             </div>
         </script>
-
         <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
-
-
-
     </div>
 </div>
 <script src="/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
@@ -57,10 +51,6 @@
         var $ = layui.jquery,
             form = layui.form,
             table = layui.table;
-
-
-
-
         table.render({
             elem: '#currentTableId',
             url: '/invitation/queryAllInvitation.do',
@@ -78,7 +68,7 @@
                 {field: 'invitationSubject', title: '主题',templet:'<div><a  href="/invitation/queryInvitationById.do?invitationId={{d.invitationId}}" class="layui-table-link">{{d.invitationSubject}}</a></div>'},
                 {field: 'invitationAuthor',  title: '作者'},
                 {field: 'busName',  title: '所属商机'},
-                {field: 'invitationClick', title: '点击'},
+                {field: 'invitationClick', title: '点击',templet:'<div>{{d.invitationClick==null?0:d.invitationClick}}</a></div>'},
                 {field: 'invitationReply', title: '回复'},
                 {field: 'zuihouTime', title: '最后回复日期'},
             ]],

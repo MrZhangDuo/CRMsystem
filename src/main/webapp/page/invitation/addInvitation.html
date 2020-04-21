@@ -50,7 +50,7 @@
             <input type="text" name="invitationSubject" lay-verify="required" lay-reqtext="" placeholder="" value="" class="layui-input">
         </div>
     </div>
-    <input type="hidden" name="invitationFile" id="inmportimg">
+    <input type="hidden" name="invitationFile" id="invitationFile">
     <div class="layui-upload">
         <button type="button" class="layui-btn" id="test3">上传图片</button>
         <div class="layui-upload-list">
@@ -73,17 +73,11 @@
 </form>
 <script src="/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
 <script>
-    layui.use(['layedit','form','upload'], function () {
+    layui.use(['layedit','form','upload','jquery'], function () {
         var layedit = layui.layedit;
         var form = layui.form,
             upload=layui.upload,
-            $ = layui.$;
-        layedit.set({
-            uploadImage: {
-                url: '/invitation/fileuploadExecl.do' //接口url
-                ,type: 'get' //默认post
-            }
-        });
+            $ = layui.jquery;
         //注意：layedit.set 一定要放在 build 前面，否则配置全局接口将无效。
         var index = layedit.build('fuwenben'); //建立编辑器
 
@@ -127,10 +121,10 @@
             ,done: function(res){
                 //如果上传成功
                 if(res.code ==="0"){
-                    $("#inmportimg").val(res.fileName)
+                    alert("============"+res.filename);
+                    $("#invitationFile").val(res.filename);
                     return layer.msg('上传成功');
                 }
-                //上传成功
             }
             ,error: function(){
                 //演示失败状态，并实现重传

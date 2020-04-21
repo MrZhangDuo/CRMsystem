@@ -47,6 +47,7 @@
                 /js/** = anon
                 /lib/** = anon
                 /page/** = anon
+                /layui/** = anon
 
                 <!-- anon 表示此地址不需要任何权限即可访问 -->
                 <!-- 放行index.jsp -->

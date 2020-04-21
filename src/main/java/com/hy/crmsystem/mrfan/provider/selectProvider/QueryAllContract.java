@@ -49,4 +49,8 @@ public class QueryAllContract {
         return sql.toString();
     }
 
+    public String queryContractById(String contractId){
+        return new StringBuffer("SELECT con.*,cust.* FROM contract con,customer cust WHERE con.`custId`=cust.`custId` AND con.contractId="+Integer.parseInt(contractId)+"").toString();
+    }
+
 }

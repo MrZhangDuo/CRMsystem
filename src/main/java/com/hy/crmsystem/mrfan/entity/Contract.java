@@ -74,7 +74,7 @@ public class Contract implements Serializable {
     private String contractfile;
     //合同所属部门
     @TableField("ofdept")
-    private Integer ofdept;
+    private String ofdept;
     //关联人员
     @TableField("relevancyPeople")
     private String relevancyPeople;
@@ -218,11 +218,15 @@ public class Contract implements Serializable {
         this.contractfile = contractfile;
     }
 
-    public Integer getOfdept() {
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public String getOfdept() {
         return ofdept;
     }
 
-    public void setOfdept(Integer ofdept) {
+    public void setOfdept(String ofdept) {
         this.ofdept = ofdept;
     }
 

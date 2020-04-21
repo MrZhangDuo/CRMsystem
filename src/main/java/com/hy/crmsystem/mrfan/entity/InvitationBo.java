@@ -21,9 +21,9 @@ public class InvitationBo implements Serializable {
     //帖子内容
     private String invitationContent;
     //帖子点击量
-    private Integer invitationClick;
+    private Integer invitationClick=0;
     //帖子回复量
-    private Integer invitationReply;
+    private Integer invitationReply=0;
     // 帖子发表日期
     private Date invitationTime;
     //帖子分类

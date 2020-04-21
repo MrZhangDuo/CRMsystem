@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.hy.crmsystem.mrfan.entity.Contract;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.hy.crmsystem.mrfan.entity.ContractBoi;
+import com.hy.crmsystem.mrfan.entity.ContractCustomerBo;
 import com.hy.crmsystem.mrfan.entity.QueryType;
 import com.hy.crmsystem.mrzhang.entity.Andition;
 import org.apache.ibatis.annotations.Mapper;
@@ -24,4 +25,7 @@ public interface ContractMapper extends BaseMapper<Contract> {
 
     @SelectProvider(type = com.hy.crmsystem.mrfan.provider.selectProvider.QueryAllContract.class,method = "queryAllContract")
     public IPage<ContractBoi> queryAllContract(@Param("iPage")IPage<ContractBoi> page, @Param("currentName")String currentName,@Param("contract")Contract contract,@Param("queryType") QueryType queryType);
+
+    @SelectProvider(type = com.hy.crmsystem.mrfan.provider.selectProvider.QueryAllContract.class,method = "queryContractById")
+    public ContractCustomerBo queryContractById(String contractId);
 }
