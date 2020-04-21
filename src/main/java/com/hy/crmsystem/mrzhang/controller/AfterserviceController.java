@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.hy.crmsystem.mrfan.entity.Contract;
+import com.hy.crmsystem.mrli.entity.User;
+import com.hy.crmsystem.mrli.service.impl.UserServiceImpl;
 import com.hy.crmsystem.mrpan.entity.Business;
 import com.hy.crmsystem.mrpan.entity.Customer;
 import com.hy.crmsystem.mrpan.service.impl.BusinessServiceImpl;
@@ -24,7 +26,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
@@ -49,6 +50,8 @@ public class AfterserviceController {
     AfterserviceServiceImpl afterserviceService;
     @Autowired
     CustomerServiceImpl customerService;
+    @Autowired
+    UserServiceImpl userService;
 
     @ResponseBody
     @RequestMapping("queryAllAfterService.do")
@@ -95,6 +98,7 @@ public class AfterserviceController {
     @ResponseBody
     @PostMapping("insertAfterService.do")
     public String insertAfterService(Afterservice  afterservice){
+        System.out.println("====================================="+afterservice.getFilename());
         String returns="0";
         try {
             afterserviceService.save(afterservice);
@@ -127,7 +131,6 @@ public class AfterserviceController {
     @ResponseBody
     @RequestMapping("queryCustContract.do")
     public List<Contract> queryCustContract(String ServiceCustName){
-        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"+ServiceCustName);
         return afterserviceService.queryCustContract(ServiceCustName);
     }
 
@@ -142,7 +145,7 @@ public class AfterserviceController {
 
     @PostMapping("/uploadfile.do")
     @ResponseBody
-    public String uploadfile(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request){
+    public UploadImage uploadfile(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request){
         // 图片上传
         // 设置图片名称，不能重复，可以使用uuid
         String picName = UUID.randomUUID().toString();
@@ -158,10 +161,16 @@ public class AfterserviceController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        /*UploadImage uploadImage = new UploadImage();
+        UploadImage uploadImage = new UploadImage();
         uploadImage.setCode("0");
-        uploadImage.setFilename();*/
-        return  picName+extName;
+        uploadImage.setFilename(picName+extName);
+        return  uploadImage;
+    }
+
+    @ResponseBody
+    @RequestMapping("queryAllUser.do")
+    public List<User> queryAllUser(){
+        return userService.list();
     }
 
 

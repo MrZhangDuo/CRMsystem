@@ -43,10 +43,10 @@ public class Invitation implements Serializable {
     private String invitationContent;
     //帖子点击量
     @TableField("invitationClick")
-    private Integer invitationClick;
+    private Integer invitationClick=0;
     //帖子回复量
     @TableField("invitationReply")
-    private Integer invitationReply;
+    private Integer invitationReply=0;
     // 帖子发表日期
     @TableField("invitationTime")
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm")

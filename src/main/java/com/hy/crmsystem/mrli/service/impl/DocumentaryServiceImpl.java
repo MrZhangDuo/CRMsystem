@@ -52,4 +52,11 @@ public class DocumentaryServiceImpl extends ServiceImpl<DocumentaryMapper, Docum
     public void addDocumentary(DocumentaryVo documentaryVo) {
         this.documentaryMapper.insert(documentaryVo);
     }
+
+
+    @Override
+    public DataGridView queryOldDocumentary(String docTitle) {
+        List<Documentary> data = this.documentaryMapper.queryOldDocumentByDocTitle(docTitle);
+        return new DataGridView(data);
+    }
 }

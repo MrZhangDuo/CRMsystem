@@ -6,12 +6,14 @@ import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hy.crmsystem.mrfan.entity.Contract;
 import com.hy.crmsystem.mrfan.entity.ContractBoi;
+import com.hy.crmsystem.mrfan.entity.ContractCustomerBo;
 import com.hy.crmsystem.mrfan.entity.QueryType;
 import com.hy.crmsystem.mrfan.mapper.ContractMapper;
 import com.hy.crmsystem.mrfan.service.IContractService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hy.crmsystem.mrzhang.entity.Andition;
 import com.hy.crmsystem.mrzhang.entity.LayuiData;
+import com.sun.org.apache.bcel.internal.generic.RET;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,6 +42,23 @@ public class ContractServiceImpl extends ServiceImpl<ContractMapper, Contract> i
         layuiData.setCount(contractBoList.getTotal());
         return layuiData;
     }
+
+    public ContractCustomerBo queryContractById(String contractId){
+        return contractMapper.queryContractById(contractId);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

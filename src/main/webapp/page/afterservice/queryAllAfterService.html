@@ -36,7 +36,7 @@
         .layui-card-body {
             position: relative;
             padding: 10px 15px;
-            max-height: 200px;
+            max-height: 300px;
             line-height: 24px;
             overflow: auto; /*  新加的 */
         }
@@ -68,12 +68,14 @@
                 <div class="layui-inline">
                     <button type="submit" class="layui-btn layui-btn-primary" lay-submit  lay-filter="data-search-btn"><i class="layui-icon"></i> 搜 索</button>
                 </div>
+                <button type="reset" class="layui-btn layui-btn-warm  layui-icon layui-icon-refresh">重置</button>
             </form>
         </div>
     </fieldset>
+</div>
 
     <div class="layui-col-md3" >
-        <div class="layui-card" style="">
+        <div class="layui-card">
             <div class="layui-card-header"><i class="fa fa-bullhorn icon icon-tip"></i>分类</div>
             <div class="layui-card-body layui-text" style="color:#1e9fff">
                 <div class="layuimini-notice">
@@ -119,12 +121,11 @@
     <div class="layui-col-md-offset3">
         <script type="text/html" id="toolbarDemo">
             <div class="layui-btn-container">
-                <button class="layui-btn layui-btn-sm data-add-btn" lay-event="add"> 添加用户 </button>
+                <button class="layui-btn layui-btn-sm data-add-btn" lay-event="add"> 添加记录 </button>
             </div>
         </script>
         <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
     </div>
-</div>
 <script src="/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
 <script>
     layui.use(['form', 'table','jquery'], function () {
@@ -138,7 +139,7 @@
             cellMinWidth: 80, //全局定义常规单元格的最小宽度，layui 2.2.1 新增
             toolbar: '#toolbarDemo',
             limits: [10, 15, 20, 25, 50, 100],
-            limit: 6,
+            limit: 10,
             page: true,
             defaultToolbar: ['filter', 'exports', 'print', {
                 title: '提示',
@@ -255,6 +256,26 @@
             return false;
         });
 
+        /**
+         * toolbar监听事件
+         */
+        table.on('toolbar(currentTableFilter)', function (obj) {
+            if (obj.event === 'add') {  // 监听添加操作
+                var index = layer.open({
+                    title: '添加售后记录',
+                    type: 2,
+                    shade: 0.2,
+                    maxmin:false,
+                    shadeClose: true,
+                    area: ['100%', '100%'],
+                    content: '/page/afterservice/insterAfterService.html',
+                    end:function () {
+                        table.reload(currentTableId);
+                    }
+                });
+            }
+        });
+
 
 
         $.ajax({
@@ -314,7 +335,7 @@
                     {field: 'servicesCore', title: '服务评分', align: 'center'}
                 ]],
                 limits: [10, 15, 20, 25, 50, 100],
-                limit: 2,
+                limit: 9,
                 page: true
             });
         });
@@ -339,7 +360,7 @@
                     {field: 'servicesCore', title: '服务评分', align: 'center'}
                 ]],
                 limits: [10, 15, 20, 25, 50, 100],
-                limit: 2,
+                limit: 9,
                 page: true
             });
         });
@@ -364,7 +385,7 @@
                     {field: 'servicesCore', title: '服务评分', align: 'center'}
                 ]],
                 limits: [10, 15, 20, 25, 50, 100],
-                limit: 2,
+                limit: 9,
                 page: true
             });
         });
@@ -389,7 +410,7 @@
                     {field: 'servicesCore', title: '服务评分', align: 'center'}
                 ]],
                 limits: [10, 15, 20, 25, 50, 100],
-                limit: 2,
+                limit: 9,
                 page: true
             });
         });
@@ -414,7 +435,7 @@
                     {field: 'servicesCore', title: '服务评分', align: 'center'}
                 ]],
                 limits: [10, 15, 20, 25, 50, 100],
-                limit: 2,
+                limit: 9,
                 page: true
             });
         });
@@ -439,7 +460,7 @@
                     {field: 'servicesCore', title: '服务评分', align: 'center'}
                 ]],
                 limits: [10, 15, 20, 25, 50, 100],
-                limit: 2,
+                limit: 9,
                 page: true
             });
         });
@@ -464,7 +485,7 @@
                     {field: 'servicesCore', title: '服务评分', align: 'center'}
                 ]],
                 limits: [10, 15, 20, 25, 50, 100],
-                limit: 2,
+                limit: 9,
                 page: true
             });
         });
@@ -489,7 +510,7 @@
                     {field: 'servicesCore', title: '服务评分', align: 'center'}
                 ]],
                 limits: [10, 15, 20, 25, 50, 100],
-                limit: 2,
+                limit: 9,
                 page: true
             });
         });
@@ -514,38 +535,14 @@
                     {field: 'servicesCore', title: '服务评分', align: 'center'}
                 ]],
                 limits: [10, 15, 20, 25, 50, 100],
-                limit: 2,
+                limit: 9,
                 page: true
             });
-        });
-
-        /**
-         * toolbar监听事件
-         */
-        table.on('toolbar(currentTableFilter)', function (obj) {
-            if (obj.event === 'add') {  // 监听添加操作
-                var index = layer.open({
-                    title: '添加用户',
-                    type: 2,
-                    shade: 0.2,
-                    maxmin:false,
-                    shadeClose: true,
-                    area: ['100%', '100%'],
-                    content: '/page/afterservice/insterAfterService.html',
-                    end:function () {
-                        table.reload(currentTableId);
-                    }
-                });
-                /*$(window).on("resize", function () {
-                    layer.full(index);
-                });*/
-            }
         });
         // echarts 窗口缩放自适应
         window.onresize = function(){
             echartsRecords.resize();
         }
-
     });
 </script>
 </body>

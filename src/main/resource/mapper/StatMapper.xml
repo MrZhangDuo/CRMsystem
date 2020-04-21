@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hy.crmsystem.mrli.mapper.StatMapper">
+
+    <!-- 查询客户来源的数据 -->
+    <select id="queryCustomerSource" resultType="com.hy.crmsystem.mrli.entity.BaseEntity">
+        select custSource as name ,count(1) as value from customer group by  custSource
+    </select>
+
+</mapper>

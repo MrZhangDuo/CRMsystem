@@ -2,10 +2,14 @@ package com.hy.crmsystem.mrli.controller;
 
 
 import com.hy.crmsystem.mrli.entity.DataGridView;
+import com.hy.crmsystem.mrli.entity.User;
 import com.hy.crmsystem.mrli.service.IUserService;
+import com.hy.crmsystem.mrli.utils.ActivierUser;
 import com.hy.crmsystem.mrli.utils.ResultObj;
 import com.hy.crmsystem.mrli.vo.UserVo;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
@@ -24,6 +28,16 @@ public class UserController {
 
     @Autowired
     private IUserService userService;
+
+    /**
+     * 查询当前登陆的用户
+     */
+    @GetMapping("/getCurrentUser")
+    public DataGridView getCurrentUser() {
+        ActivierUser activierUser = (ActivierUser) SecurityUtils.getSubject().getPrincipal();
+        return new DataGridView(activierUser.getUser());
+    }
+
 
     /**
      * 加载用户列表返回DataGridView

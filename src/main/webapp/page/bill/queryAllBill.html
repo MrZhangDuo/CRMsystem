@@ -115,92 +115,22 @@
         <!-- 添加的弹出层开始 -->
         <div style="display: none;padding: 20px;" id="saveDiv">
             <form class="layui-form" lay-filter="addFormFilter" id="addForm">
-                <div class="layui-form-item" style="margin-top: 80px">
+                <div class="layui-form-item" style="margin-top: 15px">
                     <label class="layui-form-label">跟单主题</label>
                     <div class="layui-input-block">
                         <input type="hidden" name="BusId">
-                        <select id="select1" name="DocTitle" lay-filter="docFilter">
+                        <select id="select1" name="DocTitle" lay-filter="docFilter2">
                         </select>
                     </div>
                 </div>
 
+
                 <!-- ****     历史跟单记录   开始    **********   -->
                 <blockquote class="layui-elem-quote" style="margin-top: 7px">历史跟单记录</blockquote>
 
-                <fieldset class="table-search-fieldset" style="margin-top: 7px">
+                <!-- 历史跟单记录的表格 -->
+                <table class="layui-hide"  id="addtable" lay-filter="addtable"></table>
 
-                    <div style="margin-top: 8px">
-                        <div id="id1" class="layui-inline">
-                            <span style="color:#FF0000;">*</span><span style="color:#666666;">跟单时间：</span>
-                            <span>2000-06-22 00:00:00</span>
-                        </div>
-
-                        <div id="id2" class="layui-inline">
-                            <span style="color:#FF0000;">*</span><span style="color:#666666;">跟单分类：</span>
-                            <span>上门拜访</span>
-                        </div>
-
-                        <div id="id3" class="layui-inline">
-                            <span>跟单人：</span>
-                            <span>张三</span>
-                        </div>
-                    </div>
-                    <div id="top_id">
-                        <span>详细内容：</span>
-                        <span>java语言的特点：平台无关性(虚拟机实现),支持多线程，支持网络编程，垃圾回收机制</span>
-                    </div>
-
-                </fieldset>
-
-                <fieldset class="table-search-fieldset" style="margin-top: 7px">
-
-                    <div style="margin-top: 8px">
-                        <div id="id1_1" class="layui-inline">
-                            <span style="color:#FF0000;">*</span><span style="color:#090404;">跟单时间：</span>
-                            <span>2000-06-22 00:00:00</span>
-                        </div>
-
-                        <div id="id2_1" class="layui-inline">
-                            <span style="color:#FF0000;">*</span><span style="color:#090404;">跟单分类：</span>
-                            <span>上门拜访</span>
-                        </div>
-
-                        <div id="id3_1" class="layui-inline">
-                            <span>跟单人：</span>
-                            <span>张三</span>
-                        </div>
-                    </div>
-                    <div id="top_id_1">
-                        <span>详细内容：</span>
-                        <span>java语言的特点：平台无关性(虚拟机实现),支持多线程，支持网络编程，垃圾回收机制</span>
-                    </div>
-
-                </fieldset>
-
-                <fieldset class="table-search-fieldset" style="margin-top: 7px">
-
-                    <div style="margin-top: 8px">
-                        <div id="id1_2" class="layui-inline">
-                            <span style="color:#FF0000;">*</span><span style="color:#090404;">跟单时间：</span>
-                            <span>2000-06-22 00:00:00</span>
-                        </div>
-
-                        <div id="id2_2" class="layui-inline">
-                            <span style="color:#FF0000;">*</span><span style="color:#090404;">跟单分类：</span>
-                            <span>上门拜访</span>
-                        </div>
-
-                        <div id="id3_2" class="layui-inline">
-                            <span>跟单人：</span>
-                            <span>张三</span>
-                        </div>
-                    </div>
-                    <div id="top_id_2">
-                        <span>详细内容：</span>
-                        <span>java语言的特点：平台无关性(虚拟机实现),支持多线程，支持网络编程，垃圾回收机制</span>
-                    </div>
-
-                </fieldset>
 
                 <!-- ****     历史跟单记录   结束    **********   -->
 
@@ -323,6 +253,7 @@
 
         var mainIndex;
         var url;  //动态的url
+
         //点击添加按钮，弹出添加页面 start------
         $("#addBtn").click(function () {
 
@@ -356,6 +287,11 @@
         });
         //点击添加按钮，弹出添加页面 end------
 
+        window.onload=function(){
+            var table = document.getElementById("addtable");
+            table.style.display="none";
+        }
+
         // ----- 保存弹出层的表单  开始   -----------------
         form.on("submit(doSubmit)", function (obj) {
             $.ajax({
@@ -374,8 +310,36 @@
 
             });
             return false;
-        })
+        });
         // ----- 保存弹出层的表单  结束   -----------------
+
+
+        /* 下拉框事件 查询历史记录  开始   */
+        form.on('select(docFilter2)', function (data) {
+            //渲染数据表格
+            tableIns = table.render({
+                elem: '#addtable'   //渲染的目标对象
+                , url: '/documentary/queryOldDocumentart.do?docTitle=' + $("#select1").val() //数据接口
+                , title: '跟单记录'//数据导出来的标题
+                , text: {
+                    none: '暂无历史跟单记录'
+                }
+                , cols: [[   //列表数据
+                    {
+                        title: '跟单时间',
+                        align: 'center',
+                        templet: "<div>{{layui.util.toDateString(d.DocTime, 'yyyy-MM-dd HH:mm:ss')}}</div>"
+                    }
+                    , {field: 'docTitle', title: '跟单标题'}
+                    , {field: 'docPeople', title: '跟单人', align: 'center'}
+                    , {field: 'docContent', title: '详细内容'}
+                    , {field: 'docFile', title: '附件'}
+                ]]
+            })
+
+
+        });
+        /* 下拉框事件 查询历史记录  开始   */
 
 
     })

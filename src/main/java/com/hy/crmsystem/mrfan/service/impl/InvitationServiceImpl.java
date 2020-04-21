@@ -50,6 +50,11 @@ public class InvitationServiceImpl extends ServiceImpl<InvitationMapper, Invitat
         Page page1=new Page(page,limit);
         layuiDate.setData(invitationMapper.queryAllInvitation(page1,invitationBo).getRecords());
         layuiDate.setCount(invitationMapper.queryAllInvitation(page1,invitationBo).getTotal());
+        List<InvitationBo> invitationBoList = invitationMapper.queryAllInvitation(page1,invitationBo).getRecords();
+        for (int i = 0; i <invitationBoList.size(); i++) {
+            System.out.println("======================"+invitationBoList.get(i).getInvitationClick());
+            System.out.println("======================"+invitationBoList.get(i).getInvitationReply());
+        }
         return layuiDate;
     }
 

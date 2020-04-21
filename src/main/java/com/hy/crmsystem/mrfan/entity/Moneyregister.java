@@ -1,5 +1,8 @@
 package com.hy.crmsystem.mrfan.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -20,32 +23,69 @@ public class Moneyregister implements Serializable {
 
     private static final long serialVersionUID = 1L;
     //收入登记主键
+    @TableId(value = "incomeId",type = IdType.AUTO)
     private Integer incomeId;
     //合同主键
+    @TableField("contractId")
     private Integer contractId;
     //收入日期
+    @TableField("incomeTime")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date incomeTime;
     //收入分类
-    private Integer incomesort;
+    @TableField("incomesort")
+    private String incomesort;
     //收入金额
+    @TableField("incomesMoney")
     private String incomesMoney;
     //大写
+    @TableField("moneyBigWrite")
     private String moneyBigWrite;
     //收款方式
-    private Integer incomeWay;
+    @TableField("incomeWay")
+    private String incomeWay;
     //登记人
+    @TableField("registerPeople")
     private String registerPeople;
     //关联人员
+    @TableField("relevancyPeople")
     private String relevancyPeople;
     //关联部门
-    private Integer relevancyDept;
+    @TableField("relevancyDept")
+    private String relevancyDept;
     //对方单位
+    @TableField("unit")
     private String unit;
     //关联合同
+    @TableField("relevancyContract")
     private String relevancyContract;
     //收入说明
+    @TableField("incomeldExplain")
     private String incomeldExplain;
+
+    public String getIncomesort() {
+        return incomesort;
+    }
+
+    public void setIncomesort(String incomesort) {
+        this.incomesort = incomesort;
+    }
+
+    public String getIncomeWay() {
+        return incomeWay;
+    }
+
+    public void setIncomeWay(String incomeWay) {
+        this.incomeWay = incomeWay;
+    }
+
+    public String getRelevancyDept() {
+        return relevancyDept;
+    }
+
+    public void setRelevancyDept(String relevancyDept) {
+        this.relevancyDept = relevancyDept;
+    }
 
     public Integer getIncomeId() {
         return incomeId;
@@ -71,14 +111,6 @@ public class Moneyregister implements Serializable {
         this.incomeTime = incomeTime;
     }
 
-    public Integer getIncomesort() {
-        return incomesort;
-    }
-
-    public void setIncomesort(Integer incomesort) {
-        this.incomesort = incomesort;
-    }
-
     public String getIncomesMoney() {
         return incomesMoney;
     }
@@ -95,13 +127,6 @@ public class Moneyregister implements Serializable {
         this.moneyBigWrite = moneyBigWrite;
     }
 
-    public Integer getIncomeWay() {
-        return incomeWay;
-    }
-
-    public void setIncomeWay(Integer incomeWay) {
-        this.incomeWay = incomeWay;
-    }
 
     public String getRegisterPeople() {
         return registerPeople;
@@ -117,14 +142,6 @@ public class Moneyregister implements Serializable {
 
     public void setRelevancyPeople(String relevancyPeople) {
         this.relevancyPeople = relevancyPeople;
-    }
-
-    public Integer getRelevancyDept() {
-        return relevancyDept;
-    }
-
-    public void setRelevancyDept(Integer relevancyDept) {
-        this.relevancyDept = relevancyDept;
     }
 
     public String getUnit() {

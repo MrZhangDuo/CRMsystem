@@ -21,8 +21,4 @@ public interface InvitationMapper extends BaseMapper<Invitation> {
 
     @SelectProvider(type =com.hy.crmsystem.mrfan.provider.selectProvider.QueryAllInvitation.class,method = "queryAllInvitation")
     public IPage<InvitationBo> queryAllInvitation(@Param("page1")IPage<InvitationBo> page,@Param("invitationBo") InvitationBo invitationBo );
-
-   /* @Insert("insert into Invitation(InvitationId,Invitationclassification,InvitationTag,InvitationSubject,InvitationFile,InvitationContent ),values(?,?,?,?,?)")
-    public List<InvitationBo> addInvitation();*/
-
 }

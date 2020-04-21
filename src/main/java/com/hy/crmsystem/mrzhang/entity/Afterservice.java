@@ -86,8 +86,8 @@ public class Afterservice implements Serializable {
     @TableField("servicesCore")
     private Integer servicesCore;
 
-    @TableField("file")
-    private String file;
+    @TableField("filename")
+    private String filename;
 
 
     public String getStartTime() {
@@ -254,12 +254,12 @@ public class Afterservice implements Serializable {
         this.servicesCore = servicesCore;
     }
 
-    public String getFile() {
-        return file;
+    public String getFilename() {
+        return filename;
     }
 
-    public void setFile(String file) {
-        this.file = file;
+    public void setFilename(String filename) {
+        this.filename = filename;
     }
 
     @Override
@@ -284,7 +284,6 @@ public class Afterservice implements Serializable {
                 ", custReturn='" + custReturn + '\'' +
                 ", ServicePeople='" + ServicePeople + '\'' +
                 ", servicesCore=" + servicesCore +
-                ", file='" + file + '\'' +
                 '}';
     }
 }

@@ -20,7 +20,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">主题</label>
                 <div class="layui-input-block">
-                    <input type="text" name="serviceTheme"  autocomplete="off" placeholder="请输入主题" class="layui-input">
+                    <input type="text" name="serviceTheme" lay-verify="required" lay-reqtext="不输主题？怎么添加售后服务"  autocomplete="off" placeholder="请输入主题" class="layui-input">
                 </div>
             </div>
 
@@ -33,7 +33,7 @@
                 <div class="layui-inline">
                     <label class="layui-form-label">客户名称</label>
                     <div class="layui-input-inline">
-                        <select id="kehu" name="custName" lay-filter="cust">
+                        <select id="kehu" name="custId" lay-verify="required" lay-reqtext="选择客户啊？" lay-filter="cust">
                             <option value="">请选择</option>
                         </select>
                     </div>
@@ -42,7 +42,7 @@
                 <div class="layui-inline">
                     <label class="layui-form-label">合同编号</label>
                     <div class="layui-input-inline">
-                        <select id="hetong" name="serviceContractNum">
+                        <select id="hetong" name="serviceContractNum" lay-verify="required" lay-reqtext="合同也不选？">
                             <option value="">请选择</option>
                         </select>
                     </div>
@@ -52,7 +52,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">合同主要信息</label>
                 <div class="layui-input-block">
-                    <input type="text" name="serviceContractInfor"  autocomplete="off" placeholder="请输入主题" class="layui-input">
+                    <input type="text" name="serviceContractInfor" lay-verify="required" lay-reqtext="输入合同信息"  autocomplete="off" placeholder="请输入主题" class="layui-input">
                 </div>
             </div>
 
@@ -60,13 +60,13 @@
                 <div class="layui-inline">
                     <label class="layui-form-label">对方联系人</label>
                     <div class="layui-input-inline">
-                        <input type="tel" name="serviceLinkMan"  autocomplete="off" class="layui-input">
+                        <input type="tel" name="serviceLinkMan"  lay-verify="required" lay-reqtext="输入联系人" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-inline">
                     <label class="layui-form-label">固定电话</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="fixNum"  autocomplete="off" class="layui-input">
+                        <input type="text" name="fixNum"  lay-verify="required" lay-reqtext="请输入固定电话" autocomplete="off" class="layui-input">
                     </div>
                 </div>
             </div>
@@ -75,13 +75,13 @@
                 <div class="layui-inline">
                     <label class="layui-form-label">移动电话</label>
                     <div class="layui-input-inline">
-                        <input type="tel" name="phone"  autocomplete="off" class="layui-input">
+                        <input type="tel" name="phone" lay-verify="required" lay-reqtext="请输入移动电话"  autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-inline">
                     <label class="layui-form-label">邮箱</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="email"  autocomplete="off" class="layui-input">
+                        <input type="text" name="email" lay-verify="required" lay-reqtext="请输入邮箱"  autocomplete="off" class="layui-input">
                     </div>
                 </div>
             </div>
@@ -90,16 +90,25 @@
                 <div class="layui-inline">
                     <label class="layui-form-label">服务类型</label>
                     <div class="layui-input-inline">
-                        <select name="serviceType" >
+                        <select name="serviceType"  lay-verify="required" lay-reqtext="请输入服务类型">
                             <option value="">请选择</option>
+                            <option value="故障申报">故障申报</option>
+                            <option value="业务咨询">业务咨询</option>
+                            <option value="实施或培训">实施或培训</option>
+                            <option value="主动关怀">主动关怀</option>
+                            <option value="其他">其他</option>
                         </select>
                     </div>
                 </div>
                 <div class="layui-inline">
                     <label class="layui-form-label">服务方式</label>
                     <div class="layui-input-inline">
-                        <select name="serviceMain" >
+                        <select name="serviceMain" lay-verify="required" lay-reqtext="请输入服务方式">
                             <option value="">请选择</option>
+                            <option value="上门服务">上门服务</option>
+                            <option value="实体店维修">实体店维修</option>
+                            <option value="电话沟通">电话沟通</option>
+                            <option value="其他">其他</option>
                         </select>
                     </div>
                 </div>
@@ -109,13 +118,13 @@
                 <div class="layui-inline">
                     <label class="layui-form-label">开始时间</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="serviceStartTime" id="date"   placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                        <input type="text" name="serviceStartTime" id="date"  lay-verify="required" lay-reqtext="请输入开始时间"  placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-inline">
                     <label class="layui-form-label">结束时间</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="serviceEndTime" id="date1"   placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                        <input type="text" name="serviceEndTime" id="date1" lay-verify="required" lay-reqtext="请输入结束时间"   placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
                     </div>
                 </div>
             </div>
@@ -123,36 +132,42 @@
             <div class="layui-form-item layui-form-text">
                 <label class="layui-form-label">服务内容</label>
                 <div class="layui-input-block">
-                    <textarea name="serviceContent" placeholder="请输入内容" class="layui-textarea"></textarea>
+                    <textarea name="serviceContent" placeholder="请输入内容" lay-verify="required" lay-reqtext="请输入服务内容" class="layui-textarea"></textarea>
                 </div>
             </div>
 
             <div class="layui-form-item layui-form-text">
                 <label class="layui-form-label">客户反馈</label>
                 <div class="layui-input-block">
-                    <textarea name="custReturn" placeholder="请输入内容" class="layui-textarea"></textarea>
+                    <textarea name="custReturn" placeholder="请输入内容" lay-verify="required" lay-reqtext="请输入客户反馈" class="layui-textarea"></textarea>
                 </div>
             </div>
 
+
             <div class="layui-form-item">
-                <div class="layui-inline">
-                    <label class="layui-form-label">服务人员</label>
-                    <div class="layui-input-inline">
-                        <input type="tel" name="servicePeople" autocomplete="off" class="layui-input">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">关联人员</label>
+                        <div class="layui-input-block" id="servicePeople" name="realname"></div>
                     </div>
-                    <label class="layui-form-label">服务评分</label>
-                    <div class="layui-input-inline">
-                        1<input type="radio" name="servicesCore" value="1"  autocomplete="off" class="layui-input">
-                        2<input type="radio" name="servicesCore" value="2" autocomplete="off" class="layui-input">
-                        3<input type="radio" name="servicesCore" value="3" autocomplete="off" class="layui-input">
-                        4<input type="radio" name="servicesCore" value="4" autocomplete="off" class="layui-input">
-                        5<input type="radio" name="servicesCore" value="5" autocomplete="off" class="layui-input">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">服务评分</label>
+                        <div class="layui-input-block">
+                            <input type="radio" name="servicesCore" value="1" title="一分">
+                            <input type="radio" name="servicesCore" value="2" title="二分">
+                            <input type="radio" name="servicesCore" value="3" title="三分">
+                            <input type="radio" name="servicesCore" value="4" title="四分">
+                            <input type="radio" name="servicesCore" value="5" title="五分">
+                        </div>
                     </div>
+            </div>
+            <input type="hidden" name="filename" id="filename">
+            <div class="layui-upload">
+                <button type="button" class="layui-btn" id="test3">上传图片</button>
+                <div class="layui-upload-list">
+                    <img class="layui-upload-img" id="fileupload">
+                    <p id="demoText"></p>
                 </div>
             </div>
-            <div id="zyupload" class="zyupload"></div>
-            <input name="file" type="hidden" id="image_1">
-            <p id="demoText"></p>
             <div class="layui-form-item">
                 <div class="layui-input-block">
                     <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
@@ -166,44 +181,16 @@
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 <script src="/lib/jquery-3.4.1/jquery-3.4.1.min.js" charset="utf-8"></script>
 <script src="/lib/jq-module/zyupload/zyupload-1.0.0.min.js" charset="utf-8"></script>
-<script type="text/javascript">
-    $(function () {
-        // 初始化插件
-        $("#zyupload").zyUpload({
-            width: "700px",                 // 宽度
-            height: "650px",                 // 宽度
-            itemWidth: "1000px",                 // 文件项的宽度
-            itemHeight: "200px",                 // 文件项的高度
-            url: "/afterservice/uploadfile.do",  // 上传文件的路径
-            fileType: ["jpg", "png", "txt", "js", "exe"],// 上传文件的类型
-            fileSize: 51200000,                // 上传文件的大小
-            multiple: true,                    // 是否可以多个文件上传
-            dragDrop: true,                    // 是否可以拖动上传文件
-            tailor: true,                    // 是否可以裁剪图片
-            del: true,                    // 是否可以删除文件
-            finishDel: false,  				  // 是否在上传文件完成后删除预览
-            /* 外部获得的回调接口 */
-            /*onSelect: function (selectFiles, allFiles) {    // 选择文件的回调方法  selectFile:当前选中的文件  allFiles:还没上传的全部文件
-                /!*console.info("当前选择了以下文件：");
-                console.info(selectFiles);*!/
-            },*/
-            onSuccess: function (file, response) {          // 文件上传成功的回调方法
-                $("#image_1").val(response);
-                $("#uploadInf").append("<p>上传成功，文件地址是：" + response + "</p>");
-            },
-            onFailure: function (file, response) {          // 文件上传失败的回调方法
-                $("#demoText").html('<span style="color: #ff5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
-                $("#demoText").find('.demo-reload').on('click', function(){
-                    $("#zyupload").upload();
-                });
-            }
-        });
-    });
-</script>
 <script>
-    layui.use(['upload','form', 'layedit', 'laydate','jquery'], function () {
-        var form = layui.form
-        var  $ = layui.jquery
+       layui.config({
+       }).extend({
+           selectN:'/layui/layui_extends/selectN',
+           selectM:'/layui/layui_extends/selectM',
+       }).use(['upload','selectM','form', 'layedit', 'laydate','jquery','table'], function () {
+        var form = layui.form;
+        var  $ = layui.jquery;
+        var table = layui.table;
+        var selectM = layui.selectM
             , layer = layui.layer
             , laydate = layui.laydate
             ,upload = layui.upload;
@@ -216,6 +203,17 @@
             elem: '#date1'
         });
 
+        selectM({
+            //元素容器
+            elem:'#servicePeople',
+            data:'/afterservice/queryAllUser.do',
+            max:3,
+            width:400,
+            delimiter:',',
+            field:{idName:'realname',titleName:'realname'},
+            verify:'required'
+        });
+
         $.ajax({
             type: "GET",
             url: "/afterservice/queryAllCust.do",
@@ -224,7 +222,7 @@
                 var html = '<option value="">请选择</option>';
                 if (data.length != 0){
                     $.each(data,function (k,v) {
-                        html += "<option value='"+v.custName+"'>"+v.custName+"</option>"
+                        html += "<option value='"+v.custId+"'>"+v.custName+"</option>"
                     })
                     $("#kehu").empty().append(html);
                 }
@@ -274,6 +272,37 @@
             });
             return false;
         });
+
+
+           var uploadInst = upload.render({
+               elem: '#test3'
+               ,url: '/invitation/fileuploadExecl.do'
+               ,before: function(obj){
+                   //预读本地文件示例，不支持ie8
+                   obj.preview(function(index, file, result){
+                       $('#fileupload').attr('src', result); //图片链接（base64）
+                   });
+               }
+               ,done: function(res){
+                   //如果上传成功
+                   if(res.code ==="0"){
+                       $("#filename").val(res.filename);
+                       return layer.msg('上传成功');
+                   }
+                   //上传成功
+               }
+               ,error: function(){
+                   //演示失败状态，并实现重传
+                   var demoText = $('#demoText');
+                   demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                   demoText.find('.demo-reload').on('click', function(){
+                       uploadInst.upload();
+                   });
+               }
+           });
+
+
+
     });
 </script>
 </body>
