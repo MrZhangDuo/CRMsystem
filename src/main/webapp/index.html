@@ -62,7 +62,7 @@
                     <a href="javascript:;">admin</a>
                     <dl class="layui-nav-child">
                         <dd>
-                            <a href="javascript:;" layuimini-content-href="page/user-setting.html" data-title="基本资料" data-icon="fa fa-gears">基本资料<span class="layui-badge-dot"></span></a>
+                            <a href="javascript:void(0);" id="baseInfo" data-title="基本资料" data-icon="fa fa-gears">基本资料<span class="layui-badge-dot"></span></a>
                         </dd>
                         <dd>
                             <a href="javascript:;" layuimini-content-href="page/user-password.html" data-title="修改密码" data-icon="fa fa-gears">修改密码</a>
@@ -71,7 +71,7 @@
                             <hr>
                         </dd>
                         <dd>
-                            <a href="javascript:;" class="login-out">退出登录</a>
+                            <a href="javascript:void(0);" class="login-out">退出登录</a>
                         </dd>
                     </dl>
                 </li>
@@ -141,6 +141,7 @@
             layer = layui.layer,
             miniAdmin = layui.miniAdmin,
             miniTongji = layui.miniTongji;
+           var url=window.location.search; //获取url中"?"符后的字串
         var options = {
             iniUrl: "api/init.json",    // 初始化接口
             clearUrl: "api/clear.json", // 缓存清理接口
@@ -164,9 +165,14 @@
         //     ],
         // });
 
+        $("#baseInfo").click(function(){
+            window.location.href="/tianJiaUser/selectUserById.do?"+url;
+        })
+
+
         $('.login-out').on("click", function () {
             layer.msg('退出登录成功', function () {
-                window.location = 'login-1.html';
+                window.location = '/login.html';
             });
         });
     });

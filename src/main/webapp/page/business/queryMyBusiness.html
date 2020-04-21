@@ -58,12 +58,14 @@
                     <input type="text" name="busBeforeMoney" lay-verify="title" autocomplete="off" placeholder="请输入预计成交金额" class="layui-input">
                 </div>
                 <div class="layui-input-inline">
-                    <input type="date" name="busBeforedate" lay-verify="title" autocomplete="off" placeholder="请输入预计结单日期" class="layui-input">
+                    <input type="text" name="busBeforedate" id="date1"  lay-verify="title"  placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div>
-                <input type="reset" class="layui-btn layui-btn-normal" lay-filter="data-search-btn" id="rese"></input>
-                <button type="submit" class="layui-btn layui-btn-normal"  lay-filter="data-search-btn" id="chazhao">查找商机</button>
+                <div class="layui-inline">
+                    <input type="reset" class="layui-btn layui-btn-normal" lay-filter="data-search-btn" id="rese">
+                    <button type="submit" class="layui-btn layui-btn-primary" lay-submit  lay-filter="findeBus" id="chazhao"><i class="layui-icon"></i> 查找商机 </button>
+                </div>
             </div>
         </form>
     </fieldset>
@@ -99,66 +101,26 @@
 
                 <div class="layuimini-notice">
                     <div class="layuimini-notice-title">
-                        <a herf="javascript:void(0);" id="proceedBus">进行中的商机</a>
-                        <span class="layui-badge layui-bg-blue" id="proceedBusValue"></span>
+                        <a herf="javascript:void(0);" id="proceed">进行中的商机</a>
+                        <span class="layui-badge layui-bg-blue" id="proceedValue"></span>
                     </div>
                 </div>
                 <div class="layuimini-notice">
                     <div class="layuimini-notice-title">
-                        <a herf="javascript:void(0);" id="Seven">7天未跟单</a>
-                        <span class="layui-badge layui-bg-blue" id="SevenValue"></span>
+                        <a herf="javascript:void(0);" id="busSeven">7天未跟单</a>
+                        <span class="layui-badge layui-bg-blue" id="busSevenValue"></span>
                     </div>
                 </div>
                 <div class="layuimini-notice">
                     <div class="layuimini-notice-title">
-                        <a herf="javascript:void(0);" id="Thirty"> 30天未跟单</a>
-                        <span class="layui-badge layui-bg-blue" id="ThirtyValue"></span>
+                        <a herf="javascript:void(0);" id="busThirty"> 30天未跟单</a>
+                        <span class="layui-badge layui-bg-blue" id="busThirtyValue"></span>
                     </div>
                 </div>
                 <div class="layuimini-notice">
                     <div class="layuimini-notice-title">
-                        <a herf="javascript:void(0);" id="Ninety"> 90天未跟单</a>
-                        <span class="layui-badge layui-bg-blue" id="NinetyValue"></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="layui-card">
-            <div class="layui-card-body layui-text">
-                <div class="layuimini-notice">
-                    <div class="layuimini-notice-title">
-                        <a herf="javascript:void(0);" id="week"> 本周新增</a>
-                        <span class="layui-badge layui-bg-blue" id="weekValue"></span>
-                    </div>
-                </div>
-                <div class="layuimini-notice">
-                    <div class="layuimini-notice-title">
-                        <a herf="javascript:void(0);" id="lastWeek"> 上周新增</a>
-                        <span class="layui-badge layui-bg-blue" id="lastWeekValue"></span>
-                    </div>
-                </div>
-                <div class="layuimini-notice">
-                    <div class="layuimini-notice-title">
-                        <a herf="javascript:void(0);" id="month"> 本月新增</a>
-                        <span class="layui-badge layui-bg-blue" id="monthValue"></span>
-                    </div>
-                </div>
-                <div class="layuimini-notice">
-                    <div class="layuimini-notice-title">
-                        <a herf="javascript:void(0);" id="lastMonth"> 上月新增</a>
-                        <span class="layui-badge layui-bg-blue" id="lastMonthValue"></span>
-                    </div>
-                </div>
-                <div class="layuimini-notice">
-                    <div class="layuimini-notice-title">
-                        <a herf="javascript:void(0);" id="quarter"> 本季度新增</a>
-                        <span class="layui-badge layui-bg-blue" id="quarterValue"></span>
-                    </div>
-                </div>
-                <div class="layuimini-notice">
-                    <div class="layuimini-notice-title">
-                        <a herf="javascript:void(0);" id="lastQuarter"> 上季度新增</a>
-                        <span class="layui-badge layui-bg-blue" id="lastQuarterValue"></span>
+                        <a herf="javascript:void(0);" id="busNinety"> 90天未跟单</a>
+                        <span class="layui-badge layui-bg-blue" id="busNinetyValue"></span>
                     </div>
                 </div>
             </div>
@@ -167,20 +129,60 @@
             <div class="layui-card-body layui-text">
                 <div class="layuimini-notice">
                     <div class="layuimini-notice-title">
-                        <a herf="javascript:void(0);" id="traded"> 已成交的商机</a>
-                        <span class="layui-badge layui-bg-blue" id="tradedValue"></span>
+                        <a herf="javascript:void(0);" id="busWeek"> 本周新增</a>
+                        <span class="layui-badge layui-bg-blue" id="busWeekValue"></span>
                     </div>
                 </div>
                 <div class="layuimini-notice">
                     <div class="layuimini-notice-title">
-                        <a herf="javascript:void(0);" id="throw"> 已丢单的商机</a>
-                        <span class="layui-badge layui-bg-blue" id="throwValue"></span>
+                        <a herf="javascript:void(0);" id="busLastWeek"> 上周新增</a>
+                        <span class="layui-badge layui-bg-blue" id="busLastWeekValue"></span>
                     </div>
                 </div>
                 <div class="layuimini-notice">
                     <div class="layuimini-notice-title">
-                        <a herf="javascript:void(0);" id="shelve"> 已搁置的商机</a>
-                        <span class="layui-badge layui-bg-blue" id="shelveValue"></span>
+                        <a herf="javascript:void(0);" id="busMonth"> 本月新增</a>
+                        <span class="layui-badge layui-bg-blue" id="busMonthValue"></span>
+                    </div>
+                </div>
+                <div class="layuimini-notice">
+                    <div class="layuimini-notice-title">
+                        <a herf="javascript:void(0);" id="busLastMonth"> 上月新增</a>
+                        <span class="layui-badge layui-bg-blue" id="busLastMonthValue"></span>
+                    </div>
+                </div>
+                <div class="layuimini-notice">
+                    <div class="layuimini-notice-title">
+                        <a herf="javascript:void(0);" id="busQuarter"> 本季度新增</a>
+                        <span class="layui-badge layui-bg-blue" id="busQuarterValue"></span>
+                    </div>
+                </div>
+                <div class="layuimini-notice">
+                    <div class="layuimini-notice-title">
+                        <a herf="javascript:void(0);" id="busLastQuarter"> 上季度新增</a>
+                        <span class="layui-badge layui-bg-blue" id="busLastQuarterValue"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-card">
+            <div class="layui-card-body layui-text">
+                <div class="layuimini-notice">
+                    <div class="layuimini-notice-title">
+                        <a herf="javascript:void(0);" id="success"> 已成交的商机</a>
+                        <span class="layui-badge layui-bg-blue" id="successValue"></span>
+                    </div>
+                </div>
+                <div class="layuimini-notice">
+                    <div class="layuimini-notice-title">
+                        <a herf="javascript:void(0);" id="myThrow"> 已丢单的商机</a>
+                        <span class="layui-badge layui-bg-blue" id="myThrowValue"></span>
+                    </div>
+                </div>
+                <div class="layuimini-notice">
+                    <div class="layuimini-notice-title">
+                        <a herf="javascript:void(0);" id="myShelve"> 已搁置的商机</a>
+                        <span class="layui-badge layui-bg-blue" id="myShelveValue"></span>
                     </div>
                 </div>
             </div>
@@ -189,8 +191,9 @@
     <div class="layui-col-md-offset3">
         <script type="text/html" id="toolbarDemo">
             <div class="layui-btn-container">
-                <button class="layui-btn layui-btn-sm data-add-btn" lay-event="add"> 添加商机 </button>
-                <button class="layui-btn layui-btn-sm layui-btn-danger data-delete-btn" lay-event="delete"> 刷新 </button>
+                <button class="layui-btn layui-btn-sm data-add-btn" lay-event="add">
+                    <a href="/page/business/addMyBusiness.html"> 添加商机</a>
+                </button>
             </div>
         </script>
 
@@ -214,7 +217,7 @@
                 {field: 'busStage', width: 180, title: '商机阶段'},
                 {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
                 {field: 'busDutyPeople', width: 180, title: '商机负责人'},
-                {field: 'docId', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.docId}}</a></div>'},
+                {field: 'gdTime', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.gdTime}}</a></div>'},
                 {field: 'invitationId', width: 130, title: '讨论版',templet:'<div><a  href="  " class="layui-table-link">{{d.invitationId==null?0:d.invitationId}}</a></div>'},
             ]]
         });
@@ -232,7 +235,7 @@
                     {field: 'busStage', width: 180, title: '商机阶段'},
                     {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
                     {field: 'busDutyPeople', width: 180, title: '商机负责人'},
-                    {field: 'docId', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.docId}}</a></div>'},
+                    {field: 'gdTime', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.gdTime}}</a></div>'},
                     {field: 'invitationId', width: 130, title: '讨论版',templet:'<div><a  href="  " class="layui-table-link">{{d.invitationId==null?0:d.invitationId}}</a></div>'},
                 ]]
             });
@@ -249,7 +252,7 @@
                     {field: 'busStage', width: 180, title: '商机阶段'},
                     {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
                     {field: 'busDutyPeople', width: 180, title: '商机负责人'},
-                    {field: 'docId', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.docId}}</a></div>'},
+                    {field: 'gdTime', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.gdTime}}</a></div>'},
                     {field: 'invitationId', width: 130, title: '讨论版',templet:'<div><a  href="  " class="layui-table-link">{{d.invitationId==null?0:d.invitationId}}</a></div>'},
                 ]]
             });
@@ -266,7 +269,228 @@
                     {field: 'busStage', width: 180, title: '商机阶段'},
                     {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
                     {field: 'busDutyPeople', width: 180, title: '商机负责人'},
-                    {field: 'docId', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.docId}}</a></div>'},
+                    {field: 'gdTime', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.gdTime}}</a></div>'},
+                    {field: 'invitationId', width: 130, title: '讨论版',templet:'<div><a  href="  " class="layui-table-link">{{d.invitationId==null?0:d.invitationId}}</a></div>'},
+                ]]
+            });
+        });
+        $("#success").click(function(){
+            table.render({
+                elem: '#currentTableId',
+                toolbar: '#toolbarDemo'
+                ,page: true //开启分页
+                ,url: '/business/successBus.do' //数据接口
+                ,type:'get'
+                ,cols: [[
+                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="  " class="layui-table-link">{{d.busName}}</a></div>'},
+                    {field: 'busStage', width: 180, title: '商机阶段'},
+                    {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
+                    {field: 'busDutyPeople', width: 180, title: '商机负责人'},
+                    {field: 'gdTime', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.gdTime}}</a></div>'},
+                    {field: 'invitationId', width: 130, title: '讨论版',templet:'<div><a  href="  " class="layui-table-link">{{d.invitationId==null?0:d.invitationId}}</a></div>'},
+                ]]
+            });
+        });
+        $("#myThrow").click(function(){
+            table.render({
+                elem: '#currentTableId',
+                toolbar: '#toolbarDemo'
+                ,page: true //开启分页
+                ,url: '/business/myThrow.do' //数据接口
+                ,type:'get'
+                ,cols: [[
+                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="  " class="layui-table-link">{{d.busName}}</a></div>'},
+                    {field: 'busStage', width: 180, title: '商机阶段'},
+                    {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
+                    {field: 'busDutyPeople', width: 180, title: '商机负责人'},
+                    {field: 'gdTime', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.gdTime}}</a></div>'},
+                    {field: 'invitationId', width: 130, title: '讨论版',templet:'<div><a  href="  " class="layui-table-link">{{d.invitationId==null?0:d.invitationId}}</a></div>'},
+                ]]
+            });
+        });
+        $("#myShelve").click(function(){
+            table.render({
+                elem: '#currentTableId',
+                toolbar: '#toolbarDemo'
+                ,page: true //开启分页
+                ,url: '/business/myShelve.do' //数据接口
+                ,type:'get'
+                ,cols: [[
+                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="  " class="layui-table-link">{{d.busName}}</a></div>'},
+                    {field: 'busStage', width: 180, title: '商机阶段'},
+                    {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
+                    {field: 'busDutyPeople', width: 180, title: '商机负责人'},
+                    {field: 'gdTime', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.gdTime}}</a></div>'},
+                    {field: 'invitationId', width: 130, title: '讨论版',templet:'<div><a  href="  " class="layui-table-link">{{d.invitationId==null?0:d.invitationId}}</a></div>'},
+                ]]
+            });
+        });
+        $("#busSeven").click(function(){
+            table.render({
+                elem: '#currentTableId',
+                toolbar: '#toolbarDemo'
+                ,page: true //开启分页
+                ,url: '/business/myBusSeven.do' //数据接口
+                ,type:'get'
+                ,cols: [[
+                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="  " class="layui-table-link">{{d.busName}}</a></div>'},
+                    {field: 'busStage', width: 180, title: '商机阶段'},
+                    {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
+                    {field: 'busDutyPeople', width: 180, title: '商机负责人'},
+                    {field: 'gdTime', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.gdTime}}</a></div>'},
+                    {field: 'invitationId', width: 130, title: '讨论版',templet:'<div><a  href="  " class="layui-table-link">{{d.invitationId==null?0:d.invitationId}}</a></div>'},
+                ]]
+            });
+        });
+        $("#busThirty").click(function(){
+            table.render({
+                elem: '#currentTableId',
+                toolbar: '#toolbarDemo'
+                ,page: true //开启分页
+                ,url: '/business/myBusthirty.do' //数据接口
+                ,type:'get'
+                ,cols: [[
+                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="  " class="layui-table-link">{{d.busName}}</a></div>'},
+                    {field: 'busStage', width: 180, title: '商机阶段'},
+                    {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
+                    {field: 'busDutyPeople', width: 180, title: '商机负责人'},
+                    {field: 'gdTime', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.gdTime}}</a></div>'},
+                    {field: 'invitationId', width: 130, title: '讨论版',templet:'<div><a  href="  " class="layui-table-link">{{d.invitationId==null?0:d.invitationId}}</a></div>'},
+                ]]
+            });
+        });
+        $("#busNinety").click(function(){
+            table.render({
+                elem: '#currentTableId',
+                toolbar: '#toolbarDemo'
+                ,page: true //开启分页
+                ,url: '/business/myBusNenity.do' //数据接口
+                ,type:'get'
+                ,cols: [[
+                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="  " class="layui-table-link">{{d.busName}}</a></div>'},
+                    {field: 'busStage', width: 180, title: '商机阶段'},
+                    {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
+                    {field: 'busDutyPeople', width: 180, title: '商机负责人'},
+                    {field: 'gdTime', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.gdTime}}</a></div>'},
+                    {field: 'invitationId', width: 130, title: '讨论版',templet:'<div><a  href="  " class="layui-table-link">{{d.invitationId==null?0:d.invitationId}}</a></div>'},
+                ]]
+            });
+        });
+        $("#busWeek").click(function(){
+            table.render({
+                elem: '#currentTableId',
+                toolbar: '#toolbarDemo'
+                ,page: true //开启分页
+                ,url: '/business/myBusWeek.do' //数据接口
+                ,type:'get'
+                ,cols: [[
+                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="  " class="layui-table-link">{{d.busName}}</a></div>'},
+                    {field: 'busStage', width: 180, title: '商机阶段'},
+                    {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
+                    {field: 'busDutyPeople', width: 180, title: '商机负责人'},
+                    {field: 'gdTime', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.gdTime}}</a></div>'},
+                    {field: 'invitationId', width: 130, title: '讨论版',templet:'<div><a  href="  " class="layui-table-link">{{d.invitationId==null?0:d.invitationId}}</a></div>'},
+                ]]
+            });
+        });
+        $("#busLastWeek").click(function(){
+            table.render({
+                elem: '#currentTableId',
+                toolbar: '#toolbarDemo'
+                ,page: true //开启分页
+                ,url: '/business/myBusLassWeek.do' //数据接口
+                ,type:'get'
+                ,cols: [[
+                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="  " class="layui-table-link">{{d.busName}}</a></div>'},
+                    {field: 'busStage', width: 180, title: '商机阶段'},
+                    {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
+                    {field: 'busDutyPeople', width: 180, title: '商机负责人'},
+                    {field: 'gdTime', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.gdTime}}</a></div>'},
+                    {field: 'invitationId', width: 130, title: '讨论版',templet:'<div><a  href="  " class="layui-table-link">{{d.invitationId==null?0:d.invitationId}}</a></div>'},
+                ]]
+            });
+        });
+        $("#busMonth").click(function(){
+            table.render({
+                elem: '#currentTableId',
+                toolbar: '#toolbarDemo'
+                ,page: true //开启分页
+                ,url: '/business/myBusMonth.do' //数据接口
+                ,type:'get'
+                ,cols: [[
+                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="  " class="layui-table-link">{{d.busName}}</a></div>'},
+                    {field: 'busStage', width: 180, title: '商机阶段'},
+                    {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
+                    {field: 'busDutyPeople', width: 180, title: '商机负责人'},
+                    {field: 'gdTime', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.gdTime}}</a></div>'},
+                    {field: 'invitationId', width: 130, title: '讨论版',templet:'<div><a  href="  " class="layui-table-link">{{d.invitationId==null?0:d.invitationId}}</a></div>'},
+                ]]
+            });
+        });
+        $("#busLastMonth").click(function(){
+            table.render({
+                elem: '#currentTableId',
+                toolbar: '#toolbarDemo'
+                ,page: true //开启分页
+                ,url: '/business/myBusLassMonth.do' //数据接口
+                ,type:'get'
+                ,cols: [[
+                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="  " class="layui-table-link">{{d.busName}}</a></div>'},
+                    {field: 'busStage', width: 180, title: '商机阶段'},
+                    {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
+                    {field: 'busDutyPeople', width: 180, title: '商机负责人'},
+                    {field: 'gdTime', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.gdTime}}</a></div>'},
+                    {field: 'invitationId', width: 130, title: '讨论版',templet:'<div><a  href="  " class="layui-table-link">{{d.invitationId==null?0:d.invitationId}}</a></div>'},
+                ]]
+            });
+        });
+        $("#busQuarter").click(function(){
+            table.render({
+                elem: '#currentTableId',
+                toolbar: '#toolbarDemo'
+                ,page: true //开启分页
+                ,url: '/business/myBusQuarter.do' //数据接口
+                ,type:'get'
+                ,cols: [[
+                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="  " class="layui-table-link">{{d.busName}}</a></div>'},
+                    {field: 'busStage', width: 180, title: '商机阶段'},
+                    {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
+                    {field: 'busDutyPeople', width: 180, title: '商机负责人'},
+                    {field: 'gdTime', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.gdTime}}</a></div>'},
+                    {field: 'invitationId', width: 130, title: '讨论版',templet:'<div><a  href="  " class="layui-table-link">{{d.invitationId==null?0:d.invitationId}}</a></div>'},
+                ]]
+            });
+        });
+        $("#proceed").click(function(){
+            table.render({
+                elem: '#currentTableId',
+                toolbar: '#toolbarDemo'
+                ,page: true //开启分页
+                ,url: '/business/myBusProceed.do' //数据接口
+                ,type:'get'
+                ,cols: [[
+                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="  " class="layui-table-link">{{d.busName}}</a></div>'},
+                    {field: 'busStage', width: 180, title: '商机阶段'},
+                    {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
+                    {field: 'busDutyPeople', width: 180, title: '商机负责人'},
+                    {field: 'gdTime', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.gdTime}}</a></div>'},
+                    {field: 'invitationId', width: 130, title: '讨论版',templet:'<div><a  href="  " class="layui-table-link">{{d.invitationId==null?0:d.invitationId}}</a></div>'},
+                ]]
+            });
+        });
+        $("#busLastQuarter").click(function(){
+            table.render({
+                elem: '#currentTableId',
+                toolbar: '#toolbarDemo'
+                ,page: true //开启分页
+                ,url: '/business/myBusLassQuarter.do' //数据接口
+                ,type:'get'
+                ,cols: [[
+                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="  " class="layui-table-link">{{d.busName}}</a></div>'},
+                    {field: 'busStage', width: 180, title: '商机阶段'},
+                    {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
+                    {field: 'busDutyPeople', width: 180, title: '商机负责人'},
+                    {field: 'gdTime', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.gdTime}}</a></div>'},
                     {field: 'invitationId', width: 130, title: '讨论版',templet:'<div><a  href="  " class="layui-table-link">{{d.invitationId==null?0:d.invitationId}}</a></div>'},
                 ]]
             });
@@ -298,6 +522,120 @@
                 $("#myCareBusValue").append(res);
             }
         }) ;
+        $.ajax({
+            url:'/business/successBusNumber.do',
+            method:'get',
+            dataType:'JSON',
+            success:function(res) {
+                $("#successValue").append(res);
+            }
+        }) ;
+        $.ajax({
+            url:'/business/myThrowNumber.do',
+            method:'get',
+            dataType:'JSON',
+            success:function(res) {
+                $("#myThrowValue").append(res);
+            }
+        }) ;
+        $.ajax({
+            url:'/business/myShelveNumber.do',
+            method:'get',
+            dataType:'JSON',
+            success:function(res) {
+                $("#myShelveValue").append(res);
+            }
+        }) ;
+        $.ajax({
+            url:'/business/proceedNumber.do',
+            method:'get',
+            dataType:'JSON',
+            success:function(res) {
+                $("#proceedValue").append(res);
+            }
+        }) ;
+        $.ajax({
+            url:'/business/sevenNumber.do',
+            method:'get',
+            dataType:'JSON',
+            success:function(res) {
+                $("#busSevenValue").append(res);
+            }
+        }) ;
+        $.ajax({
+            url:'/business/thrityNumber.do',
+            method:'get',
+            dataType:'JSON',
+            success:function(res) {
+                $("#busThirtyValue").append(res);
+            }
+        }) ;
+        $.ajax({
+            url:'/business/nenityNumber.do',
+            method:'get',
+            dataType:'JSON',
+            success:function(res) {
+                $("#busNinetyValue").append(res);
+            }
+        }) ;
+        $.ajax({
+            url:'/business/weekNumber.do',
+            method:'get',
+            dataType:'JSON',
+            success:function(res) {
+                $("#busWeekValue").append(res);
+            }
+        }) ;
+        $.ajax({
+            url:'/business/weekLastNumber.do',
+            method:'get',
+            dataType:'JSON',
+            success:function(res) {
+                $("#busLastWeekValue").append(res);
+            }
+        }) ;
+        $.ajax({
+            url:'/business/monthNumber.do',
+            method:'get',
+            dataType:'JSON',
+            success:function(res) {
+                $("#busMonthValue").append(res);
+            }
+        }) ;
+        $.ajax({
+            url:'/business/monthLastNumber.do',
+            method:'get',
+            dataType:'JSON',
+            success:function(res) {
+                $("#busLastMonthValue").append(res);
+            }
+        }) ;
+        $.ajax({
+            url:'/business/quarterNumber.do',
+            method:'get',
+            dataType:'JSON',
+            success:function(res) {
+                $("#busQuarterValue").append(res);
+            }
+        }) ;
+        $.ajax({
+            url:'/business/quarterLassNumber.do',
+            method:'get',
+            dataType:'JSON',
+            success:function(res) {
+                $("#busLastQuarterValue").append(res);
+            }
+        }) ;
+
+        /*监听form表单中的提交事件*/
+        form.on('submit(findeBus)', function(data){
+            alert("111111111111111111111111");
+            table.reload('currentTableId', {
+                url:'/business/MyBusInfo.do',
+                where: data.field //设定异步数据接口的额外参数
+            });
+            return false;
+        });
 
     });
 </script>

@@ -9,6 +9,7 @@ public class BusinessBo {
     private Integer custId;
     private String custName;
     private Integer busId;
+    private Integer tlbs;
     //跟单主键
     private Integer docId;
     //帖子主键
@@ -16,7 +17,7 @@ public class BusinessBo {
     //商机名称
     private String busName;
     //预成交金额
-    private String busBeforeMoney;
+    private Float busBeforeMoney;
     //商机负责人
     private String busDutyPeople;
     //商机阶段
@@ -28,6 +29,39 @@ public class BusinessBo {
     private Date busBeforedate;
     //将预计结单日期转换字符串字段
     private String beforeDate;
+     //最后跟单时间
+   @DateTimeFormat(pattern ="yyyy-MM-dd")
+    private Date docTime;
+    private String gdTime;
+
+    public Date getDocTime() {
+        return docTime;
+    }
+
+    public Integer getTlbs() {
+        return tlbs;
+    }
+
+    public void setTlbs(Integer tlbs) {
+        this.tlbs = tlbs;
+    }
+
+    public void setDocTime(Date docTime) {
+        this.docTime = docTime;
+    }
+
+    public String getGdTime() {
+        if(docTime!=null){
+            return new SimpleDateFormat("yyyy-MM-dd").format(docTime);
+        }else {
+            return gdTime;
+        }
+
+    }
+
+    public void setGdTime(String gdTime) {
+        this.gdTime = gdTime;
+    }
 
     public Integer getDocId() {
         return docId;
@@ -61,11 +95,11 @@ public class BusinessBo {
         this.busName = busName;
     }
 
-    public String getBusBeforeMoney() {
+    public Float getBusBeforeMoney() {
         return busBeforeMoney;
     }
 
-    public void setBusBeforeMoney(String busBeforeMoney) {
+    public void setBusBeforeMoney(Float busBeforeMoney) {
         this.busBeforeMoney = busBeforeMoney;
     }
 

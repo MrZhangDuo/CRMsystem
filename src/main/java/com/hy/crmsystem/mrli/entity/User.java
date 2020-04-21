@@ -1,6 +1,8 @@
 package com.hy.crmsystem.mrli.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
@@ -20,38 +22,38 @@ public class User implements Serializable {
     /**
      * 用户主键
      */
-    @TableField(value = "userid")
+    @TableId(type = IdType.AUTO ,value="userid")
     private Integer userid;
 
 
     /**
      * 登录名  *注意：是登陆的名字
      */
-    @TableField(value = "loginname")
+    @TableField("loginname")
     private String loginname;
 
     /**
      * 身份证号
      */
-    @TableField(value = "identity")
+    @TableField("identity")
     private String identity;
 
     /**
      * 真实姓名
      */
-    @TableField(value = "realname")
+    @TableField("realname")
     private String realname;
 
     /**
      * 性别
      */
-    @TableField(value = "sex")
+    @TableField("sex")
     private Integer sex;
 
     /**
      * 地址
      */
-    @TableField(value = "address")
+    @TableField("address")
     private String address;
 
     /**
@@ -59,7 +61,7 @@ public class User implements Serializable {
      *
      * @return
      */
-    @TableField(value = "phone")
+    @TableField("phone")
     private String phone;
 
     /**
@@ -67,7 +69,7 @@ public class User implements Serializable {
      *
      * @return
      */
-    @TableField(value = "pwd")
+    @TableField("pwd")
     private String pwd;
 
     /**
@@ -75,7 +77,7 @@ public class User implements Serializable {
      *
      * @return
      */
-    @TableField(value = "position")
+    @TableField("position")
     private String position;
 
     /**
@@ -83,7 +85,7 @@ public class User implements Serializable {
      *
      * @return
      */
-    @TableField(value = "type")
+    @TableField("type")
     private Integer type;
 
     /**
@@ -91,9 +93,10 @@ public class User implements Serializable {
      *
      * @return
      */
-    @TableField(value = "available")
+    @TableField("available")
     private Integer available;
-
+    @TableField("userimg")
+    private String userimg;
 
     public Integer getUserid() {
         return userid;
@@ -182,4 +185,14 @@ public class User implements Serializable {
     public void setAvailable(Integer available) {
         this.available = available;
     }
+
+    public String getUserimg() {
+        return userimg;
+    }
+
+    public void setUserimg(String userimg) {
+        this.userimg = userimg;
+    }
+
+
 }

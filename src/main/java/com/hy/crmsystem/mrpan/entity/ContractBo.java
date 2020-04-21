@@ -72,10 +72,6 @@ public class ContractBo {
     }
 
     public String getOfdept() {
-        if(timeSigned!=null){
-            return new SimpleDateFormat("yyyy-MM-dd").format(timeSigned);
-        }
-
         return ofdept;
     }
 
@@ -84,6 +80,10 @@ public class ContractBo {
     }
 
     public String getTimeSigned() {
+        if(signedTime!=null){
+            return new SimpleDateFormat("yyyy-MM-dd").format(signedTime);
+        }
+
         return timeSigned;
     }
 
