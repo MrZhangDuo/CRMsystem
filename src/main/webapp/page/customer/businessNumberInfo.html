@@ -25,25 +25,19 @@
         margin-top: -10px;
         margin-left: 1100px;
     }
-    #shuaxing{
-        margin: 0px auto;
-        width: 130px;
-        margin-top: -10px;
-        margin-right: 5px;
-    }
 
     #rese{
         margin: 0px auto;
         width: 200px;
         margin-top: -30px;
-        margin-left: 400px;
+        margin-left: 50px;
     }
 
     #select{
         margin: 0px auto;
         width: 200px;
         margin-top: -30px;
-        margin-left: 60px;
+        margin-left: 400px;
     }
 </style>
 
@@ -105,7 +99,7 @@
                     </div>
                 </div>
             </div>
-            <button type="submit" class="layui-btn layui-btn-radius" lay-submit  lay-filter="chaxun" id="select"> 查找商机</button>
+            <button type="submit" class="layui-btn layui-btn-radius" lay-submit=""  lay-filter="chaxun" id="select"> 查找商机</button>
             <input type="reset" class="layui-btn layui-btn-radius layui-btn-danger" id="rese" value="重置">
         </form>
     </div>
@@ -133,11 +127,12 @@
                 ,{field: 'busStage', title: '商机阶段', width:150}
                 ,{field: 'busBeforeMoney', title: '预计成交金额', width:180}
                 ,{field: 'busDutyPeople', title: '商机负责人', width: 180}
-                ,{field: 'docId', title: '最后跟单', width: 140,templet:'<div><a  href="  " class="layui-table-link">{{d.docId}}</a></div>'}
-                ,{field: 'invitationId', title: '讨论版', width: 140,templet:'<div><a  href=" " class="layui-table-link">{{d.invitationId==null:0?d.invitationId}}</a></div>'}
+                ,{field: 'gdTime', title: '最后跟单', width: 140,templet:'<div><a  href="" class="layui-table-link">{{d.gdTime}}</a></div>'}
+                ,{field: 'tlbs', title: '讨论版', width: 140,templet:'<div><a  href="" class="layui-table-link">{{d.tlbs==null?0:d.tlbs}}</a></div>'}
             ]]
         });
 
+       /*点返回时跳转上一个页面*/
         $("#fanhui").click(function(){
             window.location.href="/page/customer/queryAllCust.html";
         });

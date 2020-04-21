@@ -85,9 +85,6 @@
                 <button class="layui-btn layui-btn-sm data-add-btn" lay-event="add">
                     <a href="addCustomer.html"> 新增用户</a>
                 </button>
-                <button class="layui-btn layui-btn-sm layui-btn-sm" lay-event="select">
-                    <a href="javascript:void(0);" id="shuaxin"> 刷新 </a>
-                </button>
             </div>
         </script>
        <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
@@ -145,28 +142,6 @@
             form.render();
         });
 
-        $("#shuaxin").click(function(){
-            table.render({
-                elem: '#currentTableId',
-                type:'get',
-                dataType:'json',
-                url:'/customer/customerSelect.do',
-                toolbar: '#toolbarDemo',
-                cols: [[
-                    {field: 'busName', width: 250, title: '客户名称',templet:'<div><a  href="/customer/selectCustomerInfo.do?CustName={{d.custName}}" class="layui-table-link">{{d.custName}}</a></div>'},
-                    {field: 'busId', width: 80, title: '商机数',templet:'<div><a  href="/page/customer/businessNumberInfo.html?CustName={{d.custName}}" class="layui-table-link">{{d.busId}}</a></div>'},
-                    {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
-                    {field: 'contractId', width: 80, title: '合同数',templet:'<div><a  href="/customer/   ?contractId={{d.serviceId}}" class="layui-table-link">{{d.contractId}}</a></div>'},
-                    {field: 'contractMoney', width: 130, title: '合同金额'},
-                    {field: 'incomesMoney', width: 130, title: '回款额'},
-                    {field: 'serviceId', width: 100, title: '售后服务数',templet:'<div><a  href="/customer/   ?contractId={{d.serviceId}}" class="layui-table-link">{{d.serviceId}}</a></div>'},
-                    {field: 'servicesCore', width: 90, title: '服务均分'},
-                ]]
-                ,page:true /*进行分页*/
-                ,limit:9/*每页三条数据*/
-                ,limits:[1,3,5,7]
-            });
-        });
 
         $("#classifyOne").click(function(){
             table.render({
@@ -179,7 +154,7 @@
                     {field: 'busName', width: 250, title: '客户名称',templet:'<div><a  href="/customer/selectCustomerInfo.do?CustName={{d.custName}}" class="layui-table-link">{{d.custName}}</a></div>'},
                     {field: 'busId', width: 80, title: '商机数',templet:'<div><a  href="/page/customer/businessNumberInfo.html?CustName={{d.custName}}" class="layui-table-link">{{d.busId}}</a></div>'},
                     {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
-                    {field: 'contractId', width: 80, title: '合同数',templet:'<div><a  href="/customer/   ?contractId={{d.serviceId}}" class="layui-table-link">{{d.contractId}}</a></div>'},
+                    {field: 'contractId', width: 80, title: '合同数',templet:'<div><a  href="/page/customer/contractListInfo.html?custId={{d.custId}}}" class="layui-table-link">{{d.contractId}}</a></div>'},
                     {field: 'contractMoney', width: 130, title: '合同金额'},
                     {field: 'incomesMoney', width: 130, title: '回款额'},
                     {field: 'serviceId', width: 100, title: '售后服务数',templet:'<div><a  href="/customer/   ?contractId={{d.serviceId}}" class="layui-table-link">{{d.serviceId}}</a></div>'},
@@ -245,9 +220,6 @@
             });
             return false;
         });
-
-
-
 
     });
 </script>

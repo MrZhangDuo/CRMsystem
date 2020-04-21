@@ -234,14 +234,14 @@
             <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;height:20px">
                 <legend>处理流程日志</legend>
             </fieldset>
-            <button type="submit" class="layui-btn layui-btn-primary" lay-submit  lay-filter="update" id="update" ><i class="layui-icon"></i>修改</button>
-            <a class='btn btn-info' href="javascript:history.go(-1)"><button type="button" class="layui-btn layui-btn-primary" >取消</button></a>
+            <button type="submit" class="layui-btn layui-btn-radius" lay-submit  lay-filter="update" id="update" >修改</button>
+            <a class='btn btn-info' href="javascript:history.go(-1)"><button type="button" class="layui-btn layui-btn-radius" >取消</button></a>
            <!-- <a th:href="@{'/page/customer/businessNumberInfo.html?custId='+${selectCustInfo.getCustId()}}"	class="layui-btn layui-btn-radius layui-btn-warm" lay-filter="qux"  id="cancle" >取消</a>-->
 
         </form>
     </div>
 </div>
-<script src="/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script src="/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>+
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 <script>
     layui.use(['form', 'layedit', 'laydate','jquery'], function () {

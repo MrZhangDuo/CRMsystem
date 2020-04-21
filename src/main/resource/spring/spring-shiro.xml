@@ -7,25 +7,23 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
 
 
-
-    <!-- 声明凭证匹配器 -->
-    <bean id="credentialsMatcher" class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
-        <!--注入算法 加密方式-->
-        <property name="hashAlgorithmName" value="md5"></property>
-        <!--注入散列次数-->
-        <property name="hashIterations" value="2"></property>
-    </bean>
-
-    <!-- 声明userRealm -->
-    <bean id="userRealm" class="com.hy.crmsystem.mrli.realm.UserRealm">
-        <!-- 注入凭证匹配器 -->
-        <property name="credentialsMatcher" ref="credentialsMatcher"></property>
-    </bean>
-
     <!-- 配置SecurityManager 安全管理器 -->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <!-- 注入realm -->
         <property name="realm" ref="userRealm"></property>
+    </bean>
+
+    <!--自定义的realm类-->
+    <bean id="userRealm" class="com.hy.crmsystem.mrli.realm.UserRealm">
+        <!--shiro密码加密匹配器-->
+        <property name="credentialsMatcher">
+            <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+                <!--加密方式-->
+                <property name="hashAlgorithmName" value="MD5"></property>
+                <!--加密次数-->
+                <property name="hashIterations" value="100"></property>
+            </bean>
+        </property>
     </bean>
 
     <!-- 配置shiro的过滤器  这里面的id必须和web.xml里面的shiroFilter的 targetBeanName的值一样 -->
@@ -47,7 +45,9 @@
                 /js/** = anon
                 /lib/** = anon
                 /page/** = anon
-                /layui/** = anon
+                /register.html = anon
+                /tianJiaUser/UserZhuce.do =anon
+                /invitation/fileuploadExecl.do =anon
 
                 <!-- anon 表示此地址不需要任何权限即可访问 -->
                 <!-- 放行index.jsp -->

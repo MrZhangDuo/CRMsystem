@@ -66,9 +66,9 @@
                     <div class="layui-input-block">
                         <select name="custClassify" lay-verify="required">
                             <option th:text="${customerInfo.getCustClassify()}"></option>
-                            <option th:value="vip1" th:selected="${customerInfo.getCustClassify()eq 'vip1'}" >客户分类一</option>
-                            <option th:value="vip2" th:selected="*{customerInfo.getCustClassify()eq 'vip2'}">客户分类二</option>
-                            <option th:value="svip" th:selected="*{customerInfo.getCustClassify()eq 'svip'}">客户分类三</option>
+                            <option th:value="vip1" th:selected="${customerInfo.getCustClassify()eq 'vip1'}" >普通客户</option>
+                            <option th:value="vip2" th:selected="${customerInfo.getCustClassify()eq 'vip2'}">贵宾客户</option>
+                            <option th:value="svip" th:selected="${customerInfo.getCustClassify()eq 'svip'}">超级会员客户</option>
                         </select>
                     </div>
                 </div>
@@ -270,7 +270,6 @@
                 <button type="submit" class="layui-btn" lay-submit  lay-filter="xiugai" id="update">修改</button>
                 <button type="submit" class="layui-btn layui-btn-danger" lay-submit  lay-filter="shanchu" id="del">删除</button>
                 <a class='btn btn-info' href="javascript:history.go(-1)"><button type="button" class="layui-btn" id="quxiao">取消</button></a>
-                <!--<button type="submit" class="layui-btn layui-btn-normal" lay-submit  lay-filter="quxiao" id="quxiao">取消</button>-->
             </div>
         </form>
     </div>
@@ -291,11 +290,6 @@
         form.on('submit(xiugai)', function (data) {
             $('form[id=cust]').attr('action','/customer/updateCustomerInfo.do').submit();
         });
-        //监听提交取消
-       /* form.on('submit(quxiao)', function (data) {
-                window.location.href="/page/customer/queryAllCust.html";
-            return false;
-        });*/
     });
 
 
