@@ -1,5 +1,6 @@
 package com.hy.crmsystem.mrli.mapper;
 
+import com.hy.crmsystem.mrli.entity.DataGridView;
 import com.hy.crmsystem.mrli.entity.Documentary;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.hy.crmsystem.mrli.vo.DocumentaryVo;
@@ -26,4 +27,10 @@ public interface DocumentaryMapper extends BaseMapper<Documentary> {
      */
     List<Documentary> queryAllDocumentary(DocumentaryVo documentaryVo);
 
+    /**
+     * 根据跟单标题 查询历史跟单记录
+     * @param docTitle
+     * @return
+     */
+    List<Documentary> queryOldDocumentByDocTitle(String docTitle);
 }

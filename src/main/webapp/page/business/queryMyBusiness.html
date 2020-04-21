@@ -1,4 +1,4 @@
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <title>我的商机</title>
@@ -207,10 +207,10 @@
             elem: '#currentTableId',
             toolbar: '#toolbarDemo'
             ,page: true //开启分页
-            ,url: '/business/selectAllBusInfo.do' //数据接口
+            ,url: '/business/MyBusInfo.do' //数据接口
             ,type:'get'
             ,cols: [[
-                {field: 'busName', width: 250, title: '商机名称'},
+                {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="/business/custByBusId.do?busId={{d.busId}}" class="layui-table-link">{{d.busName}}</a></div>'},
                 {field: 'busStage', width: 180, title: '商机阶段'},
                 {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
                 {field: 'busDutyPeople', width: 180, title: '商机负责人'},
@@ -220,12 +220,12 @@
         });
 
         /*根据id渲染表格*/
-        $("#proceedBus").click(function(){
+        $("#myResponsibleBus").click(function(){
             table.render({
                 elem: '#currentTableId',
                 toolbar: '#toolbarDemo'
                 ,page: true //开启分页
-                ,url: '/business/proceedBus.do' //数据接口
+                ,url: '/business/MyBusInfoByResponsiblePeople.do' //数据接口
                 ,type:'get'
                 ,cols: [[
                     {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="  " class="layui-table-link">{{d.busName}}</a></div>'},
@@ -237,12 +237,12 @@
                 ]]
             });
         });
-        $("#Seven").click(function(){
+        $("#myjoinBus").click(function(){
             table.render({
                 elem: '#currentTableId',
                 toolbar: '#toolbarDemo'
                 ,page: true //开启分页
-                ,url: '/business/docTimeLessSeven.do' //数据接口
+                ,url: '/business/MyBusInfoByJoinPeople.do' //数据接口
                 ,type:'get'
                 ,cols: [[
                     {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="  " class="layui-table-link">{{d.busName}}</a></div>'},
@@ -254,12 +254,12 @@
                 ]]
             });
         });
-        $("#Thirty").click(function(){
+        $("#myCareBus").click(function(){
             table.render({
                 elem: '#currentTableId',
                 toolbar: '#toolbarDemo'
                 ,page: true //开启分页
-                ,url: '/business/docTimeLessThirty.do' //数据接口
+                ,url: '/business/MyBusInfoByCarePeople.do' //数据接口
                 ,type:'get'
                 ,cols: [[
                     {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="  " class="layui-table-link">{{d.busName}}</a></div>'},
@@ -271,283 +271,33 @@
                 ]]
             });
         });
-        $("#Ninety").click(function(){
-            table.render({
-                elem: '#currentTableId',
-                toolbar: '#toolbarDemo'
-                ,page: true //开启分页
-                ,url: '/business/docTimeLessNinety.do' //数据接口
-                ,type:'get'
-                ,cols: [[
-                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="  " class="layui-table-link">{{d.busName}}</a></div>'},
-                    {field: 'busStage', width: 180, title: '商机阶段'},
-                    {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
-                    {field: 'busDutyPeople', width: 180, title: '商机负责人'},
-                    {field: 'docId', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.docId}}</a></div>'},
-                    {field: 'invitationId', width: 130, title: '讨论版',templet:'<div><a  href="  " class="layui-table-link">{{d.invitationId==null?0:d.invitationId}}</a></div>'},
-                ]]
-            });
-        });
-        $("#traded").click(function(){
-            table.render({
-                elem: '#currentTableId',
-                toolbar: '#toolbarDemo'
-                ,page: true //开启分页
-                ,url: '/business/tradedBus.do' //数据接口
-                ,type:'get'
-                ,cols: [[
-                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="  " class="layui-table-link">{{d.busName}}</a></div>'},
-                    {field: 'busStage', width: 180, title: '商机阶段'},
-                    {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
-                    {field: 'busDutyPeople', width: 180, title: '商机负责人'},
-                    {field: 'docId', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.docId}}</a></div>'},
-                    {field: 'invitationId', width: 130, title: '讨论版',templet:'<div><a  href="  " class="layui-table-link">{{d.invitationId==null?0:d.invitationId}}</a></div>'},
-                ]]
-            });
-        });
-        $("#throw").click(function(){
-            table.render({
-                elem: '#currentTableId',
-                toolbar: '#toolbarDemo'
-                ,page: true //开启分页
-                ,url: '/business/throwBus.do' //数据接口
-                ,type:'get'
-                ,cols: [[
-                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="  " class="layui-table-link">{{d.busName}}</a></div>'},
-                    {field: 'busStage', width: 180, title: '商机阶段'},
-                    {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
-                    {field: 'busDutyPeople', width: 180, title: '商机负责人'},
-                    {field: 'docId', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.docId}}</a></div>'},
-                    {field: 'invitationId', width: 130, title: '讨论版',templet:'<div><a  href="  " class="layui-table-link">{{d.invitationId==null?0:d.invitationId}}</a></div>'},
-                ]]
-            });
-        });
-        $("#shelve").click(function(){
-            table.render({
-                elem: '#currentTableId',
-                toolbar: '#toolbarDemo'
-                ,page: true //开启分页
-                ,url: '/business/shelveBus.do' //数据接口
-                ,type:'get'
-                ,cols: [[
-                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="  " class="layui-table-link">{{d.busName}}</a></div>'},
-                    {field: 'busStage', width: 180, title: '商机阶段'},
-                    {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
-                    {field: 'busDutyPeople', width: 180, title: '商机负责人'},
-                    {field: 'docId', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.docId}}</a></div>'},
-                    {field: 'invitationId', width: 130, title: '讨论版',templet:'<div><a  href="  " class="layui-table-link">{{d.invitationId==null?0:d.invitationId}}</a></div>'},
-                ]]
-            });
-        });
-        $("#week").click(function(){
-            table.render({
-                elem: '#currentTableId',
-                toolbar: '#toolbarDemo'
-                ,page: true //开启分页
-                ,url: '/business/weekAdd.do' //数据接口
-                ,type:'get'
-                ,cols: [[
-                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="  " class="layui-table-link">{{d.busName}}</a></div>'},
-                    {field: 'busStage', width: 180, title: '商机阶段'},
-                    {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
-                    {field: 'busDutyPeople', width: 180, title: '商机负责人'},
-                    {field: 'docId', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.docId}}</a></div>'},
-                    {field: 'invitationId', width: 130, title: '讨论版',templet:'<div><a  href="  " class="layui-table-link">{{d.invitationId==null?0:d.invitationId}}</a></div>'},
-                ]]
-            });
-        });
-        $("#lastWeek").click(function(){
-            table.render({
-                elem: '#currentTableId',
-                toolbar: '#toolbarDemo'
-                ,page: true //开启分页
-                ,url: '/business/lastWeekAdd.do' //数据接口
-                ,type:'get'
-                ,cols: [[
-                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="  " class="layui-table-link">{{d.busName}}</a></div>'},
-                    {field: 'busStage', width: 180, title: '商机阶段'},
-                    {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
-                    {field: 'busDutyPeople', width: 180, title: '商机负责人'},
-                    {field: 'docId', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.docId}}</a></div>'},
-                    {field: 'invitationId', width: 130, title: '讨论版',templet:'<div><a  href="  " class="layui-table-link">{{d.invitationId==null?0:d.invitationId}}</a></div>'},
-                ]]
-            });
-        });
-        $("#month").click(function(){
-            table.render({
-                elem: '#currentTableId',
-                toolbar: '#toolbarDemo'
-                ,page: true //开启分页
-                ,url: '/business/monthAdd.do' //数据接口
-                ,type:'get'
-                ,cols: [[
-                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="  " class="layui-table-link">{{d.busName}}</a></div>'},
-                    {field: 'busStage', width: 180, title: '商机阶段'},
-                    {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
-                    {field: 'busDutyPeople', width: 180, title: '商机负责人'},
-                    {field: 'docId', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.docId}}</a></div>'},
-                    {field: 'invitationId', width: 130, title: '讨论版',templet:'<div><a  href="  " class="layui-table-link">{{d.invitationId==null?0:d.invitationId}}</a></div>'},
-                ]]
-            });
-        });
-        $("#lastMonth").click(function(){
-            table.render({
-                elem: '#currentTableId',
-                toolbar: '#toolbarDemo'
-                ,page: true //开启分页
-                ,url: '/business/lastMonthAdd.do' //数据接口
-                ,type:'get'
-                ,cols: [[
-                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="  " class="layui-table-link">{{d.busName}}</a></div>'},
-                    {field: 'busStage', width: 180, title: '商机阶段'},
-                    {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
-                    {field: 'busDutyPeople', width: 180, title: '商机负责人'},
-                    {field: 'docId', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.docId}}</a></div>'},
-                    {field: 'invitationId', width: 130, title: '讨论版',templet:'<div><a  href="  " class="layui-table-link">{{d.invitationId==null?0:d.invitationId}}</a></div>'},
-                ]]
-            });
-        });
-        $("#quarter").click(function(){
-            table.render({
-                elem: '#currentTableId',
-                toolbar: '#toolbarDemo'
-                ,page: true //开启分页
-                ,url: '/business/quarterAdd.do' //数据接口
-                ,type:'get'
-                ,cols: [[
-                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="  " class="layui-table-link">{{d.busName}}</a></div>'},
-                    {field: 'busStage', width: 180, title: '商机阶段'},
-                    {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
-                    {field: 'busDutyPeople', width: 180, title: '商机负责人'},
-                    {field: 'docId', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.docId}}</a></div>'},
-                    {field: 'invitationId', width: 130, title: '讨论版',templet:'<div><a  href="  " class="layui-table-link">{{d.invitationId==null?0:d.invitationId}}</a></div>'},
-                ]]
-            });
-        });
-        $("#lastQuarter").click(function(){
-            table.render({
-                elem: '#currentTableId',
-                toolbar: '#toolbarDemo'
-                ,page: true //开启分页
-                ,url: '/business/lastQuarterAdd.do' //数据接口
-                ,type:'get'
-                ,cols: [[
-                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="  " class="layui-table-link">{{d.busName}}</a></div>'},
-                    {field: 'busStage', width: 180, title: '商机阶段'},
-                    {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
-                    {field: 'busDutyPeople', width: 180, title: '商机负责人'},
-                    {field: 'docId', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.docId}}</a></div>'},
-                    {field: 'invitationId', width: 130, title: '讨论版',templet:'<div><a  href="  " class="layui-table-link">{{d.invitationId==null?0:d.invitationId}}</a></div>'},
-                ]]
-            });
-        });
+
 
         /*ajax异步提交，根据id给对应的徽章赋值*/
         $.ajax({
-            url:'/business/proceedBusNumber.do',
+            url:'/business/BusResponsiblePeopleNumber.do',
             method:'get',
             dataType:'JSON',
             success:function(res) {
-                $("#proceedBusValue").append(res);
+                $("#myResponsibleBusValue").append(res);
             }
         }) ;
         $.ajax({
-            url:'/business/docTimeLessSevenNumber.do',
+            url:'/business/BusJoinPeopleNumber.do',
             method:'get',
             dataType:'JSON',
             success:function(res) {
-                $("#SevenValue").append(res);
+                $("#myjoinBusValue").append(res);
             }
         }) ;
         $.ajax({
-            url:'/business/docTimeLessThirtyNumber.do',
+            url:'/business/BusCarePeopleNumber.do',
             method:'get',
             dataType:'JSON',
             success:function(res) {
-                $("#ThirtyValue").append(res);
+                $("#myCareBusValue").append(res);
             }
         }) ;
-        $.ajax({
-            url:'/business/docTimeLessNinetyNumber.do',
-            method:'get',
-            dataType:'JSON',
-            success:function(res) {
-                $("#NinetyValue").append(res);
-            }
-        }) ;
-        $.ajax({
-            url:'/business/tradedBusNumber.do',
-            method:'get',
-            dataType:'JSON',
-            success:function(res) {
-                $("#tradedValue").append(res);
-            }
-        }) ;
-        $.ajax({
-            url:'/business/throwBusNumber.do',
-            method:'get',
-            dataType:'JSON',
-            success:function(res) {
-                $("#throwValue").append(res);
-            }
-        }) ;
-        $.ajax({
-            url:'/business/shelveBusNumber.do',
-            method:'get',
-            dataType:'JSON',
-            success:function(res) {
-                $("#shelveValue").append(res);
-            }
-        }) ;
-        $.ajax({
-            url:'/business/weekAddNumber.do',
-            method:'get',
-            dataType:'JSON',
-            success:function(res) {
-                $("#weekValue").append(res);
-            }
-        }) ;
-        $.ajax({
-            url:'/business/lastWeekAddNumber.do',
-            method:'get',
-            dataType:'JSON',
-            success:function(res) {
-                $("#lastWeekValue").append(res);
-            }
-        }) ;
-        $.ajax({
-            url:'/business/monthAddNumber.do',
-            method:'get',
-            dataType:'JSON',
-            success:function(res) {
-                $("#monthValue").append(res);
-            }
-        }) ;
-        $.ajax({
-            url:'/business/lastMonthAddNumber.do',
-            method:'get',
-            dataType:'JSON',
-            success:function(res) {
-                $("#lastMonthValue").append(res);
-            }
-        }) ;
-        $.ajax({
-            url:'/business/quarterAddNumber.do',
-            method:'get',
-            dataType:'JSON',
-            success:function(res) {
-                $("#quarterValue").append(res);
-            }
-        }) ;
-        $.ajax({
-            url:'/business/lastQuarterAddNumber.do',
-            method:'get',
-            dataType:'JSON',
-            success:function(res) {
-                $("#lastQuarterValue").append(res);
-            }
-        }) ;
-
 
     });
 </script>

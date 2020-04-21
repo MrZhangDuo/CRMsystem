@@ -70,5 +70,12 @@ public class DocumentaryController {
         return map;
     }
 
-
+    /**
+     查询历史跟单记录
+     */
+    @RequestMapping("/queryOldDocumentart")
+    @ResponseBody
+    public DataGridView queryOldDocumentart(String docTitle){
+        return this.documentaryService.queryOldDocumentary(docTitle);
+    }
 }
