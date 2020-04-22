@@ -43,7 +43,7 @@
             <legend>用户注册</legend>
         </fieldset>
 
-        <form class="layui-form" id="cust" action="/tianJiaUser/UserZhuce.do" method="post" enctype="multipart/form-data">
+        <form class="layui-form" id="cust" action="" method="post" enctype="multipart/form-data">
 
             <div class="layui-form-item">
                 <div class="layui-inline">
@@ -178,11 +178,10 @@
 
 
         //监听提交并关闭弹框
-        form.on('submit(zhuce)', function(data){
-            var index=parent.layer.getFrameIndex(window.name);
-            parent.layer.close(index);
-            return true;
-        });
+            form.on('submit(zhuce)', function (data) {
+                $('form[id=cust]').attr('action','/tianJiaUser/UserZhuce.do').submit();
+                return false;
+            });
     });
 
 

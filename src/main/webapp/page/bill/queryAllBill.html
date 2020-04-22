@@ -8,60 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="/lib/layui-v2.5.5/css/layui.css" media="all">
     <link rel="stylesheet" href="/css/public.css" media="all">
-    <style>
-        #id1 {
-            margin-right: 105px;
-        }
-
-        #id2 {
-            margin-left: 106px;
-            margin-right: 105px;
-        }
-
-        #id3 {
-            margin-left: 106px;
-        }
-
-        #top_id {
-            margin-top: 30px;
-        }
-
-        #id1_1 {
-            margin-right: 105px;
-        }
-
-        #id2_1 {
-            margin-left: 106px;
-            margin-right: 105px;
-        }
-
-        #id3_1 {
-            margin-left: 106px;
-        }
-
-        #top_id_1 {
-            margin-top: 30px;
-        }
-
-        #id1_2 {
-            margin-right: 105px;
-        }
-
-        #id2_2 {
-            margin-left: 106px;
-            margin-right: 105px;
-        }
-
-        #id3_2 {
-            margin-left: 106px;
-        }
-
-        #top_id_2 {
-            margin-top: 30px;
-        }
-
-
-    </style>
 </head>
 <body>
 <div class="layuimini-container">
@@ -257,20 +203,23 @@
         //点击添加按钮，弹出添加页面 start------
         $("#addBtn").click(function () {
 
+
+
+
             //为下拉框赋值 开始
-            $.ajax({
-                url: '/documentary/queryBusName.do',
-                dataType: 'json',
-                success: function (result) {
-                    var s = "";
-                    $(result).each(function (i, obj) {
-                        s += "<option id='" + obj.BusId + "' value='" + obj.busName + "'>" + obj.busName + "</option>";
-                    });
-                    $("#select1").html(s);
-                    //更新渲染
-                    form.render(null, 'addFormFilter');
-                }
-            })
+                $.ajax({
+                    url: '/documentary/queryBusName.do',
+                    dataType: 'json',
+                    success: function (result) {
+                        var s = "<option>请选择</option>";
+                        $(result).each(function (i, obj) {
+                            s += "<option id='" + obj.BusId + "' value='" + obj.busName + "'>" + obj.busName + "</option>";
+                        });
+                        $("#select1").html(s);
+                        //更新渲染
+                        form.render(null, 'addFormFilter');
+                    }
+                });
             //为下拉框赋值 结束
 
             mainIndex = layer.open({
