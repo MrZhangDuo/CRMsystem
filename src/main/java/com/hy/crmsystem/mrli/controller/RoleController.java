@@ -94,6 +94,32 @@ public class RoleController {
 
 
 
+    /**
+     * 根据角色ID查询角色拥有的菜单和权限ID
+     * @param id 角色ID
+     */
+    @RequestMapping("/queryMenuIdsByRid")
+    public Object queryMenuIdsByRid(Integer id){
+        List<Integer> mids=this.roleService.queryMenuIdsByRid(id);
+        return new DataGridView(mids);
+    }
+
+
+    /**
+     * 保存角色和菜单权限之间的关系
+     */
+    @RequestMapping("/saveRoleMenu")
+    public ResultObj saveRoleMenu(Integer roleid,Integer[] perids){
+        try {
+            this.roleService.saveRoleMenu(roleid,perids);
+            return ResultObj.DISPATCH_SUCCESS;
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResultObj.DISPATCH_ERROR;
+        }
+    }
+
+
 
 
 

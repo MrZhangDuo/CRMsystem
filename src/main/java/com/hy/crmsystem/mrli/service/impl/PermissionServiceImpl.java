@@ -63,7 +63,7 @@ public class PermissionServiceImpl implements PermissionService {
     public DataGridView loadAllPermision(Permission permission) {
         QueryWrapper<Permission> qw = new QueryWrapper<>();
         qw.eq(permission.getAvailable() != null, "available", permission.getAvailable());
-        qw.orderByAsc("ordernum");
+        qw.orderByAsc("ordernumber");
         List<Permission> permissions = this.permissionMapper.selectList(qw);
         return new DataGridView(Long.valueOf(permissions.size()),permissions);
     }
