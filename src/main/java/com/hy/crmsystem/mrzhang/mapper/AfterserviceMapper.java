@@ -20,9 +20,9 @@ import java.util.List;
 @Mapper
 public interface AfterserviceMapper extends BaseMapper<Afterservice> {
 
-    @SelectProvider(type = com.hy.crmsystem.mrzhang.provider.selectprovider.QueryCustContractNum.class,method = "queryCustContractNum")
+    @SelectProvider(type = com.hy.crmsystem.mrzhang.provider.selectProvider.QueryCustContractNum.class,method = "queryCustContractNum")
     public List<Contract> queryCustContract(String custName);
 
-    @SelectProvider(type = com.hy.crmsystem.mrzhang.provider.selectprovider.QueryCustContractNum.class,method = "queryAfterServiceById")
+    @SelectProvider(type = com.hy.crmsystem.mrzhang.provider.selectProvider.QueryCustContractNum.class,method = "queryAfterServiceById")
     public AfterserviceBo queryAfterServiceById(String serviceId);
 }

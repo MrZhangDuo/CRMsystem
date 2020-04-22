@@ -1,5 +1,7 @@
 package com.hy.crmsystem.mrli.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.hy.crmsystem.mrli.entity.DataGridView;
 import com.hy.crmsystem.mrli.entity.Permission;
 import com.hy.crmsystem.mrli.entity.User;
 import com.hy.crmsystem.mrli.mapper.PermissionMapper;
@@ -54,5 +56,15 @@ public class PermissionServiceImpl implements PermissionService {
         // 根据用户id查询角色
         List<String> roles = roleService.queryRoleByUserId(user.getUserid());
         return null;
+    }
+
+
+    @Override
+    public DataGridView loadAllPermision(Permission permission) {
+        QueryWrapper<Permission> qw = new QueryWrapper<>();
+        qw.eq(permission.getAvailable() != null, "available", permission.getAvailable());
+        qw.orderByAsc("ordernum");
+        List<Permission> permissions = this.permissionMapper.selectList(qw);
+        return new DataGridView(Long.valueOf(permissions.size()),permissions);
     }
 }
