@@ -21,11 +21,6 @@
         width: 100px;
         margin-left:430px;
     }
-   #del{
-        margin: 0px auto;
-        width: 100px;
-        margin-left: 60px;
-    }
     #quxiao{
         margin: 0px auto;
         width: 100px;
@@ -268,7 +263,6 @@
             </div>
             <div class="layui-inline">
                 <button type="submit" class="layui-btn" lay-submit  lay-filter="xiugai" id="update">修改</button>
-                <button type="submit" class="layui-btn layui-btn-danger" lay-submit  lay-filter="shanchu" id="del">删除</button>
                 <a class='btn btn-info' href="javascript:history.go(-1)"><button type="button" class="layui-btn" id="quxiao">取消</button></a>
             </div>
         </form>
@@ -291,9 +285,6 @@
             $('form[id=cust]').attr('action','/customer/updateCustomerInfo.do').submit();
         });
     });
-
-
 </script>
-
 </body>
 </html>

@@ -4,7 +4,6 @@ package com.hy.crmsystem.mrfan.controller;
 import com.hy.crmsystem.mrfan.entity.Invitation;
 import com.hy.crmsystem.mrfan.entity.InvitationBo;
 import com.hy.crmsystem.mrfan.entity.InvitationReolyBo;
-import com.hy.crmsystem.mrfan.entity.Reolyinvitation;
 import com.hy.crmsystem.mrfan.service.impl.InvitationServiceImpl;
 import com.hy.crmsystem.mrfan.service.impl.ReolyinvitationServiceImpl;
 import com.hy.crmsystem.mrpan.entity.Business;
@@ -14,14 +13,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 /**

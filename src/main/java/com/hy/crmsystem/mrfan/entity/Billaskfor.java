@@ -1,6 +1,7 @@
 package com.hy.crmsystem.mrfan.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -21,47 +22,69 @@ public class Billaskfor implements Serializable {
 
     private static final long serialVersionUID = 1L;
     //开票主键
+    @TableField("billId")
     @TableId(value = "billId", type = IdType.AUTO)
     private Integer billId;
     //合同外键
+    @TableField("contractId")
     private Integer contractId;
     //结束时间
+    @TableField("endtime")
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date endtime;
     //详细地址
+    @TableField("address")
     private String address;
     //申请人姓名
+    @TableField("askForName")
     private String askForName;
     //所属部门
+    @TableField("BillDept")
     private String BillDept;
     //申请日期
+    @TableField("askFortime")
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date askFortime;
     //主要技术条款
+    @TableField("billTechnical")
     private String billTechnical;
     //对方单位全称
+    @TableField("unitName")
     private String unitName;
     //关联合同图片
+    @TableField("relevancyContract")
     private String relevancyContract;
     //开票种类
+    @TableField("billSort")
     private String billSort;
     //纳税人识别号
+    @TableField("taxpayernum")
     private String taxpayernum;
     //开户银行及账号
+    @TableField("account")
     private String account;
     //地址电话
+    @TableField("adderssPhone")
     private String adderssPhone;
     //开票金额
+    @TableField("billMoney")
     private String billMoney;
     //金额大写
+    @TableField("moneyBigwriter")
     private String moneyBigwriter;
     //开票日期
+    @TableField("billTime")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date billTime;
     //发票号码
+    @TableField("billNum")
     private String billNum;
     //相关附件
+    @TableField("file")
     private String file;
+    //发票优先级
+    @TableField("billPriority")
+    private String billPriority;
 
     public Integer getBillId() {
         return billId;
@@ -215,6 +238,14 @@ public class Billaskfor implements Serializable {
         this.file = file;
     }
 
+    public String getBillPriority() {
+        return billPriority;
+    }
+
+    public void setBillPriority(String billPriority) {
+        this.billPriority = billPriority;
+    }
+
     @Override
     public String toString() {
         return "Billaskfor{" +
@@ -237,6 +268,7 @@ public class Billaskfor implements Serializable {
                 ", billTime=" + billTime +
                 ", billNum='" + billNum + '\'' +
                 ", file='" + file + '\'' +
+                ", billPriority='" + billPriority + '\'' +
                 '}';
     }
 }

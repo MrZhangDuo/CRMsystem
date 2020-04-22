@@ -170,7 +170,7 @@
                 {field: 'contractNum', title: '合同编号'},
                 {field: 'contractMoney',  title: '合同金额'},
                 {field: 'incomesMoney', title: '汇款额',templet:'<div><a  href="/contract/toContractMoney.do?contractId={{d.contractId}}" class="layui-table-link">{{d.incomesMoney==null?0:d.incomesMoney}}</a></div>'},
-                {field: 'billMoney', title: '开票额',templet:'<div><a  href="/contract/addContractBill.do?contractId={{d.contractId}}" class="layui-table-link">{{d.billMoney==null?0:d.billMoney}}</a></div>'},
+                {field: 'billMoney', title: '开票额',templet:'<div><a  href="/billaskfor/selectAllContName.do?contractId={{d.contractId}}" class="layui-table-link">{{d.billMoney==null?0:d.billMoney}}</a></div>'},
                 {field: 'times', title: '签约日期' },
             ]],
             limits: [3, 4, 5, 6, 8, 10],

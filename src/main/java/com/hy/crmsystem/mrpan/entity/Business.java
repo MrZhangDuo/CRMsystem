@@ -86,6 +86,7 @@ public class Business implements Serializable {
    @TableField("busTime")
    @DateTimeFormat(pattern = "yyyy-MM-dd")
    private Date busTime;
+
    //商机的优先级
    @TableField("busPriority")
    private String busPriority;
@@ -270,7 +271,7 @@ public class Business implements Serializable {
                 ", custId=" + custId +
                 ", busName='" + busName + '\'' +
                 ", busSource='" + busSource + '\'' +
-                ", busBeforeMoney='" + busBeforeMoney + '\'' +
+                ", busBeforeMoney=" + busBeforeMoney +
                 ", busBeforedate=" + busBeforedate +
                 ", beForedate='" + beForedate + '\'' +
                 ", busBlinkMan='" + busBlinkMan + '\'' +
@@ -285,6 +286,7 @@ public class Business implements Serializable {
                 ", busJoinPeople='" + busJoinPeople + '\'' +
                 ", busFollowPeople='" + busFollowPeople + '\'' +
                 ", busStage='" + busStage + '\'' +
+                ", busTime=" + busTime +
                 ", busPriority='" + busPriority + '\'' +
                 '}';
     }

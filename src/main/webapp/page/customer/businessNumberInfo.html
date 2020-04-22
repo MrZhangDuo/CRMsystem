@@ -78,27 +78,13 @@
                     </div>
                 </div>
                 <div class="layui-inline">
-                    <label class="layui-form-label">所属部门</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="busDept" lay-verify="title" autocomplete="off" placeholder="请输入所属部门" class="layui-input">
-                    </div>
-                </div>
-            </div>
-
-            <div class="layui-form-item">
-                <div class="layui-inline">
                     <label class="layui-form-label">预计成交金额</label>
                     <div class="layui-input-block">
                         <input type="text" name="busBeforeMoney" lay-verify="title" autocomplete="off" placeholder="请输入预计成交金额" class="layui-input">
                     </div>
                 </div>
-                <div class="layui-inline">
-                    <label class="layui-form-label">预计结单日期</label>
-                    <div class="layui-input-block">
-                        <input type="date" name="busBeforedate" lay-verify="title" autocomplete="off" placeholder="yyyy-mm-dd" class="layui-input">
-                    </div>
-                </div>
             </div>
+
             <button type="submit" class="layui-btn layui-btn-radius" lay-submit=""  lay-filter="chaxun" id="select"> 查找商机</button>
             <input type="reset" class="layui-btn layui-btn-radius layui-btn-danger" id="rese" value="重置">
         </form>
@@ -127,7 +113,7 @@
                 ,{field: 'busStage', title: '商机阶段', width:150}
                 ,{field: 'busBeforeMoney', title: '预计成交金额', width:180}
                 ,{field: 'busDutyPeople', title: '商机负责人', width: 180}
-                ,{field: 'gdTime', title: '最后跟单', width: 140,templet:'<div><a  href="" class="layui-table-link">{{d.gdTime}}</a></div>'}
+                ,{field: 'gdTime', title: '最后跟单', width: 140,templet:'<div><a  href="" class="layui-table-link">{{d.gdTime==null?0:d.gdTime}}</a></div>'}
                 ,{field: 'tlbs', title: '讨论版', width: 140,templet:'<div><a  href="" class="layui-table-link">{{d.tlbs==null?0:d.tlbs}}</a></div>'}
             ]]
         });

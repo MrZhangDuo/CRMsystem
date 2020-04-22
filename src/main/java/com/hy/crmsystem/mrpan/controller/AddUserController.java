@@ -39,13 +39,13 @@ public class AddUserController {
        return a;
     }
 
-    /*根据用户的昵称查询信息*/
+    /*根据用户的id查询信息*/
     @RequestMapping("/selectUserById.do")
     public String selectUserById(Model model){
             //三行获取当前登陆人
             Integer userId= ShiroGetUserUtil.UserObject().getUser().getUserid();//获取登录人的id
             model.addAttribute("user",addUserService.selectUserById(userId));
-            return "/page/user-setting";
+            return "page/user-setting";
     }
 
 

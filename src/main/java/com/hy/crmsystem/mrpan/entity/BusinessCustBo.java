@@ -1,56 +1,82 @@
 package com.hy.crmsystem.mrpan.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class BusinessCustBo {
-
+    @TableField("busId")
     private Integer busId;
+    @TableField("custDept")
     private String custDept;
     //跟单主键
+    @TableField("docId")
     private Integer docId;
     //帖子主键
+    @TableField("invitationId")
     private Integer invitationId;
     //基础主键
+    @TableField("baseId")
     private Integer baseId;
     //商机名称
+    @TableField("busName")
     private String busName;
     //商机来源
+    @TableField("busSource")
     private String busSource;
 
     //预成交金额
+    @TableField("busBeforeMoney")
     private String busBeforeMoney;
     //预结单日期
+    @TableField("busBeforedate")
     private Date busBeforedate;
+    @TableField("beForedate")
     private String beForedate;
     //联系人
+    @TableField("busBlinkMan")
     private String busBlinkMan;
     //部门
+    @TableField("busDept")
     private String busDept;
     //职务
+    @TableField("busJob")
     private String busJob;
     //固定电话
+    @TableField("busFixnum")
     private String busFixnum;
     //移动电话
+    @TableField("busPhone")
     private String busPhone;
     //邮件/QQ
+    @TableField("busEmail")
     private String busEmail;
     //主要业务需求
+    @TableField("busNeed")
     private String busNeed;
     //相关附件
+    @TableField("busFile")
     private String busFile;
     //商机负责人
+    @TableField("busDutyPeople")
     private String busDutyPeople;
     //商机产与人
+    @TableField("busJoinPeople")
     private String busJoinPeople;
     //商机关注人
+    @TableField("busFollowPeople")
     private String busFollowPeople;
     //商机阶段
+    @TableField("busStage")
     private String busStage;
     // 添加商机的时间
+    @TableField("busTime")
     private Date busTime;
+    @TableField("nowTime")
     private String nowTime;
     //商机的优先级
+    @TableField("busPriority")
     private String busPriority;
 
     private Integer custId;

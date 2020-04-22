@@ -4,6 +4,7 @@ import com.hy.crmsystem.mrfan.entity.Billaskfor;
 import com.hy.crmsystem.mrfan.mapper.BillaskforMapper;
 import com.hy.crmsystem.mrfan.service.IBillaskforService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,5 +17,6 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class BillaskforServiceImpl extends ServiceImpl<BillaskforMapper, Billaskfor> implements IBillaskforService {
-
+ @Autowired
+    private BillaskforMapper billaskforMapper;
 }

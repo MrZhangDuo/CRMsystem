@@ -16,6 +16,12 @@
             height:30px;
             margin-left: 700px;
         }
+
+        .layui-input{
+            width: 280px;
+            height:30px;
+        }
+
         #rese{
             margin: 0px auto;
             width: 200px;
@@ -36,30 +42,22 @@
     <fieldset class="table-search-fieldset">
         <legend>搜索信息</legend>
             <form class="layui-form layui-form-pane">
-                <div class="layui-inline">
-                    <div class="layui-input-inline">
-                       <input type="text" name="busName" lay-verify="title" autocomplete="off" placeholder="请输入商机全称" class="layui-input">
-                    </div>
-                    <div class="layui-input-inline">
-                       <input type="text" name="busStage" lay-verify="title" autocomplete="off" placeholder="请输入商机阶段" class="layui-input">
-                    </div>
 
-                    <div class="layui-input-inline">
-                        <input type="text" name="busDutyPeople" lay-verify="title" autocomplete="off" placeholder="请输入商机负责人" class="layui-input">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        商机全称:<input type="text" name="busName" lay-verify="title" autocomplete="off" placeholder="请输入商机全称" class="layui-input">
+                    </div>
+                    <div class="layui-inline">
+                        商机阶段:<input type="text" name="busStage" lay-verify="title" autocomplete="off" placeholder="请输入商机阶段" class="layui-input">
+                    </div>
+                    <div class="layui-inline">
+                        商机负责人<input type="text" name="busDutyPeople" lay-verify="title" autocomplete="off" placeholder="请输入商机负责人" class="layui-input">
+                    </div>
+                    <div class="layui-inline">
+                        预计成交金额:<input type="text" name="busBeforeMoney" lay-verify="title" autocomplete="off" placeholder="请输入预计成交金额" class="layui-input">
                     </div>
                 </div>
 
-                <div class="layui-inline">
-                    <div class="layui-input-inline">
-                        <input type="text" name="busDept" lay-verify="title" autocomplete="off" placeholder="请输入所属部门" class="layui-input">
-                    </div>
-                    <div class="layui-input-inline">
-                        <input type="text" name="busBeforeMoney" lay-verify="title" autocomplete="off" placeholder="请输入预计成交金额" class="layui-input">
-                    </div>
-                    <div class="layui-input-inline">
-                        <input type="text" name="busBeforedate" id="date1"  lay-verify="title"  placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
                 <div>
                     <div class="layui-inline">
                         <input type="reset" class="layui-btn layui-btn-normal" lay-filter="data-search-btn" id="rese">
@@ -201,7 +199,7 @@
                 {field: 'busStage', width: 180, title: '商机阶段'},
                 {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
                 {field: 'busDutyPeople', width: 180, title: '商机负责人'},
-                {field: 'gdTime', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.gdTime}}</a></div>'},
+                {field: 'gdTime', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.gdTime==null?0:d.gdTime}}</a></div>'},
                 {field: 'invitationId', width: 130, title: '讨论版',templet:'<div><a  href="  " class="layui-table-link">{{d.invitationId==null?0:d.invitationId}}</a></div>'},
             ]]
         });
@@ -538,7 +536,6 @@
 
         /*监听form表单中的提交事件*/
         form.on('submit(findeBus)', function(data){
-            alert("111111111111111111111111");
             table.reload('currentTableId', {
                 url:'/business/selectAllBusInfo.do',
                 where: data.field //设定异步数据接口的额外参数
