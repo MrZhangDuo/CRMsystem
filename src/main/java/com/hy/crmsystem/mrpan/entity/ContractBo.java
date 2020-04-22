@@ -101,7 +101,7 @@ public class ContractBo {
 
     @Override
     public String toString() {
-        return "ContractBo{" +
+        return "ContractBoi{" +
                 "custId=" + custId +
                 ", contractName='" + contractName + '\'' +
                 ", contractNum='" + contractNum + '\'' +

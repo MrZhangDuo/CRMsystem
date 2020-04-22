@@ -1,4 +1,4 @@
-package com.hy.crmsystem.mrzhang.provider.selectprovider;
+package com.hy.crmsystem.mrzhang.provider.selectProvider;
 
 
 public class CountDocumentaryMoney {

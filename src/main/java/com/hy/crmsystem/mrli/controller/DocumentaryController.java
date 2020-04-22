@@ -20,8 +20,9 @@ import java.util.Map;
  * </p>
  *
  * @author zhangduo
- * @since 2020-04-03
- */
+ * @since 2020-04-03*/
+
+
 @Controller
 @RequestMapping("/documentary")
 public class DocumentaryController {
@@ -33,9 +34,10 @@ public class DocumentaryController {
     private IBusinessService businessService;
 
 
-    /**
-     * 查询全部跟单
-     */
+/**
+     * 查询全部跟单*/
+
+
     @RequestMapping(value = "/queryAllDocumentary")
     @ResponseBody
     public DataGridView loadAllDocumentary(DocumentaryVo documentaryVo) {
@@ -43,19 +45,25 @@ public class DocumentaryController {
         return this.documentaryService.queryAllDocumentary(documentaryVo);
     }
 
-    /**
+/*
+*
      * 查询商机名称 为新增跟单下拉框赋值
-     */
+*/
+
+
     @RequestMapping(value = "/queryBusName")
     @ResponseBody
     public List<Business> queryBusName() {
-        return this.businessService.queryBusName();
+        return this.businessService.list();
     }
 
 
-    /**
+/*
+*
      * 新增跟单记录
-     */
+
+*/
+
     @RequestMapping("/addDocumentary")
     @ResponseBody
     public Map addDocumentary(DocumentaryVo documentaryVo) {

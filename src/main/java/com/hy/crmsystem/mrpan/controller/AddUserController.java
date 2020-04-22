@@ -24,8 +24,6 @@ public class AddUserController {
     //用户注册(在用户注册时就将密码进行加密以确保密码的安全)
     @RequestMapping(value = "/UserZhuce.do",method = RequestMethod.POST)
     public String UserZhuce(AddUserEntity addUserEntity){
-        String a="1";
-        try {
             String algorithmName="MD5";//加密的方式
             Object source=addUserEntity.getPwd();//要加密的密码
             Object salt= ByteSource.Util.bytes(addUserEntity.getLoginname());//加的盐（盐一般是用户的账号）
@@ -33,10 +31,7 @@ public class AddUserController {
             Object createMiWen=new SimpleHash(algorithmName,source,salt,hashIterations);//排放顺序不能错
             addUserEntity.setPwd(String.valueOf(createMiWen));
             addUserService.UserZhuce(addUserEntity);
-        } catch (Exception e) {
-            a="0";
-        }
-       return a;
+       return "redirect:/login.html";
     }
 
     /*根据用户的id查询信息*/

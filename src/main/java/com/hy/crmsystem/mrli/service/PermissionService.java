@@ -1,5 +1,8 @@
 package com.hy.crmsystem.mrli.service;
 
+import com.hy.crmsystem.mrli.entity.DataGridView;
+import com.hy.crmsystem.mrli.entity.Permission;
+
 import javax.servlet.ServletRequest;
 import java.util.List;
 import java.util.Set;
@@ -19,4 +22,10 @@ public interface PermissionService {
 
     Set<String> listPermissionURLS(String userName);
 
+    /**
+     * 查询全部权限
+     * @param permission
+     * @return
+     */
+    DataGridView loadAllPermision(Permission permission);
 }

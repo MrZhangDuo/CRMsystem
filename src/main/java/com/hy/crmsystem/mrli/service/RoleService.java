@@ -51,4 +51,18 @@ public interface RoleService extends IService<Role> {
      * @return
      */
     List<String> queryRoleByUserId(Integer userid);
+
+    /**
+     * 根据角色ID查询角色拥有的菜单和权限ID
+     * @param id
+     * @return
+     */
+    List<Integer> queryMenuIdsByRid(Integer id);
+
+    /**
+     * 保存角色和菜单权限之间的关系
+     * @param roleid
+     * @param perids
+     */
+    void saveRoleMenu(Integer roleid, Integer[] perids);
 }

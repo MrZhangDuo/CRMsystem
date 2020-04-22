@@ -6,10 +6,10 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
     <link rel="stylesheet" href="/lib/layui-v2.5.5/css/layui.css" media="all">
     <link rel="stylesheet" href="/css/public.css" media="all">
-    <link rel="stylesheet" href="/lib/layui_ext/dtree/dtree.css">
-    <link rel="stylesheet" href="/lib/layui_ext/dtree/font/dtreefont.css">
+
 </head>
 <body class="childrenBody">
 <!-- 搜索条件开始 -->
@@ -55,7 +55,7 @@
 </div>
 <div id="roleBar" style="display: none;">
     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-    <a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="selectRoleMenu">分配菜单</a>
+    <a class="layui-btn layui-btn-xs layui-btn-warm data-count-delete" lay-event="selectMenu">分配权限</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </div>
 <!-- 数据表格结束 -->
@@ -101,28 +101,34 @@
 </div>
 <!-- 添加和修改的弹出层结束 -->
 
-<!-- 角色分配菜单的弹出层开始 -->
-<div style="display: none;" id="selectRoleMenu">
-    <ul id="menuTree" class="dtree" data-id="0"></ul>
+<!--选择菜单和权限的弹出层开始-->
+<div id="selectMenuDiv" style="display: none;padding: 0.3125rem;">
+    <table class="layui-hide" id="menuTable" lay-filter="menuTable"></table>
 </div>
-<!-- 角色分配菜单的弹出层结束 -->
+<!--选择菜单和权限的弹出层结束-->
 
-<script src="/lib/layui-v2.5.5/layui.js"></script>
+
+
+<script src="/lib/jquery-3.4.1/jquery-3.4.1.min.js" charset="utf-8"></script>
+<script src="/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script src="/js/lay-config.js?v=1.0.4" charset="utf-8"></script>
+<script src="/lib/jq-module/jquery.particleground.min.js" charset="utf-8"></script>
+
+
 <script type="text/javascript">
     var tableIns;
-    layui.extend({
-        dtree: '/lib/layui_ext/dist/dtree'
-    }).use(['jquery', 'layer', 'form', 'table', 'dtree'], function () {
+    layui.use(['jquery', 'layer', 'form', 'table', 'treeTable'], function () {
         var $ = layui.jquery;
         var layer = layui.layer;
         var form = layui.form;
         var table = layui.table;
-        var dtree = layui.dtree;
+        var treeTable = layui.treeTable;
+
         //渲染数据表格
         tableIns = table.render({
             elem: '#roleTable'   //渲染的目标对象
             , url: '/role/loadAllRole.do' //数据接口
-            , title: '用户数据表'//数据导出来的标题
+            , title: '角色数据表'//数据导出来的标题
             , toolbar: "#roleToolBar"   //表格的工具条
             , height: 'full-150'
             , cellMinWidth: 100 //设置列的最小默认宽度
@@ -176,8 +182,8 @@
                 });
             } else if (layEvent === 'edit') { //编辑
                 openUpdateRole(data);
-            } else if (layEvent === 'selectRoleMenu') {
-                openselectRoleMenu(data);
+            } else if(obj.event === 'selectMenu'){
+                openSelectMenu(data);
             }
         });
 
@@ -226,6 +232,87 @@
             })
         });
 
+
+        ///打开选择菜单和权限的弹出层
+        function openSelectMenu(data_table){
+            var table_MenusIns;
+            mainIndex=layer.open({
+                type:1,
+                title:'分配【'+data_table.rolename+'】角色和权限和菜单',
+                content:$("#selectMenuDiv"),
+                area:['800px','600px'],
+                btn:['<span class="layui-icon layui-icon-ok">确认分配</span>'],
+                btnAlign:'c',
+                yes:function(){
+                    var m=table_MenusIns.checkStatus();
+                    console.log(m);
+                    var roleid=data_table.roleid;
+                    var params="roleid="+roleid;
+                    $.each(m,function(x,item){
+                        params+="&perids="+item.perid;
+                    });
+                    // alert(params);
+                    $.post("/role/saveRoleMenu.do",params,function(res){
+                        layer.msg(res.msg);
+                    })
+                },
+                success:function(index){
+                    table_MenusIns=treeTable.render({
+                        tree: {
+                            iconIndex: 1,  // 折叠图标显示在第几列
+                            idName: 'perid',  // 自定义id字段的名称
+                            pidName: 'pid',  // 自定义标识是否还有子节点的字段名称
+                            isPidData: true  ,// 是否是pid形式数据
+                            openName: 'spread'  // 自定义默认展开的字段名
+                        },
+                        elem: '#menuTable',
+                        cellMinWidth:true,
+                        cols: [
+                            {type: "checkbox"},
+                            {field: 'pername',  title: '菜单或权限名称'},
+                            // {field: 'id',  title: 'ID'},
+                            {field: 'ptype',  title: '类型', align: "center",templet: function (d) {
+                                    if (d.ptype == 'topmenu') {
+                                        return '<span class="layui-badge layui-bg-red">顶部菜单</span>';
+                                    }
+                                    if (d.ptype == 'leftmenu') {
+                                        return '<span class="layui-badge layui-bg-blue">左侧菜单</span>';
+                                    } else {
+                                        return '<span class="layui-badge layui-bg-molv">权限</span>';
+                                    }
+                                }
+                            },
+                            {field: 'percode',  title: '权限标识'}
+                        ],
+                        reqData: function(data, callback) {
+                            if(data==undefined){
+                                // 在这里写ajax请求，通过callback方法回调数据
+                                $.get('/permission/loadAllPermision.do?available=1', function (res) {
+                                    callback(res.data);  // 参数是数组类型
+                                    //选择中已选择的权限或菜单
+                                    $.get("/role/queryMenuIdsByRid.do",{id:data_table.roleid},function(rs){
+                                        // console.log(rs.data);//[1,3,8]
+                                        var x=new Array();
+                                        $.each(res.data,function(i,i_1){
+                                            $.each(rs.data,function(j,j_1){
+                                                if(i_1.perid==j_1){
+                                                    if(!i_1.children){
+                                                        x.push(j_1);
+                                                    }
+                                                }
+                                            })
+                                        });
+                                        table_MenusIns.setChecked(x);  // 设置选中数据
+                                    });
+                                });
+                            }else{
+                                callback([]);  //回调一个空数据去渲染表格
+                            }
+                        }
+                    });
+                }
+            });
+        }
         //批量删除
         function deleteBatch() {
             //得到选中的数据行
@@ -249,11 +336,7 @@
             });
         }
 
-        //打开分配菜单的弹出层
-        function openselectRoleMenu(data) {
 
-
-        }
     });
 </script>
 </body>

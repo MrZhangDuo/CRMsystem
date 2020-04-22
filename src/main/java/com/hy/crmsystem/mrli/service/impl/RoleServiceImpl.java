@@ -87,4 +87,21 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
         }
         return roles;
     }
+
+
+    @Override
+    public List<Integer> queryMenuIdsByRid(Integer id) {
+        return this.roleMapper.queryMenuIdsByRid(id);
+    }
+
+    @Override
+    public void saveRoleMenu(Integer roleid, Integer[] perids) {
+        //根据roleid删除sys_role_permission里面的数据
+        this.roleMapper.deleteRoleMenuByRid(roleid);
+        if(null!=perids&&perids.length>0){
+            for (Integer perid : perids) {
+                this.roleMapper.insertRoleMenu(roleid,perid);
+            }
+        }
+    }
 }

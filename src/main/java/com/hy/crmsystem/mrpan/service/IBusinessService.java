@@ -23,7 +23,7 @@ public interface IBusinessService extends IService<Business> {
   * 查询商机名称
   * @return
   */
- List<Business> queryBusName();
+  List<Business> queryBusName();
 
         //点商机数时查询所有商机的对应信息
         public List<BusinessBo> selectBusInfo(@Param("businessBo") BusinessBo businessBo, Integer currentPage, Integer pageSize);

@@ -16,6 +16,11 @@
 		roleid, rolename, roledesc, available
 	</sql>
 
+    <!--保存角色和菜单权限之间的关系-->
+    <insert id="insertRoleMenu">
+        insert into sys_role_permission(roleid,perid) values(#{roleid},#{perid})
+    </insert>
+
     <!-- 查询角色 -->
     <select id="queryAllRole" resultMap="BaseResultMap">
         select
@@ -37,7 +42,7 @@
 
     <!-- 根据角色id删除sys_role_menu里面的数据deleteRoleMenuByRid -->
     <delete id="deleteRoleMenuByRid">
-        delete from sys_role_menu where rid =#{value}
+        delete from sys_role_permission where roleid =#{value}
     </delete>
     <!-- 根据角色id删除sys_role_user里面的数据 deleteRoleUserByRid -->
     <delete id="deleteRoleUserByRid">
@@ -67,6 +72,10 @@
     <select id="queryRolesByUserId" resultMap="BaseResultMap">
         select t1.*  from sys_role t1 inner join sys_role_user t2 on(t1.roleid=t2.rid) where t2.uid=#{value}
 
+    </select>
+
+    <select id="queryMenuIdsByRid" resultType="java.lang.Integer">
+        select perid from sys_role_permission where roleid=#{value}
     </select>
 
 </mapper>
