@@ -19,17 +19,22 @@
         margin: 0px auto;
         width: 200px;
         margin-left: 450px;
+        background-color: #5fb878;
+    }
+    #allRadio{
+        margin-left: 800px;
+        margin-top: -1px;
     }
 
 </style>
-
 <body bgcolor="#faebd7">
+
 <div class="layuimini-container">
     <form class="layui-form" id="business">
     <div class="layuimini-main">
         <div class="layui-form-item">
 
-            <div class="layui-inline">
+            <div class="layui-inline" id="allRadio">
                 <label class="layui-form-label">优先级</label>
                 <div class="layui-input-block">
                     低<input name="busPriority" type="radio" value="低">
@@ -39,54 +44,9 @@
             </div>
         </div>
     </div>
-
-
-    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-        <legend>客户信息</legend>
-    </fieldset>
-
-        <!--添加商机的时间-->
-        <input type="text" name="busNowTime" id="addBusTime">
-
-        <div class="layui-inline">
-            <label class="layui-form-label">客户名称</label>
-            <div class="layui-input-block">
-                <input type="text" name="custName" lay-verify="title" autocomplete="off" placeholder="请输入客户名称" class="layui-input">
-            </div>
-        </div>
-        <div class="layui-inline">
-            <label class="layui-form-label">所属行业</label>
-            <div class="layui-input-block">
-                <select name="custTrade" lay-verify="required">
-                    <option value="0">请选择</option>
-                    <option value="1">经融</option>
-                    <option value="2" >医药</option>
-                    <option value="3">加工制造</option>
-                    <option value="4">酒店旅游</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="layui-form-item">
-            <div class="layui-inline">
-                <label class="layui-form-label">所在城市</label>
-                <div class="layui-input-block">
-                    <input type="text" name="custCity" lay-verify="title" autocomplete="off" placeholder="请输入所在城市" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">详细地址</label>
-                <div class="layui-input-block">
-                    <input type="text" name="custAddress" lay-verify="title" autocomplete="off" placeholder="请输入详细地址" class="layui-input">
-                </div>
-            </div>
-        </div>
-
         <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
             <legend>商机信息</legend>
         </fieldset>
-        <!--商机id-->
-        <!--<input type="hidden" name="busId" >-->
         <div class="layui-form-item">
             <div class="layui-inline">
                 <label class="layui-form-label">商机名称</label>
@@ -95,17 +55,10 @@
                 </div>
             </div>
             <div class="layui-inline">
-                <label class="layui-form-label">客户来源</label>
+                <label class="layui-form-label">客户名称</label>
                 <div class="layui-input-block">
-                    <select name="custSource" lay-verify="required">
-                        <option value="0">请选择</option>
-                        <option value="1" >老客户</option>
-                        <option value="2" >代理商</option>
-                        <option value="3">互联网</option>
-                        <option value="4"  >朋友推荐</option>
-                        <option value="5">看海报</option>
-                        <option value="6" >电话访问</option>
-                        <option value="7" >其他</option>
+                    <select name="custId" id="cust" lay-verify="required">
+                        <option>请选择</option>
                     </select>
                 </div>
             </div>
@@ -176,7 +129,7 @@
         <div class="layui-form-item layui-form-text">
             <label class="layui-form-label">主要业务需求</label>
             <div class="layui-input-block" style="height:90px">
-                <textarea type="text" name="busNeed"  placeholder="请输入内容" class="layui-textarea"></textarea>
+                <textarea type="text" name="busNeed"  placeholder="请输入主要业务需求" class="layui-textarea"></textarea>
             </div>
         </div>
 
@@ -194,13 +147,13 @@
             <div class="layui-inline">
                 <label class="layui-form-label">商机所属部门</label>
                 <div class="layui-input-block">
-                    <input type="text" name="custDept"  lay-verify="title" autocomplete="off" placeholder="请输入职务" class="layui-input">
+                    <input type="text" name="custDept"  lay-verify="title" autocomplete="off" placeholder="请输入商机所属部门" class="layui-input">
                 </div>
             </div>
             <div class="layui-inline">
                 <label class="layui-form-label">商机负责人</label>
                 <div class="layui-input-block">
-                    <input type="text" name="busDutyPeople" lay-verify="title" autocomplete="off" placeholder="请输入固定电话" class="layui-input">
+                    <input type="text" name="busDutyPeople" lay-verify="title" autocomplete="off" placeholder="请输入商机负责人" class="layui-input">
                 </div>
             </div>
         </div>
@@ -209,13 +162,13 @@
             <div class="layui-inline">
                 <label class="layui-form-label">商机参与人</label>
                 <div class="layui-input-block">
-                    <input type="text" name="busJoinPeople"  lay-verify="title" autocomplete="off" placeholder="请输入职务" class="layui-input">
+                    <input type="text" name="busJoinPeople"  lay-verify="title" autocomplete="off" placeholder="请输入商机参与人" class="layui-input">
                 </div>
             </div>
             <div class="layui-inline">
                 <label class="layui-form-label">商机关注人</label>
                 <div class="layui-input-block">
-                    <input type="text" name="busFollowPeople"  lay-verify="title" autocomplete="off" placeholder="请输入固定电话" class="layui-input">
+                    <input type="text" name="busFollowPeople"  lay-verify="title" autocomplete="off" placeholder="请输入商机关注人" class="layui-input">
                 </div>
             </div>
         </div>
@@ -224,9 +177,9 @@
             <legend>处理流程日志</legend>
         </fieldset>
         <button type="submit" class="layui-btn layui-btn-primary" lay-submit=""  lay-filter="baocun" id="baocun" >保存</button>
-        <button type="submit" class="layui-btn layui-btn-primary"  lay-filter="tijiao" id="shenghe" >提交审核</button>
-        <button type="submit" class="layui-btn layui-btn-primary"  lay-filter="orderDengji" id="gendan" >登记完成转跟单</button>
-        <a class='btn btn-info' href="javascript:history.go(-1)"><button type="button" class="layui-btn layui-btn-primary" >取消</button></a>
+        <button type="submit" class="layui-btn layui-btn-primary"  lay-filter="tijiao" id="shenghe" style="background-color: #5fb878">提交审核</button>
+        <button type="submit" class="layui-btn layui-btn-primary"  lay-filter="orderDengji" id="gendan" style="background-color: #5fb878">登记完成转跟单</button>
+        <a class='btn btn-info' href="javascript:history.go(-1)"><button type="button" class="layui-btn layui-btn-primary" style="background-color: #5fb878">取消</button></a>
 
     </form>
 </div>
@@ -242,22 +195,24 @@
             , layedit = layui.layedit
             , laydate = layui.laydate;
 
-
-        //自定义验证规则
-        /*form.verify({
-            title: function (value) {
-                if (value.length < 5) {
-                    return '标题至少得5个字符啊';
+        $.ajax({
+            type: "GET",
+            url: "/contract/queryAllcust.do",
+            dataType: "json",
+            success: function (data) {
+                var html = '<option value="">请选择</option>';
+                if (data.length == 0){
+                    html += "<option value=''>请添加数据</option>";
+                    $("#cust").empty().append(html);
+                }else{
+                    $.each(data,function (k,v) {
+                        html += "<option value='"+v.custId+"'>"+v.custName+"</option>"
+                    });
+                    $("#cust").empty().append(html);
                 }
+                form.render();
             }
-            , pass: [
-                /^[\S]{6,12}$/
-                , '密码必须6到12位，且不能出现空格'
-            ]
-            , content: function (value) {
-                layedit.sync(editIndex);
-            }
-        });*/
+        });
 
         //监听提交保存
             form.on('submit(baocun)', function(data){
@@ -266,16 +221,6 @@
         });
 
     });
-
-    var dangqianTime=new Date();//获取当前时间
-    document.write(dangqianTime);
-    var yearNow=dangqianTime.getFullYear();//获取当前时间的年份
-    var monthNow=dangqianTime.getMonth();//获取当前时间的月
-    var dayNow=dangqianTime.getDay();//获取当前时间的天
-    var showTime=yearNow+"/"+monthNow+"/"+dayNow;
-    document.write(showTime);
-    document.getElementById("addBusTime").value=showTime;
-
 
 </script>
 

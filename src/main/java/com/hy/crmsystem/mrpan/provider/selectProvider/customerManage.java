@@ -63,14 +63,8 @@ public class customerManage {
         if(!StringUtils.isNullOrEmpty(businessBo.getBusDutyPeople())){
             sql.append(" and busDutyPeople like '%"+businessBo.getBusDutyPeople()+"%'");
         }
-        if(!StringUtils.isNullOrEmpty(businessBo.getBusDept())){
-            sql.append(" and busDept=businessBo.getBusDept()");
-        }
         if(null!=businessBo.getBusBeforeMoney()){
             sql.append(" and busBeforeMoney="+businessBo.getBusBeforeMoney()+"");
-        }
-        if(null!=businessBo.getBeforeDate()){
-            sql.append(" and busBeforedate='"+businessBo.getBeforeDate()+"'");
         }
         return sql.toString();
     }
@@ -93,17 +87,9 @@ public class customerManage {
             System.out.println("++++++++++++++++++++================================");
             sql.append(" and cb.busDutyPeople='"+businessBo.getBusDutyPeople()+"'");
         }
-        if(!org.springframework.util.StringUtils.isEmpty(businessBo.getBusDept())){
-            System.out.println("++++++++++++++++++++================================");
-            sql.append(" and cb.busDept='"+businessBo.getBusDept()+"'");
-        }
         if(!org.springframework.util.StringUtils.isEmpty(businessBo.getBusBeforeMoney())){
             System.out.println("++++++++++++++++++++================================");
             sql.append(" and cb.busBeforeMoney='"+businessBo.getBusBeforeMoney()+"'");
-        }
-        if(!org.springframework.util.StringUtils.isEmpty(businessBo.getBusBeforedate())){
-            System.out.println("++++++++++++++++++++================================");
-            sql.append(" and cb.busBeforedate='"+businessBo.getBusBeforedate()+"'");
         }
 
 
@@ -192,14 +178,8 @@ public class customerManage {
         if(!org.springframework.util.StringUtils.isEmpty(businessBo.getBusDutyPeople())){
             sql.append(" and cb.busDutyPeople='"+businessBo.getBusDutyPeople()+"'");
         }
-        if(!org.springframework.util.StringUtils.isEmpty(businessBo.getBusDept())){
-            sql.append(" and cb.busDept='"+businessBo.getBusDept()+"'");
-        }
         if(!org.springframework.util.StringUtils.isEmpty(businessBo.getBusBeforeMoney())){
             sql.append(" and cb.busBeforeMoney='"+businessBo.getBusBeforeMoney()+"'");
-        }
-        if(!org.springframework.util.StringUtils.isEmpty(businessBo.getBusBeforedate())){
-            sql.append(" and cb.busBeforedate='"+businessBo.getBusBeforedate()+"'");
         }
          return sql.toString();
     }

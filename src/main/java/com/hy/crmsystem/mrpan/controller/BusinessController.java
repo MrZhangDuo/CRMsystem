@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -170,14 +171,12 @@ public class BusinessController {
     //添加商机
     @ResponseBody
     @RequestMapping("/addBusiness.do")
-    public String addBusiness(Customer customer,Business business){
+    public String addBusiness(Business business){
         String a="0";
         try {
-            //添加客户信息并返回客户id
-            Integer customerId=customerMapper.insert(customer);
-            business.setCustId(customerId);
-            //添加商机信息
-            businessService.save(business);
+            business.setBusTime(new Date());//设置商机添加的时间
+            businessService.save(business);  //添加商机信息
+
         } catch (Exception e) {
            a="1";
         }
