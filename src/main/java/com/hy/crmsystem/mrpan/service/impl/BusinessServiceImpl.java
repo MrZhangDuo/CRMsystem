@@ -83,13 +83,7 @@ public class BusinessServiceImpl extends ServiceImpl<BusinessMapper, Business> i
     //根据商机关注人查询我的商机信息
     public List<BusinessBo> MyBusInfoByCarePeople(String custName,Integer currentPage, Integer pageSize){
         Page page = PageHelper.startPage(currentPage,pageSize, true);
-        List<BusinessBo> bus=businessMapper.MyBusInfoByCarePeople(custName);
-        for (int i = 0; i <bus.size(); i++) {
-            System.out.println("244321235145353242432314232322222222222222222222");
-            System.out.println("============================"+bus.get(i).getBusName()+bus.get(i).getBusStage());
-        }
-        return bus;
-
+        return businessMapper.MyBusInfoByCarePeople(custName);
     }
 
     /*根据商机名查询客户的客户名称，所属行业，所在城市，详细地址*/

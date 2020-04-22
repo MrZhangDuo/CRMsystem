@@ -14,8 +14,7 @@ public class ShiroGetUserUtil {
      */
     public static ActivierUser UserObject() {
         Subject subject = SecurityUtils.getSubject();
-        ActivierUser activierUser = (ActivierUser) subject.getPrincipal();
-        return activierUser;
+        return (ActivierUser) subject.getPrincipal();
     }
 
 

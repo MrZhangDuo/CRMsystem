@@ -8,60 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="/lib/layui-v2.5.5/css/layui.css" media="all">
     <link rel="stylesheet" href="/css/public.css" media="all">
-    <style>
-        #id1 {
-            margin-right: 105px;
-        }
-
-        #id2 {
-            margin-left: 106px;
-            margin-right: 105px;
-        }
-
-        #id3 {
-            margin-left: 106px;
-        }
-
-        #top_id {
-            margin-top: 30px;
-        }
-
-        #id1_1 {
-            margin-right: 105px;
-        }
-
-        #id2_1 {
-            margin-left: 106px;
-            margin-right: 105px;
-        }
-
-        #id3_1 {
-            margin-left: 106px;
-        }
-
-        #top_id_1 {
-            margin-top: 30px;
-        }
-
-        #id1_2 {
-            margin-right: 105px;
-        }
-
-        #id2_2 {
-            margin-left: 106px;
-            margin-right: 105px;
-        }
-
-        #id3_2 {
-            margin-left: 106px;
-        }
-
-        #top_id_2 {
-            margin-top: 30px;
-        }
-
-
-    </style>
 </head>
 <body>
 <div class="layuimini-container">
@@ -115,10 +61,10 @@
         <!-- 添加的弹出层开始 -->
         <div style="display: none;padding: 20px;" id="saveDiv">
             <form class="layui-form" lay-filter="addFormFilter" id="addForm">
-                <div class="layui-form-item" style="margin-top: 20px">
+                <div class="layui-form-item" style="margin-top: 15px">
                     <label class="layui-form-label">跟单主题</label>
                     <div class="layui-input-block">
-                        <input type="hidden" name="BusId">
+                        <input type="hidden" name="busId">
                         <select id="select1" name="DocTitle" lay-filter="docFilter2">
                         </select>
                     </div>
@@ -128,9 +74,8 @@
                 <!-- ****     历史跟单记录   开始    **********   -->
                 <blockquote class="layui-elem-quote" style="margin-top: 7px">历史跟单记录</blockquote>
 
-                <table id="addtable" lay-filter="addtable"></table>
-
-
+                <!-- 历史跟单记录的表格 -->
+                <table class="layui-hide"  id="addtable" lay-filter="addtable"></table>
 
 
                 <!-- ****     历史跟单记录   结束    **********   -->
@@ -163,12 +108,12 @@
                     <div class="layui-inline">
                         <label class="layui-form-label">跟单人</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="DocPeople"  autocomplete="off" disabled class="layui-input layui-disabled">
+                            <input type="text" name="DocPeople" autocomplete="off" class="layui-input">
                         </div>
                     </div>
                 </div>
                 <div class="layui-form-item">
-                        <div class="layui-inline">
+                    <div class="layui-inline">
                         <label class="layui-form-label">详细内容</label>
                         <div class="layui-input-inline">
                             <input type="text" name="DocContent" autocomplete="off" class="layui-input">
@@ -254,23 +199,28 @@
 
         var mainIndex;
         var url;  //动态的url
+
         //点击添加按钮，弹出添加页面 start------
         $("#addBtn").click(function () {
 
+
+
+
             //为下拉框赋值 开始
-            $.ajax({
-                url: '/documentary/queryBusName.do',
-                dataType: 'json',
-                success: function (result) {
-                    var s = "";
-                    $(result).each(function (i, obj) {
-                        s += "<option id='" + obj.BusId + "' value='" + obj.busName + "'>" + obj.busName + "</option>";
-                    });
-                    $("#select1").html(s);
-                    //更新渲染
-                    form.render(null, 'addFormFilter');
-                }
-            })
+                $.ajax({
+                    url: '/documentary/queryBusName.do',
+                    dataType: 'json',
+                    success: function (result) {
+                        var s = "<option>请选择</option>";
+                        $(result).each(function (i, obj) {
+                            s += "<option id='" + obj.BusId + "' value='" + obj.busName + "'>" + obj.busName + "</option>";
+                            $("#busId").val(obj.busId);
+                        });
+                        $("#select1").html(s);
+                        //更新渲染
+                        form.render(null, 'addFormFilter');
+                    }
+                });
             //为下拉框赋值 结束
 
             mainIndex = layer.open({
@@ -281,21 +231,16 @@
                 fixed: false,      //即鼠标滚动时，层是否固定在可视区域。如果不想，设置fixed: false即可
                 area: '1000px',
                 content: $("#saveDiv"),
-            });
-            //查询当前用户
-            $.get("/user/getCurrentUser.do",function(res){
-                form.val("addFormFilter",{
-                    "DocPeople":res.data,
-                })
-            });
-
+            })
 
 
         });
         //点击添加按钮，弹出添加页面 end------
 
-
-
+        window.onload=function(){
+            var table = document.getElementById("addtable");
+            table.style.display="none";
+        }
 
         // ----- 保存弹出层的表单  开始   -----------------
         form.on("submit(doSubmit)", function (obj) {
@@ -309,7 +254,7 @@
                         layer.closeAll();   //关闭添加的界面弹出层
                         $("#addForm")[0].reset();      //使用js中的reset方法清空表单中的数据
                         layer.msg('添加成功');
-                        table.reload('myTable', {})
+                        window.parent.location.reload();
                     }
                 }
 
@@ -326,6 +271,9 @@
                 elem: '#addtable'   //渲染的目标对象
                 , url: '/documentary/queryOldDocumentart.do?docTitle=' + $("#select1").val() //数据接口
                 , title: '跟单记录'//数据导出来的标题
+                , text: {
+                    none: '暂无历史跟单记录'
+                }
                 , cols: [[   //列表数据
                     {
                         title: '跟单时间',

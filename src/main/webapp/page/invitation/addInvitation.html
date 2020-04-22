@@ -121,7 +121,6 @@
             ,done: function(res){
                 //如果上传成功
                 if(res.code ==="0"){
-                    alert("============"+res.filename);
                     $("#invitationFile").val(res.filename);
                     return layer.msg('上传成功');
                 }

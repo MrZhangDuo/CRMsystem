@@ -6,6 +6,7 @@ import com.hy.crmsystem.mrfan.entity.InvitationBo;
 import com.hy.crmsystem.mrfan.entity.InvitationReolyBo;
 import com.hy.crmsystem.mrfan.service.impl.InvitationServiceImpl;
 import com.hy.crmsystem.mrfan.service.impl.ReolyinvitationServiceImpl;
+import com.hy.crmsystem.mrli.utils.ShiroGetUserUtil;
 import com.hy.crmsystem.mrpan.entity.Business;
 import com.hy.crmsystem.mrzhang.entity.LayuiData;
 import com.hy.crmsystem.uploadimage.UploadImage;
@@ -59,6 +60,7 @@ public class InvitationController {
     @RequestMapping("/addInvitation.do")
     public String addInvitation(Invitation invitation){
             invitation.setInvitationTime(new Date());
+            invitation.setInvitationAuthor(ShiroGetUserUtil.UserObject().getUser().getRealname());
             invitationService.save(invitation);
         return "redirect:/page/invitation/queryAllInvitation.html";
     }

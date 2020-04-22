@@ -98,7 +98,6 @@ public class AfterserviceController {
     @ResponseBody
     @PostMapping("insertAfterService.do")
     public String insertAfterService(Afterservice  afterservice){
-        System.out.println("====================================="+afterservice.getFilename());
         String returns="0";
         try {
             afterserviceService.save(afterservice);

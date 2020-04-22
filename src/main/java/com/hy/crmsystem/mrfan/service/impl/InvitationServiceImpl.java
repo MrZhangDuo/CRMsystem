@@ -51,13 +51,8 @@ public class InvitationServiceImpl extends ServiceImpl<InvitationMapper, Invitat
         layuiDate.setData(invitationMapper.queryAllInvitation(page1,invitationBo).getRecords());
         layuiDate.setCount(invitationMapper.queryAllInvitation(page1,invitationBo).getTotal());
         List<InvitationBo> invitationBoList = invitationMapper.queryAllInvitation(page1,invitationBo).getRecords();
-        for (int i = 0; i <invitationBoList.size(); i++) {
-            System.out.println("======================"+invitationBoList.get(i).getInvitationClick());
-            System.out.println("======================"+invitationBoList.get(i).getInvitationReply());
-        }
         return layuiDate;
     }
-
     public List<Business> queryAllBusiness(){
         return businessService.list();
     }
@@ -85,9 +80,4 @@ public class InvitationServiceImpl extends ServiceImpl<InvitationMapper, Invitat
         }
         return  uploadImage;
     }
-
-
-    /*public List<Reolyinvitation> queryClick(Integer invitationId){
-        return reolyinvitationService.queryReolyInvitationById1(invitationId);
-    }*/
 }

@@ -34,7 +34,7 @@
             <div class="layui-inline">
                 <label class="layui-form-label">商机名称</label>
                 <div class="layui-input-block">
-                    <input type="text" name="busName" th:value="${selectCustInfo.getBusName()}" lay-verify="title" autocomplete="off" placeholder="请输入所在城市" class="layui-input">
+                    <input type="text" name="busName" th:value="${selectCustInfo.getBusName()}" lay-verify="title" autocomplete="off" placeholder="请输入所在城市" class="layui-input" readonly>
                 </div>
             </div>
             <div class="layui-inline">
@@ -109,7 +109,7 @@
                     <label class="layui-form-label">客户来源</label>
                     <div class="layui-input-block">
                         <select name="custSource" lay-verify="required">
-                            <option th:text="${selectCustInfo.getCustSource()}"></option>
+                            <option>请选择</option>
                             <option th:value="老客户" th:selected="${selectCustInfo.getCustSource()eq '老客户'}" >老客户</option>
                             <option th:value="代理商" th:selected="${selectCustInfo.getCustSource()eq '代理商'}">代理商</option>
                             <option th:value="互联网" th:selected="${selectCustInfo.getCustSource()eq '互联网'}">互联网</option>
@@ -235,9 +235,7 @@
                 <legend>处理流程日志</legend>
             </fieldset>
             <button type="submit" class="layui-btn layui-btn-radius" lay-submit  lay-filter="update" id="update" >修改</button>
-            <a class='btn btn-info' href="javascript:history.go(-1)"><button type="button" class="layui-btn layui-btn-radius" >取消</button></a>
-           <!-- <a th:href="@{'/page/customer/businessNumberInfo.html?custId='+${selectCustInfo.getCustId()}}"	class="layui-btn layui-btn-radius layui-btn-warm" lay-filter="qux"  id="cancle" >取消</a>-->
-
+            <button type="button" class="layui-btn layui-btn-radius" id="fanhui">取消</button>
         </form>
     </div>
 </div>
@@ -272,6 +270,10 @@
         form.on('submit(update)', function (data) {
             $('form[id=business]').attr('action','/business/updateBusDetails.do').submit();
             return false;
+        });
+
+        $("#fanhui").click(function () {
+            window.location.href="/page/business/queryAllBusiness.html";
         });
     });
 

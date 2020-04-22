@@ -47,7 +47,7 @@
     <div class="layui-form-item" style="text-align: center;margin-top: 25px">
         <div class="layui-input-block">
             <button type="button" class="layui-btn layui-btn-normal layui-btn-sm layui-icon layui-icon-release" lay-filter="doSubmit" lay-submit="">提交
-                <a class='btn btn-info' href="/page/invitation/queryAllInvitation.html"><button type="button" class="layui-btn layui-btn-primary" >取消</button></a>
+                <button type="button" class="layui-btn layui-btn-primary" id="quxiao" >取消</button>
             </button>
         </div>
     </div>
@@ -76,6 +76,10 @@
             $("#reolyContent").val(layedit.getContent(index));
             $('form[id=addForm]').attr('action','/reolyinvitation/insertYiReoly.do').submit();
             return false;
+        });
+
+        $("#quxiao").click(function () {
+            window.location.href="/page/invitation/queryAllInvitation.html";
         });
 
 
