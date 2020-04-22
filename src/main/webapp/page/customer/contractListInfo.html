@@ -51,8 +51,8 @@
             <div class="layui-form-item">
                 <div class="layui-inline">
                     <div class="layui-input-block">
-                        <select name="type" lay-verify="chaxun">
-                            <option>请选择</option>
+                        <select name="type" lay-filter="chaxun">
+                            <option value="0">请选择</option>
                             <option name="contractName" value="1">按合同全称</option>
                             <option name="contractNum" value="2">按合同编号</option>
                             <option name="ofdept" value="3">按所属部门</option>
@@ -63,11 +63,11 @@
                 </div>
                 <div class="layui-inline">
                     <div class="layui-input-block" id="tiaojian">
-                        <input type="text" autocomplete="off" placeholder="请输入关键字" class="layui-input">
+                        <input type="text" id="inp" autocomplete="off" placeholder="请输入关键字" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-inline">
-                    <button type="submit" class="layui-btn layui-btn-radius" lay-submit  lay-filter="sousuo" id="select"> 搜 索</button>
+                    <button type="submit" class="layui-btn layui-btn-primary" lay-submit  lay-filter="sousuo" id="select"> 搜 索</button>
                 </div>
             </div>
         </form>
@@ -92,12 +92,12 @@
             ,url: '/customer/selectContractInfo.do'+url //数据接口
             ,type:'get'
             ,cols: [[ //表头
-                {field: 'contractName', title: '合同全称', width:360,templet:'<div><a  href=" " class="layui-table-link">{{d.contractName}}</a></div>'}
+                {field: 'contractName', title: '合同全称', width:330,templet:'<div><a  href=" " class="layui-table-link">{{d.contractName}}</a></div>'}
                 ,{field: 'contractNum', title: '合同编号', width:270}
                 ,{field: 'contractMoney', title: '合同金额', width:250}
-                ,{field: 'incomesMoney', title: '汇款额', width: 180,templet:'<div><a  href="" class="layui-table-link">{{d.incomesMoney}}</a></div>'}
-                ,{field: 'billMoney', title: '开票额', width: 200,templet:'<div><a  href="" class="layui-table-link">{{d.billMoney}}</a></div>'}
-                ,{field: 'signedTime', title: '签约日期', width: 130}
+                ,{field: 'incomesMoney', title: '汇款额', width: 180,templet:'<div><a  href="" class="layui-table-link">{{d.incomesMoney==0?0:d.incomesMoney}}</a></div>'}
+                ,{field: 'billMoney', title: '开票额', width: 180,templet:'<div><a  href="" class="layui-table-link">{{d.billMoney==0?0:d.incomesMoney}}</a></div>'}
+                ,{field: 'timeSigned', title: '签约日期', width: 130}
             ]]
             ,page:true /*进行分页*/
             ,limit:9/*每页九条数据*/
@@ -107,10 +107,9 @@
         /*监听select表单*/
         /*将文本框的值清空后赋新值*/
         form.on("select(chaxun)", function(data){
-            alert("111");
             if(data.value==1){
                 $("#tiaojian").empty();
-                $("#tiaojian").append("<input name='contractName' type=\"text\" id=\"inp\" autocomplete=\"off\" placeholder=\"请输入关键字\" class=\"layui-input\">");
+                $("#tiaojian").append("<input name='contractName'  type=\"text\" id=\"inp\" autocomplete=\"off\" placeholder=\"请输入关键字\" class=\"layui-input\">");
             }else if(data.value==2){
                 $("#tiaojian").empty();
                 $("#tiaojian").append("<input name='contractNum' type=\"text\" id=\"inp\" autocomplete=\"off\" placeholder=\"请输入关键字\" class=\"layui-input\">");
@@ -135,7 +134,7 @@
         /*监听form表单中的提交事件*/
         form.on('submit(sousuo)', function(data){
             table.reload('demo', {
-                url:'/customer/selectContractInfo.do',
+                url:'/customer/selectContractInfo.do'+url,
                 where: data.field //设定异步数据接口的额外参数
             });
             return false;

@@ -16,7 +16,6 @@
             height:30px;
             margin-left: 700px;
         }
-
         #rese{
             margin: 0px auto;
             width: 200px;
@@ -58,12 +57,14 @@
                         <input type="text" name="busBeforeMoney" lay-verify="title" autocomplete="off" placeholder="请输入预计成交金额" class="layui-input">
                     </div>
                     <div class="layui-input-inline">
-                        <input type="date" name="busBeforedate" lay-verify="title" autocomplete="off" placeholder="请输入预计结单日期" class="layui-input">
+                        <input type="text" name="busBeforedate" id="date1"  lay-verify="title"  placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div>
-                    <input type="reset" class="layui-btn layui-btn-normal" lay-filter="data-search-btn" id="rese"></input>
-                    <button type="submit" class="layui-btn layui-btn-normal"  lay-filter="data-search-btn" id="chazhao">查找商机</button>
+                    <div class="layui-inline">
+                        <input type="reset" class="layui-btn layui-btn-normal" lay-filter="data-search-btn" id="rese">
+                        <button type="submit" class="layui-btn layui-btn-primary" lay-submit  lay-filter="findeBus" id="chazhao"><i class="layui-icon"></i> 查找商机 </button>
+                    </div>
                 </div>
             </form>
     </fieldset>
@@ -173,7 +174,6 @@
                 <button class="layui-btn layui-btn-sm data-add-btn" lay-event="add">
                     <a href="/page/business/addBusiness.html"> 添加商机</a>
                 </button>
-                <button class="layui-btn layui-btn-sm layui-btn-danger data-delete-btn" lay-event="delete"> 刷新 </button>
             </div>
         </script>
 
@@ -182,10 +182,14 @@
 </div>
 <script src="/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
 <script>
-    layui.use(['form', 'table','jquery'], function () {
+    layui.use(['form', 'table','jquery', 'laydate'], function () {
         var $ = layui.jquery,
             form = layui.form,
+            laydate = layui.laydate
             table = layui.table;
+        laydate.render({
+            elem: '#date1'
+        });
         table.render({
             elem: '#currentTableId',
             toolbar: '#toolbarDemo'
@@ -197,7 +201,7 @@
                 {field: 'busStage', width: 180, title: '商机阶段'},
                 {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
                 {field: 'busDutyPeople', width: 180, title: '商机负责人'},
-                {field: 'docId', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.docId}}</a></div>'},
+                {field: 'gdTime', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.gdTime}}</a></div>'},
                 {field: 'invitationId', width: 130, title: '讨论版',templet:'<div><a  href="  " class="layui-table-link">{{d.invitationId==null?0:d.invitationId}}</a></div>'},
             ]]
         });
@@ -211,11 +215,11 @@
                 ,url: '/business/proceedBus.do' //数据接口
                 ,type:'get'
                 ,cols: [[
-                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="  " class="layui-table-link">{{d.busName}}</a></div>'},
+                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="/business/custByBusId.do?busId={{d.busId}}" class="layui-table-link">{{d.busName}}</a></div>'},
                     {field: 'busStage', width: 180, title: '商机阶段'},
                     {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
                     {field: 'busDutyPeople', width: 180, title: '商机负责人'},
-                    {field: 'docId', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.docId}}</a></div>'},
+                    {field: 'gdTime', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.gdTime}}</a></div>'},
                     {field: 'invitationId', width: 130, title: '讨论版',templet:'<div><a  href="  " class="layui-table-link">{{d.invitationId==null?0:d.invitationId}}</a></div>'},
                 ]]
             });
@@ -228,11 +232,11 @@
                 ,url: '/business/docTimeLessSeven.do' //数据接口
                 ,type:'get'
                 ,cols: [[
-                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="  " class="layui-table-link">{{d.busName}}</a></div>'},
+                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="/business/custByBusId.do?busId={{d.busId}}" class="layui-table-link">{{d.busName}}</a></div>'},
                     {field: 'busStage', width: 180, title: '商机阶段'},
                     {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
                     {field: 'busDutyPeople', width: 180, title: '商机负责人'},
-                    {field: 'docId', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.docId}}</a></div>'},
+                    {field: 'gdTime', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.gdTime}}</a></div>'},
                     {field: 'invitationId', width: 130, title: '讨论版',templet:'<div><a  href="  " class="layui-table-link">{{d.invitationId==null?0:d.invitationId}}</a></div>'},
                 ]]
             });
@@ -245,11 +249,11 @@
                 ,url: '/business/docTimeLessThirty.do' //数据接口
                 ,type:'get'
                 ,cols: [[
-                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="  " class="layui-table-link">{{d.busName}}</a></div>'},
+                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="/business/custByBusId.do?busId={{d.busId}}" class="layui-table-link">{{d.busName}}</a></div>'},
                     {field: 'busStage', width: 180, title: '商机阶段'},
                     {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
                     {field: 'busDutyPeople', width: 180, title: '商机负责人'},
-                    {field: 'docId', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.docId}}</a></div>'},
+                    {field: 'gdTime', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.gdTime}}</a></div>'},
                     {field: 'invitationId', width: 130, title: '讨论版',templet:'<div><a  href="  " class="layui-table-link">{{d.invitationId==null?0:d.invitationId}}</a></div>'},
                 ]]
             });
@@ -262,11 +266,11 @@
                 ,url: '/business/docTimeLessNinety.do' //数据接口
                 ,type:'get'
                 ,cols: [[
-                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="  " class="layui-table-link">{{d.busName}}</a></div>'},
+                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="/business/custByBusId.do?busId={{d.busId}}" class="layui-table-link">{{d.busName}}</a></div>'},
                     {field: 'busStage', width: 180, title: '商机阶段'},
                     {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
                     {field: 'busDutyPeople', width: 180, title: '商机负责人'},
-                    {field: 'docId', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.docId}}</a></div>'},
+                    {field: 'gdTime', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.gdTime}}</a></div>'},
                     {field: 'invitationId', width: 130, title: '讨论版',templet:'<div><a  href="  " class="layui-table-link">{{d.invitationId==null?0:d.invitationId}}</a></div>'},
                 ]]
             });
@@ -279,11 +283,11 @@
                 ,url: '/business/tradedBus.do' //数据接口
                 ,type:'get'
                 ,cols: [[
-                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="  " class="layui-table-link">{{d.busName}}</a></div>'},
+                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="/business/custByBusId.do?busId={{d.busId}}" class="layui-table-link">{{d.busName}}</a></div>'},
                     {field: 'busStage', width: 180, title: '商机阶段'},
                     {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
                     {field: 'busDutyPeople', width: 180, title: '商机负责人'},
-                    {field: 'docId', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.docId}}</a></div>'},
+                    {field: 'gdTime', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.gdTime}}</a></div>'},
                     {field: 'invitationId', width: 130, title: '讨论版',templet:'<div><a  href="  " class="layui-table-link">{{d.invitationId==null?0:d.invitationId}}</a></div>'},
                 ]]
             });
@@ -296,11 +300,11 @@
                 ,url: '/business/throwBus.do' //数据接口
                 ,type:'get'
                 ,cols: [[
-                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="  " class="layui-table-link">{{d.busName}}</a></div>'},
+                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="/business/custByBusId.do?busId={{d.busId}}" class="layui-table-link">{{d.busName}}</a></div>'},
                     {field: 'busStage', width: 180, title: '商机阶段'},
                     {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
                     {field: 'busDutyPeople', width: 180, title: '商机负责人'},
-                    {field: 'docId', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.docId}}</a></div>'},
+                    {field: 'gdTime', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.gdTime}}</a></div>'},
                     {field: 'invitationId', width: 130, title: '讨论版',templet:'<div><a  href="  " class="layui-table-link">{{d.invitationId==null?0:d.invitationId}}</a></div>'},
                 ]]
             });
@@ -313,11 +317,11 @@
                 ,url: '/business/shelveBus.do' //数据接口
                 ,type:'get'
                 ,cols: [[
-                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="  " class="layui-table-link">{{d.busName}}</a></div>'},
+                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="/business/custByBusId.do?busId={{d.busId}}" class="layui-table-link">{{d.busName}}</a></div>'},
                     {field: 'busStage', width: 180, title: '商机阶段'},
                     {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
                     {field: 'busDutyPeople', width: 180, title: '商机负责人'},
-                    {field: 'docId', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.docId}}</a></div>'},
+                    {field: 'gdTime', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.gdTime}}</a></div>'},
                     {field: 'invitationId', width: 130, title: '讨论版',templet:'<div><a  href="  " class="layui-table-link">{{d.invitationId==null?0:d.invitationId}}</a></div>'},
                 ]]
             });
@@ -330,11 +334,11 @@
                 ,url: '/business/weekAdd.do' //数据接口
                 ,type:'get'
                 ,cols: [[
-                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="  " class="layui-table-link">{{d.busName}}</a></div>'},
+                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="/business/custByBusId.do?busId={{d.busId}}" class="layui-table-link">{{d.busName}}</a></div>'},
                     {field: 'busStage', width: 180, title: '商机阶段'},
                     {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
                     {field: 'busDutyPeople', width: 180, title: '商机负责人'},
-                    {field: 'docId', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.docId}}</a></div>'},
+                    {field: 'gdTime', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.gdTime}}</a></div>'},
                     {field: 'invitationId', width: 130, title: '讨论版',templet:'<div><a  href="  " class="layui-table-link">{{d.invitationId==null?0:d.invitationId}}</a></div>'},
                 ]]
             });
@@ -347,11 +351,11 @@
                 ,url: '/business/lastWeekAdd.do' //数据接口
                 ,type:'get'
                 ,cols: [[
-                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="  " class="layui-table-link">{{d.busName}}</a></div>'},
+                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="/business/custByBusId.do?busId={{d.busId}}" class="layui-table-link">{{d.busName}}</a></div>'},
                     {field: 'busStage', width: 180, title: '商机阶段'},
                     {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
                     {field: 'busDutyPeople', width: 180, title: '商机负责人'},
-                    {field: 'docId', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.docId}}</a></div>'},
+                    {field: 'gdTime', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.gdTime}}</a></div>'},
                     {field: 'invitationId', width: 130, title: '讨论版',templet:'<div><a  href="  " class="layui-table-link">{{d.invitationId==null?0:d.invitationId}}</a></div>'},
                 ]]
             });
@@ -364,11 +368,11 @@
                 ,url: '/business/monthAdd.do' //数据接口
                 ,type:'get'
                 ,cols: [[
-                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="  " class="layui-table-link">{{d.busName}}</a></div>'},
+                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="/business/custByBusId.do?busId={{d.busId}}" class="layui-table-link">{{d.busName}}</a></div>'},
                     {field: 'busStage', width: 180, title: '商机阶段'},
                     {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
                     {field: 'busDutyPeople', width: 180, title: '商机负责人'},
-                    {field: 'docId', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.docId}}</a></div>'},
+                    {field: 'gdTime', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.gdTime}}</a></div>'},
                     {field: 'invitationId', width: 130, title: '讨论版',templet:'<div><a  href="  " class="layui-table-link">{{d.invitationId==null?0:d.invitationId}}</a></div>'},
                 ]]
             });
@@ -381,11 +385,11 @@
                 ,url: '/business/lastMonthAdd.do' //数据接口
                 ,type:'get'
                 ,cols: [[
-                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="  " class="layui-table-link">{{d.busName}}</a></div>'},
+                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="/business/custByBusId.do?busId={{d.busId}}" class="layui-table-link">{{d.busName}}</a></div>'},
                     {field: 'busStage', width: 180, title: '商机阶段'},
                     {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
                     {field: 'busDutyPeople', width: 180, title: '商机负责人'},
-                    {field: 'docId', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.docId}}</a></div>'},
+                    {field: 'gdTime', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.gdTime}}</a></div>'},
                     {field: 'invitationId', width: 130, title: '讨论版',templet:'<div><a  href="  " class="layui-table-link">{{d.invitationId==null?0:d.invitationId}}</a></div>'},
                 ]]
             });
@@ -398,11 +402,11 @@
                 ,url: '/business/quarterAdd.do' //数据接口
                 ,type:'get'
                 ,cols: [[
-                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="  " class="layui-table-link">{{d.busName}}</a></div>'},
+                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="/business/custByBusId.do?busId={{d.busId}}" class="layui-table-link">{{d.busName}}</a></div>'},
                     {field: 'busStage', width: 180, title: '商机阶段'},
                     {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
                     {field: 'busDutyPeople', width: 180, title: '商机负责人'},
-                    {field: 'docId', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.docId}}</a></div>'},
+                    {field: 'gdTime', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.gdTime}}</a></div>'},
                     {field: 'invitationId', width: 130, title: '讨论版',templet:'<div><a  href="  " class="layui-table-link">{{d.invitationId==null?0:d.invitationId}}</a></div>'},
                 ]]
             });
@@ -415,11 +419,11 @@
                 ,url: '/business/lastQuarterAdd.do' //数据接口
                 ,type:'get'
                 ,cols: [[
-                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="  " class="layui-table-link">{{d.busName}}</a></div>'},
+                    {field: 'busName', width: 250, title: '商机名称',templet:'<div><a  href="/business/custByBusId.do?busId={{d.busId}}" class="layui-table-link">{{d.busName}}</a></div>'},
                     {field: 'busStage', width: 180, title: '商机阶段'},
                     {field: 'busBeforeMoney', width: 130, title: '预计成交金额'},
                     {field: 'busDutyPeople', width: 180, title: '商机负责人'},
-                    {field: 'docId', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.docId}}</a></div>'},
+                    {field: 'gdTime', width: 130, title: '最后跟单',templet:'<div><a  href="  " class="layui-table-link">{{d.gdTime}}</a></div>'},
                     {field: 'invitationId', width: 130, title: '讨论版',templet:'<div><a  href="  " class="layui-table-link">{{d.invitationId==null?0:d.invitationId}}</a></div>'},
                 ]]
             });
@@ -531,6 +535,16 @@
             }
         }) ;
 
+
+        /*监听form表单中的提交事件*/
+        form.on('submit(findeBus)', function(data){
+            alert("111111111111111111111111");
+            table.reload('currentTableId', {
+                url:'/business/selectAllBusInfo.do',
+                where: data.field //设定异步数据接口的额外参数
+            });
+            return false;
+        });
 
     });
 </script>

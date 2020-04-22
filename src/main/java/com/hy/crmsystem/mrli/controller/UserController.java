@@ -2,6 +2,7 @@ package com.hy.crmsystem.mrli.controller;
 
 
 import com.hy.crmsystem.mrli.entity.DataGridView;
+import com.hy.crmsystem.mrli.entity.User;
 import com.hy.crmsystem.mrli.service.IUserService;
 import com.hy.crmsystem.mrli.utils.ActivierUser;
 import com.hy.crmsystem.mrli.utils.ResultObj;
@@ -32,9 +33,9 @@ public class UserController {
      * 查询当前登陆的用户
      */
     @GetMapping("/getCurrentUser")
-    public Object getCurrentUser(){
-        ActivierUser activeUser= (ActivierUser) SecurityUtils.getSubject().getPrincipal();
-        return new DataGridView(activeUser.getUser().getRealname());
+    public DataGridView getCurrentUser() {
+        ActivierUser activierUser = (ActivierUser) SecurityUtils.getSubject().getPrincipal();
+        return new DataGridView(activierUser.getUser());
     }
 
 

@@ -13,20 +13,10 @@
     <style>
         .layui-card {border:1px solid #f2f2f2;border-radius:5px;}
         .icon {margin-right:10px;color:#1aa094;}
-        .icon-cray {color:#ffb800!important;}
-        .icon-blue {color:#1e9fff!important;}
         .icon-tip {color:#ff5722!important;}
-        .layuimini-qiuck-module {text-align:center;margin-top: 10px}
         .layuimini-qiuck-module a i {display:inline-block;width:100%;height:60px;line-height:60px;text-align:center;border-radius:2px;font-size:30px;background-color:#F8F8F8;color:#333;transition:all .3s;-webkit-transition:all .3s;}
         .layuimini-qiuck-module a cite {position:relative;top:2px;display:block;color:#666;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;font-size:14px;}
-        .welcome-module {width:100%;height:210px;}
-        .panel {background-color:#fff;border:1px solid transparent;border-radius:3px;-webkit-box-shadow:0 1px 1px rgba(0,0,0,.05);box-shadow:0 1px 1px rgba(0,0,0,.05)}
-        .panel-body {padding:10px}
-        .panel-title {margin-top:0;margin-bottom:0;font-size:12px;color:inherit}
-        .label {display:inline;padding:.2em .6em .3em;font-size:75%;font-weight:700;line-height:1;color:#fff;text-align:center;white-space:nowrap;vertical-align:baseline;border-radius:.25em;margin-top: .3em;}
-        .layui-red {color:red}
         .main_btn > p {height:40px;}
-        .layui-bg-number {background-color:#F8F8F8;}
         .layuimini-notice:hover {background:#f6f6f6;}
         .layuimini-notice {padding:7px 16px;clear:both;font-size:12px !important;cursor:pointer;position:relative;transition:background 0.2s ease-in-out;}
         .layuimini-notice-title,.layuimini-notice-label {
@@ -71,6 +61,7 @@
             </form>
         </div>
     </fieldset>
+</div>
     <!-- 搜索条件结束-->
 
     <div class="layui-col-md3">
@@ -148,7 +139,6 @@
         <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
 
     </div>
-</div>
 <script src="/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
 <script>
     layui.use(['jquery', 'layer', 'form', 'table', 'laydate'], function () {
@@ -176,15 +166,15 @@
                 icon: 'layui-icon-tips'
             }],
             cols: [[
-                {field: 'contractName', title: '合同全称',templet:'<div><a  href="/afterservice/queryAfterServiceById.do?serviceId={{d.serviceId}}" class="layui-table-link">{{d.contractName}}</a></div>'},
+                {field: 'contractName', title: '合同全称',templet:'<div><a  href="/contract/queryContractById.do?contractId={{d.contractId}}" class="layui-table-link">{{d.contractName}}</a></div>'},
                 {field: 'contractNum', title: '合同编号'},
-                {field: 'contractMoney',  title: '合同金额',templet:'<div><a  href="  " class="layui-table-link">{{d.contractMoney==null?0:d.contractMoney}}</a></div>'},
-                {field: 'incomesMoney', title: '汇款额',templet:'<div><a  href="  " class="layui-table-link">{{d.incomesMoney==null?0:d.incomesMoney}}</a></div>'},
-                {field: 'billMoney', title: '开票额',templet:'<div><a  href="  " class="layui-table-link">{{d.billMoney==null?0:d.billMoney}}</a></div>'},
+                {field: 'contractMoney',  title: '合同金额'},
+                {field: 'incomesMoney', title: '汇款额',templet:'<div><a  href="/contract/toContractMoney.do?contractId={{d.contractId}}" class="layui-table-link">{{d.incomesMoney==null?0:d.incomesMoney}}</a></div>'},
+                {field: 'billMoney', title: '开票额',templet:'<div><a  href="/contract/addContractBill.do?contractId={{d.contractId}}" class="layui-table-link">{{d.billMoney==null?0:d.billMoney}}</a></div>'},
                 {field: 'times', title: '签约日期' },
             ]],
             limits: [3, 4, 5, 6, 8, 10],
-            limit: 2,
+            limit: 9,
             page: true
         });
 
@@ -200,15 +190,15 @@
                     icon: 'layui-icon-tips'
                 }],
                 cols: [[
-                    {field: 'contractName', title: '合同全称',templet:'<div><a  href="/afterservice/queryAfterServiceById.do?serviceId={{d.serviceId}}" class="layui-table-link">{{d.contractName}}</a></div>'},
+                    {field: 'contractName', title: '合同全称',templet:'<div><a  href="/contract/queryContractById.do?contractId={{d.contractId}}" class="layui-table-link">{{d.contractName}}</a></div>'},
                     {field: 'contractNum', title: '合同编号'},
-                    {field: 'contractMoney',  title: '合同金额',templet:'<div><a  href="  " class="layui-table-link">{{d.contractMoney==null?0:d.contractMoney}}</a></div>'},
-                    {field: 'incomesMoney', title: '汇款额',templet:'<div><a  href="  " class="layui-table-link">{{d.incomesMoney==null?0:d.incomesMoney}}</a></div>'},
-                    {field: 'billMoney', title: '开票额',templet:'<div><a  href="  " class="layui-table-link">{{d.billMoney==null?0:d.billMoney}}</a></div>'},
+                    {field: 'contractMoney',  title: '合同金额'},
+                    {field: 'incomesMoney', title: '汇款额',templet:'<div><a  href="/contract/toContractMoney.do?contractId={{d.contractId}}" class="layui-table-link">{{d.incomesMoney==null?0:d.incomesMoney}}</a></div>'},
+                    {field: 'billMoney', title: '开票额',templet:'<div><a  href="/contract/addContractBill.do?contractId={{d.contractId}}" class="layui-table-link">{{d.billMoney==null?0:d.billMoney}}</a></div>'},
                     {field: 'times', title: '签约日期' },
                 ]],
                 limits: [10, 15, 20, 25, 50, 100],
-                limit: 2,
+                limit: 9,
                 page: true
             });
         });
@@ -225,15 +215,15 @@
                     icon: 'layui-icon-tips'
                 }],
                 cols: [[
-                    {field: 'contractName', title: '合同全称',templet:'<div><a  href="/afterservice/queryAfterServiceById.do?serviceId={{d.serviceId}}" class="layui-table-link">{{d.contractName}}</a></div>'},
+                    {field: 'contractName', title: '合同全称',templet:'<div><a  href="/contract/queryContractById.do?contractId={{d.contractId}}" class="layui-table-link">{{d.contractName}}</a></div>'},
                     {field: 'contractNum', title: '合同编号'},
-                    {field: 'contractMoney',  title: '合同金额',templet:'<div><a  href="  " class="layui-table-link">{{d.contractMoney==null?0:d.contractMoney}}</a></div>'},
-                    {field: 'incomesMoney', title: '汇款额',templet:'<div><a  href="  " class="layui-table-link">{{d.incomesMoney==null?0:d.incomesMoney}}</a></div>'},
-                    {field: 'billMoney', title: '开票额',templet:'<div><a  href="  " class="layui-table-link">{{d.billMoney==null?0:d.billMoney}}</a></div>'},
+                    {field: 'contractMoney',  title: '合同金额'},
+                    {field: 'incomesMoney', title: '汇款额',templet:'<div><a  href="/contract/toContractMoney.do?contractId={{d.contractId}}" class="layui-table-link">{{d.incomesMoney==null?0:d.incomesMoney}}</a></div>'},
+                    {field: 'billMoney', title: '开票额',templet:'<div><a  href="/contract/addContractBill.do?contractId={{d.contractId}}" class="layui-table-link">{{d.billMoney==null?0:d.billMoney}}</a></div>'},
                     {field: 'times', title: '签约日期' },
                 ]],
                 limits: [10, 15, 20, 25, 50, 100],
-                limit: 2,
+                limit: 9,
                 page: true
             });
         });
@@ -250,15 +240,15 @@
                     icon: 'layui-icon-tips'
                 }],
                 cols: [[
-                    {field: 'contractName', title: '合同全称',templet:'<div><a  href="/afterservice/queryAfterServiceById.do?serviceId={{d.serviceId}}" class="layui-table-link">{{d.contractName}}</a></div>'},
+                    {field: 'contractName', title: '合同全称',templet:'<div><a  href="/contract/queryContractById.do?contractId={{d.contractId}}" class="layui-table-link">{{d.contractName}}</a></div>'},
                     {field: 'contractNum', title: '合同编号'},
-                    {field: 'contractMoney',  title: '合同金额',templet:'<div><a  href="  " class="layui-table-link">{{d.contractMoney==null?0:d.contractMoney}}</a></div>'},
-                    {field: 'incomesMoney', title: '汇款额',templet:'<div><a  href="  " class="layui-table-link">{{d.incomesMoney==null?0:d.incomesMoney}}</a></div>'},
-                    {field: 'billMoney', title: '开票额',templet:'<div><a  href="  " class="layui-table-link">{{d.billMoney==null?0:d.billMoney}}</a></div>'},
+                    {field: 'contractMoney',  title: '合同金额'},
+                    {field: 'incomesMoney', title: '汇款额',templet:'<div><a  href="/contract/toContractMoney.do?contractId={{d.contractId}}" class="layui-table-link">{{d.incomesMoney==null?0:d.incomesMoney}}</a></div>'},
+                    {field: 'billMoney', title: '开票额',templet:'<div><a  href="/contract/addContractBill.do?contractId={{d.contractId}}" class="layui-table-link">{{d.billMoney==null?0:d.billMoney}}</a></div>'},
                     {field: 'times', title: '签约日期' },
                 ]],
                 limits: [10, 15, 20, 25, 50, 100],
-                limit: 2,
+                limit: 9,
                 page: true
             });
         });
@@ -275,15 +265,15 @@
                     icon: 'layui-icon-tips'
                 }],
                 cols: [[
-                    {field: 'contractName', title: '合同全称',templet:'<div><a  href="/afterservice/queryAfterServiceById.do?serviceId={{d.serviceId}}" class="layui-table-link">{{d.contractName}}</a></div>'},
+                    {field: 'contractName', title: '合同全称',templet:'<div><a  href="/contract/queryContractById.do?contractId={{d.contractId}}" class="layui-table-link">{{d.contractName}}</a></div>'},
                     {field: 'contractNum', title: '合同编号'},
-                    {field: 'contractMoney',  title: '合同金额',templet:'<div><a  href="  " class="layui-table-link">{{d.contractMoney==null?0:d.contractMoney}}</a></div>'},
-                    {field: 'incomesMoney', title: '汇款额',templet:'<div><a  href="  " class="layui-table-link">{{d.incomesMoney==null?0:d.incomesMoney}}</a></div>'},
-                    {field: 'billMoney', title: '开票额',templet:'<div><a  href="  " class="layui-table-link">{{d.billMoney==null?0:d.billMoney}}</a></div>'},
+                    {field: 'contractMoney',  title: '合同金额'},
+                    {field: 'incomesMoney', title: '汇款额',templet:'<div><a  href="/contract/toContractMoney.do?contractId={{d.contractId}}" class="layui-table-link">{{d.incomesMoney==null?0:d.incomesMoney}}</a></div>'},
+                    {field: 'billMoney', title: '开票额',templet:'<div><a  href="/contract/addContractBill.do?contractId={{d.contractId}}" class="layui-table-link">{{d.billMoney==null?0:d.billMoney}}</a></div>'},
                     {field: 'times', title: '签约日期' },
                 ]],
                 limits: [10, 15, 20, 25, 50, 100],
-                limit: 2,
+                limit: 9,
                 page: true
             });
         });
@@ -301,15 +291,15 @@
                     icon: 'layui-icon-tips'
                 }],
                 cols: [[
-                    {field: 'contractName', title: '合同全称',templet:'<div><a  href="/afterservice/queryAfterServiceById.do?serviceId={{d.serviceId}}" class="layui-table-link">{{d.contractName}}</a></div>'},
+                    {field: 'contractName', title: '合同全称',templet:'<div><a  href="/contract/queryContractById.do?contractId={{d.contractId}}" class="layui-table-link">{{d.contractName}}</a></div>'},
                     {field: 'contractNum', title: '合同编号'},
-                    {field: 'contractMoney',  title: '合同金额',templet:'<div><a  href="  " class="layui-table-link">{{d.contractMoney==null?0:d.contractMoney}}</a></div>'},
-                    {field: 'incomesMoney', title: '汇款额',templet:'<div><a  href="  " class="layui-table-link">{{d.incomesMoney==null?0:d.incomesMoney}}</a></div>'},
-                    {field: 'billMoney', title: '开票额',templet:'<div><a  href="  " class="layui-table-link">{{d.billMoney==null?0:d.billMoney}}</a></div>'},
+                    {field: 'contractMoney',  title: '合同金额'},
+                    {field: 'incomesMoney', title: '汇款额',templet:'<div><a  href="/contract/toContractMoney.do?contractId={{d.contractId}}" class="layui-table-link">{{d.incomesMoney==null?0:d.incomesMoney}}</a></div>'},
+                    {field: 'billMoney', title: '开票额',templet:'<div><a  href="/contract/addContractBill.do?contractId={{d.contractId}}" class="layui-table-link">{{d.billMoney==null?0:d.billMoney}}</a></div>'},
                     {field: 'times', title: '签约日期' },
                 ]],
                 limits: [10, 15, 20, 25, 50, 100],
-                limit: 2,
+                limit: 9,
                 page: true
             });
         });
@@ -326,15 +316,15 @@
                     icon: 'layui-icon-tips'
                 }],
                 cols: [[
-                    {field: 'contractName', title: '合同全称',templet:'<div><a  href="/afterservice/queryAfterServiceById.do?serviceId={{d.serviceId}}" class="layui-table-link">{{d.contractName}}</a></div>'},
+                    {field: 'contractName', title: '合同全称',templet:'<div><a  href="/contract/queryContractById.do?contractId={{d.contractId}}" class="layui-table-link">{{d.contractName}}</a></div>'},
                     {field: 'contractNum', title: '合同编号'},
-                    {field: 'contractMoney',  title: '合同金额',templet:'<div><a  href="  " class="layui-table-link">{{d.contractMoney==null?0:d.contractMoney}}</a></div>'},
-                    {field: 'incomesMoney', title: '汇款额',templet:'<div><a  href="  " class="layui-table-link">{{d.incomesMoney==null?0:d.incomesMoney}}</a></div>'},
-                    {field: 'billMoney', title: '开票额',templet:'<div><a  href="  " class="layui-table-link">{{d.billMoney==null?0:d.billMoney}}</a></div>'},
+                    {field: 'contractMoney',  title: '合同金额'},
+                    {field: 'incomesMoney', title: '汇款额',templet:'<div><a  href="/contract/toContractMoney.do?contractId={{d.contractId}}" class="layui-table-link">{{d.incomesMoney==null?0:d.incomesMoney}}</a></div>'},
+                    {field: 'billMoney', title: '开票额',templet:'<div><a  href="/contract/addContractBill.do?contractId={{d.contractId}}" class="layui-table-link">{{d.billMoney==null?0:d.billMoney}}</a></div>'},
                     {field: 'times', title: '签约日期' },
                 ]],
                 limits: [10, 15, 20, 25, 50, 100],
-                limit: 2,
+                limit: 9,
                 page: true
             });
         });
@@ -351,15 +341,15 @@
                     icon: 'layui-icon-tips'
                 }],
                 cols: [[
-                    {field: 'contractName', title: '合同全称',templet:'<div><a  href="/afterservice/queryAfterServiceById.do?serviceId={{d.serviceId}}" class="layui-table-link">{{d.contractName}}</a></div>'},
+                    {field: 'contractName', title: '合同全称',templet:'<div><a  href="/contract/queryContractById.do?contractId={{d.contractId}}" class="layui-table-link">{{d.contractName}}</a></div>'},
                     {field: 'contractNum', title: '合同编号'},
-                    {field: 'contractMoney',  title: '合同金额',templet:'<div><a  href="  " class="layui-table-link">{{d.contractMoney==null?0:d.contractMoney}}</a></div>'},
-                    {field: 'incomesMoney', title: '汇款额',templet:'<div><a  href="  " class="layui-table-link">{{d.incomesMoney==null?0:d.incomesMoney}}</a></div>'},
-                    {field: 'billMoney', title: '开票额',templet:'<div><a  href="  " class="layui-table-link">{{d.billMoney==null?0:d.billMoney}}</a></div>'},
+                    {field: 'contractMoney',  title: '合同金额'},
+                    {field: 'incomesMoney', title: '汇款额',templet:'<div><a  href="/contract/toContractMoney.do?contractId={{d.contractId}}" class="layui-table-link">{{d.incomesMoney==null?0:d.incomesMoney}}</a></div>'},
+                    {field: 'billMoney', title: '开票额',templet:'<div><a  href="/contract/addContractBill.do?contractId={{d.contractId}}" class="layui-table-link">{{d.billMoney==null?0:d.billMoney}}</a></div>'},
                     {field: 'times', title: '签约日期' },
                 ]],
                 limits: [10, 15, 20, 25, 50, 100],
-                limit: 2,
+                limit: 9,
                 page: true
             });
         });
@@ -376,15 +366,15 @@
                     icon: 'layui-icon-tips'
                 }],
                 cols: [[
-                    {field: 'contractName', title: '合同全称',templet:'<div><a  href="/afterservice/queryAfterServiceById.do?serviceId={{d.serviceId}}" class="layui-table-link">{{d.contractName}}</a></div>'},
+                    {field: 'contractName', title: '合同全称',templet:'<div><a  href="/contract/queryContractById.do?contractId={{d.contractId}}" class="layui-table-link">{{d.contractName}}</a></div>'},
                     {field: 'contractNum', title: '合同编号'},
-                    {field: 'contractMoney',  title: '合同金额',templet:'<div><a  href="  " class="layui-table-link">{{d.contractMoney==null?0:d.contractMoney}}</a></div>'},
-                    {field: 'incomesMoney', title: '汇款额',templet:'<div><a  href="  " class="layui-table-link">{{d.incomesMoney==null?0:d.incomesMoney}}</a></div>'},
-                    {field: 'billMoney', title: '开票额',templet:'<div><a  href="  " class="layui-table-link">{{d.billMoney==null?0:d.billMoney}}</a></div>'},
+                    {field: 'contractMoney',  title: '合同金额'},
+                    {field: 'incomesMoney', title: '汇款额',templet:'<div><a  href="/contract/toContractMoney.do?contractId={{d.contractId}}" class="layui-table-link">{{d.incomesMoney==null?0:d.incomesMoney}}</a></div>'},
+                    {field: 'billMoney', title: '开票额',templet:'<div><a  href="/contract/addContractBill.do?contractId={{d.contractId}}" class="layui-table-link">{{d.billMoney==null?0:d.billMoney}}</a></div>'},
                     {field: 'times', title: '签约日期' },
                 ]],
                 limits: [10, 15, 20, 25, 50, 100],
-                limit: 2,
+                limit: 9,
                 page: true
             });
         });
@@ -401,15 +391,15 @@
                     icon: 'layui-icon-tips'
                 }],
                 cols: [[
-                    {field: 'contractName', title: '合同全称',templet:'<div><a  href="/afterservice/queryAfterServiceById.do?serviceId={{d.serviceId}}" class="layui-table-link">{{d.contractName}}</a></div>'},
+                    {field: 'contractName', title: '合同全称',templet:'<div><a  href="/contract/queryContractById.do?contractId={{d.contractId}}" class="layui-table-link">{{d.contractName}}</a></div>'},
                     {field: 'contractNum', title: '合同编号'},
-                    {field: 'contractMoney',  title: '合同金额',templet:'<div><a  href="  " class="layui-table-link">{{d.contractMoney==null?0:d.contractMoney}}</a></div>'},
-                    {field: 'incomesMoney', title: '汇款额',templet:'<div><a  href="  " class="layui-table-link">{{d.incomesMoney==null?0:d.incomesMoney}}</a></div>'},
-                    {field: 'billMoney', title: '开票额',templet:'<div><a  href="  " class="layui-table-link">{{d.billMoney==null?0:d.billMoney}}</a></div>'},
+                    {field: 'contractMoney',  title: '合同金额'},
+                    {field: 'incomesMoney', title: '汇款额',templet:'<div><a  href="/contract/toContractMoney.do?contractId={{d.contractId}}" class="layui-table-link">{{d.incomesMoney==null?0:d.incomesMoney}}</a></div>'},
+                    {field: 'billMoney', title: '开票额',templet:'<div><a  href="/contract/addContractBill.do?contractId={{d.contractId}}" class="layui-table-link">{{d.billMoney==null?0:d.billMoney}}</a></div>'},
                     {field: 'times', title: '签约日期' },
                 ]],
                 limits: [10, 15, 20, 25, 50, 100],
-                limit: 2,
+                limit: 9,
                 page: true
             });
         });
@@ -426,15 +416,15 @@
                     icon: 'layui-icon-tips'
                 }],
                 cols: [[
-                    {field: 'contractName', title: '合同全称',templet:'<div><a  href="/afterservice/queryAfterServiceById.do?serviceId={{d.serviceId}}" class="layui-table-link">{{d.contractName}}</a></div>'},
+                    {field: 'contractName', title: '合同全称',templet:'<div><a  href="/contract/queryContractById.do?contractId={{d.contractId}}" class="layui-table-link">{{d.contractName}}</a></div>'},
                     {field: 'contractNum', title: '合同编号'},
-                    {field: 'contractMoney',  title: '合同金额',templet:'<div><a  href="  " class="layui-table-link">{{d.contractMoney==null?0:d.contractMoney}}</a></div>'},
-                    {field: 'incomesMoney', title: '汇款额',templet:'<div><a  href="  " class="layui-table-link">{{d.incomesMoney==null?0:d.incomesMoney}}</a></div>'},
-                    {field: 'billMoney', title: '开票额',templet:'<div><a  href="  " class="layui-table-link">{{d.billMoney==null?0:d.billMoney}}</a></div>'},
+                    {field: 'contractMoney',  title: '合同金额'},
+                    {field: 'incomesMoney', title: '汇款额',templet:'<div><a  href="/contract/toContractMoney.do?contractId={{d.contractId}}" class="layui-table-link">{{d.incomesMoney==null?0:d.incomesMoney}}</a></div>'},
+                    {field: 'billMoney', title: '开票额',templet:'<div><a  href="/contract/addContractBill.do?contractId={{d.contractId}}" class="layui-table-link">{{d.billMoney==null?0:d.billMoney}}</a></div>'},
                     {field: 'times', title: '签约日期' },
                 ]],
                 limits: [10, 15, 20, 25, 50, 100],
-                limit: 2,
+                limit: 9,
                 page: true
             });
         });

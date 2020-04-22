@@ -62,7 +62,6 @@ public class InvitationController {
     @RequestMapping("/addInvitation.do")
     public String addInvitation(Invitation invitation){
             invitation.setInvitationTime(new Date());
-            invitation.setInvitationAuthor("zzzz");
             invitationService.save(invitation);
         return "redirect:/page/invitation/queryAllInvitation.html";
     }
@@ -71,7 +70,8 @@ public class InvitationController {
     @RequestMapping("/queryInvitationById.do")
     public String queryInvitationById(Integer invitationId, Model model){
         Invitation invitation = invitationService.getById(invitationId);/* 查询当前主题的帖子 */
-        System.out.println("============================"+invitation+"===========================");
+        invitation.setInvitationClick(invitation.getInvitationClick()+1);
+        invitationService.updateById(invitation);
         List<InvitationReolyBo> YiJiHuiFu = reolyinvitationService.queryReolyInvitationById1(invitation.getInvitationId());/* 查询当前帖子的一级回复*/
         List<InvitationReolyBo> YiJiXiaHuiFu = reolyinvitationService.queryReolyId(YiJiHuiFu);/* 查询一级回复下面的回复*/
         model.addAttribute("invitation",invitation);
@@ -79,10 +79,4 @@ public class InvitationController {
         model.addAttribute("YiJiXiaHuiFu",YiJiXiaHuiFu);/* 查询一级回复下的回复 */
         return "page/invitation/queryInvitationById";
     }
-
-    /*@ResponseBody
-    @RequestMapping("/queryInvitationByReolyId.do")
-    public List<InvitationReolyBo> queryInvitationByReolyId(Integer reolyId){
-        return reolyinvitationService.queryReolyId(reolyId);*//* 查询一级回复下面的回复*//*
-    }*/
 }

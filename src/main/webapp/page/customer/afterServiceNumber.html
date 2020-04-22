@@ -52,7 +52,7 @@
             <div class="layui-form-item">
                 <div class="layui-inline">
                     <div class="layui-input-block">
-                        <select name="type" lay-verify="chaxun">
+                        <select name="type" lay-filter="chaxun">
                             <option value="0">请选择</option>
                             <option name="contractName" value="1">按主题</option>
                             <option name="contractNum" value="2">按服务类型</option>
@@ -64,7 +64,7 @@
                 </div>
                 <div class="layui-inline">
                     <div class="layui-input-block" id="tiaojian">
-                        <input type="text" autocomplete="off" placeholder="请输入关键字" class="layui-input">
+                        <input type="text" id="inp" autocomplete="off" placeholder="请输入关键字" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-inline">
@@ -78,6 +78,9 @@
 <table id="demo" lay-filter="test" bgcolor="#ffe4e1"></table>
 
 <script src="/layui/layui.js"></script>
+<script id="dateFormat">
+    {{layui.util.toDateString(d.startTime, 'yyyy-MM-dd HH:mm:ss')}}
+</script>
 <script>
     layui.use(['form', 'table','jquery'], function(){
         var $ = layui.jquery,
@@ -95,7 +98,7 @@
             ,cols: [[ //表头
                 {field: 'serviceTheme', title: '主题', width:380,templet:'<div><a  href=" " class="layui-table-link">{{d.serviceTheme}}</a></div>'}
                 ,{field: 'serviceType', title: '服务类型', width:270}
-                ,{field: 'serviceStartTime', title: '开始时间', width:250}
+                ,{field: 'startTime', title: '开始时间', width:250,templet:'#dateFormat'}
                 ,{field: 'servicePeople', title: '服务人员', width: 180}
                 ,{field: 'servicesCore', title: '服务评分', width: 200}
             ]]
@@ -134,7 +137,7 @@
         /*监听form表单中的提交事件*/
         form.on('submit(sousuo)', function(data){
             table.reload('demo', {
-                url:'/customer/selectContractInfo.do',
+                url:'/customer/selectServiceInfo.do'+url,
                 where: data.field //设定异步数据接口的额外参数
             });
             return false;

@@ -23,6 +23,7 @@
         <div class="layui-form-item">
             <div class="layui-input-block">
                 <button class="layui-btn" lay-submit lay-filter="saveBtn" >确认保存</button>
+                <a class='btn btn-info' href="/page/invitation/queryAllInvitation.html"><button type="button" class="layui-btn layui-btn-primary" >取消</button></a>
             </div>
         </div>
     </div>
@@ -43,7 +44,6 @@
         //注意：layedit.set 一定要放在 build 前面，否则配置全局接口将无效。
         var index = layedit.build('fuwenben'); //建立编辑器
         var dizhi = window.location.search;
-        alert(dizhi);
         //监听提交
         form.on('submit(saveBtn)', function (data) {
             window.location.href="/reolyinvitation/insertErReoly.do"+dizhi+"&reolyContent="+layedit.getContent(index)

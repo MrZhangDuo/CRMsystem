@@ -26,14 +26,12 @@ import java.util.List;
 @Controller
 @RequestMapping("/customer")
 public class CustomerController {
-
     @Autowired
     private CustomerServiceImpl customerService;
     @Autowired
     private MoneyinforServiceImpl moneyinforService;
     @Autowired
     private MoneyinforMapper moneyinforMapper;
-
 
     /*客户管理页面联合查询*/
     @ResponseBody

@@ -1,5 +1,8 @@
 package com.hy.crmsystem.mrpan.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class AfterServiceNum {
@@ -10,11 +13,21 @@ public class AfterServiceNum {
     //服务类型
     private String serviceType;
     //服务时间
+    @DateTimeFormat(pattern ="yyyy-MM-dd hh:mm:ss")
     private Date serviceStartTime;
+    private String StartTime;
     //服务人
     private String servicePeople;
     //服务评分
     private Double servicesCore;
+
+    public Integer getCustId() {
+        return custId;
+    }
+
+    public void setCustId(Integer custId) {
+        this.custId = custId;
+    }
 
     public String getServiceTheme() {
         return serviceTheme;
@@ -40,6 +53,19 @@ public class AfterServiceNum {
         this.serviceStartTime = serviceStartTime;
     }
 
+    public String getStartTime() {
+        if(serviceStartTime!=null){
+            return new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(serviceStartTime);
+        }else {
+            return StartTime;
+        }
+
+    }
+
+    public void setStartTime(String startTime) {
+        StartTime = startTime;
+    }
+
     public String getServicePeople() {
         return servicePeople;
     }
@@ -56,21 +82,14 @@ public class AfterServiceNum {
         this.servicesCore = servicesCore;
     }
 
-    public Integer getCustId() {
-        return custId;
-    }
-
-    public void setCustId(Integer custId) {
-        this.custId = custId;
-    }
-
     @Override
     public String toString() {
-        return "AfterService{" +
+        return "AfterServiceNum{" +
                 "custId=" + custId +
                 ", serviceTheme='" + serviceTheme + '\'' +
                 ", serviceType='" + serviceType + '\'' +
                 ", serviceStartTime=" + serviceStartTime +
+                ", StartTime='" + StartTime + '\'' +
                 ", servicePeople='" + servicePeople + '\'' +
                 ", servicesCore=" + servicesCore +
                 '}';

@@ -121,14 +121,14 @@
             <div class="layui-form-item layui-form-text">
                 <label class="layui-form-label">服务内容</label>
                 <div class="layui-input-block">
-                    <textarea name="ServiceContent" th:value="${afterservice.getServiceContent()}" class="layui-textarea layui-icon-read" readonly></textarea>
+                    <textarea name="ServiceContent" th:text="${afterservice.getServiceContent()}" class="layui-textarea layui-icon-read" readonly></textarea>
                 </div>
             </div>
 
             <div class="layui-form-item layui-form-text">
                 <label class="layui-form-label">客户反馈</label>
                 <div class="layui-input-block">
-                    <textarea th:value="${afterservice.getCustReturn()}" placeholder="请输入内容" class="layui-textarea layui-icon-read" readonly></textarea>
+                    <textarea th:text="${afterservice.getCustReturn()}" placeholder="请输入内容" class="layui-textarea layui-icon-read" readonly></textarea>
                 </div>
             </div>
 
@@ -136,16 +136,19 @@
                 <div class="layui-inline">
                     <label class="layui-form-label">服务人员</label>
                     <div class="layui-input-inline">
-                        <input type="tel" th:value="${afterservice.getServicePeople()}" class="layui-input layui-icon-read " readonly>
+                        <input type="tel" th:value="${afterservice.getServicePeople()}" name="servicePeople" lay-verify="required" lay-reqtext="请选择服务人员" autocomplete="off" class="layui-input">
                     </div>
-                    <label class="layui-form-label">服务评分</label>
-                    <div class="layui-input-inline">
-                        1<input type="radio" th:checked="${afterservice.getServicesCore()==1}"  class="layui-input layui-icon-read" readonly>
-                        2<input type="radio" th:checked="${afterservice.getServicesCore()==2}"  class="layui-input layui-icon-read" readonly>
-                        3<input type="radio" th:checked="${afterservice.getServicesCore()==3}"  class="layui-input layui-icon-read" readonly>
-                        4<input type="radio" th:checked="${afterservice.getServicesCore()==4}"  class="layui-input layui-icon-read" readonly>
-                        5<input type="radio" th:checked="${afterservice.getServicesCore()==5}"  class="layui-input layui-icon-read" readonly>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">服务评分</label>
+                        <div class="layui-input-block">
+                            1<input type="radio" th:checked="${afterservice.getServicesCore()==1}"  class="layui-input layui-icon-read" readonly>
+                            2<input type="radio" th:checked="${afterservice.getServicesCore()==2}"  class="layui-input layui-icon-read" readonly>
+                            3<input type="radio" th:checked="${afterservice.getServicesCore()==3}"  class="layui-input layui-icon-read" readonly>
+                            4<input type="radio" th:checked="${afterservice.getServicesCore()==4}"  class="layui-input layui-icon-read" readonly>
+                            5<input type="radio" th:checked="${afterservice.getServicesCore()==5}"  class="layui-input layui-icon-read" readonly>
+                        </div>
                     </div>
+                    <a class='btn btn-info' href="/page/afterservice/queryAllAfterService.html"><button type="button" class="layui-btn layui-btn-primary" >取消</button></a>
                 </div>
             </div>
         </form>

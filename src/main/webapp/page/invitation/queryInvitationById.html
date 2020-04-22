@@ -7,140 +7,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" th:href="@{/lib/layui-v2.5.5/css/layui.css}" media="all">
     <link rel="stylesheet" th:href="@{/css/public.css}" media="all">
-    <style>
-        #id1 {
-            margin-right: 105px;
-        }
-
-        #id2 {
-            margin-left: 106px;
-            margin-right: 105px;
-        }
-
-        #id3 {
-            margin-left: 106px;
-        }
-
-        #top_id {
-            margin-top: 30px;
-        }
-
-        #id1_1 {
-            margin-right: 105px;
-        }
-
-        #id2_1 {
-            margin-left: 106px;
-            margin-right: 105px;
-        }
-
-        #id3_1 {
-            margin-left: 106px;
-        }
-
-        #top_id_1 {
-            margin-top: 30px;
-        }
-
-        #id1_2 {
-            margin-right: 105px;
-        }
-
-        #id2_2 {
-            margin-left: 106px;
-            margin-right: 105px;
-        }
-
-        #id3_2 {
-            margin-left: 106px;
-        }
-
-        #top_id_2 {
-            margin-top: 30px;
-        }
-
-
-    </style>
 </head>
 <body>
-<div style="display: block;padding: 20px;">
-    <blockquote class="layui-elem-quote" style="margin-top: 7px"><h1 th:text="${invitation.invitationSubject}"></h1></blockquote>
-    <hr>
-
+<blockquote class="layui-elem-quote" style="margin-top: 7px"><h1 th:text="${invitation.invitationSubject}"></h1></blockquote><hr>
+<div class="layuimini-container">
     <fieldset class="table-search-fieldset">
         <div  class="layui-inline">点击(<span th:text="${invitation.invitationClick}"></span>)回复(<span th:text="${invitation.invitationReply}"></span>)<div class="layui-inline layui-icon layui-icon-form" th:text="${invitation.invitationType}">分类</div> <div class="layui-inline layui-icon layui-icon-note"></div></div>
     </fieldset>
-
-    <div style="padding: 20px; background-color: #F2F2F2;">
-        <div class="layui-row layui-col-space15">
-            <div class="layui-col-md6">
-                <div class="layui-card">
-                    <div class="layui-card-header"><span th:text="${invitation.invitationAuthor}"></span> 发表于 <span th:text="${invitation.invitationTime}"></span></div>
-                    <div class="layui-card-body"><span th:text="${invitation.invitationContent}"></span></div>
-                </div>
-                <hr>
-                <div th:each="n ,nn: ${YiJiXiaHuiFu}">
-                    <div class="layui-card">
-                        <div class="layui-card-header"><span th:text="${n.reolyPeople}"></span>:(<span th:text="${n.zuihouTime}"></span>) 回复了 <span th:text="${n.invitationAuthor}"></span></div>
-                        <div class="layui-card-body"><a  href="javascript:void(0);"><span th:text="${n.reolyContent}"></span></a>
-                            <a th:href="@{'/page/invitation/addReolyinvitation.html?reolyId='+${n.getReolyId()}+'&erreoly='+${n.getReolyId()}+'&invitationId='+${n.getInvitationId()}}"><button  type="button" class="layui-btn layui-btn-normal layui-btn-sm" style="float: right"><i class="layui-icon"></i></button></a>
-                        </div>
-                    </div>
-                    <div ><!--"--><!--id="dianji" style="display: none"-->
-                        <div  class="layui-card" th:each="ii,i:${n.getReolyinvitationList()}">
-                            <div class="layui-card-header">
-                                <span th:text="${ii.getReolyPeople()}"></span>回复了
-                                <span th:text="${ii.getPeople()}"></span>
-                                <span th:text="${ii.reolyContent}"></span>
-                                <a th:href="@{'/page/invitation/addReolyinvitation.html?reolyId='+${ii.getReolyId()}+'&erreoly='+${ii.getErreoly()}+'&invitationId='+${n.getInvitationId()}}"><button type="button" class="layui-btn layui-btn-normal layui-btn-sm" style="float: right"><i class="layui-icon"></i></button></a>
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
-                    <!--<p th:if="${n.getReolyinvitationList().size()>0}">
-                        <a onclick="show(this)"  href="javascript:void(0);">点击查看更多</a>
-                    </p>-->
-                    <hr>
-                </div>
+</div>
+<div class="layui-card" style="background: #00FFFF">
+    <div class="layui-card-header"><span th:text="${invitation.invitationAuthor}"></span> 发表于 <span th:text="${invitation.invitationTime}"></span></div>
+    <div class="layui-card-body"><span th:text="${invitation.invitationContent}"></span></div>
+</div>
+<hr>
+<div th:each="n ,nn: ${YiJiXiaHuiFu}">
+    <div style="background: #00b7ee" class="layui-card">
+        <div class="layui-card-header"><span th:text="${n.reolyPeople}"></span>:(<span th:text="${n.zuihouTime}"></span>) 回复了 <span th:text="${n.invitationAuthor}"></span></div>
+        <div class="layui-card-body"><a  href="javascript:void(0);"><span th:text="${n.reolyContent}"></span></a>
+            <a th:href="@{'/page/invitation/addReolyinvitation.html?reolyId='+${n.getReolyId()}+'&erreoly='+${n.getReolyId()}+'&invitationId='+${n.getInvitationId()}}"><button  type="button" class="layui-btn layui-btn-normal layui-btn-sm" style="float: right"><i class="layui-icon"></i></button></a>
+        </div>
+    </div>
+    <div >
+        <div style="background: #00F7DE"  class="layui-card" th:each="ii,i:${n.getReolyinvitationList()}">
+            <div class="layui-card-header">
+                <span th:text="${ii.getReolyPeople()}"></span>回复了
+                <span th:text="${ii.getPeople()}"></span>
+                <span th:text="${ii.reolyContent}"></span>
+                <a th:href="@{'/page/invitation/addReolyinvitation.html?reolyId='+${ii.getReolyId()}+'&erreoly='+${ii.getErreoly()}+'&invitationId='+${n.getInvitationId()}}"><button type="button" class="layui-btn layui-btn-normal layui-btn-sm" style="float: right"><i class="layui-icon"></i></button></a>
             </div>
         </div>
-        <form class="layui-form" lay-filter="addFormFilter" id="addForm">
-            <input type="hidden" name="reolyContent" id="reolyContent">
-            <input type="hidden" name="invitationId" th:value="${invitation.getInvitationId()}">
-            <!-- 富文本编辑器 -->
-            <textarea id="fuwenben" style="display: none;"></textarea>
-            <div class="layui-form-item" style="text-align: center;margin-top: 25px">
-                <div class="layui-input-block">
-                    <button type="button"
-                            class="layui-btn layui-btn-normal layui-btn-sm layui-icon layui-icon-release" lay-filter="doSubmit" lay-submit="">提交
-                    </button>
-                    <button type="reset" id="dataFrmResetBtn"
-                            class="layui-btn layui-btn-warm layui-btn-sm layui-icon layui-icon-refresh">重置
-                    </button>
-                </div>
-            </div>
-        </form>
     </div>
+    <hr class="layui-bg-orange "><hr class="layui-bg-orange">
 </div>
+<form class="layui-form" lay-filter="addFormFilter" id="addForm">
+    <input type="hidden" name="reolyContent" id="reolyContent">
+    <input type="hidden" name="invitationId" th:value="${invitation.getInvitationId()}">
+    <!-- 富文本编辑器 -->
+    <textarea id="fuwenben" style="display: none;"></textarea>
+    <div class="layui-form-item" style="text-align: center;margin-top: 25px">
+        <div class="layui-input-block">
+            <button type="button" class="layui-btn layui-btn-normal layui-btn-sm layui-icon layui-icon-release" lay-filter="doSubmit" lay-submit="">提交
+                <a class='btn btn-info' href="/page/invitation/queryAllInvitation.html"><button type="button" class="layui-btn layui-btn-primary" >取消</button></a>
+            </button>
+        </div>
+    </div>
+</form>
 <script src="/lib/jquery-3.4.1/jquery-3.4.1.min.js"></script>
 <script src="/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
 <script>
-    /*var show=function (e) {
-        if(e.text=="点击查看更多"){
-            $("#dianji").show();
-            e.text="收起";
-        }else {
-            $("#dianji").hide();
-            e.text="点击查看更多";
-        }
-    };*/
-
-
-
-    layui.use(['layer','layedit','form','upload'], function () {
+    layui.use(['layer','layedit','form','upload','element'], function () {
         var layedit = layui.layedit;
         var form = layui.form,
             upload=layui.upload,
+            element = layui.element;
             $ = layui.$;
         layedit.set({
             uploadImage: {

@@ -1,10 +1,10 @@
 {
   "homeInfo": {
     "title": "首页",
-    "href": "page/welcome-1.html?t=1"
+    "href": "page/welcome-1.html"
   },
   "logoInfo": {
-    "title": "LAYUI MINI",
+    "title": "客户关系管理系统",
     "image": "images/logo.png",
     "href": ""
   },
@@ -12,7 +12,7 @@
     {
       "title": "常规管理",
       "icon": "fa fa-address-book",
-      "href": "",
+      "href": "page/welcome-1.html",
       "target": "_self",
       "child": [
         {
