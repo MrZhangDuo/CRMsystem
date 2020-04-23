@@ -48,7 +48,6 @@ public class UserRealm extends AuthorizingRealm {
         // 拿到用户身份 getPrincipals 得到username
         String username = authenticationToken.getPrincipal().toString();
 
-
         //根据用户名查询用户
         User user = this.userService.queryUserByUserName(username);
         if (null != user) {

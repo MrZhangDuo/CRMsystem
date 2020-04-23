@@ -33,11 +33,14 @@
         <!-- 注入未登陆的跳转页面 默认的是webapp/login.jsp-->
         <property name="loginUrl" value="/login.html"></property>
         <!-- 注入未授权的访问页面 -->
-        <property name="unauthorizedUrl" value="/unauthorized"></property>
+        <property name="unauthorizedUrl" value="/page/error.html"></property>
 
         <!-- 配置过滤器链 权限配置-->
         <property name="filterChainDefinitions">
             <value>
+
+                /page/system/roleManager.html=perms[role:edit]
+
                 /images/** = anon
                 /api/** = anon
                 /css/** = anon
@@ -60,6 +63,7 @@
                 /login/logout*=logout
                 <!--所有的请求(除去配置的静态资源请求或请求地址为anon的请求)都要通过过滤器url-->
                 <!--/**=url-->
+
                 <!-- /** = authc所有url都不可以匿名访问 必须放到最后面 -->
                 /**=authc
             </value>
@@ -69,6 +73,6 @@
 
 
     <!--保证实现了shiro内部lifecycle函数的bean执行-->
-    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+ <!--   <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>-->
 
 </beans>

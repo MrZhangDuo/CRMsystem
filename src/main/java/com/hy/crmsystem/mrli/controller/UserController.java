@@ -8,8 +8,10 @@ import com.hy.crmsystem.mrli.utils.ActivierUser;
 import com.hy.crmsystem.mrli.utils.ResultObj;
 import com.hy.crmsystem.mrli.vo.UserVo;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
@@ -51,10 +53,11 @@ public class UserController {
     /**
      * 添加用户
      */
-    @RequestMapping("/addUser")
+    /*@RequiresPermissions("user:add")*/
+    @PostMapping("/addUser")
     public ResultObj addUser(UserVo userVo) {
         try {
-            this.userService.addUser(userVo);
+            this.userService.save(userVo);
             return ResultObj.ADD_SUCCESS;
         } catch (Exception e) {
             e.printStackTrace();

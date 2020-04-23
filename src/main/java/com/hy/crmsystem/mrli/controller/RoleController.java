@@ -6,6 +6,8 @@ import com.hy.crmsystem.mrli.entity.Role;
 import com.hy.crmsystem.mrli.service.RoleService;
 import com.hy.crmsystem.mrli.utils.ResultObj;
 import com.hy.crmsystem.mrli.vo.RoleVo;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,6 +41,7 @@ public class RoleController {
      * 添加角色
      */
     @RequestMapping("/addRole")
+    @RequiresPermissions("role:add")
     public ResultObj addRole(RoleVo roleVo) {
         try {
             this.roleService.addRole(roleVo);
@@ -52,6 +55,8 @@ public class RoleController {
     /**
      * 修改角色
      */
+//    @RequiresPermissions("role:edit")
+//    @RequiresRoles("1321321")/
     @RequestMapping("/updateRole")
     public ResultObj updateRole(RoleVo roleVo) {
         try {
