@@ -4,7 +4,7 @@
 
     <!-- 查询商机名称 -->
     <select id="queryBusName" resultType="com.hy.crmsystem.mrpan.entity.Business">
-        select BusId,BusName from business
+        select * from business
     </select>
 
 </mapper>

@@ -3,7 +3,7 @@
 <mapper namespace="com.hy.crmsystem.mrli.mapper.DocumentaryMapper">
 
     <select id="queryAllDocumentary" resultType="com.hy.crmsystem.mrli.entity.Documentary">
-        select  DocTime,DocTitle,DocPeople,DocContent,DocFile from documentary
+        select  * from documentary
         <where>
             <if test="DocPeople!=null and DocPeople!=''">
                 and DocPeople like concat("%",#{docPeople},"%")
@@ -22,6 +22,24 @@
     <!--根据跟单标题 查询历史跟单记录 -->
     <select id="queryOldDocumentByDocTitle" resultType="com.hy.crmsystem.mrli.entity.Documentary">
         select * from documentary where docTitle=#{docTitle}
+    </select>
+
+    <!--根据登录人查询全部跟单-->
+    <select id="queryAllDocumentaryByUserName" resultType="com.hy.crmsystem.mrli.entity.Documentary">
+        select  * from documentary
+        <where>
+            <if test="DocPeople!=null and DocPeople!=''">
+                and DocPeople like concat("%",#{docPeople},"%")
+            </if>
+            <if test="DocTitle != null and DocTitle != ''">
+                and DocTitle like concat("%",#{docTitle},"%")
+            </if>
+            <if test="DocTime!=null">
+                and DocTime >=#{docTime}
+            </if>
+            and uname =#{realname}
+        </where>
+        order by DocTime desc
     </select>
 
 

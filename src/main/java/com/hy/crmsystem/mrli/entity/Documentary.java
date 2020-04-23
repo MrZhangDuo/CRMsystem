@@ -27,8 +27,8 @@ public class Documentary implements Serializable  {
     @TableId(value = "DocId", type = IdType.AUTO)
     private Integer DocId;
 
-    @TableField("baseId")
-    private Integer baseId;
+    @TableField("busId")
+    private Integer busId;
 
     /**
      * 跟单时间
@@ -37,6 +37,10 @@ public class Documentary implements Serializable  {
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
     private Date DocTime;
+
+
+    @TableField("uname")
+    private String uname;
 
     /**
      * 跟单人
@@ -81,9 +85,7 @@ public class Documentary implements Serializable  {
     public void setDocId(Integer DocId) {
         this.DocId = DocId;
     }
-    public Integer getBaseId() {
-        return baseId;
-    }
+
 
 
     public String getDocTitle() {
@@ -94,10 +96,13 @@ public class Documentary implements Serializable  {
         DocTitle = docTitle;
     }
 
-    public void setBaseId(Integer baseId) {
-        this.baseId = baseId;
+    public Integer getBusId() {
+        return busId;
     }
 
+    public void setBusId(Integer busId) {
+        this.busId = busId;
+    }
 
     public Date getDocTime() {
         return DocTime;
@@ -129,15 +134,11 @@ public class Documentary implements Serializable  {
         this.DocFile = DocFile;
     }
 
-    @Override
-    public String toString() {
-        return "Documentary{" +
-        "DocId=" + DocId +
-        ", baseId=" + baseId +
-        ", DocTime=" + DocTime +
-        ", DocPeople=" + DocPeople +
-        ", DocContent=" + DocContent +
-        ", DocFile=" + DocFile +
-        "}";
+    public String getUname() {
+        return uname;
+    }
+
+    public void setUname(String uname) {
+        this.uname = uname;
     }
 }

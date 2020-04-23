@@ -35,4 +35,11 @@ public interface IDocumentaryService extends IService<Documentary> {
      * @return
      */
     DataGridView queryOldDocumentary(String docTitle);
+
+    /**
+     * 根据登录名查询全部跟单
+     * @param documentaryVo
+     * @return
+     */
+    DataGridView queryAllDocumentaryByUserName(DocumentaryVo documentaryVo);
 }

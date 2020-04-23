@@ -47,9 +47,7 @@ public class UserRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
         // 拿到用户身份 getPrincipals 得到username
         String username = authenticationToken.getPrincipal().toString();
-/*
-        String password = new String((char[]) authenticationToken.getCredentials());
-*/
+
 
         //根据用户名查询用户
         User user = this.userService.queryUserByUserName(username);

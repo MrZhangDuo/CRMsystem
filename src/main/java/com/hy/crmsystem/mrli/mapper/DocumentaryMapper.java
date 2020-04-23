@@ -5,12 +5,13 @@ import com.hy.crmsystem.mrli.entity.Documentary;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.hy.crmsystem.mrli.vo.DocumentaryVo;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 /**
  * <p>
- *  Mapper 接口
+ * Mapper 接口
  * </p>
  *
  * @author zhangduo
@@ -29,8 +30,18 @@ public interface DocumentaryMapper extends BaseMapper<Documentary> {
 
     /**
      * 根据跟单标题 查询历史跟单记录
+     *
      * @param docTitle
      * @return
      */
     List<Documentary> queryOldDocumentByDocTitle(String docTitle);
+
+
+    /**
+     * 根据登录人查询全部跟单
+     *
+     * @param documentaryVo
+     * @return
+     */
+    List<Documentary> queryAllDocumentaryByUserName( DocumentaryVo documentaryVo, @Param("realname") String realname);
 }

@@ -241,6 +241,7 @@
                 title:'分配【'+data_table.rolename+'】角色和权限和菜单',
                 content:$("#selectMenuDiv"),
                 area:['800px','600px'],
+                shadeClose: true,  //控制点击弹出层外关闭弹出层
                 btn:['<span class="layui-icon layui-icon-ok">确认分配</span>'],
                 btnAlign:'c',
                 yes:function(){
@@ -254,6 +255,7 @@
                     // alert(params);
                     $.post("/role/saveRoleMenu.do",params,function(res){
                         layer.msg(res.msg);
+                        layer.closeAll();
                     })
                 },
                 success:function(index){

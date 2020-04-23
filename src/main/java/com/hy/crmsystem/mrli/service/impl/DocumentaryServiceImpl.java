@@ -4,11 +4,15 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.hy.crmsystem.mrli.entity.DataGridView;
 import com.hy.crmsystem.mrli.entity.Documentary;
+import com.hy.crmsystem.mrli.entity.User;
 import com.hy.crmsystem.mrli.mapper.DocumentaryMapper;
 import com.hy.crmsystem.mrli.service.IDocumentaryService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.hy.crmsystem.mrli.utils.ActivierUser;
 import com.hy.crmsystem.mrli.vo.DocumentaryVo;
 import org.apache.log4j.Logger;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,6 +51,19 @@ public class DocumentaryServiceImpl extends ServiceImpl<DocumentaryMapper, Docum
         return new DataGridView(page.getTotal(), data);
     }
 
+    @Override
+    public DataGridView queryAllDocumentaryByUserName(DocumentaryVo documentaryVo) {
+        //得到当前登录的用户
+        Subject subject = SecurityUtils.getSubject();
+        ActivierUser activeUser = (ActivierUser) subject.getPrincipal();
+        User user = activeUser.getUser();
+        if (null == user) {
+            return null;
+        }
+        Page<Object> page = PageHelper.startPage(documentaryVo.getPage(),documentaryVo.getLimit());
+        List<Documentary> data = this.documentaryMapper.queryAllDocumentaryByUserName(documentaryVo,user.getRealname());
+        return new DataGridView(page.getTotal(),data);
+    }
 
     @Override
     public void addDocumentary(DocumentaryVo documentaryVo) {

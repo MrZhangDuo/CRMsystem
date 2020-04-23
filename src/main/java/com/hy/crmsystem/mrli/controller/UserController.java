@@ -35,7 +35,7 @@ public class UserController {
     @GetMapping("/getCurrentUser")
     public DataGridView getCurrentUser() {
         ActivierUser activierUser = (ActivierUser) SecurityUtils.getSubject().getPrincipal();
-        return new DataGridView(activierUser.getUser());
+        return new DataGridView(activierUser.getUser().getRealname());
     }
 
 
