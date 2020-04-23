@@ -24,7 +24,7 @@ public interface IBusinessService extends IService<Business> {
      *
      * @return
      */
-    List<Business> queryBusName();
+    public List<Business> queryByUserBusName(String name);
 
     //点商机数时查询所有商机的对应信息
     public List<BusinessBo> selectBusInfo(@Param("businessBo") BusinessBo businessBo, Integer currentPage, Integer pageSize);

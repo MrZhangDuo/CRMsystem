@@ -68,11 +68,5 @@
                 /**=authc
             </value>
         </property>
-
     </bean>
-
-
-    <!--保证实现了shiro内部lifecycle函数的bean执行-->
- <!--   <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>-->
-
 </beans>

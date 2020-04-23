@@ -6,9 +6,11 @@ import com.hy.crmsystem.mrli.entity.Documentary;
 import com.hy.crmsystem.mrli.entity.User;
 import com.hy.crmsystem.mrli.service.IDocumentaryService;
 import com.hy.crmsystem.mrli.utils.ActivierUser;
+import com.hy.crmsystem.mrli.utils.ShiroGetUserUtil;
 import com.hy.crmsystem.mrli.vo.DocumentaryVo;
 import com.hy.crmsystem.mrpan.entity.Business;
 import com.hy.crmsystem.mrpan.service.IBusinessService;
+import com.hy.crmsystem.mrpan.service.impl.BusinessServiceImpl;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +38,7 @@ public class DocumentaryController {
     @Autowired
     private IDocumentaryService documentaryService;
     @Autowired
-    private IBusinessService businessService;
+    private BusinessServiceImpl businessService;
 
 
     /**
@@ -55,10 +57,11 @@ public class DocumentaryController {
     /**
      * 查询全部跟单 根据登录名
      */
-    @RequestMapping("/queryAllDocumentaryByUserName")
+    @RequestMapping("/queryAllDocumentaryByUserName.do")
     @ResponseBody
-    public DataGridView loadAllDocumentaryByUserName(DocumentaryVo documentaryVo){
-        return this.documentaryService.queryAllDocumentaryByUserName(documentaryVo);
+    public DataGridView loadAllDocumentaryByUserName(Documentary documentary,DocumentaryVo documentaryVo){
+
+        return this.documentaryService.queryAllDocumentaryByUserName(documentaryVo,documentary, ShiroGetUserUtil.UserObject().getUser().getRealname());
     }
 
 
@@ -71,7 +74,18 @@ public class DocumentaryController {
     @RequestMapping(value = "/queryBusName")
     @ResponseBody
     public List<Business> queryBusName() {
-        return this.businessService.queryBusName();
+        return this.businessService.list();
+    }
+
+
+    /**
+     *
+     * 通过用户查询商机名称 为新增跟单下拉框赋值
+     */
+    @RequestMapping(value = "/queryByUserBusName")
+    @ResponseBody
+    public List<Business> queryByUserBusName() {
+        return this.businessService.queryByUserBusName("admin");
     }
 
 

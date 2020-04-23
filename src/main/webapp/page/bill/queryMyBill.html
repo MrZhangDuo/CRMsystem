@@ -118,7 +118,7 @@
                 <div class="layui-form-item" style="margin-top: 20px">
                     <label class="layui-form-label">跟单主题</label>
                     <div class="layui-input-block">
-                        <input type="hidden" name="BusId">
+                        <input type="hidden" name="busId">
                         <select id="select1" name="DocTitle" lay-filter="docFilter2">
                         </select>
                     </div>
@@ -223,7 +223,7 @@
         //渲染数据表格
         tableIns = table.render({
             elem: '#docTable'   //渲染的目标对象
-            , url: '/documentary/queryAllDocumentaryByUserName.do' //数据接口
+            , url: '/documentary/queryAllDocumentary.do' //数据接口
             , title: '全部跟单'//数据导出来的标题
             , limit: 7
             , limits: [5, 7, 10, 15, 20, 30]
@@ -245,7 +245,7 @@
         $("#doSearch").click(function () {
             var params = $("#searchFrm").serialize();
             tableIns.reload({
-                url: "/documentary/queryAllDocumentaryByUserName.do?" + params,
+                url: "/documentary/queryAllDocumentary.do?" + params,
                 page: {curr: 1}
             })
         });
@@ -258,12 +258,13 @@
 
             //为下拉框赋值 开始
             $.ajax({
-                url: '/documentary/queryBusName.do',
+                url: '/documentary/queryByUserBusName.do',
                 dataType: 'json',
                 success: function (result) {
                     var s = "";
                     $(result).each(function (i, obj) {
-                        s += "<option id='" + obj.BusId + "' value='" + obj.busName + "'>" + obj.busName + "</option>";
+                        s += "<option id='" + obj.busId + "' value='" + obj.busName + "'>" + obj.busName + "</option>";
+                        $("#busId").val(obj.busId);
                     });
                     $("#select1").html(s);
                     //更新渲染
@@ -305,7 +306,7 @@
                         layer.closeAll();   //关闭添加的界面弹出层
                         $("#addForm")[0].reset();      //使用js中的reset方法清空表单中的数据
                         layer.msg('添加成功');
-                        table.reload('myTable', {})
+                        window.parent.location.reload();
                     }
                 }
 

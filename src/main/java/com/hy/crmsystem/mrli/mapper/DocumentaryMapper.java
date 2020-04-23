@@ -43,5 +43,5 @@ public interface DocumentaryMapper extends BaseMapper<Documentary> {
      * @param documentaryVo
      * @return
      */
-    List<Documentary> queryAllDocumentaryByUserName( DocumentaryVo documentaryVo, @Param("realname") String realname);
+    List<Documentary> queryAllDocumentaryByUserName(@Param("documentary") Documentary documentary, @Param("realname") String realname);
 }

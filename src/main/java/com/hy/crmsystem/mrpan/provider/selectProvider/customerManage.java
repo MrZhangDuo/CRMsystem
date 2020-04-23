@@ -8,6 +8,10 @@ import com.mysql.jdbc.StringUtils;
 
 public class customerManage {
 
+    public String queryByUserBusName(String username){
+        return new StringBuffer("SELECT * FROM business WHERE busDutyPeople='"+username+"' OR busJoinPeople='"+username+"' OR busFollowPeople='"+username+"' ").toString();
+    }
+
 
     /*客户管理页面联合查询*/
     public String customerselect(CustomerBo customer){

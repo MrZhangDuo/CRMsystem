@@ -21,12 +21,9 @@ import java.util.List;
  */
 @Mapper
 public interface BusinessMapper extends BaseMapper<Business> {
-
-    /**
-     * 查询商机名称
-     * @return
-     */
-    List<Business> queryBusName();
+    
+    @SelectProvider(type = customerManage.class,method = "queryByUserBusName")
+    public List<Business> queryByUserBusName(String name);
 
     //点商机数时查询所有商机的对应信息
     @SelectProvider(type = customerManage.class,method = "selectBusInfo")

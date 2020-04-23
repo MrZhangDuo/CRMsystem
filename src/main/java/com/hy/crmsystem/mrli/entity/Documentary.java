@@ -24,7 +24,7 @@ public class Documentary implements Serializable  {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "DocId", type = IdType.AUTO)
+    @TableId(value = "docId", type = IdType.AUTO)
     private Integer DocId;
 
     @TableField("busId")
@@ -33,7 +33,7 @@ public class Documentary implements Serializable  {
     /**
      * 跟单时间
      */
-    @TableField("DocTime")
+    @TableField("docTime")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
     private Date DocTime;
@@ -45,26 +45,26 @@ public class Documentary implements Serializable  {
     /**
      * 跟单人
      */
-    @TableField("DocPeople")
+    @TableField("docPeople")
     private String DocPeople;
 
     /**
      * 跟单标题
      */
-    @TableField("DocTitle")
+    @TableField("docTitle")
     private String DocTitle;
 
     /**
      * 跟单内容
      */
-    @TableField("DocContent")
+    @TableField("docContent")
     private String DocContent;
 
 
     /**
      * 跟单分类
      */
-    @TableField("DocType")
+    @TableField("docType")
     private String DocType;
 
     public String getDocType() {
@@ -75,7 +75,7 @@ public class Documentary implements Serializable  {
         DocType = docType;
     }
 
-    @TableField("DocFile")
+    @TableField("docFile")
     private String DocFile;
 
     public Integer getDocId() {

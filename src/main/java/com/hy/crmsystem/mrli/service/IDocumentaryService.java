@@ -41,5 +41,5 @@ public interface IDocumentaryService extends IService<Documentary> {
      * @param documentaryVo
      * @return
      */
-    DataGridView queryAllDocumentaryByUserName(DocumentaryVo documentaryVo);
+    DataGridView queryAllDocumentaryByUserName(DocumentaryVo documentaryVo,Documentary documentary,String realname);
 }

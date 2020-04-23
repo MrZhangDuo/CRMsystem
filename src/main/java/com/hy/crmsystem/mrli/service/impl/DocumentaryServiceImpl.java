@@ -52,16 +52,9 @@ public class DocumentaryServiceImpl extends ServiceImpl<DocumentaryMapper, Docum
     }
 
     @Override
-    public DataGridView queryAllDocumentaryByUserName(DocumentaryVo documentaryVo) {
-        //得到当前登录的用户
-        Subject subject = SecurityUtils.getSubject();
-        ActivierUser activeUser = (ActivierUser) subject.getPrincipal();
-        User user = activeUser.getUser();
-        if (null == user) {
-            return null;
-        }
+    public DataGridView queryAllDocumentaryByUserName(DocumentaryVo documentaryVo,Documentary documentary,String realname) {
         Page<Object> page = PageHelper.startPage(documentaryVo.getPage(),documentaryVo.getLimit());
-        List<Documentary> data = this.documentaryMapper.queryAllDocumentaryByUserName(documentaryVo,user.getRealname());
+        List<Documentary> data = this.documentaryMapper.queryAllDocumentaryByUserName(documentaryVo,realname);
         return new DataGridView(page.getTotal(),data);
     }
 

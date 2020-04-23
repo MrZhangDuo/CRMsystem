@@ -1,5 +1,6 @@
 package com.hy.crmsystem.mrpan.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
@@ -30,8 +31,8 @@ public class BusinessServiceImpl extends ServiceImpl<BusinessMapper, Business> i
     private BusinessMapper businessMapper;
 
     @Override
-    public List<Business> queryBusName() {
-        return this.businessMapper.queryBusName();
+    public List<Business> queryByUserBusName(String name) {
+        return businessMapper.queryByUserBusName(name);
     }
 
     //点商机数时查询所有商机的对应信息
