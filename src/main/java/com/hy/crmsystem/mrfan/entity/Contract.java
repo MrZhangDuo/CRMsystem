@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -43,6 +44,8 @@ public class Contract implements Serializable {
     @TableField("signedTime")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date signedTime;
+    @TableField(exist = false)
+    private String sigtime;
     //生效时间
     @TableField("contractStarTime")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -81,6 +84,18 @@ public class Contract implements Serializable {
     @TableField("contractzhuangtai")
     private String contractzhuangtai;
 
+
+    public String getSigtime() {
+        if(signedTime!=null){
+            return new SimpleDateFormat( "yyyy-MM-dd ").format(signedTime);
+        }else{
+            return sigtime;
+        }
+    }
+
+    public void setSigtime(String sigtime) {
+        this.sigtime = sigtime;
+    }
 
     public String getCustName() {
         return custName;

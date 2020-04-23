@@ -123,7 +123,7 @@ public class customerManage {
 
     //点售后服务数时查询售后服务的信息
     public String selectServiceInfo(AfterServiceNum afterService){
-        StringBuffer sql=new StringBuffer("SELECT serviceTheme ,serviceType ,serviceStartTime as StartTime,servicePeople ,servicesCore FROM `afterservice` \n" +
+        StringBuffer sql=new StringBuffer("SELECT serviceId,serviceTheme ,serviceType ,serviceStartTime as StartTime,servicePeople ,servicesCore FROM `afterservice` \n" +
                 "   WHERE custId='"+afterService.getCustId()+"'");
 
         if(!StringUtils.isNullOrEmpty(afterService.getServiceTheme())){
@@ -164,9 +164,9 @@ public class customerManage {
 
     //我的商机
     public String MyBusInfo(BusinessBo businessBo,String custName){
-        StringBuffer sql=new StringBuffer("SELECT cb.busId, cb.`busName` AS busName,cb.`busStage` AS busStage,cb.`busBeforeMoney` AS busBeforeMoney,cb.`busDutyPeople` AS busDutyPeople,bd.docTime AS docTime,bi.tlbs AS invitationId \n" +
+        StringBuffer sql=new StringBuffer("SELECT cb.busId, cb.`busName` AS busName,cb.`busStage` AS busStage,cb.`busBeforeMoney` AS busBeforeMoney,cb.`busDutyPeople` AS busDutyPeople,bd.docTime AS docTime,bi.tlbs AS tlbs,bi.invitationId \n" +
                 "FROM (SELECT b.`busId`,b.busName,b.`busStage`,b.`busBeforeMoney`,b.`busDutyPeople`  FROM  business b LEFT JOIN customer c ON b.`custId`=c.custId WHERE b.busDutyPeople='"+custName+"' OR b.`busFollowPeople`='"+custName+"' OR b.`busJoinPeople`='"+custName+"')AS cb  LEFT JOIN \n" +
-                "(SELECT b.`busDutyPeople`, b.busId, MAX(d.docTime)AS docTime  FROM business b LEFT JOIN documentary d ON b.`busId`=d.busId GROUP BY b.busId)AS bd  ON cb.`busId`=bd.busId LEFT JOIN (SELECT i.`busId`,COUNT(i.busId)AS tlbs FROM business b LEFT JOIN invitation i ON b.`busId`=i.busId GROUP BY b.busId)AS bi ON cb.`busId`=bi.busId where 1=1");
+                "(SELECT b.`busDutyPeople`, b.busId, MAX(d.docTime)AS docTime  FROM business b LEFT JOIN documentary d ON b.`busId`=d.busId GROUP BY b.busId)AS bd  ON cb.`busId`=bd.busId LEFT JOIN (SELECT i.`busId`,COUNT(i.busId)AS tlbs ,i.`invitationId` FROM business b LEFT JOIN invitation i ON b.`busId`=i.busId GROUP BY b.busId)AS bi ON cb.`busId`=bi.busId where 1=1");
 
         if(!org.springframework.util.StringUtils.isEmpty(businessBo.getBusName())){
             System.out.println("============================================================");
@@ -187,10 +187,10 @@ public class customerManage {
 
    //根据商机负责人查询我的商机信息
     public String MyBusInfoByResponsiblePeople(String custName){
-        StringBuffer sql=new StringBuffer("SELECT cb.busId, cb.`busName` AS busName,cb.`busStage` AS busStage,cb.`busBeforeMoney` AS busBeforeMoney,cb.`busDutyPeople` AS busDutyPeople,bd.docTime AS docTime,bi.tlbs AS invitationId \n" +
+        StringBuffer sql=new StringBuffer("SELECT cb.busId, cb.`busName` AS busName,cb.`busStage` AS busStage,cb.`busBeforeMoney` AS busBeforeMoney,cb.`busDutyPeople` AS busDutyPeople,bd.docTime AS docTime,bi.tlbs AS tlbs,bi.invitationId \n" +
                 "FROM (SELECT b.`busId`,b.busName,b.`busStage`,b.`busBeforeMoney`,b.`busDutyPeople`,b.`busJoinPeople`,b.`busFollowPeople`  FROM  business b LEFT JOIN customer c ON b.`custId`=c.custId)AS cb  LEFT JOIN \n" +
                 "(SELECT b.`busDutyPeople`, b.busId, MAX(d.docTime)AS docTime  FROM business b LEFT JOIN documentary d ON b.`busId`=d.busId GROUP BY b.busId)AS bd  ON cb.`busId`=bd.busId LEFT JOIN\n" +
-                "(SELECT i.`busId`,COUNT(i.busId)AS tlbs FROM business b LEFT JOIN invitation i ON b.`busId`=i.busId GROUP BY b.busId)AS bi ON cb.`busId`=bi.busId WHERE cb.busDutyPeople='"+custName+"'");
+                "(SELECT i.`busId`,COUNT(i.busId)AS tlbs ,i.`invitationId` FROM business b LEFT JOIN invitation i ON b.`busId`=i.busId GROUP BY b.busId)AS bi ON cb.`busId`=bi.busId WHERE cb.busDutyPeople='"+custName+"'");
    return sql.toString();
     }
    //根据商机参与人查询我的商机信息

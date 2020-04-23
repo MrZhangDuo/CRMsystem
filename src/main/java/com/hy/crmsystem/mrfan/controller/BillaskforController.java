@@ -33,7 +33,6 @@ public class BillaskforController {
     }
 
   /*  添加开票额*/
-    @ResponseBody
     @RequestMapping("/addOpenTicket.do")
     public String addOpenTicket(Billaskfor billaskfor){
             billaskforService.save(billaskfor);

@@ -202,7 +202,7 @@
                     {field: 'contractId', width: 80, title: '合同数',templet:'<div><a  href="/page/customer/contractListInfo.html?custId={{d.custId}}" class="layui-table-link">{{d.contractId==null?0:d.contractId}}</a></div>'},
                     {field: 'contractMoney', width: 130, title: '合同金额'},
                     {field: 'incomesMoney', width: 130, title: '回款额'},
-                    {field: 'serviceId', width: 100, title: '售后服务数',templet:'<div><a  href="/customer/   ?contractId={{d.serviceId}}" class="layui-table-link">{{d.serviceId}}</a></div>'},
+                    {field: 'serviceId', width: 100, title: '售后服务数',templet:'<div><a  href="/page/customer/afterServiceNumber.html?contractId={{d.serviceId}}" class="layui-table-link">{{d.serviceId}}</a></div>'},
                     {field: 'servicesCore', width: 90, title: '服务均分'},
                 ]]
                 ,page:true /*进行分页*/

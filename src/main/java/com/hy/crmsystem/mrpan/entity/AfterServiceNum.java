@@ -9,6 +9,7 @@ public class AfterServiceNum {
     //客户id
     private Integer custId;
     //服务主题
+    private Integer serviceId;
     private String serviceTheme;
     //服务类型
     private String serviceType;
@@ -60,6 +61,14 @@ public class AfterServiceNum {
             return StartTime;
         }
 
+    }
+
+    public Integer getServiceId() {
+        return serviceId;
+    }
+
+    public void setServiceId(Integer serviceId) {
+        this.serviceId = serviceId;
     }
 
     public void setStartTime(String startTime) {

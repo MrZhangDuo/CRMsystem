@@ -209,10 +209,10 @@ public interface BusinessMapper extends BaseMapper<Business> {
     public List<BusinessBo> myShelve(String custName);
 
     /*进行中的商机*/
-    @Select("SELECT cb.busId,  cb.`busName` AS busName,cb.`busStage` AS busStage,cb.`busBeforeMoney` AS busBeforeMoney,cb.`busDutyPeople` AS busDutyPeople,bd.docTime AS docTime,bi.tlbs AS invitationId  FROM \n" +
+    @Select("SELECT bi.invitationId, cb.busId,  cb.`busName` AS busName,cb.`busStage` AS busStage,cb.`busBeforeMoney` AS busBeforeMoney,cb.`busDutyPeople` AS busDutyPeople,bd.docTime AS docTime,bi.tlbs AS invitationId  FROM \n" +
             "(SELECT b.`busId`,b.busName,b.`busStage`,b.`busBeforeMoney`,b.`busDutyPeople`  FROM  business b  WHERE busStage != '成交' AND busStage != '丢单')AS cb  LEFT JOIN \n" +
             " (SELECT b.busId, MAX(d.docTime)AS docTime  FROM business b LEFT JOIN documentary d ON b.`busId`=d.busId GROUP BY b.busId)AS bd  ON cb.`busId`=bd.busId LEFT JOIN  \n" +
-            "(SELECT i.`busId`,COUNT(i.busId)AS tlbs FROM business b LEFT JOIN invitation i ON b.`busId`=i.busId GROUP BY b.busId)AS bi ON cb.`busId`=bi.busId WHERE busDutyPeople=#{value}")
+            "(SELECT i.invitationId, i.`busId`,COUNT(i.busId)AS tlbs FROM business b LEFT JOIN invitation i ON b.`busId`=i.busId GROUP BY b.busId)AS bi ON cb.`busId`=bi.busId WHERE busDutyPeople=#{value}")
     public List<BusinessBo> myBusProceed(String custName);
     /*7天未跟单*/
     @Select("SELECT cb.busId,  cb.`busName` AS busName,cb.`busStage` AS busStage,cb.`busBeforeMoney` AS busBeforeMoney,cb.`busDutyPeople` AS busDutyPeople,bd.docTime AS docTime,bi.tlbs AS invitationId  FROM \n" +

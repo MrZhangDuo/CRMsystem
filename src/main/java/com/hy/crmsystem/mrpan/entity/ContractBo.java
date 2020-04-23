@@ -6,6 +6,7 @@ import java.util.Date;
 public class ContractBo {
     //客户名称id
     private Integer custId;
+    private Integer contractId;
     //合同名称
     private String contractName;
     //合同编号
@@ -22,6 +23,14 @@ public class ContractBo {
     private Float billMoney;
     //所属部门
     private String ofdept;
+
+    public Integer getContractId() {
+        return contractId;
+    }
+
+    public void setContractId(Integer contractId) {
+        this.contractId = contractId;
+    }
 
     public String getContractName() {
         return contractName;

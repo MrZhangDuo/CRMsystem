@@ -24,7 +24,7 @@ public interface CustomerMapper extends BaseMapper<Customer> {
     public List<CustomerBo> customerSelect(CustomerBo customer);
 
     //根据客户分类查询
-    @Select("SELECT c.custName, sj.sjs AS busId,sj.yje AS busBeforeMoney,ht.hts AS contractId, ht.contractMoney AS contractMoney,ht.hke AS incomesMoney ,sh.shs AS serviceId,sh.pjf AS servicesCore FROM  customer c LEFT JOIN \n" +
+    @Select("SELECT c.custId, c.custName, sj.sjs AS busId,sj.yje AS busBeforeMoney,ht.hts AS contractId, ht.contractMoney AS contractMoney,ht.hke AS incomesMoney ,sh.shs AS serviceId,sh.pjf AS servicesCore FROM  customer c LEFT JOIN \n" +
             "(SELECT b.`custId`,COUNT(b.`custId`)AS sjs,SUM(busBeforeMoney)AS yje FROM  customer c LEFT JOIN  business b   ON b.`custId`=c.custId GROUP BY c.custId)AS sj ON c.custId=sj.custId LEFT JOIN \n" +
             "(SELECT con.`custId`, COUNT(con.custId)AS hts ,con.contractMoney,SUM(mon.incomesMoney)AS hke FROM customer c LEFT JOIN contract con ON c.custId=con.`custId` LEFT JOIN moneyregister mon ON con.`contractId`=mon.`contractId`\n" +
             "GROUP BY c.custId) AS ht ON c.custId=ht.custId  LEFT JOIN\n" +

@@ -38,7 +38,11 @@ public class ReolyinvitationController {
 
         /* 点击回复 把帖子回复加 1 */
         Invitation invitation = invitationService.getById(reolyinvitation.getInvitationId());
-        invitation.setInvitationReply(invitation.getInvitationReply()+1);
+        if(null != invitation.getInvitationReply() && invitation.getInvitationReply()>0){
+            invitation.setInvitationReply(invitation.getInvitationReply()+1);
+        }else{
+            invitation.setInvitationReply(1);
+        }
         invitationService.updateById(invitation);
         reolyinvitationService.save(reolyinvitation);
         return "redirect:/invitation/queryInvitationById.do?invitationId="+reolyinvitation.getInvitationId();

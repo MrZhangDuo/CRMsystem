@@ -7,6 +7,7 @@ import com.hy.crmsystem.mrfan.entity.Moneyregister;
 import com.hy.crmsystem.mrfan.entity.QueryType;
 import com.hy.crmsystem.mrfan.service.impl.ContractServiceImpl;
 import com.hy.crmsystem.mrfan.service.impl.MoneyregisterServiceImpl;
+import com.hy.crmsystem.mrli.utils.ShiroGetUserUtil;
 import com.hy.crmsystem.mrpan.entity.Customer;
 import com.hy.crmsystem.mrpan.service.impl.CustomerServiceImpl;
 import com.hy.crmsystem.mrzhang.entity.Andition;
@@ -51,8 +52,7 @@ public class ContractController {
     @ResponseBody
     @RequestMapping("queryMyContract.do")
     public LayuiData queryMyContract(String page,String limit,Contract contract,QueryType queryType){
-        String currentName="张铎";
-        return contractService.queryAllContract(page,limit,currentName,contract,queryType);
+        return contractService.queryAllContract(page,limit,ShiroGetUserUtil.UserObject().getUser().getRealname(),contract,queryType);
     }
 
     /* 查询 合同 执行 搁置。。。。 的数量 */
@@ -69,7 +69,7 @@ public class ContractController {
     @ResponseBody
     @RequestMapping("queryMyContractCount.do")
     public Andition queryMyContractCount(){
-        String custName="张铎";
+        String custName= ShiroGetUserUtil.UserObject().getUser().getRealname();
         return  new Andition(contractService.countContractCheChu(custName),contractService.countContractZhiXing(custName),
                 contractService.countContractGuanBi(custName),
                 contractService.countContractGeZhi(custName),contractService.countContractBenZhou(custName),contractService.countContractShangZhou(custName),

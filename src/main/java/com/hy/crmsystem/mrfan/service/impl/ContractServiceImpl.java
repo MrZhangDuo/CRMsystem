@@ -34,9 +34,6 @@ public class ContractServiceImpl extends ServiceImpl<ContractMapper, Contract> i
     public LayuiData queryAllContract(String page, String limit, String currentName, Contract contract, QueryType queryType) {
         IPage iPage = new Page(Integer.parseInt(page),Integer.parseInt(limit));
         IPage<ContractBoi> contractBoList = contractMapper.queryAllContract(iPage,currentName,contract,queryType);
-        for (int i = 0; i <contractBoList.getRecords().size() ; i++) {
-            System.out.println(contractBoList.getRecords().get(i));
-        }
         LayuiData layuiData = new LayuiData();
         layuiData.setData(contractBoList.getRecords());
         layuiData.setCount(contractBoList.getTotal());
@@ -107,7 +104,7 @@ public class ContractServiceImpl extends ServiceImpl<ContractMapper, Contract> i
     public Integer countContractBenZhou(String custName) {
         QueryWrapper queryWrapper = new QueryWrapper();
         queryWrapper.select("signedTime");
-        queryWrapper.apply("signedTime=YEARWEEK(NOW())","");
+        queryWrapper.apply("WEEKOFYEAR(signedTime)=WEEKOFYEAR(NOW())","");
         if(StringUtils.isNotEmpty(custName)){
             queryWrapper.like("relevancyPeople",custName);
         }
@@ -117,7 +114,7 @@ public class ContractServiceImpl extends ServiceImpl<ContractMapper, Contract> i
     public Integer countContractShangZhou(String custName) {
         QueryWrapper queryWrapper = new QueryWrapper();
         queryWrapper.select("signedTime");
-        queryWrapper.apply("signedTime=YEARWEEK(NOW())-1","");
+        queryWrapper.apply("YEARWEEK(DATE_FORMAT(signedTime,'%Y-%m-%d')) = YEARWEEK(NOW())-1","");
         if(StringUtils.isNotEmpty(custName)){
             queryWrapper.like("relevancyPeople",custName);
         }

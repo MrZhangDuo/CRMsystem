@@ -20,7 +20,7 @@ public class QueryAllContract {
             sql.append(" AND cust.custName like'%"+contract.getCustName()+"%'");
         }
         if(null!=contract.getSignedTime()){
-            sql.append(" AND con.signedTime >='"+contract.getSignedTime()+"'");
+            sql.append(" AND con.signedTime >='"+contract.getSigtime()+"'");
         }
         if(StringUtils.isNotEmpty(contract.getContractName())){
             sql.append(" AND con.contractName like '%"+contract.getContractName()+"%'");
@@ -34,9 +34,9 @@ public class QueryAllContract {
         }else if (StringUtils.isNotEmpty(queryType.getGezhi())&&queryType.getGezhi().equals("gezhi")){
             sql.append(" AND con.contractzhuangtai='搁置'");
         }else if (StringUtils.isNotEmpty(queryType.getBenzhou())&&queryType.getBenzhou().equals("benzhou")){
-            sql.append(" AND con.signedTime=YEARWEEK(NOW())");
+            sql.append(" AND WEEKOFYEAR(con.signedTime)=WEEKOFYEAR(NOW())");
         }else if (StringUtils.isNotEmpty(queryType.getShangzhou())&&queryType.getShangzhou().equals("shangzhou")){
-            sql.append(" AND con.signedTime=YEARWEEK(NOW())-1");
+            sql.append(" AND YEARWEEK(DATE_FORMAT(signedTime,'%Y-%m-%d')) = YEARWEEK(NOW())-1");
         }else if (StringUtils.isNotEmpty(queryType.getBenyue())&&queryType.getBenyue().equals("benyue")){
             sql.append(" AND DATE_FORMAT(con.signedTime,'%Y-%m')=DATE_FORMAT(NOW(),'%Y-%m')");
         }else if (StringUtils.isNotEmpty(queryType.getShangyue())&&queryType.getShangyue().equals("shangyue")){
