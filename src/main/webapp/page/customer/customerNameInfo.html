@@ -263,7 +263,7 @@
             </div>
             <div class="layui-inline">
                 <button type="submit" class="layui-btn" lay-submit  lay-filter="xiugai" id="update">修改</button>
-                <a class='btn btn-info' href="javascript:history.go(-1)"><button type="button" class="layui-btn" id="quxiao">取消</button></a>
+                <button type="button" class="layui-btn" id="quxiao">取消</button>
             </div>
         </form>
     </div>
@@ -279,6 +279,9 @@
             , layedit = layui.layedit
             , laydate = layui.laydate;
 
+        $("#quxiao").click(function () {
+            window.location.href="/page/customer/queryAllCust.html";
+        });
 
         //监听提交修改
         form.on('submit(xiugai)', function (data) {

@@ -21,11 +21,6 @@ public interface PermissionService {
     boolean needInterceptor(ServletRequest request);
 
     Set<String> listPermissionURLS(String userName);
+    public DataGridView loadAllPermision(Permission permission);
 
-    /**
-     * 查询全部权限
-     * @param permission
-     * @return
-     */
-    DataGridView loadAllPermision(Permission permission);
 }

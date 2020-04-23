@@ -169,19 +169,21 @@ public class BusinessController {
     }
 
     //添加商机
-    @ResponseBody
-    @RequestMapping("/addBusiness.do")
-    public String addBusiness(Business business){
-        String a="0";
-        try {
+    @RequestMapping("/addMyBusiness.do")
+    public String addMyBusiness(Business business){
             business.setBusTime(new Date());//设置商机添加的时间
             businessService.save(business);  //添加商机信息
-
-        } catch (Exception e) {
-           a="1";
-        }
-       return a;
+       return "redirect:/page/business/queryMyBusiness.html";
     }
+
+    //添加商机
+    @RequestMapping("/addAllBusiness.do")
+    public String addAllBusiness(Business business){
+        business.setBusTime(new Date());//设置商机添加的时间
+        businessService.save(business);  //添加商机信息
+        return "redirect:/page/business/queryAllBusiness.html";
+    }
+
 
     /*查询进行中的商机*/
     @ResponseBody

@@ -5,6 +5,7 @@ import com.hy.crmsystem.mrfan.entity.Invitation;
 import com.hy.crmsystem.mrfan.entity.Reolyinvitation;
 import com.hy.crmsystem.mrfan.service.impl.InvitationServiceImpl;
 import com.hy.crmsystem.mrfan.service.impl.ReolyinvitationServiceImpl;
+import com.hy.crmsystem.mrli.utils.ShiroGetUserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,7 +34,7 @@ public class ReolyinvitationController {
     @RequestMapping("insertYiReoly.do")
     public String insertReoly(Reolyinvitation reolyinvitation){
         reolyinvitation.setReolyTime(new Date());
-        reolyinvitation.setReolyPeople("pan");
+        reolyinvitation.setReolyPeople(ShiroGetUserUtil.UserObject().getUser().getRealname());
 
         /* 点击回复 把帖子回复加 1 */
         Invitation invitation = invitationService.getById(reolyinvitation.getInvitationId());
@@ -47,7 +48,7 @@ public class ReolyinvitationController {
     public String insertReoly(String  reolyId,String erreoly ,String invitationId ,String reolyContent ){
         Reolyinvitation reolyinvitation = new Reolyinvitation();
         reolyinvitation.setQuiltReolyPeople(reolyId);
-        reolyinvitation.setReolyPeople("pan");
+        reolyinvitation.setReolyPeople(ShiroGetUserUtil.UserObject().getUser().getRealname());
         reolyinvitation.setReolyContent(reolyContent);
         reolyinvitation.setReolyTime(new Date());
         reolyinvitation.setErreoly(erreoly);

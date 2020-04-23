@@ -180,7 +180,7 @@
         <button type="submit" class="layui-btn layui-btn-primary" lay-submit=""  lay-filter="baocun" id="baocun" >保存</button>
         <button type="submit" class="layui-btn layui-btn-primary"  lay-filter="tijiao" id="shenghe" style="background-color: #5fb878">提交审核</button>
         <button type="submit" class="layui-btn layui-btn-primary"  lay-filter="orderDengji" id="gendan" style="background-color: #5fb878">登记完成转跟单</button>
-        <a class='btn btn-info' href="javascript:history.go(-1)"><button type="button" class="layui-btn layui-btn-primary" style="background-color: #5fb878" >取消</button></a>
+        <button type="button" class="layui-btn layui-btn-radius" id="fanhui">取消</button>
 
     </form>
 </div>
@@ -235,8 +235,12 @@
 
         //监听提交保存
         form.on('submit(baocun)', function(data){
-            $('form[id=business]').attr('action','/business/addBusiness.do').submit();
+            $('form[id=business]').attr('action','/business/addMyBusiness.do').submit();
             return false;
+        });
+
+        $("#fanhui").click(function () {
+            window.location.href="/page/business/queryMyBusiness.html";
         });
     });
 

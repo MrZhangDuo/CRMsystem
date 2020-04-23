@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
+import java.util.List;
+
 /**
  * @author licheng
  * @date 2020/4/13 16:03
@@ -35,7 +37,17 @@ public class Permission {
 
     @TableField(value = "available")
     private String available;
+    @TableField(exist = false)
+    private List<Permission> permissionList;
 
+
+    public List<Permission> getPermissionList() {
+        return permissionList;
+    }
+
+    public void setPermissionList(List<Permission> permissionList) {
+        this.permissionList = permissionList;
+    }
 
     public Integer getPerid() {
         return perid;

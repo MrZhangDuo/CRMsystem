@@ -29,9 +29,6 @@ public class ReolyinvitationServiceImpl extends ServiceImpl<ReolyinvitationMappe
         return reolyinvitationMapper.queryReolyinvitationByInvitationId(invitationId);
     }
 
-
-
-
     public List<InvitationReolyBo> queryReolyId(List<InvitationReolyBo> reolyinvitations){
         if(null != reolyinvitations && !reolyinvitations.isEmpty()){
             for(InvitationReolyBo reolyinvitation:reolyinvitations){
@@ -46,17 +43,4 @@ public class ReolyinvitationServiceImpl extends ServiceImpl<ReolyinvitationMappe
     public  List<InvitationReolyBo> fu_jiReolyinvitation(Integer reolyId){
         return reolyinvitationMapper.queryReolyinvitationFuJi(reolyId);
     }
-
-
-
-
-
-    /*public List<InvitationReolyBo> queryReolyInvitationById1(Integer invitationId){
-        return reolyinvitationMapper.queryReolyinvitationByInvitationId(invitationId);
-    }
-
-    public List<InvitationReolyBo> queryReolyId(Integer reolyId){
-        return reolyinvitationMapper.queryReolyinvitationFuJi(reolyId);
-    }*/
-
 }

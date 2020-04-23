@@ -65,7 +65,7 @@ public class CustomerController {
         try{
             //添加新增客户的财务信息并返回id
             Integer moneyId= moneyinforMapper.insert(moneyinfor);
-            customer.setMoneyId(moneyId);
+            customer.setMoneyId(moneyinfor.getMoneyId());
             //添加新增客户的基本信息
             customerService.save(customer);
         }catch (Exception e){
