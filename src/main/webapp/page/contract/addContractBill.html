@@ -45,7 +45,7 @@
              <legend>开票申请单</legend>
          </fieldset>
 
-         <a class='btn btn-info' href="javascript:history.go(-1)"><button type="button" class="layui-btn layui-btn-primary" id="fanhui">返回</button></a>
+         <a href='javascript:history.go(-1);'><button type="button" class="layui-btn layui-btn-radius">返回上一页</button></a>
 
          <form class="layui-form" id="tijiao">
                 <div class="layui-form-item">
@@ -74,9 +74,8 @@
                         <label class="layui-form-label">结束时间</label>
                         <div class="layui-input-block">
                             <div class="layui-input-inline">
-                                <input type="text" name="busBeforedate" id="date1"  lay-verify="title"  placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                                <input type="text" name="endtime" id="date1"   lay-verify="title"  placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
                             </div>
-                            <input type="text" name="endtime"   lay-verify="title"  placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
                         </div>
                     </div>
                 </div>
@@ -114,38 +113,38 @@
                     </div>
                 </div>
 
-             <div class="layui-form-item">
-                 <div class="layui-inline">
-                     <label class="layui-form-label">申请日期</label>
-                     <div class="layui-input-block">
-                         <input type="text" name="askFortime"   placeholder="yyyy-MM-dd" class="layui-input layui-icon-read">
+                 <div class="layui-form-item">
+                     <div class="layui-inline">
+                         <label class="layui-form-label">申请日期</label>
+                         <div class="layui-input-block">
+                             <input type="text" name="askFortime"  id="date2"  placeholder="yyyy-MM-dd" class="layui-input layui-icon-read">
+                         </div>
                      </div>
-                 </div>
-                 <div class="layui-inline">
-                     <label class="layui-form-label">对方单位全称</label>
-                     <div class="layui-input-block">
-                         <input type="text" name="unitName" class="layui-input layui-icon-read" >
-                     </div>
-                 </div>
-             </div>
-
-             <div class="layui-form-item">
-                 <div class="layui-inline">
-                     <label class="layui-form-label">主要技术条款</label>
-                     <div class="layui-input-block" style="height:90px">
-                         <textarea placeholder="请输入内容" name="billTechnical" class="layui-textarea"></textarea>
-                     </div>
-                 </div>
-                 <div class="layui-inline">
-                     <div class="layui-upload">
-                         <button type="button" class="layui-btn" id="test3">关联合同</button>
-                         <div class="layui-upload-list">
-                             <img class="layui-upload-img" id="fileupload">
-                             <p id="demoText"></p>
+                     <div class="layui-inline">
+                         <label class="layui-form-label">对方单位全称</label>
+                         <div class="layui-input-block">
+                             <input type="text" name="unitName" class="layui-input layui-icon-read" >
                          </div>
                      </div>
                  </div>
-             </div>
+
+                 <div class="layui-form-item">
+                     <div class="layui-inline">
+                         <label class="layui-form-label">主要技术条款</label>
+                         <div class="layui-input-block" style="height:90px">
+                             <textarea placeholder="请输入内容" name="billTechnical" class="layui-textarea"></textarea>
+                         </div>
+                     </div>
+                     <div class="layui-inline">
+                         <div class="layui-upload">
+                             <button type="button" class="layui-btn" id="test3">关联合同</button>
+                             <div class="layui-upload-list">
+                                 <img class="layui-upload-img" id="fileupload">
+                                 <p id="demoText"></p>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
 
 
                 <div class="layui-form-item">
@@ -197,7 +196,7 @@
                     <div class="layui-inline">
                         <label class="layui-form-label">开票日期</label>
                         <div class="layui-input-block">
-                            <input type="text" name="billTime" placeholder="yyyy-MM-dd" class="layui-input layui-icon-read">
+                            <input type="text" name="billTime" id="date3" placeholder="yyyy-MM-dd" class="layui-input layui-icon-read">
                         </div>
                     </div>
                     <div class="layui-inline">
@@ -224,6 +223,9 @@
                         <button type="reset" class="layui-btn layui-btn-primary" id="chongzhi">重置</button>
                     </div>
                 </div>
+
+
+
         </form>
    </div>
 </div>
@@ -238,22 +240,18 @@
             , layedit = layui.layedit
             , laydate = layui.laydate;
 
-
-        //自定义验证规则
-        /*form.verify({
-            title: function (value) {
-                if (value.length < 5) {
-                    return '标题至少得5个字符啊';
-                }
-            }
-            , pass: [
-                /^[\S]{6,12}$/
-                , '密码必须6到12位，且不能出现空格'
-            ]
-            , content: function (value) {
-                layedit.sync(editIndex);
-            }
-        });*/
+        //日期
+        laydate.render({
+            elem: '#date1'
+        });
+        //日期
+        laydate.render({
+            elem: '#date2'
+        });
+        //日期
+        laydate.render({
+            elem: '#date3'
+        });
 
         //监听提交保存
         form.on('submit(addContactBill)', function(data){
