@@ -124,43 +124,43 @@ public class AfterserviceServiceImpl extends ServiceImpl<AfterserviceMapper, Aft
 
     public Integer countBenZhou() {
         QueryWrapper queryWrapper = new QueryWrapper();
-        queryWrapper.select("ServiceStartTime");
-        queryWrapper.apply("ServiceStartTime=YEARWEEK(NOW())","");
+        queryWrapper.select("serviceStartTime");
+        queryWrapper.apply("WEEKOFYEAR(serviceStartTime)=WEEKOFYEAR(NOW())","");
         return afterserviceMapper.selectCount(queryWrapper);
     }
 
     public Integer countShangZhou() {
         QueryWrapper queryWrapper = new QueryWrapper();
-        queryWrapper.select("ServiceStartTime");
-        queryWrapper.apply("ServiceStartTime=YEARWEEK(NOW())-1","");
+        queryWrapper.select("serviceStartTime");
+        queryWrapper.apply("YEARWEEK(DATE_FORMAT(serviceStartTime,'%Y-%m-%d')) = YEARWEEK(NOW())-1","");
         return afterserviceMapper.selectCount(queryWrapper);
     }
 
     public Integer countBenYue() {
         QueryWrapper queryWrapper = new QueryWrapper();
-        queryWrapper.select("ServiceStartTime");
-        queryWrapper.apply("DATE_FORMAT(ServiceStartTime,'%Y-%m')=DATE_FORMAT(NOW(),'%Y-%m')","");
+        queryWrapper.select("serviceStartTime");
+        queryWrapper.apply("DATE_FORMAT(serviceStartTime,'%Y-%m')=DATE_FORMAT(NOW(),'%Y-%m')","");
         return afterserviceMapper.selectCount(queryWrapper);
     }
 
     public Integer countShangYue() {
         QueryWrapper queryWrapper = new QueryWrapper();
-        queryWrapper.select("ServiceStartTime");
-        queryWrapper.apply("DATE_FORMAT(ServiceStartTime,'%Y-%m')=DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 MONTH),'%Y-%m')","");
+        queryWrapper.select("serviceStartTime");
+        queryWrapper.apply("DATE_FORMAT(serviceStartTime,'%Y-%m')=DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 MONTH),'%Y-%m')","");
         return afterserviceMapper.selectCount(queryWrapper);
     }
 
     public Integer countBenJi() {
         QueryWrapper queryWrapper = new QueryWrapper();
-        queryWrapper.select("ServiceStartTime");
-        queryWrapper.apply("QUARTER(ServiceStartTime)=QUARTER(NOW())","");
+        queryWrapper.select("serviceStartTime");
+        queryWrapper.apply("QUARTER(serviceStartTime)=QUARTER(NOW())","");
         return afterserviceMapper.selectCount(queryWrapper);
     }
 
     public Integer countShangJi() {
         QueryWrapper queryWrapper = new QueryWrapper();
-        queryWrapper.select("ServiceStartTime");
-        queryWrapper.apply("QUARTER(ServiceStartTime)=QUARTER(DATE_SUB(NOW(),INTERVAL 1 QUARTER))","");
+        queryWrapper.select("serviceStartTime");
+        queryWrapper.apply("QUARTER(serviceStartTime)=QUARTER(DATE_SUB(NOW(),INTERVAL 1 QUARTER))","");
         return afterserviceMapper.selectCount(queryWrapper);
     }
 
