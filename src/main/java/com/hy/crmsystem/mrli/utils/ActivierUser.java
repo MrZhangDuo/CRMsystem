@@ -3,6 +3,7 @@ package com.hy.crmsystem.mrli.utils;
 import com.hy.crmsystem.mrli.entity.User;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author licheng
@@ -11,13 +12,13 @@ import java.util.List;
 public class ActivierUser {
 
     private User user;
-    private List<String> roles;
-    private List<String> permissions;
+    private Set<String> roles;
+    private Set<String> permissions;
 
     public ActivierUser() {
     }
 
-    public ActivierUser(User user, List<String> roles, List<String> permissions) {
+    public ActivierUser(User user, Set<String> roles, Set<String> permissions) {
         this.user = user;
         this.roles = roles;
         this.permissions = permissions;
@@ -31,19 +32,19 @@ public class ActivierUser {
         this.user = user;
     }
 
-    public List<String> getRoles() {
+    public Set<String> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<String> roles) {
+    public void setRoles(Set<String> roles) {
         this.roles = roles;
     }
 
-    public List<String> getPermissions() {
+    public Set<String> getPermissions() {
         return permissions;
     }
 
-    public void setPermissions(List<String> permissions) {
+    public void setPermissions(Set<String> permissions) {
         this.permissions = permissions;
     }
 }

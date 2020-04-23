@@ -15,7 +15,10 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author licheng
@@ -52,9 +55,26 @@ public class UserRealm extends AuthorizingRealm {
         User user = this.userService.queryUserByUserName(username);
         if (null != user) {
             // 查询角色
-            List<String> roles = this.roleService.queryRoleByUserId(user.getUserid());
+            Set<String> roles = new HashSet<>(this.roleService.queryRoleByUserId(user.getUserid()));
+            Iterator<String> stringIterator = roles.iterator();
+            while (stringIterator.hasNext()){
+                System.out.println("角色======================="+stringIterator.next());
+            }
+            System.out.println("===========================____________________________________________");
+
+
             // 查询权限
-            List<String> permissions = this.permissionService.queryPermissionByUserId(user.getUserid());
+            Set<String> permissions =new HashSet<>(this.permissionService.queryPermissionByUserId(user.getUserid())) ;
+            Iterator<String> per = permissions.iterator();
+            while (per.hasNext()){
+                System.out.println("权限======================="+per.next());
+            }
+            System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+
+
+
+
+
             // 构造Activeuser
             ActivierUser activierUser = new ActivierUser(user, roles, permissions);
             // 创建盐
@@ -77,8 +97,10 @@ public class UserRealm extends AuthorizingRealm {
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 
         // 通过service获取角色和权限
-        List<String> roles = activierUser.getRoles();
-        List<String> permissions = activierUser.getPermissions();
+        Set<String> roles = activierUser.getRoles();
+        Set<String> permissions = activierUser.getPermissions();
+
+        System.out.println("-------------------------------------------------------------"+permissions);
         if (null != roles && roles.size() > 0) {
             // 把通过service获取到的角色放进去
             info.addRoles(roles);
@@ -90,11 +112,10 @@ public class UserRealm extends AuthorizingRealm {
         return info;
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
 
-        Object obj=new SimpleHash("MD5","123456",ByteSource.Util.bytes("admin"),2);
-        System.out.println(obj);
-
-
+     /*   Object obj=new SimpleHash("MD5","123456",ByteSource.Util.bytes("admin"),2);
+        System.out.println(obj);*/
     }
+
 }
