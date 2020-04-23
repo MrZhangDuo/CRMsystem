@@ -56,33 +56,20 @@ public class UserRealm extends AuthorizingRealm {
         if (null != user) {
             // 查询角色
             Set<String> roles = new HashSet<>(this.roleService.queryRoleByUserId(user.getUserid()));
-            Iterator<String> stringIterator = roles.iterator();
-            while (stringIterator.hasNext()){
-                System.out.println("角色======================="+stringIterator.next());
-            }
-            System.out.println("===========================____________________________________________");
-
-
             // 查询权限
-            Set<String> permissions =new HashSet<>(this.permissionService.queryPermissionByUserId(user.getUserid())) ;
+           /* List<String> permissions = ;*/
+            Set<String> permissions = new HashSet<>(this.permissionService.queryPermissionByUserId(user.getUserid()));
             Iterator<String> per = permissions.iterator();
             while (per.hasNext()){
-                System.out.println("权限======================="+per.next());
+                System.out.println("权限================================================"+per.next());
             }
-            System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-
-
-
-
-
             // 构造Activeuser
             ActivierUser activierUser = new ActivierUser(user, roles, permissions);
             // 创建盐
             ByteSource credentialsSalt = ByteSource.Util.bytes(user.getLoginname());
 
             // 认证信息里存放账号密码，getName() 是当前Realm的继承方法，通常返回当前类名 ：UserRealm
-            SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(activierUser, user.getPwd(), credentialsSalt, this.getName());
-            return info;
+            return new SimpleAuthenticationInfo(activierUser, user.getPwd(), credentialsSalt, this.getName());
         } else {
             throw new UnknownAccountException("此用户不存在");
         }
@@ -99,8 +86,6 @@ public class UserRealm extends AuthorizingRealm {
         // 通过service获取角色和权限
         Set<String> roles = activierUser.getRoles();
         Set<String> permissions = activierUser.getPermissions();
-
-        System.out.println("-------------------------------------------------------------"+permissions);
         if (null != roles && roles.size() > 0) {
             // 把通过service获取到的角色放进去
             info.addRoles(roles);
@@ -112,10 +97,10 @@ public class UserRealm extends AuthorizingRealm {
         return info;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
+        Object obj=new SimpleHash("MD5","123456",ByteSource.Util.bytes("admin"),2);
+        System.out.println(obj);
 
-     /*   Object obj=new SimpleHash("MD5","123456",ByteSource.Util.bytes("admin"),2);
-        System.out.println(obj);*/
+
     }
-
 }

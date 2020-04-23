@@ -75,7 +75,7 @@ http://www.springframework.org/schema/aop http://www.springframework.org/schema/
     </bean>
 
     <!-- 5、开启事务管理器("org.springframework.jdbc.datasource.DataSourceTransactionManager") -->
-    <bean  id="dataSourceTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    <bean id="dataSourceTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="druidDataSource"></property>
     </bean>
 

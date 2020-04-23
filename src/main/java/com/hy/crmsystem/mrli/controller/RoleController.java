@@ -41,7 +41,7 @@ public class RoleController {
      * 添加角色
      */
     @RequestMapping("/addRole")
-    @RequiresPermissions("role:add")
+    /*@RequiresPermissions("role:add")*/
     public ResultObj addRole(RoleVo roleVo) {
         try {
             this.roleService.addRole(roleVo);

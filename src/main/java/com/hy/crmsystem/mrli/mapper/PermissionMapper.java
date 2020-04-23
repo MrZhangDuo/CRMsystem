@@ -2,11 +2,11 @@ package com.hy.crmsystem.mrli.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.hy.crmsystem.mrli.entity.Permission;
+import com.hy.crmsystem.mrli.provider.selectProvider.QueryRoleAllAuthority;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.SelectProvider;
 
 import java.util.List;
-import java.util.Set;
 
 /**
  * @author licheng
@@ -20,5 +20,6 @@ public interface PermissionMapper extends BaseMapper<Permission> {
      * @param userid
      * @return
      */
-    Set<String> queryPermissionByUserId(Integer userid);
+    /*@SelectProvider(type = QueryRoleAllAuthority.class,method = "queryPermissionByUserId")*/
+    List<Permission> queryPermissionByUserId(Integer userid);
 }

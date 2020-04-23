@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh_CN" xmlns:th="http://www.thymeleaf.org"
-      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8">
     <title>角色管理</title>
@@ -45,18 +44,17 @@
         </div>
     </div>
 </form>
-<!-- 搜索条件结束 -->
-<shiro:hasPermission name="role:add">
 
-</shiro:hasPermission>
+<!-- 搜索条件结束 -->
+
 <!-- 数据表格开始 -->
 <table class="layui-hide" id="roleTable" lay-filter="roleTable"></table>
 <div style="display: none;" id="roleToolBar">
-    <button type="button" class="layui-btn layui-btn-sm" lay-event="add" shiro:hasPermission name="role:add">增加</button>
+    <button type="button" class="layui-btn layui-btn-sm" lay-event="add">增加</button>
     <button type="button" class="layui-btn layui-btn-danger layui-btn-sm" lay-event="deleteBatch">批量删除</button>
 </div>
 <div id="roleBar" style="display: none;">
-    <a class="layui-btn layui-btn-xs" lay-event="edit" shiro:hasPermission name="role:add">编辑</a>
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
     <a class="layui-btn layui-btn-xs layui-btn-warm data-count-delete" lay-event="selectMenu">分配权限</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </div>

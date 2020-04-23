@@ -71,7 +71,7 @@
     </insert>
 
     <!-- 根据用户名查询用户对象 -->
-    <select id="queryUserByUserName" resultType="com.hy.crmsystem.mrli.entity.User">
+    <select id="queryUserByUserName" resultMap="BaseResultMap">
         select  * from sys_user
         where loginname=#{username}
     </select>

@@ -4,7 +4,6 @@ package com.hy.crmsystem.mrli.controller;
 import com.hy.crmsystem.mrli.entity.DataGridView;
 import com.hy.crmsystem.mrli.entity.User;
 import com.hy.crmsystem.mrli.service.IUserService;
-import com.hy.crmsystem.mrli.service.PermissionService;
 import com.hy.crmsystem.mrli.utils.ActivierUser;
 import com.hy.crmsystem.mrli.utils.ResultObj;
 import com.hy.crmsystem.mrli.vo.UserVo;
@@ -16,11 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.xml.crypto.Data;
-import java.nio.channels.DatagramChannel;
-import java.util.List;
-import java.util.Set;
 
 /**
  * <p>
@@ -36,8 +30,6 @@ public class UserController {
 
     @Autowired
     private IUserService userService;
-    @Autowired
-    private PermissionService permissionService;
 
     /**
      * 查询当前登陆的用户
@@ -48,11 +40,6 @@ public class UserController {
         return new DataGridView(activierUser.getUser().getRealname());
     }
 
-    @RequestMapping("/permission")
-    public DataGridView getPermission(Integer userid){
-        Set<String> permission =  this.permissionService.queryPermissionByUserId(userid);
-        return new DataGridView(permission);
-    }
 
     /**
      * 加载用户列表返回DataGridView

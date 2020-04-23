@@ -16,12 +16,11 @@ public interface PermissionService {
     /**
      * 根据用户id查询权限
      */
-    Set<String> queryPermissionByUserId(Integer userid);
+    List<String> queryPermissionByUserId(Integer userid);
 
     boolean needInterceptor(ServletRequest request);
 
     Set<String> listPermissionURLS(String userName);
-
     public DataGridView loadAllPermision(Permission permission);
 
 }

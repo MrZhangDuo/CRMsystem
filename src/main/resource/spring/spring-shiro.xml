@@ -39,7 +39,7 @@
         <property name="filterChainDefinitions">
             <value>
 
-              <!--  /page/system/roleManager.html=perms[role:edit]-->
+                <!--/page/system/roleManager.html=perms[role:edit]-->
 
                 /images/** = anon
                 /api/** = anon
