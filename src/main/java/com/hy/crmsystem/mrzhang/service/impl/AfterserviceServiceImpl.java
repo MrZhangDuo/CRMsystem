@@ -57,9 +57,9 @@ public class AfterserviceServiceImpl extends ServiceImpl<AfterserviceMapper, Aft
         }else if (StringUtils.isNotEmpty(jies)&&jies.equals("jies")){
             queryWrapper.eq("serviceCondition","结束");
         }else if (StringUtils.isNotEmpty(benzhou)&&benzhou.equals("benzhou")){
-            queryWrapper.apply("ServiceStartTime=YEARWEEK(NOW())","");
+            queryWrapper.apply("WEEKOFYEAR(serviceStartTime)=WEEKOFYEAR(NOW())","");
         }else if (StringUtils.isNotEmpty(shangzhou)&&shangzhou.equals("shangzhou")){
-            queryWrapper.apply("ServiceStartTime=YEARWEEK(NOW())-1","");
+            queryWrapper.apply("YEARWEEK(DATE_FORMAT(serviceStartTime,'%Y-%m-%d')) = YEARWEEK(NOW())-1","");
         }else if (StringUtils.isNotEmpty(benyue)&&benyue.equals("benyue")){
             queryWrapper.apply("DATE_FORMAT(ServiceStartTime,'%Y-%m')=DATE_FORMAT(NOW(),'%Y-%m')","");
         }else if (StringUtils.isNotEmpty(shangyue)&&shangyue.equals("shangyue")){

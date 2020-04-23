@@ -52,8 +52,7 @@ public class ContractController {
     @ResponseBody
     @RequestMapping("queryMyContract.do")
     public LayuiData queryMyContract(String page,String limit,Contract contract,QueryType queryType){
-        String currentName="张铎";
-        return contractService.queryAllContract(page,limit,currentName,contract,queryType);
+        return contractService.queryAllContract(page,limit,ShiroGetUserUtil.UserObject().getUser().getRealname(),contract,queryType);
     }
 
     /* 查询 合同 执行 搁置。。。。 的数量 */

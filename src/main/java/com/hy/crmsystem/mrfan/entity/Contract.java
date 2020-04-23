@@ -44,6 +44,7 @@ public class Contract implements Serializable {
     @TableField("signedTime")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date signedTime;
+    @TableField(exist = false)
     private String sigtime;
     //生效时间
     @TableField("contractStarTime")
