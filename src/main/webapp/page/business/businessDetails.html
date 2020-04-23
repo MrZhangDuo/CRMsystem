@@ -200,6 +200,19 @@
                 </div>
             </div>
 
+            <div class="layui-inline">
+                <label class="layui-form-label">商机阶段</label>
+                <div class="layui-input-block">
+                    <select name="busStage" lay-verify="required">
+                        <option>请选择</option>
+                        <option th:value="成交" th:selected="${selectCustInfo.getBusStage()eq '成交'}" >成交</option>
+                        <option th:value="丢单" th:selected="*{selectCustInfo.getBusStage() eq '丢单'}">丢单</option>
+                        <option th:value="谈判" th:selected="*{selectCustInfo.getBusStage() eq '谈判'}">谈判</option>
+                        <option th:value="搁置" th:selected="*{selectCustInfo.getBusStage()eq '搁置'}">搁置</option>
+                        <option th:value="初期沟通" th:selected="*{selectCustInfo.getBusStage()eq '初期沟通'}">初期沟通</option>
+                    </select>
+                </div>
+            </div>
 
             <div class="layui-form-item">
                 <div class="layui-inline">

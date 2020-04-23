@@ -13,6 +13,7 @@ import com.hy.crmsystem.uploadimage.UploadImage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -68,14 +69,23 @@ public class InvitationController {
     /*  查询回复 */
     @RequestMapping("/queryInvitationById.do")
     public String queryInvitationById(Integer invitationId, Model model){
-        Invitation invitation = invitationService.getById(invitationId);/* 查询当前主题的帖子 */
-        invitation.setInvitationClick(invitation.getInvitationClick()+1);
-        invitationService.updateById(invitation);
-        List<InvitationReolyBo> YiJiHuiFu = reolyinvitationService.queryReolyInvitationById1(invitation.getInvitationId());/* 查询当前帖子的一级回复*/
-        List<InvitationReolyBo> YiJiXiaHuiFu = reolyinvitationService.queryReolyId(YiJiHuiFu);/* 查询一级回复下面的回复*/
-        model.addAttribute("invitation",invitation);
-        model.addAttribute("YiJiHuiFu",YiJiHuiFu);/* 查询所有的一级回复*/
-        model.addAttribute("YiJiXiaHuiFu",YiJiXiaHuiFu);/* 查询一级回复下的回复 */
-        return "page/invitation/queryInvitationById";
+
+        if(invitationId>0){
+            Invitation invitation = invitationService.getById(invitationId);/* 查询当前主题的帖子 */
+            if(null != invitation.getInvitationClick() && invitation.getInvitationClick()>0){
+                invitation.setInvitationClick(invitation.getInvitationReply()+1);
+            }else{
+                invitation.setInvitationClick(1);
+            }
+            invitationService.updateById(invitation);
+            List<InvitationReolyBo> YiJiHuiFu = reolyinvitationService.queryReolyInvitationById1(invitation.getInvitationId());/* 查询当前帖子的一级回复*/
+            List<InvitationReolyBo> YiJiXiaHuiFu = reolyinvitationService.queryReolyId(YiJiHuiFu);/* 查询一级回复下面的回复*/
+            model.addAttribute("invitation",invitation);
+            model.addAttribute("YiJiHuiFu",YiJiHuiFu);/* 查询所有的一级回复*/
+            model.addAttribute("YiJiXiaHuiFu",YiJiXiaHuiFu);/* 查询一级回复下的回复 */
+            return "page/invitation/queryInvitationById";
+        }else{
+            return "page/404";
+        }
     }
 }

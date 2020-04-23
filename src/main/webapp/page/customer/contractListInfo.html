@@ -92,7 +92,7 @@
             ,url: '/customer/selectContractInfo.do'+url //数据接口
             ,type:'get'
             ,cols: [[ //表头
-                {field: 'contractName', title: '合同全称', width:330,templet:'<div><a  href=" " class="layui-table-link">{{d.contractName}}</a></div>'}
+                {field: 'contractName', title: '合同全称', width:330,templet:'<div><a  href="/contract/queryContractById.do?contractId={{d.contractId}}" class="layui-table-link">{{d.contractName}}</a></div>'}
                 ,{field: 'contractNum', title: '合同编号', width:270}
                 ,{field: 'contractMoney', title: '合同金额', width:250}
                 ,{field: 'incomesMoney', title: '汇款额', width: 180,templet:'<div><a  href="" class="layui-table-link">{{d.incomesMoney==0?0:d.incomesMoney}}</a></div>'}

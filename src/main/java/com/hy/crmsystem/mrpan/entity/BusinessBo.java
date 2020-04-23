@@ -34,6 +34,8 @@ public class BusinessBo {
     private Date docTime;
     private String gdTime;
 
+
+
     public Date getDocTime() {
         return docTime;
     }

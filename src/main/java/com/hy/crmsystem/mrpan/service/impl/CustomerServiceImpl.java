@@ -55,11 +55,7 @@ public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer> i
     //点售后服务数时查询售后服务的信息
     public List<AfterServiceNum> selectServiceInfo(@Param("afterService") AfterServiceNum afterService,Integer currentPage, Integer pageSize){
         Page page = PageHelper.startPage(currentPage, pageSize, true);
-         List<AfterServiceNum> aa=customerMapper.selectServiceInfo(afterService);
-        for (int i = 0; i <aa.size() ; i++) {
-            System.out.println(aa.get(i).getServiceTheme()+aa.get(i).getServiceType()+aa.get(i).getStartTime());
-        }
-        return aa;
+        return customerMapper.selectServiceInfo(afterService);
     }
 
     }

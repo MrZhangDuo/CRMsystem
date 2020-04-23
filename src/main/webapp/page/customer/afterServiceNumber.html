@@ -96,7 +96,7 @@
             ,url: '/customer/selectServiceInfo.do'+url //数据接口
             ,type:'get'
             ,cols: [[ //表头
-                {field: 'serviceTheme', title: '主题', width:380,templet:'<div><a  href=" " class="layui-table-link">{{d.serviceTheme}}</a></div>'}
+                {field: 'serviceTheme', title: '主题', width:380,templet:'<div><a  href="/afterservice/queryAfterServiceById.do?serviceId={{d.serviceId}}" class="layui-table-link">{{d.serviceTheme}}</a></div>'}
                 ,{field: 'serviceType', title: '服务类型', width:270}
                 ,{field: 'startTime', title: '开始时间', width:250,templet:'#dateFormat'}
                 ,{field: 'servicePeople', title: '服务人员', width: 180}

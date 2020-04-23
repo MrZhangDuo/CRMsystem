@@ -141,6 +141,19 @@
                     <input type="file" name="busFile" id="uploadFile" formmethod="post" formenctype="multipart/form-data"  lay-verify="title" class="layui-input">
                 </div>
             </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">商机阶段</label>
+                <div class="layui-input-block">
+                    <select name="busStage" lay-verify="required">
+                        <option>请选择</option>
+                        <option value="成交">成交</option>
+                        <option value="丢单">丢单</option>
+                        <option value="谈判">谈判</option>
+                        <option value="搁置">搁置</option>
+                        <option value="初期沟通">初期沟通</option>
+                    </select>
+                </div>
+            </div>
         </div>
 
 
