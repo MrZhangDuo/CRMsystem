@@ -75,12 +75,12 @@ http://www.springframework.org/schema/aop http://www.springframework.org/schema/
     </bean>
 
     <!-- 5、开启事务管理器("org.springframework.jdbc.datasource.DataSourceTransactionManager") -->
-    <bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    <bean id="dataSourceTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="druidDataSource"></property>
     </bean>
 
     <!--  6、开启事务注解扫描("tx:annotation-driven")  -->
-    <tx:annotation-driven proxy-target-class="true"></tx:annotation-driven>
+    <tx:annotation-driven proxy-target-class="true" transaction-manager="dataSourceTransactionManager"></tx:annotation-driven>
 
     <!-- 7、扫描带有 @Component（组件）@Service（服务层）@Controller（控制层）@Repository(数据库访问层)
            等component下得子类 通过factoryBean完成创建 -->

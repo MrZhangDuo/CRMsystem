@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.SelectProvider;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author licheng
@@ -19,5 +20,5 @@ public interface PermissionMapper extends BaseMapper<Permission> {
      * @param userid
      * @return
      */
-    List<Permission> queryPermissionByUserId(Integer userid);
+    Set<String> queryPermissionByUserId(Integer userid);
 }

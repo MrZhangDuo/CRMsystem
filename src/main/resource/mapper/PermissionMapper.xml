@@ -8,8 +8,8 @@
         <result column="percode" jdbcType="VARCHAR" property="percode"/>
     </resultMap>
 
-    <select id="queryPermissionByUserId" resultMap="BaseResultMap">
-        select distinct t1.* from sys_permission t1 inner join sys_role_permission t2
+    <select id="queryPermissionByUserId" resultType="com.hy.crmsystem.mrli.entity.Permission">
+        select distinct t1.percode from sys_permission t1 inner join sys_role_permission t2
         inner join sys_role_user t3
         on(t1.perid=t2.perid and t2.roleid=t3.rid)
         where t3.uid=#{value}

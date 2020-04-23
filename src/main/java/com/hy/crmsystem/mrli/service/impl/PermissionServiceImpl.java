@@ -33,14 +33,14 @@ public class PermissionServiceImpl implements PermissionService {
 
 
     @Override
-    public List<String> queryPermissionByUserId(Integer userid) {
+    public Set<String> queryPermissionByUserId(Integer userid) {
         // 根据用户ID查询权限
-        List<Permission> list = permissionMapper.queryPermissionByUserId(userid);
-        List<String> permissions = new ArrayList<>();
+        Set<String> list = permissionMapper.queryPermissionByUserId(userid);
+        /*Set<String> permissions = new HashSet<>();
         for (Permission permission : list) {
             permissions.add(permission.getPercode());
-        }
-        return permissions;
+        }*/
+        return list;
     }
 
     @Override
