@@ -59,6 +59,8 @@ public class UserRealm extends AuthorizingRealm {
             // 查询权限
            /* List<String> permissions = ;*/
             Set<String> permissions = new HashSet<>(this.permissionService.queryPermissionByUserId(user.getUserid()));
+
+
             Iterator<String> per = permissions.iterator();
             while (per.hasNext()){
                 System.out.println("权限================================================"+per.next());
@@ -78,23 +80,29 @@ public class UserRealm extends AuthorizingRealm {
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-        // 能进入这里，表示账号已经通过验证了
-        ActivierUser activierUser = (ActivierUser) principalCollection.getPrimaryPrincipal();
-        // 授权对象   ---注意这里类别导错了 SimpleAuthorizationInfo
-        SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+       /* //授权
+        System.err.println("-----------------------------");
+        Set<String> roles=null;
+        //1、先拿到用户名
+        Object object=principalCollection.getPrimaryPrincipal().toString();*/
+        System.err.println("----------------"+"授权方法");
+        //根据用户名查询用户
+        User user = this.userService.queryUserByUserName("admin");
+        // 查询角色
+        Set<String> roles = new HashSet<>(this.roleService.queryRoleByUserId(user.getUserid()));
+        // 查询权限
+        /* List<String> permissions = ;*/
+        Set<String> permissions = new HashSet<>(this.permissionService.queryPermissionByUserId(user.getUserid()));
+        Iterator<String> per = permissions.iterator();
+        while (per.hasNext()){
+            System.out.println("权限================================================"+per.next());
+        }
+        SimpleAuthorizationInfo authorizationInfo=new SimpleAuthorizationInfo();
+        authorizationInfo.setRoles(roles);
+        authorizationInfo.addStringPermissions(permissions);
 
-        // 通过service获取角色和权限
-        Set<String> roles = activierUser.getRoles();
-        Set<String> permissions = activierUser.getPermissions();
-        if (null != roles && roles.size() > 0) {
-            // 把通过service获取到的角色放进去
-            info.addRoles(roles);
-        }
-        if (null != permissions && permissions.size() > 0) {
-            // 把通过service获取到的权限放进去
-            info.addStringPermissions(permissions);
-        }
-        return info;
+        // 认证信息里存放账号密码，getName() 是当前Realm的继承方法，通常返回当前类名 ：UserRealm
+        return authorizationInfo;
     }
 
     public static void main(String[] args){

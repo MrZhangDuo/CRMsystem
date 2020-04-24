@@ -12,7 +12,7 @@
         <!-- 注入realm -->
         <property name="realm" ref="userRealm"></property>
     </bean>
-
+    <bean  id="dialect" class="at.pollux.thymeleaf.shiro.dialect.ShiroDialect"></bean>
     <!--自定义的realm类-->
     <bean id="userRealm" class="com.hy.crmsystem.mrli.realm.UserRealm">
         <!--shiro密码加密匹配器-->
@@ -33,7 +33,7 @@
         <!-- 注入未登陆的跳转页面 默认的是webapp/login.jsp-->
         <property name="loginUrl" value="/login.html"></property>
         <!-- 注入未授权的访问页面 -->
-        <property name="unauthorizedUrl" value="/page/error.html"></property>
+        <property name="unauthorizedUrl" value="page/error"></property>
 
         <!-- 配置过滤器链 权限配置-->
         <property name="filterChainDefinitions">
