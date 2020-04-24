@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+       xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
     <meta charset="utf-8">
     <title>角色管理</title>
@@ -50,8 +51,11 @@
 <!-- 数据表格开始 -->
 <table class="layui-hide" id="roleTable" lay-filter="roleTable"></table>
 <div style="display: none;" id="roleToolBar">
+    <shiro:hasPermission name="role/add">
     <button type="button" class="layui-btn layui-btn-sm" lay-event="add">增加</button>
-    <button type="button" class="layui-btn layui-btn-danger layui-btn-sm" lay-event="deleteBatch">批量删除</button>
+</shiro:hasPermission>
+
+    <button type="button" class="layui-btn layui-btn-danger layui-btn-sm" lay-event="deleteBatch" shiro:hasPermission="role/delete">批量删除</button>
 </div>
 <div id="roleBar" style="display: none;">
     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
