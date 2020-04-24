@@ -49,7 +49,6 @@ public class DocumentaryController {
     @RequestMapping(value = "/queryAllDocumentary")
     @ResponseBody
     public DataGridView loadAllDocumentary(DocumentaryVo documentaryVo) {
-
         return this.documentaryService.queryAllDocumentary(documentaryVo);
     }
 
@@ -60,8 +59,7 @@ public class DocumentaryController {
     @RequestMapping("/queryAllDocumentaryByUserName.do")
     @ResponseBody
     public DataGridView loadAllDocumentaryByUserName(Documentary documentary,DocumentaryVo documentaryVo){
-
-        return this.documentaryService.queryAllDocumentaryByUserName(documentaryVo,documentary, ShiroGetUserUtil.UserObject().getUser().getRealname());
+        return this.documentaryService.queryAllDocumentaryByUserName(documentaryVo,documentary);
     }
 
 

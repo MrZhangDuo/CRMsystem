@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.hy.crmsystem.mrli.utils.ShiroGetUserUtil;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
@@ -25,7 +26,7 @@ public class Documentary implements Serializable  {
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "docId", type = IdType.AUTO)
-    private Integer DocId;
+    private Integer docId;
 
     @TableField("busId")
     private Integer busId;
@@ -34,9 +35,9 @@ public class Documentary implements Serializable  {
      * 跟单时间
      */
     @TableField("docTime")
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
-    private Date DocTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
+    private Date docTime;
 
 
     @TableField("uname")
@@ -46,54 +47,88 @@ public class Documentary implements Serializable  {
      * 跟单人
      */
     @TableField("docPeople")
-    private String DocPeople;
+    private String docPeople;
 
     /**
      * 跟单标题
      */
     @TableField("docTitle")
-    private String DocTitle;
+    private String docTitle;
 
     /**
      * 跟单内容
      */
     @TableField("docContent")
-    private String DocContent;
+    private String docContent;
 
+    @TableField(exist = false)
+    private String realname=ShiroGetUserUtil.UserObject().getUser().getRealname();
+
+    public String getRealname() {
+        return realname;
+    }
+
+    public void setRealname(String realname) {
+        this.realname = realname;
+    }
 
     /**
      * 跟单分类
      */
     @TableField("docType")
-    private String DocType;
+    private String docType;
 
     public String getDocType() {
-        return DocType;
+        return docType;
     }
 
     public void setDocType(String docType) {
-        DocType = docType;
+        this.docType = docType;
     }
 
     @TableField("docFile")
-    private String DocFile;
+    private String docFile;
+
+
 
     public Integer getDocId() {
-        return DocId;
+        return docId;
     }
 
-    public void setDocId(Integer DocId) {
-        this.DocId = DocId;
+    public void setDocId(Integer docId) {
+        this.docId = docId;
     }
 
+    public Date getDocTime() {
+        return docTime;
+    }
 
+    public void setDocTime(Date docTime) {
+        this.docTime = docTime;
+    }
+
+    public String getDocPeople() {
+        return docPeople;
+    }
+
+    public void setDocPeople(String docPeople) {
+        this.docPeople = docPeople;
+    }
 
     public String getDocTitle() {
-        return DocTitle;
+        return docTitle;
     }
 
     public void setDocTitle(String docTitle) {
-        DocTitle = docTitle;
+        this.docTitle = docTitle;
+    }
+
+    public String getDocContent() {
+        return docContent;
+    }
+
+    public void setDocContent(String docContent) {
+        this.docContent = docContent;
     }
 
     public Integer getBusId() {
@@ -104,34 +139,12 @@ public class Documentary implements Serializable  {
         this.busId = busId;
     }
 
-    public Date getDocTime() {
-        return DocTime;
-    }
-
-    public void setDocTime(Date docTime) {
-        DocTime = docTime;
-    }
-
-    public String getDocPeople() {
-        return DocPeople;
-    }
-
-    public void setDocPeople(String DocPeople) {
-        this.DocPeople = DocPeople;
-    }
-    public String getDocContent() {
-        return DocContent;
-    }
-
-    public void setDocContent(String DocContent) {
-        this.DocContent = DocContent;
-    }
     public String getDocFile() {
-        return DocFile;
+        return docFile;
     }
 
-    public void setDocFile(String DocFile) {
-        this.DocFile = DocFile;
+    public void setDocFile(String docFile) {
+        this.docFile = docFile;
     }
 
     public String getUname() {

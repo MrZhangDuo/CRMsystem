@@ -8,60 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="/lib/layui-v2.5.5/css/layui.css" media="all">
     <link rel="stylesheet" href="/css/public.css" media="all">
-    <style>
-        #id1 {
-            margin-right: 105px;
-        }
-
-        #id2 {
-            margin-left: 106px;
-            margin-right: 105px;
-        }
-
-        #id3 {
-            margin-left: 106px;
-        }
-
-        #top_id {
-            margin-top: 30px;
-        }
-
-        #id1_1 {
-            margin-right: 105px;
-        }
-
-        #id2_1 {
-            margin-left: 106px;
-            margin-right: 105px;
-        }
-
-        #id3_1 {
-            margin-left: 106px;
-        }
-
-        #top_id_1 {
-            margin-top: 30px;
-        }
-
-        #id1_2 {
-            margin-right: 105px;
-        }
-
-        #id2_2 {
-            margin-left: 106px;
-            margin-right: 105px;
-        }
-
-        #id3_2 {
-            margin-left: 106px;
-        }
-
-        #top_id_2 {
-            margin-top: 30px;
-        }
-
-
-    </style>
 </head>
 <body>
 <div class="layuimini-container">
@@ -77,19 +23,19 @@
                         <div class="layui-inline">
                             <label class="layui-form-label">跟单人</label>
                             <div class="layui-input-inline">
-                                <input type="text" name="DocPeople" autocomplete="off" class="layui-input">
+                                <input type="text" name="docPeople" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-inline">
                             <label class="layui-form-label">跟单主题</label>
                             <div class="layui-input-inline">
-                                <input type="text" name="DocTitle" autocomplete="off" class="layui-input">
+                                <input type="text" name="docTitle" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-inline">
                             <label class="layui-form-label">开始时间</label>
                             <div class="layui-input-inline">
-                                <input type="text" name="DocTime" id="DocTime" readonly="readonly"
+                                <input type="text" name="docTime" id="DocTime" readonly="readonly"
                                        autocomplete="off" class="layui-input">
                             </div>
                         </div>
@@ -223,7 +169,7 @@
         //渲染数据表格
         tableIns = table.render({
             elem: '#docTable'   //渲染的目标对象
-            , url: '/documentary/queryAllDocumentary.do' //数据接口
+            , url: '/documentary/queryAllDocumentaryByUserName.do' //数据接口
             , title: '全部跟单'//数据导出来的标题
             , limit: 7
             , limits: [5, 7, 10, 15, 20, 30]
@@ -245,7 +191,7 @@
         $("#doSearch").click(function () {
             var params = $("#searchFrm").serialize();
             tableIns.reload({
-                url: "/documentary/queryAllDocumentary.do?" + params,
+                url: "/documentary/queryAllDocumentaryByUserName.do?" + params,
                 page: {curr: 1}
             })
         });

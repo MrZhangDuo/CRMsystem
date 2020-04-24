@@ -9,6 +9,7 @@ import com.hy.crmsystem.mrli.mapper.DocumentaryMapper;
 import com.hy.crmsystem.mrli.service.IDocumentaryService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hy.crmsystem.mrli.utils.ActivierUser;
+import com.hy.crmsystem.mrli.utils.ShiroGetUserUtil;
 import com.hy.crmsystem.mrli.vo.DocumentaryVo;
 import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
@@ -52,9 +53,9 @@ public class DocumentaryServiceImpl extends ServiceImpl<DocumentaryMapper, Docum
     }
 
     @Override
-    public DataGridView queryAllDocumentaryByUserName(DocumentaryVo documentaryVo,Documentary documentary,String realname) {
+    public DataGridView queryAllDocumentaryByUserName(DocumentaryVo documentaryVo,Documentary documentary) {
         Page<Object> page = PageHelper.startPage(documentaryVo.getPage(),documentaryVo.getLimit());
-        List<Documentary> data = this.documentaryMapper.queryAllDocumentaryByUserName(documentaryVo,realname);
+        List<Documentary> data = this.documentaryMapper.queryAllDocumentaryByUserName(documentaryVo);
         return new DataGridView(page.getTotal(),data);
     }
 

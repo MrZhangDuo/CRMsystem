@@ -5,17 +5,17 @@
     <select id="queryAllDocumentary" resultType="com.hy.crmsystem.mrli.entity.Documentary">
         select  * from documentary
         <where>
-            <if test="DocPeople!=null and DocPeople!=''">
-                and DocPeople like concat("%",#{docPeople},"%")
+            <if test="docPeople!=null and docPeople!=''">
+                and docPeople like concat("%",#{docPeople},"%")
             </if>
-            <if test="DocTitle != null and DocTitle != ''">
-                and DocTitle like concat("%",#{docTitle},"%")
+            <if test="docTitle != null and docTitle != ''">
+                and docTitle like concat("%",#{docTitle},"%")
             </if>
-            <if test="DocTime!=null">
-                and DocTime >=#{docTime}
+            <if test="docTime!=null">
+                and docTime >=#{docTime}
             </if>
         </where>
-        order by DocTime desc
+        order by docTime desc
     </select>
 
 
@@ -28,16 +28,18 @@
     <select id="queryAllDocumentaryByUserName" resultType="com.hy.crmsystem.mrli.entity.Documentary">
         select  * from documentary
         <where>
-            <if test="documentary.docPeople!=null and documentary.docPeople!=''">
+            <if test="docPeople!=null and docPeople!=''">
                 and docPeople like concat("%",#{docPeople},"%")
             </if>
-            <if test="documentary.docTitle != null and documentary.docTitle != ''">
+            <if test="docTitle != null and docTitle != ''">
                 and docTitle like concat("%",#{docTitle},"%")
             </if>
-            <if test="documentary.docTime!=null">
+            <if test="docTime!=null">
                 and docTime >=#{docTime}
             </if>
-            and uname =#{realname}
+            <if test="realname != null and realname != ''">
+                and uname =#{realname}
+            </if>
         </where>
         order by docTime desc
     </select>
