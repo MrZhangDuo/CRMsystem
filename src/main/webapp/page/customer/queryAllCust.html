@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html>
+<html xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
     <meta charset="utf-8">
     <title>客户管理页面</title>
@@ -82,9 +83,9 @@
     <div class="layui-col-md-offset3">
         <script type="text/html" id="toolbarDemo">
             <div class="layui-btn-container">
-                <button class="layui-btn layui-btn-sm data-add-btn" lay-event="add">
-                    <a href="addCustomer.html"> 新增用户</a>
-                </button>
+                    <button class="layui-btn layui-btn-sm data-add-btn" lay-event="add">
+                        <a href="addCustomer.html"> 新增用户</a>
+                    </button>
             </div>
         </script>
        <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>

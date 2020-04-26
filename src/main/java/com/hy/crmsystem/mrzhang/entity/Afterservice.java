@@ -89,6 +89,8 @@ public class Afterservice implements Serializable {
     @TableField("filename")
     private String filename;
 
+    @TableField("filename")//服务状态
+    private String serviceCondition;
 
     public String getStartTime() {
         if(serviceStartTime!=null){
@@ -262,6 +264,15 @@ public class Afterservice implements Serializable {
         this.filename = filename;
     }
 
+    public String getServiceCondition() {
+        return serviceCondition;
+    }
+
+    public void setServiceCondition(String serviceCondition) {
+        this.serviceCondition = serviceCondition;
+    }
+
+
     @Override
     public String toString() {
         return "Afterservice{" +
@@ -284,6 +295,8 @@ public class Afterservice implements Serializable {
                 ", custReturn='" + custReturn + '\'' +
                 ", ServicePeople='" + ServicePeople + '\'' +
                 ", servicesCore=" + servicesCore +
+                ", filename='" + filename + '\'' +
+                ", serviceCondition='" + serviceCondition + '\'' +
                 '}';
     }
 }

@@ -100,6 +100,7 @@ public class AfterserviceController {
     public String insertAfterService(Afterservice  afterservice){
         String returns="0";
         try {
+         /*   afterservice.setServiceCondition("处理中");//添加合同状态*/
             afterserviceService.save(afterservice);
             } catch (Exception e) {
             returns="1";

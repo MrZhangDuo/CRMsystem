@@ -298,14 +298,28 @@
                 success: function(data){
                     var data = JSON.stringify(data);
                     if(data === '0'){
-                        var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
-                        parent.layer.close(index); // 关闭layer
-                        window.parent.location.reload();
                         layer.msg('添加成功', {
                         }, function(){
-
+                            var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+                            parent.layer.close(index); // 关闭layer
+                            window.parent.location.reload();
+                        });
+                    }if(data === '1'){
+                        layer.msg('添加失败', {
+                        }, function(){
+                            var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+                            parent.layer.close(index); // 关闭layer
+                            window.parent.location.reload();
+                        });
+                    }else {
+                        layer.msg(data, {
+                        }, function(){
+                            var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+                            parent.layer.close(index); // 关闭layer
+                            window.parent.location.reload();
                         });
                     }
+
                 }
             });
             return false;

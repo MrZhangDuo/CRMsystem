@@ -5,13 +5,11 @@ import com.hy.crmsystem.mrpan.entity.*;
 import com.hy.crmsystem.mrpan.mapper.MoneyinforMapper;
 import com.hy.crmsystem.mrpan.service.impl.CustomerServiceImpl;
 import com.hy.crmsystem.mrpan.service.impl.MoneyinforServiceImpl;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -59,6 +57,7 @@ public class CustomerController {
 
     //添加新增客户的基本信息及财务信息
     @ResponseBody
+    /*@RequiresPermissions(value = {"customer:addCustomerInfo.do"})*/
     @RequestMapping("/addCustomerInfo.do")
     public String customerInfo(Customer customer,Moneyinfor moneyinfor){
         String returns="0";

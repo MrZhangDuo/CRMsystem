@@ -286,6 +286,7 @@
         //监听提交修改
         form.on('submit(xiugai)', function (data) {
             $('form[id=cust]').attr('action','/customer/updateCustomerInfo.do').submit();
+            return false;
         });
     });
 </script>

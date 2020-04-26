@@ -148,11 +148,11 @@
             }],
             cols: [[
                 {type:'numbers'},
-                {field: 'serviceTheme',  title: '主题', align: 'center',templet:'<div><a  href="/afterservice/queryAfterServiceById.do?serviceId={{d.serviceId}}" class="layui-table-link">{{d.serviceTheme}}</a></div>'},
-                {field: 'serviceType',  title: '服务类型', align: 'center'},
-                {field: 'startTime', title: '开始时间' , align: 'center' },
-                {field: 'servicePeople', title: '服务人员', align: 'center'},
-                {field: 'servicesCore', title: '服务评分', align: 'center'}
+                {field: 'serviceTheme',width:380,title: '主题', align: 'center',templet:'<div><a  href="/afterservice/queryAfterServiceById.do?serviceId={{d.serviceId}}" class="layui-table-link">{{d.serviceTheme}}</a></div>'},
+                {field: 'serviceType',width:270,  title: '服务类型', align: 'center'},
+                {field: 'startTime', width:250, title: '开始时间' , align: 'center' },
+                {field: 'servicePeople',width:180, title: '服务人员', align: 'center'},
+                {field: 'servicesCore', width:200, title: '服务评分', align: 'center'}
             ]],
         });
 

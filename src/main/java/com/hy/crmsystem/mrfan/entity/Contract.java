@@ -81,6 +81,7 @@ public class Contract implements Serializable {
     //关联人员
     @TableField("relevancyPeople")
     private String relevancyPeople;
+
     @TableField("contractzhuangtai")
     private String contractzhuangtai;
 

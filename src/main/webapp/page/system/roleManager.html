@@ -51,9 +51,7 @@
 <!-- 数据表格开始 -->
 <table class="layui-hide" id="roleTable" lay-filter="roleTable"></table>
 <div style="display: none;" id="roleToolBar">
-    <div shiro:hasPermission="123">
-        <button type="button" class="layui-btn layui-btn-sm" lay-event="add">增加</button>
-    </div>
+    <button type="button" class="layui-btn layui-btn-sm" lay-event="add">增加</button>
     <button type="button" class="layui-btn layui-btn-danger layui-btn-sm" lay-event="deleteBatch" shiro:hasPermission='role+":"+delete'>批量删除</button>
 </div>
 <div id="roleBar" style="display: none;">

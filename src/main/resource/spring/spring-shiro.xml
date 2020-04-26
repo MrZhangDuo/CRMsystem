@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:util="http://www.springframework.org/schema/util"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
+		">
 
 
     <!-- 配置SecurityManager 安全管理器 -->
@@ -26,6 +24,13 @@
         </property>
     </bean>
 
+
+    <!--配自己的权限过滤工厂-->
+    <bean id="chainDefinitionMapFactory" class="com.hy.crmsystem.mrli.realm.FilterChainDefinitionMapFactory"/>
+    <!--配置自动调用我们的过滤工厂的方法-->
+    <bean factory-bean="chainDefinitionMapFactory" factory-method="getPermissionMap" id="filterChainDefinitionMap"/>
+
+
     <!-- 配置shiro的过滤器  这里面的id必须和web.xml里面的shiroFilter的 targetBeanName的值一样 -->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <!-- 注入安全管理器 Shiro的核心安全接口，这个属性是必须的 -->
@@ -33,21 +38,32 @@
         <!-- 注入未登陆的跳转页面 默认的是webapp/login.jsp-->
         <property name="loginUrl" value="/login.html"></property>
         <!-- 注入未授权的访问页面 -->
-        <property name="unauthorizedUrl" value="page/error"></property>
+        <property name="unauthorizedUrl" value="/unauthorized.html"></property>
+        <!--该处对映自动调用权限过滤工厂bean的id-->
+        <property name="filterChainDefinitionMap" ref="filterChainDefinitionMap"/>
+        <!--自定义拦截器，拦截访问权限，当被拦截的权限是ajax请求，的时候返回json字符串给以提示，否则转跳无权限页面-->
+        <property name="filters">
+            <map>
+                <!--该Key值得使用在
+                自定义FilterChainDefinitionMapFactory类中字符串拼接
+                map.put(permission.getResource(), "perms["+permission.getSn()+"]");//需要判断权限的路径
+                -->
+                <entry key="perms">
+                    <bean class="com.hy.crmsystem.mrli.realm.ShiroPermsFilter"/>
+                </entry>
+            </map>
+        </property>
+
 
         <!-- 配置过滤器链 权限配置-->
         <property name="filterChainDefinitions">
             <value>
-
-                <!--/page/system/roleManager.html=perms[role:edit]-->
-
                 /images/** = anon
                 /api/** = anon
                 /css/** = anon
                 /fonts/** = anon
                 /js/** = anon
                 /lib/** = anon
-                /page/** = anon
                 /register.html = anon
                 /tianJiaUser/UserZhuce.do =anon
                 /invitation/fileuploadExecl.do =anon
@@ -62,7 +78,54 @@
                 <!-- 如果用户访问user/logout就使用Shiro注销session -->
                 /login/logout*=logout
                 <!--所有的请求(除去配置的静态资源请求或请求地址为anon的请求)都要通过过滤器url-->
-                <!--/**=url-->
+
+
+
+                <!--
+                    设置用户拥有权限才能访问
+                -->
+                <!-- 客户管理权限 -->
+                /page/customer/queryAllCust.html*=perms["customer:customerSelect.do"]<!-- 有查询权限才能查询客户信息 -->
+                /page/customer/addCustomer.html*=perms["customer:addCustomerInfo.do"]<!-- 有新增权限才能新增客户信息 -->
+                /customer/updateCustomerInfo.do*=perms["customer:updateCustomerInfo.do"]<!-- 有修改权限才能修改客户信息 -->
+
+                <!-- 商机管理权限 -->
+                <!-- 我的商机 -->
+                /page/business/queryMyBusiness.html*=perms["business:MyBusInfo.do"]<!-- 有查询权限才能查询我的商机信息 -->
+                /page/business/addMyBusiness.html*=perms["business:addMyBusiness.do"]<!-- 有新增权限才能新增我的商机信息 -->
+                /business/updateBusDetails.do*=perms["business:updateBusDetails.do"]<!-- 有修改权限才能修改我的商机信息 -->
+                <!-- 全部商机 -->
+                /page/business/queryAllBusiness.html*=perms["business:selectAllBusInfo.do"]<!-- 有查询权限才能查询全部商机信息 -->
+                /page/business/addBusiness.html*=perms["business:addAllBusiness.do"]<!-- 有新增权限才能新增全部商机信息 -->
+
+                <!-- 跟单管理权限 -->
+                <!-- 我的跟单 -->
+                /page/bill/queryMyBill.html*=perms["documentary:queryAllDocumentaryByUserName.do"]<!-- 有查询权限才能查询我的跟单信息 -->
+                /documentary/addDocumentary.do*=perms["documentary:addDocumentary.do"]<!-- 有新增权限才能新增我的跟单信息 -->
+                <!-- 全部跟单 -->
+                /page/bill/queryAllBill.html*=perms["documentary:queryAllDocumentary.do"]<!-- 有查询权限才能查询全部跟单信息 -->
+
+                <!-- 讨论帖子权限 -->
+                /page/invitation/queryAllInvitation.html*=perms["invitation:queryAllInvitation.do"]
+                /page/invitation/addInvitation.html*=perms["invitation:addInvitation.do"]
+
+                <!-- 合同管理权限 -->
+                <!-- 我的合同 -->
+                /page/contract/queryMyContract.html*=perms["contract:queryMyContract.do"]<!-- 有查询权限才能查询我的合同信息 -->
+                /page/contract/addContract.html*=perms["contract:addContract.do"]<!-- 有新增权限才能新增我的合同信息 -->
+                /page/contract/updateContract.html*=perms["contract:updateContract.do"]<!-- 有修改权限才能修改我的合同信息 -->
+                <!-- 全部合同 -->
+                /page/contract/queryAllContract.html*=perms["contract:queryAllContract.do"]<!-- 有查询权限才能查询全部合同信息 -->
+
+                <!-- 售后服务权限 -->
+                /page/afterservice/queryAllAfterService.html*=perms["afterservice:queryAllAfterService.do"]<!-- 有查询权限才能查询售后服务信息 -->
+                /page/afterservice/insterAfterService.html*=perms["afterservice:insertAfterService.do"]<!-- 有新增权限才能新增售后服务信息 -->
+
+                <!-- 统计分析权限 -->
+                /page/afterservice/queryAllAfterService.html*=perms["afterservice:queryAllAfterService.do"]<!-- 有查询权限才能查询售后服务信息 -->
+                /page/count/queryAllCount.html*=perms["/page/count/queryAllCount.html"]<!-- 有新增权限才能新增售后服务信息 -->
+
+
 
                 <!-- /** = authc所有url都不可以匿名访问 必须放到最后面 -->
                 /**=authc
