@@ -69,11 +69,10 @@ public class InvitationController {
     /*  查询回复 */
     @RequestMapping("/queryInvitationById.do")
     public String queryInvitationById(Integer invitationId, Model model){
-
         if(invitationId>0){
             Invitation invitation = invitationService.getById(invitationId);/* 查询当前主题的帖子 */
-            if(null != invitation.getInvitationClick() && invitation.getInvitationClick()>0){
-                invitation.setInvitationClick(invitation.getInvitationReply()+1);
+            if(invitation.getInvitationClick()>0){
+                invitation.setInvitationClick(invitation.getInvitationClick()+1);
             }else{
                 invitation.setInvitationClick(1);
             }

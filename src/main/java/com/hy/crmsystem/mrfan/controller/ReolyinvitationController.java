@@ -68,5 +68,4 @@ public class ReolyinvitationController {
         reolyinvitationService.save(reolyinvitation);
         return "redirect:/invitation/queryInvitationById.do?invitationId="+Integer.parseInt(invitationId);
     }
-
 }
